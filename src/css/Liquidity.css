@@ -1,0 +1,217 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.swap-container {
+  background: radial-gradient(circle at 20% 80%, #a5dbf5 20%, transparent 40%),
+              radial-gradient(circle at 80% 20%, #a5dbf5 20%, transparent 40%);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.swap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+} 
+
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0daae8;
+}
+
+.nav-links a {
+  margin-left: 32px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+}
+
+.hero{
+    background-image: url("../assest/Vector\ 111.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-attachment:scroll; 
+    text-align: center;
+}
+
+.subtitle {
+color: #1da1f2;
+font-family: serif;
+font-weight: 700;
+font-style: Bold;
+font-size: 24px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+font-variant: lining-nums;
+}
+
+.title {
+    font-family:serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 62px;
+    color:#000;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    font-variant: lining-nums;
+}
+
+.description {
+  font-size: 16px;
+  color: #000;
+  margin-bottom:40px;
+  font-weight:600;
+}
+
+.cta-button {
+  background-color: #1da1f2;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom:20px;
+}
+
+.table-container {
+  background-color: #e8f0f4;
+  padding: 20px;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.table-header h2 {
+  margin: 0;
+}
+
+.table-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  margin-left: 5px;
+  background: transparent;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #f0f0f0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.source-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.net-icon {
+  margin-right: 6px;
+  font-size: 18px;
+}
+
+.eth { color: #627eea; }
+.poly { color: #8247e5; }
+.arbi { color: #28a0f0; }
+.op { color: #ff0420; }
+
+.pagination {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.pagination button {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin: 0 3px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+}
+
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap:10px;
+}
+
+.logo-grid button{
+  background: #FFFFFF;
+  width: 66px;
+  height: 66px;
+  opacity: 1;
+  border-radius: 26px
+}
+
+.content{
+  background-color: #EFF8FF;
+  height: 100vh;
+  text-align: center;
+}
+.content h1{
+  font-family: Inter;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 54px;
+  /* leading-trim: NONE; */
+  line-height: 74px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+
+}
+.content p{
+  font-family:inherit;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 32px;
+  /* leading-trim: NONE; */
+  line-height: 54px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+
+}

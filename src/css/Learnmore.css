@@ -1,0 +1,388 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+.swap-container {
+  height:80vh;
+  background: radial-gradient(circle at 20% 80%, #a5dbf5 0%, transparent 40%),
+              radial-gradient(circle at 80% 20%, #a5dbf5 0%, transparent 40%),
+              #e8f6fd;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+  background-position: fixed;
+}
+
+
+.swap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  background: white;
+  height:60px;
+} 
+.round{
+  background-image: url('../assest/round.png'); 
+  background-size:contain; 
+  background-repeat: no-repeat;
+  background-attachment:scroll; 
+  background-position:center;
+  height:60vh;
+}
+
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0daae8;
+}
+
+.nav-links a {
+  margin-left: 32px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Main content */
+.swap-main {
+  flex: 1;
+  text-align: center;
+  margin-top: 80px;
+  padding: 0 20px;
+  background-position: fixed;
+}
+
+.subheading {
+  font-size: 24px;
+  color: #129ef4;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #111;
+}
+
+.description {
+  font-size: 18px;
+  color: #222;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+
+.start-btn {
+  background: linear-gradient(90deg, #0DA2E5 0%, #0488CB 100%);
+
+  color: white;
+  font-size: 18px;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-btn:hover {
+  background-color: #0995cb;
+}
+.trade-info-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 80px;
+  background-color: #ecf7fd;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.trade-left {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.trade-left h1 {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.check-icon {
+
+  margin-right: 12px;
+  font-size: 20px;
+  margin-top: 3px;
+  width:30px;
+}
+
+.feature-list a {
+  color: #0daae8;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.trade-right {
+  flex: 1;
+  padding-left: 40px;
+  background-color: #f3fbff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.04);
+}
+
+.quote-expiry {
+  text-align: center;
+  color: #129ef4;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.token-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.token-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 160px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.token-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.token-card h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.token-card p {
+  margin: 5px 0 0;
+  color: #666;
+}
+
+.trade-details {
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.trade-details div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.mev-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eef6fb;
+  padding: 60px 100px;
+  font-family: 'Arial', sans-serif;
+}
+
+.mev-left {
+  flex: 1;
+  margin:10px;
+}
+
+.mev-left h1 {
+  font-size: 48px;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+.mev-list {
+  list-style: none;
+  padding: 0;
+  width:400px;
+}
+
+.mev-list li {
+  font-size: 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  color: #111;
+}
+
+.check {
+  display: inline-block;
+  border-radius: 6px;
+  font-weight: bold;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right:12px;
+  font-size: 16px;
+}
+
+.highlight {
+  color: #1c9eff;
+  font-weight: 500;
+}
+
+.mev-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inner{
+  background-image: url("../assest/Vector.png");
+}
+.smart-routing-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #edf7ff; /* light blue */
+  padding: 60px 30px;
+  flex-wrap: wrap;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.smart-routing-left {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+
+.swap-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.smart-routing-right {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+}
+
+.smart-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #111;
+}
+
+.smart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.smart-list li {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  color: #222;
+}
+
+.check {
+  color: #00cc66;
+  font-size: 1.3rem;
+  margin-right: 12px;
+}
+
+.highlight {
+  color: #1a8cff; /* bright blue */
+  font-weight: 500;
+}
+.learn-section {
+  text-align: center;
+  padding: 80px 20px;
+  background:white;
+  font-family: 'Segoe UI', sans-serif;
+  color:#000;
+  background-image: url('../assest/curve.png');
+  background-position:bottom;
+  background-repeat: repeat-x; 
+  background-size: 100% auto;
+}
+
+.trade-mode {
+  color: #0b9edc;
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.main-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+
+.subtitle {
+  color: #ffffff;
+  opacity: 0.4;
+  font-weight: 500;
+  margin-bottom: 60px;
+}
+
+.features-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 220px;
+  text-align: center;
+  font-weight: 600;
+  color: #111;
+}
+
+.circle-icon {
+  background: #0098db;
+  color: white;
+  font-size: 28px;
+  padding: 25px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 12px rgba(0, 152, 219, 0.4),
+              0 0 0 24px rgba(0, 152, 219, 0.2);
+}

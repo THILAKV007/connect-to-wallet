@@ -1,0 +1,367 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.swap-container {
+  background: radial-gradient(circle at 20% 80%,#0892D5 10%, transparent 40%),
+              radial-gradient(circle at 80% 20%, #0892D5 10%, transparent 40%);
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #061536;
+}
+
+
+.swap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+} 
+
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0daae8;
+}
+
+.nav-links a {
+  margin-left: 32px;
+  text-decoration: none;
+  font-weight: 500;
+  color:white;
+}
+.hero{
+    background-image: url("../assest/03.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-attachment:scroll; 
+    text-align: center;
+}
+
+.subtitle {
+color: #1da1f2;
+font-family: serif;
+font-weight: 700;
+font-style: Bold;
+font-size: 24px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+font-variant: lining-nums;
+}
+
+.title {
+    font-family:serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 62px;
+    color:white;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    font-variant: lining-nums;
+}
+
+.description {
+  font-size: 16px;
+  color:white;
+  margin-bottom:40px;
+  font-weight:600;
+}
+
+.cta-button {
+  background-color: #1da1f2;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom:20px;
+}
+
+
+.gas-free-swaps {
+  display: flex;
+  justify-content: space-between;
+  background-color:#061536; 
+  padding:10px;
+  border-radius: 8px;
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap:16px;
+}
+
+.logo img {
+  width: 100%; 
+  height: auto;
+}
+
+.features {
+  max-width: 600px;
+  margin-left: 20px;
+}
+
+.features h1 {
+ width: 477;
+  height: 110;
+  opacity: 1;
+  top: 144px;
+  left: 819px;
+  color: white;
+
+}
+
+.features ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.features li {
+  width: 529;
+  height: 200;
+  opacity: 1;
+  top: 274px;
+  left: 819px;
+  gap: 10px;
+  font-size:large;
+  color: white;
+
+}
+
+.logo-grid button{
+  background: #FFFFFF;
+  width: 66px;
+  height: 66px;
+  opacity: 1;
+  border-radius: 26px;
+}
+
+.core-container {
+  text-align: center;
+  background-color:#061536;
+  padding: 50px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.core-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.core-subtitle {
+  font-size: 16px;
+  color:white;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.core-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.core-card {
+  background: #122a53;
+  border-radius: 12px;
+  padding: 30px 20px;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.core-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.core-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.core-card p {
+  font-size: 14px;
+  color:white;
+}
+
+.core-card a {
+  color:white;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.whole{
+  background-image: url('../assest/whole.png');
+  height:98vh;
+  background-position:bottom;
+  background-repeat: no-repeat;
+  background-color: #061536;
+  color:white;
+}
+.wholeone{
+  background-image: url('../assest/whole.png');
+  height:90vh;
+  background-position:bottom;
+  background-repeat: no-repeat;
+}
+.chain p {
+  color:white;
+  font-family: Manrope;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  font-variant:Lining-nums;
+
+}
+/* .most{
+  width: 201px;
+  height: 62px;
+  opacity: 1;
+  top: 474px;
+  left: 134px;
+} */
+.volume{
+  width: 201;
+  height: 31;
+  opacity: 1;
+  top: 240px;
+  left: 1076px;
+}
+
+
+.container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(#0892D5 5%,#061536 100%);
+  padding: 40px 20px;
+}
+
+.card {
+  background-color: #1d9bd1;
+  color: white;
+  padding: 30px 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.card h2 {
+  margin-bottom: 20px;
+}
+
+/* .toggle {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+} */
+button{
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* .toggle button {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  color: #555;
+} */
+
+/* .toggle button.active {
+  background-color: #1d9bd1;
+  color: white;
+} */
+
+.features {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin: 0 auto;
+  max-width: 280px;
+}
+
+.features li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 8px 0;
+}
+
+.fee {
+  margin-top: 15px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.bottom-text {
+  margin-top: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bottom-text h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.bottom-text p {
+  font-size: 14px;
+  color:white;
+}
+
+footer .logo {
+  font-weight: bold;
+  color: #00bfff;
+}
+
+.footer-links {
+  display: flex;
+  gap: 40px;
+}
+
+.footer-links h4 {
+  margin-bottom: 10px;
+  color:white;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 6px;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 20px;
+  font-size: 0.9em;
+  color:white;
+  text-align: left;
+  background-color:#061536;
+}
