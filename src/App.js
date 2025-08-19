@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import BlogsSection from './components/BlogsSection';
 import PopularTokenSection from './components/PopularTokenSection';
 import WhyUnidexSection from './components/WhyUnidexSection';
+import BannerSection from './components/BannerSection';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -47,6 +48,7 @@ function App() {
       >
         {/* Main content area */}
         <Box sx={{ flex: 1 }}>
+          <BannerSection isDarkMode={isDarkMode} />
           <WhyUnidexSection isDarkMode={isDarkMode} />
           <PopularTokenSection isDarkMode={isDarkMode} />
           <BlogsSection isDarkMode={isDarkMode} />
