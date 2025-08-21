@@ -81,9 +81,7 @@ const TradingPage = ({ isDarkMode }) => {
               sx={{
                 background: isDarkMode ? '#10254A' : '#ffffff',
                 backdropFilter: 'blur(10px)',
-                border: isDarkMode
-                  ? '1px solid rgba(255, 255, 255, 0.1)'
-                  : '1px solid rgba(0, 0, 0, 0.1)',
+
                 mb: 3,
                 borderRadius: 2,
               }}
@@ -99,18 +97,17 @@ const TradingPage = ({ isDarkMode }) => {
                 >
                   {/* Left side - Bedrock branding */}
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <Avatar
-                      sx={{
-                        background:
-                          'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                        width: 40,
-                        height: 40,
-                      }}
-                    >
-                      <Typography sx={{ fontWeight: 'bold', color: 'white' }}>
-                        B
-                      </Typography>
-                    </Avatar>
+                    <Box>
+                      <img
+                        src='/assets/images/Trading/bedrock.png'
+                        alt=''
+                        style={{
+                          width: '60px',
+                          height: '60px',
+                          borderRadius: '50%',
+                        }}
+                      />
+                    </Box>
                     <Typography
                       variant='h5'
                       sx={{
@@ -133,55 +130,50 @@ const TradingPage = ({ isDarkMode }) => {
                   </Box>
 
                   {/* Right side - Login icon */}
-                  <IconButton
-                    sx={{
-                      color: isDarkMode ? '#ffffff' : '#1a1a1a',
+                  <img
+                    src='/assets/images/Trading/icon.svg'
+                    alt=''
+                    style={{
+                      height: 'auto',
                     }}
-                  >
-                    <SwapVertIcon sx={{ transform: 'rotate(90deg)' }} />
-                  </IconButton>
+                  />
                 </Box>
 
                 {/* Navigation tabs */}
                 <Box sx={{ display: 'flex', gap: 1, mb: 3 }}>
                   {[
-                    'Security audit',
-                    'Liquidity',
-                    'Official Links',
-                    'Trackers',
-                    'Exchange',
+                    { label: 'Security audit', value: '0' },
+                    { label: 'Liquidity', value: '10' },
+                    { label: 'Official Links', value: ' ' },
+                    { label: 'Trackers', value: ' ' },
+                    { label: 'Exchange', value: ' ' },
                   ].map((tab, index) => (
-                    <Chip
-                      key={tab}
-                      label={tab}
-                      sx={{
-                        backgroundColor:
-                          index === 1
-                            ? '#4ade80'
-                            : isDarkMode
-                            ? 'rgba(255, 255, 255, 0.1)'
-                            : 'rgba(0, 0, 0, 0.1)',
-                        color:
-                          index === 1
-                            ? '#000000'
-                            : isDarkMode
-                            ? '#ffffff'
-                            : '#1a1a1a',
-                        '&:hover': {
+                    <Box sx={{ mx: 3 }} key={index}>
+                      <Typography
+                        sx={{
+                          color: isDarkMode ? '#D2D2D2' : '#1a1a1a',
+                        }}
+                      >
+                        {tab.label}
+                      </Typography>
+                      <Chip
+                        label={tab.value}
+                        sx={{
                           backgroundColor:
-                            index === 1
-                              ? '#22c55e'
-                              : isDarkMode
-                              ? 'rgba(255, 255, 255, 0.2)'
-                              : 'rgba(0, 0, 0, 0.2)',
-                        },
-                      }}
-                    />
+                            tab.value === '10'
+                              ? '#4ade80'
+                              : 'rgba(255, 255, 255, 0.1)',
+                          color: '#fff',
+                          minWidth: '32px',
+                          mt: 1,
+                        }}
+                      />
+                    </Box>
                   ))}
                 </Box>
 
                 {/* Status indicators */}
-                <Box sx={{ display: 'flex', gap: 2 }}>
+                {/* <Box sx={{ display: 'flex', gap: 2 }}>
                   <Chip
                     label='0'
                     sx={{
@@ -213,7 +205,7 @@ const TradingPage = ({ isDarkMode }) => {
                       }}
                     />
                   ))}
-                </Box>
+                </Box> */}
               </CardContent>
             </Card>
             {/* Main Chart Card */}
