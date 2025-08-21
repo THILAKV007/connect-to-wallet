@@ -16,6 +16,16 @@ import {
   FormControl,
   Avatar,
 } from '@mui/material'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  ReferenceLine,
+} from 'recharts'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
@@ -42,19 +52,56 @@ const TradingPage = ({ isDarkMode }) => {
   const volume24h = '1.2B'
   const marketCap = '180.5B'
 
-  // Generate mock chart data
+  // Generate realistic trading chart data
   const generateChartData = () => {
     const data = []
-    for (let i = 0; i < 50; i++) {
+    const basePrice = 2500
+    let currentValue = basePrice
+    
+    const timeLabels = ['14', '15 Jan 25', '05:00', '16', '17', '18', '19', '20']
+    
+    for (let i = 0; i < 100; i++) {
+      const volatility = Math.random() * 40 - 20
+      currentValue += volatility
+      
+      // Ensure price stays within reasonable bounds
+      currentValue = Math.max(2450, Math.min(2675, currentValue))
+      
       data.push({
-        time: Date.now() - (50 - i) * 60000,
-        value: currentPrice + Math.random() * 200 - 100,
+        time: timeLabels[Math.floor(i / 12.5)] || `${20 + Math.floor(i / 12.5)}`,
+        price: parseFloat(currentValue.toFixed(2)),
+        volume: Math.random() * 1000000,
       })
     }
     return data
   }
 
   const chartData = generateChartData()
+  
+  // Custom tooltip component
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <Box
+          sx={{
+            background: isDarkMode ? '#10254A' : '#ffffff',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: 1,
+            p: 1.5,
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+          }}
+        >
+          <Typography sx={{ color: isDarkMode ? '#ffffff' : '#000000', fontSize: '0.8rem' }}>
+            Time: {label}
+          </Typography>
+          <Typography sx={{ color: '#4FC3F7', fontSize: '0.8rem', fontWeight: 'bold' }}>
+            Price: ${payload[0].value}
+          </Typography>
+        </Box>
+      )
+    }
+    return null
+  }
 
   return (
     <Box
@@ -439,147 +486,115 @@ const TradingPage = ({ isDarkMode }) => {
                     mx: 3,
                     mb: 3,
                     borderRadius: 1,
-                    height: '350px',
+                    height: '400px',
                     overflow: 'hidden',
+                    p: 2,
                   }}
                 >
-                  {/* Chart Grid */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      backgroundImage: `
-                        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
-                      `,
-                      backgroundSize: '50px 35px',
-                    }}
-                  />
-
-                  {/* Price Lines */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      right: 0,
-                      height: '100%',
-                      width: '60px',
-                      borderLeft: '1px solid rgba(255, 255, 255, 0.08)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      py: 2,
-                    }}
-                  >
-                    {[7, 650, 1225, 800, 577, 2550, 2525, 2500, 2475, 2450].map(
-                      (price, index) => (
-                        <Typography
-                          key={price}
-                          sx={{
-                            color:
-                              index === 6
-                                ? '#4FC3F7'
-                                : 'rgba(255, 255, 255, 0.5)',
-                            fontSize: '0.7rem',
-                            textAlign: 'right',
-                            pr: 1,
-                            background:
-                              index === 6
-                                ? 'rgba(79, 195, 247, 0.1)'
-                                : 'transparent',
-                            px: 0.8,
-                            py: 0.2,
-                            borderRadius: 0.5,
-                          }}
-                        >
-                          {price}.00
-                        </Typography>
-                      )
-                    )}
-                  </Box>
-
-                  {/* Chart SVG */}
-                  <svg
-                    width='100%'
-                    height='100%'
-                    viewBox='0 0 600 350'
-                    style={{ position: 'absolute', top: 0, left: 0 }}
-                    preserveAspectRatio='none'
-                  >
-                    <defs>
-                      <linearGradient
-                        id='chartGradient'
-                        x1='0%'
-                        y1='0%'
-                        x2='0%'
-                        y2='100%'
-                      >
-                        <stop
-                          offset='0%'
-                          stopColor='#4FC3F7'
-                          stopOpacity='0.2'
-                        />
-                        <stop
-                          offset='100%'
-                          stopColor='#4FC3F7'
-                          stopOpacity='0'
-                        />
-                      </linearGradient>
-                    </defs>
-                    {/* Chart Fill */}
-                    <path
-                      d='M40,250 L80,240 L120,245 L160,235 L200,220 L240,210 L280,200 L320,180 L360,160 L400,140 L440,120 L480,100 L520,80 L560,60 L560,350 L40,350 Z'
-                      fill='url(#chartGradient)'
-                    />
-                    {/* Chart Line */}
-                    <path
-                      d='M40,250 L80,240 L120,245 L160,235 L200,220 L240,210 L280,200 L320,180 L360,160 L400,140 L440,120 L480,100 L520,80 L560,60'
-                      stroke='#4FC3F7'
-                      strokeWidth='1.5'
-                      fill='none'
-                    />
-                  </svg>
-
-                  {/* Bottom Time Labels */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: '60px',
-                      height: '25px',
-                      borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      px: 2,
-                      background:
-                        'linear-gradient(180deg, transparent 0%, rgba(16, 37, 74, 0.6) 100%)',
-                    }}
-                  >
-                    {[
-                      '14',
-                      '15 Jan 25',
-                      '05:00',
-                      '16',
-                      '17',
-                      '18',
-                      '19',
-                      '20',
-                    ].map((time) => (
-                      <Typography
-                        key={time}
-                        sx={{
-                          color: 'rgba(255, 255, 255, 0.5)',
-                          fontSize: '0.65rem',
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={chartData}
+                      margin={{
+                        top: 20,
+                        right: 60,
+                        left: 20,
+                        bottom: 20,
+                      }}
+                    >
+                      <defs>
+                        <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#4FC3F7" stopOpacity={0.3}/>
+                          <stop offset="95%" stopColor="#4FC3F7" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                      
+                      <CartesianGrid 
+                        strokeDasharray="3 3" 
+                        stroke="rgba(255, 255, 255, 0.1)" 
+                        horizontal={true}
+                        vertical={true}
+                      />
+                      
+                      <XAxis 
+                        dataKey="time"
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{
+                          fill: 'rgba(255, 255, 255, 0.6)',
+                          fontSize: 11
                         }}
-                      >
-                        {time}
-                      </Typography>
-                    ))}
+                        interval="preserveStartEnd"
+                      />
+                      
+                      <YAxis 
+                        domain={['dataMin - 10', 'dataMax + 10']}
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{
+                          fill: 'rgba(255, 255, 255, 0.6)',
+                          fontSize: 11
+                        }}
+                        tickFormatter={(value) => `${value.toFixed(0)}.00`}
+                        orientation="right"
+                      />
+                      
+                      <Tooltip 
+                        content={<CustomTooltip />}
+                        cursor={{
+                          stroke: '#4FC3F7',
+                          strokeWidth: 1,
+                          strokeDasharray: '3 3'
+                        }}
+                      />
+                      
+                      {/* Reference line for current price */}
+                      <ReferenceLine 
+                        y={2532.23} 
+                        stroke="#4FC3F7" 
+                        strokeDasharray="5 5"
+                        strokeWidth={1}
+                      />
+                      
+                      <Line
+                        type="monotone"
+                        dataKey="price"
+                        stroke="#4FC3F7"
+                        strokeWidth={2}
+                        dot={false}
+                        fill="url(#colorPrice)"
+                        activeDot={{
+                          r: 4,
+                          fill: '#4FC3F7',
+                          stroke: '#ffffff',
+                          strokeWidth: 2
+                        }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                  
+                  {/* Price indicator overlay */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: '50%',
+                      right: 20,
+                      transform: 'translateY(-50%)',
+                      background: 'rgba(79, 195, 247, 0.1)',
+                      border: '1px solid #4FC3F7',
+                      borderRadius: 1,
+                      px: 1,
+                      py: 0.5,
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#4FC3F7',
+                        fontSize: '0.75rem',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      2532.23
+                    </Typography>
                   </Box>
                 </Box>
 
