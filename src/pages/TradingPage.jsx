@@ -92,7 +92,7 @@ const TradingPage = ({ isDarkMode }) => {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    mb: 3,
+                    mb: 1,
                   }}
                 >
                   {/* Left side - Bedrock branding */}
@@ -140,7 +140,7 @@ const TradingPage = ({ isDarkMode }) => {
                 </Box>
 
                 {/* Navigation tabs */}
-                <Box sx={{ display: 'flex', gap: 1, mb: 3 }}>
+                <Box sx={{ display: 'flex', gap: 1 }}>
                   {[
                     { label: 'Security audit', value: '0' },
                     { label: 'Liquidity', value: '10' },
@@ -148,7 +148,7 @@ const TradingPage = ({ isDarkMode }) => {
                     { label: 'Trackers', value: ' ' },
                     { label: 'Exchange', value: ' ' },
                   ].map((tab, index) => (
-                    <Box sx={{ mx: 3 }} key={index}>
+                    <Box sx={{ mr: 5 }} key={index}>
                       <Typography
                         sx={{
                           color: isDarkMode ? '#D2D2D2' : '#1a1a1a',
@@ -160,9 +160,7 @@ const TradingPage = ({ isDarkMode }) => {
                         label={tab.value}
                         sx={{
                           backgroundColor:
-                            tab.value === '10'
-                              ? '#4ade80'
-                              : 'rgba(255, 255, 255, 0.1)',
+                            tab.value === '10' ? '#1EF65552' : '#1F365D',
                           color: '#fff',
                           minWidth: '32px',
                           mt: 1,
@@ -213,9 +211,7 @@ const TradingPage = ({ isDarkMode }) => {
               sx={{
                 background: isDarkMode ? '#10254A' : '#ffffff',
                 backdropFilter: 'blur(10px)',
-                border: isDarkMode
-                  ? '1px solid rgba(255, 255, 255, 0.1)'
-                  : '1px solid rgba(0, 0, 0, 0.1)',
+
                 height: 'calc(100vh - 200px)',
                 minHeight: '600px',
               }}
@@ -226,7 +222,7 @@ const TradingPage = ({ isDarkMode }) => {
                   <Typography
                     variant='h3'
                     sx={{
-                      fontWeight: 700,
+                      fontWeight: 300,
                       color: isDarkMode ? '#ffffff' : '#1a1a1a',
                       mb: 1,
                       fontSize: '2.2rem',
@@ -240,8 +236,8 @@ const TradingPage = ({ isDarkMode }) => {
                     >
                       <Typography
                         sx={{
-                          color: '#4FC3F7',
-                          fontWeight: 500,
+                          color: '#12CA41',
+                          fontWeight: 400,
                           fontSize: '0.8rem',
                         }}
                       >
@@ -263,8 +259,8 @@ const TradingPage = ({ isDarkMode }) => {
                     >
                       <Typography
                         sx={{
-                          color: '#4FC3F7',
-                          fontWeight: 500,
+                          color: '#12CA41',
+                          fontWeight: 400,
                           fontSize: '0.8rem',
                         }}
                       >
@@ -286,8 +282,8 @@ const TradingPage = ({ isDarkMode }) => {
                     >
                       <Typography
                         sx={{
-                          color: '#4FC3F7',
-                          fontWeight: 500,
+                          color: '#12CA41',
+                          fontWeight: 400,
                           fontSize: '0.8rem',
                         }}
                       >
@@ -309,8 +305,8 @@ const TradingPage = ({ isDarkMode }) => {
                     >
                       <Typography
                         sx={{
-                          color: '#4FC3F7',
-                          fontWeight: 500,
+                          color: '#12CA41',
+                          fontWeight: 400,
                           fontSize: '0.8rem',
                         }}
                       >
@@ -478,32 +474,31 @@ const TradingPage = ({ isDarkMode }) => {
                       py: 2,
                     }}
                   >
-                    {[
-                      2675, 2650, 2625, 2600, 2577, 2550, 2525, 2500, 2475,
-                      2450,
-                    ].map((price, index) => (
-                      <Typography
-                        key={price}
-                        sx={{
-                          color:
-                            index === 6
-                              ? '#4FC3F7'
-                              : 'rgba(255, 255, 255, 0.5)',
-                          fontSize: '0.7rem',
-                          textAlign: 'right',
-                          pr: 1,
-                          background:
-                            index === 6
-                              ? 'rgba(79, 195, 247, 0.1)'
-                              : 'transparent',
-                          px: 0.8,
-                          py: 0.2,
-                          borderRadius: 0.5,
-                        }}
-                      >
-                        {price}.00
-                      </Typography>
-                    ))}
+                    {[7, 650, 1225, 800, 577, 2550, 2525, 2500, 2475, 2450].map(
+                      (price, index) => (
+                        <Typography
+                          key={price}
+                          sx={{
+                            color:
+                              index === 6
+                                ? '#4FC3F7'
+                                : 'rgba(255, 255, 255, 0.5)',
+                            fontSize: '0.7rem',
+                            textAlign: 'right',
+                            pr: 1,
+                            background:
+                              index === 6
+                                ? 'rgba(79, 195, 247, 0.1)'
+                                : 'transparent',
+                            px: 0.8,
+                            py: 0.2,
+                            borderRadius: 0.5,
+                          }}
+                        >
+                          {price}.00
+                        </Typography>
+                      )
+                    )}
                   </Box>
 
                   {/* Chart SVG */}
@@ -640,9 +635,6 @@ const TradingPage = ({ isDarkMode }) => {
               sx={{
                 background: isDarkMode ? '#10254A' : '#ffffff',
                 backdropFilter: 'blur(10px)',
-                border: isDarkMode
-                  ? '1px solid rgba(255, 255, 255, 0.1)'
-                  : '1px solid rgba(0, 0, 0, 0.1)',
               }}
             >
               <CardContent sx={{ p: 3 }}>
