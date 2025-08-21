@@ -3,14 +3,29 @@ import {
   ThemeProvider,
   createTheme,
   CssBaseline,
-  Box,
 } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import BlogsSection from './components/BlogsSection';
-import PopularTokenSection from './components/PopularTokenSection';
-import WhyUnidexSection from './components/WhyUnidexSection';
-import BannerSection from './components/BannerSection';
+import HomePage from './pages/HomePage';
+import TradingPage from './pages/TradingPage';
+
+function AppContent({ isDarkMode, toggleTheme }) {
+  const location = useLocation();
+  const hiddenFooterRoutes = ['/trading'];
+  const shouldHideFooter = hiddenFooterRoutes.includes(location.pathname);
+
+  return (
+    <>
+      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+      <Routes>
+        <Route path="/" element={<HomePage isDarkMode={isDarkMode} />} />
+        <Route path="/trading" element={<TradingPage isDarkMode={isDarkMode} />} />
+      </Routes>
+      {!shouldHideFooter && <Footer isDarkMode={isDarkMode} />}
+    </>
+  );
+}
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -34,29 +49,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-      <Box
-        sx={{
-          minHeight: '100vh',
-          background: isDarkMode 
-            ? 'linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 50%, #2a2f3e 100%)'
-            : 'linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 50%, #bbdefb 100%)',
-          display: 'flex',
-          flexDirection: 'column',
-          paddingTop: 8,
-        }}
-      >
-        {/* Main content area */}
-        <Box sx={{ flex: 1 }}>
-          <BannerSection isDarkMode={isDarkMode} />
-          <WhyUnidexSection isDarkMode={isDarkMode} />
-          <PopularTokenSection isDarkMode={isDarkMode} />
-          <BlogsSection isDarkMode={isDarkMode} />
-        </Box>
-        
-        {/* Footer */}
-        <Footer isDarkMode={isDarkMode} />
-      </Box>
+      <Router>
+        <AppContent isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+      </Router>
     </ThemeProvider>
   )
 }

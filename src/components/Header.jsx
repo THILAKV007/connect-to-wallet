@@ -7,11 +7,13 @@ import {
   Box,
   IconButton,
 } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 function Header({ toggleTheme, isDarkMode }) {
+  const location = useLocation();
 
   return (
     <AppBar
@@ -40,32 +42,36 @@ function Header({ toggleTheme, isDarkMode }) {
         {/* Navigation Items */}
         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
           <Button
+            component={Link}
+            to="/"
             sx={{
-              color: isDarkMode ? '#ffffff' : '#000000',
+              color: location.pathname === '/' ? '#2196f3' : (isDarkMode ? '#ffffff' : '#000000'),
               textTransform: 'none',
               fontSize: '1rem',
-              fontWeight: 500,
+              fontWeight: location.pathname === '/' ? 600 : 500,
               '&:hover': {
                 backgroundColor: 'transparent',
                 color: '#2196f3',
               },
             }}
           >
-            Features
+            Home
           </Button>
           <Button
+            component={Link}
+            to="/trading"
             sx={{
-              color: isDarkMode ? '#ffffff' : '#000000',
+              color: location.pathname === '/trading' ? '#2196f3' : (isDarkMode ? '#ffffff' : '#000000'),
               textTransform: 'none',
               fontSize: '1rem',
-              fontWeight: 500,
+              fontWeight: location.pathname === '/trading' ? 600 : 500,
               '&:hover': {
                 backgroundColor: 'transparent',
                 color: '#2196f3',
               },
             }}
           >
-            Company
+            Trading
           </Button>
           <Button
             sx={{
