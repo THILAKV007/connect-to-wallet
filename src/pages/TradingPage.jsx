@@ -57,18 +57,28 @@ const TradingPage = ({ isDarkMode }) => {
     const data = []
     const basePrice = 2500
     let currentValue = basePrice
-    
-    const timeLabels = ['14', '15 Jan 25', '05:00', '16', '17', '18', '19', '20']
-    
+
+    const timeLabels = [
+      '14',
+      '15 Jan 25',
+      '05:00',
+      '16',
+      '17',
+      '18',
+      '19',
+      '20',
+    ]
+
     for (let i = 0; i < 100; i++) {
       const volatility = Math.random() * 40 - 20
       currentValue += volatility
-      
+
       // Ensure price stays within reasonable bounds
       currentValue = Math.max(2450, Math.min(2675, currentValue))
-      
+
       data.push({
-        time: timeLabels[Math.floor(i / 12.5)] || `${20 + Math.floor(i / 12.5)}`,
+        time:
+          timeLabels[Math.floor(i / 12.5)] || `${20 + Math.floor(i / 12.5)}`,
         price: parseFloat(currentValue.toFixed(2)),
         volume: Math.random() * 1000000,
       })
@@ -77,7 +87,7 @@ const TradingPage = ({ isDarkMode }) => {
   }
 
   const chartData = generateChartData()
-  
+
   // Custom tooltip component
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -91,10 +101,17 @@ const TradingPage = ({ isDarkMode }) => {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
           }}
         >
-          <Typography sx={{ color: isDarkMode ? '#ffffff' : '#000000', fontSize: '0.8rem' }}>
+          <Typography
+            sx={{
+              color: isDarkMode ? '#ffffff' : '#000000',
+              fontSize: '0.8rem',
+            }}
+          >
             Time: {label}
           </Typography>
-          <Typography sx={{ color: '#4FC3F7', fontSize: '0.8rem', fontWeight: 'bold' }}>
+          <Typography
+            sx={{ color: '#4FC3F7', fontSize: '0.8rem', fontWeight: 'bold' }}
+          >
             Price: ${payload[0].value}
           </Typography>
         </Box>
@@ -108,7 +125,7 @@ const TradingPage = ({ isDarkMode }) => {
       sx={{
         minHeight: '100vh',
         background: isDarkMode ? '#061536' : '#f8f9fa',
-        pt: { xs: 2, md: 15 },
+        pt: { xs: 2, md: 10 },
         pb: 4,
       }}
     >
@@ -129,7 +146,7 @@ const TradingPage = ({ isDarkMode }) => {
                 background: isDarkMode ? '#10254A' : '#ffffff',
                 backdropFilter: 'blur(10px)',
 
-                mb: 3,
+                mb: 2,
                 borderRadius: 2,
               }}
             >
@@ -139,7 +156,7 @@ const TradingPage = ({ isDarkMode }) => {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    mb: 1,
+                    mb: 0.5,
                   }}
                 >
                   {/* Left side - Bedrock branding */}
@@ -149,8 +166,8 @@ const TradingPage = ({ isDarkMode }) => {
                         src='/assets/images/Trading/bedrock.png'
                         alt=''
                         style={{
-                          width: '60px',
-                          height: '60px',
+                          width: '50px',
+                          height: '50px',
                           borderRadius: '50%',
                         }}
                       />
@@ -216,41 +233,6 @@ const TradingPage = ({ isDarkMode }) => {
                     </Box>
                   ))}
                 </Box>
-
-                {/* Status indicators */}
-                {/* <Box sx={{ display: 'flex', gap: 2 }}>
-                  <Chip
-                    label='0'
-                    sx={{
-                      backgroundColor: isDarkMode
-                        ? 'rgba(255, 255, 255, 0.1)'
-                        : 'rgba(0, 0, 0, 0.1)',
-                      color: isDarkMode ? '#ffffff' : '#1a1a1a',
-                      minWidth: '60px',
-                    }}
-                  />
-                  <Chip
-                    label='10'
-                    sx={{
-                      backgroundColor: '#4ade80',
-                      color: '#000000',
-                      minWidth: '60px',
-                    }}
-                  />
-                  {[1, 2, 3, 4].map((item) => (
-                    <Chip
-                      key={item}
-                      label=''
-                      sx={{
-                        backgroundColor: isDarkMode
-                          ? 'rgba(255, 255, 255, 0.1)'
-                          : 'rgba(0, 0, 0, 0.1)',
-                        minWidth: '40px',
-                        height: '32px',
-                      }}
-                    />
-                  ))}
-                </Box> */}
               </CardContent>
             </Card>
             {/* Main Chart Card */}
@@ -259,8 +241,8 @@ const TradingPage = ({ isDarkMode }) => {
                 background: isDarkMode ? '#10254A' : '#ffffff',
                 backdropFilter: 'blur(10px)',
 
-                height: 'calc(100vh - 200px)',
-                minHeight: '600px',
+                height: 'calc(100vh - 170px)',
+                minHeight: '550px',
               }}
             >
               <CardContent sx={{ p: 0, height: '100%' }}>
@@ -491,7 +473,7 @@ const TradingPage = ({ isDarkMode }) => {
                     p: 2,
                   }}
                 >
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer width='100%' height='100%'>
                     <LineChart
                       data={chartData}
                       margin={{
@@ -502,76 +484,90 @@ const TradingPage = ({ isDarkMode }) => {
                       }}
                     >
                       <defs>
-                        <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#4FC3F7" stopOpacity={0.3}/>
-                          <stop offset="95%" stopColor="#4FC3F7" stopOpacity={0}/>
+                        <linearGradient
+                          id='colorPrice'
+                          x1='0'
+                          y1='0'
+                          x2='0'
+                          y2='1'
+                        >
+                          <stop
+                            offset='5%'
+                            stopColor='#4FC3F7'
+                            stopOpacity={0.3}
+                          />
+                          <stop
+                            offset='95%'
+                            stopColor='#4FC3F7'
+                            stopOpacity={0}
+                          />
                         </linearGradient>
                       </defs>
-                      
-                      <CartesianGrid 
-                        strokeDasharray="3 3" 
-                        stroke="rgba(255, 255, 255, 0.1)" 
+
+                      <CartesianGrid
+                        strokeDasharray='3 3'
+                        stroke='rgba(255, 255, 255, 0.1)'
                         horizontal={true}
                         vertical={true}
                       />
-                      
-                      <XAxis 
-                        dataKey="time"
+
+                      <XAxis
+                        dataKey='time'
                         axisLine={false}
                         tickLine={false}
                         tick={{
                           fill: 'rgba(255, 255, 255, 0.6)',
-                          fontSize: 11
+                          fontSize: 11,
                         }}
-                        interval="preserveStartEnd"
+                        interval='preserveStartEnd'
                       />
-                      
-                      <YAxis 
+
+                      <YAxis
                         domain={['dataMin - 10', 'dataMax + 10']}
                         axisLine={false}
                         tickLine={false}
                         tick={{
                           fill: 'rgba(255, 255, 255, 0.6)',
-                          fontSize: 11
+                          fontSize: 11,
                         }}
                         tickFormatter={(value) => `${value.toFixed(0)}.00`}
-                        orientation="right"
+                        orientation='right'
                       />
-                      
-                      <Tooltip 
+
+                      <Tooltip
                         content={<CustomTooltip />}
                         cursor={{
                           stroke: '#4FC3F7',
                           strokeWidth: 1,
-                          strokeDasharray: '3 3'
+                          strokeDasharray: '3 3',
                         }}
                       />
-                      
+
                       {/* Reference line for current price */}
-                      <ReferenceLine 
-                        y={2532.23} 
-                        stroke="#4FC3F7" 
-                        strokeDasharray="5 5"
+                      <ReferenceLine
+                        y={2532.23}
+                        stroke='#4FC3F7'
+                        strokeDasharray='5 5'
                         strokeWidth={1}
                       />
-                      
+
                       <Line
-                        type="monotone"
-                        dataKey="price"
-                        stroke="#4FC3F7"
+                        type='monotone'
+                        dataKey='price'
+                        stroke='#4FC3F7'
                         strokeWidth={2}
                         dot={false}
-                        fill="url(#colorPrice)"
+                        fill='url(#colorPrice)'
                         activeDot={{
                           r: 4,
                           fill: '#4FC3F7',
                           stroke: '#ffffff',
-                          strokeWidth: 2
+                          strokeWidth: 2,
                         }}
                       />
                     </LineChart>
                   </ResponsiveContainer>
-                  
+
                   {/* Price indicator overlay */}
                   <Box
                     sx={{
@@ -648,174 +644,195 @@ const TradingPage = ({ isDarkMode }) => {
           <Box sx={{ width: { xs: '100%', lg: '400px' } }}>
             <Card
               sx={{
-                background: isDarkMode ? '#10254A' : '#ffffff',
-                backdropFilter: 'blur(10px)',
+                background: isDarkMode ? 'rgba(16, 37, 74, 0.95)' : '#ffffff',
+                backdropFilter: 'blur(20px)',
+                border: isDarkMode
+                  ? '1px solid rgba(255, 255, 255, 0.1)'
+                  : '1px solid rgba(0, 0, 0, 0.1)',
+                borderRadius: 3,
+                boxShadow: isDarkMode
+                  ? '0 8px 32px rgba(0, 0, 0, 0.3)'
+                  : '0 8px 32px rgba(0, 0, 0, 0.1)',
               }}
             >
               <CardContent sx={{ p: 3 }}>
                 {/* Trading Tabs */}
-                <Tabs
-                  value={activeTab}
-                  onChange={handleTabChange}
+                <Box
                   sx={{
+                    display: 'flex',
+                    gap: 1,
                     mb: 3,
-                    '& .MuiTab-root': {
-                      color: isDarkMode
-                        ? 'rgba(255, 255, 255, 0.7)'
-                        : 'rgba(0, 0, 0, 0.7)',
-                      fontWeight: 500,
-                      textTransform: 'none',
-                    },
-                    '& .Mui-selected': {
-                      color: isDarkMode ? '#ffffff' : '#1a1a1a',
-                      fontWeight: 600,
-                    },
+                    p: 0.5,
                   }}
                 >
-                  <Tab label='Market' />
-                  <Tab label='Limit' />
-                  <Tab label='Crosschain' />
-                </Tabs>
-
-                {/* Sell Section */}
-                <Box sx={{ mb: 3 }}>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      mb: 1,
-                    }}
-                  >
-                    <Typography
-                      variant='body1'
-                      sx={{
-                        fontWeight: 500,
-                        color: isDarkMode ? '#ffffff' : '#1a1a1a',
-                        fontSize: '0.9rem',
-                      }}
-                    >
-                      Sell
-                    </Typography>
+                  {['Market', 'Limit', 'Crosschain'].map((tab, index) => (
                     <Button
+                      key={tab}
+                      onClick={() => setActiveTab(index)}
                       variant='text'
-                      size='small'
                       sx={{
-                        color: '#4FC3F7',
+                        flex: 1,
+                        py: 1,
+                        fontSize: '0.85rem',
+                        fontWeight: activeTab === index ? 600 : 500,
                         textTransform: 'none',
-                        fontSize: '0.8rem',
-                        fontWeight: 500,
-                        minWidth: 'auto',
-                        p: 0,
+                        borderRadius: 1.5,
+                        backgroundColor: 'transparent',
+                        color:
+                          activeTab === index
+                            ? isDarkMode
+                              ? '#ffffff'
+                              : '#1a1a1a'
+                            : isDarkMode
+                            ? 'rgba(255, 255, 255, 0.7)'
+                            : 'rgba(0, 0, 0, 0.7)',
+                        '&:hover': {
+                          backgroundColor: 'transparent',
+                        },
                       }}
                     >
-                      Use Max
+                      {tab}
                     </Button>
-                  </Box>
-                  <Box
-                    sx={{
-                      background: isDarkMode ? '#ffffff' : '#f8f9fa',
-                      borderRadius: 2,
-                      p: 2,
-                      mb: 1,
-                    }}
-                  >
-                    <TextField
-                      fullWidth
-                      placeholder='0'
-                      value={sellAmount}
-                      onChange={(e) => setSellAmount(e.target.value)}
-                      variant='standard'
-                      sx={{
-                        '& .MuiInput-underline:before': {
-                          borderBottom: 'none',
-                        },
-                        '& .MuiInput-underline:after': {
-                          borderBottom: 'none',
-                        },
-                        '& .MuiInput-underline:hover:not(.Mui-disabled):before':
-                          {
-                            borderBottom: 'none',
-                          },
-                        '& .MuiInputBase-input': {
-                          color: '#000000',
-                          fontSize: '1.5rem',
-                          fontWeight: 600,
-                        },
-                      }}
-                      InputProps={{
-                        endAdornment: (
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 1,
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                width: 24,
-                                height: 24,
-                                borderRadius: '50%',
-                                background:
-                                  'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: '#ffffff',
-                                fontSize: '0.7rem',
-                                fontWeight: 700,
-                              }}
-                            >
-                              ETH
-                            </Box>
-                            <Typography
-                              sx={{
-                                color: '#000000',
-                                fontSize: '1rem',
-                                fontWeight: 600,
-                              }}
-                            >
-                              ETH
-                            </Typography>
-                            <KeyboardArrowDownIcon
-                              sx={{
-                                color: '#666666',
-                              }}
-                            />
-                          </Box>
-                        ),
-                      }}
-                    />
-                  </Box>
-                  <Typography
-                    variant='caption'
-                    sx={{
-                      color: isDarkMode
-                        ? 'rgba(255, 255, 255, 0.6)'
-                        : 'rgba(0, 0, 0, 0.6)',
-                      fontSize: '0.8rem',
-                    }}
-                  >
-                    Balance: 0.00
-                  </Typography>
+                  ))}
                 </Box>
 
-                {/* Swap Icon */}
-                <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
-                  <IconButton
+                {/* Sell Section */}
+                <Box sx={{}}>
+                  <Box
                     sx={{
-                      background:
-                        'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                      color: '#ffffff',
-                      '&:hover': {
-                        background:
-                          'linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%)',
-                      },
+                      background: '#ffffff',
+                      borderRadius: 3,
+                      p: 3,
+                      // mb: 1.5,
+                      border: '1px solid rgba(0, 0, 0, 0.05)',
                     }}
                   >
-                    <SwapHorizIcon />
-                  </IconButton>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        mb: 2,
+                      }}
+                    >
+                      <Typography
+                        variant='body1'
+                        sx={{
+                          fontWeight: 600,
+                          color: '#1a1a1a',
+                          fontSize: '0.9rem',
+                        }}
+                      >
+                        Sell
+                      </Typography>
+                      <Button
+                        variant='text'
+                        size='small'
+                        sx={{
+                          color: '#4FC3F7',
+                          textTransform: 'none',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          minWidth: 'auto',
+                          p: 0,
+                          '&:hover': {
+                            background: 'rgba(79, 195, 247, 0.1)',
+                          },
+                        }}
+                      >
+                        Use Max
+                      </Button>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <TextField
+                        placeholder='0'
+                        value={sellAmount}
+                        onChange={(e) => setSellAmount(e.target.value)}
+                        variant='standard'
+                        sx={{
+                          flex: 1,
+                          '& .MuiInput-underline:before': {
+                            borderBottom: 'none',
+                          },
+                          '& .MuiInput-underline:after': {
+                            borderBottom: 'none',
+                          },
+                          '& .MuiInput-underline:hover:not(.Mui-disabled):before':
+                            {
+                              borderBottom: 'none',
+                            },
+                          '& .MuiInputBase-input': {
+                            color: '#000000',
+                            fontSize: '2rem',
+                            fontWeight: 700,
+                            padding: 0,
+                          },
+                        }}
+                      />
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 1,
+                          cursor: 'pointer',
+                          p: 1,
+                          borderRadius: 2,
+                          '&:hover': {
+                            background: 'rgba(0, 0, 0, 0.05)',
+                          },
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: 24,
+                            height: 24,
+                            borderRadius: '50%',
+                            background:
+                              'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#ffffff',
+                            fontSize: '0.7rem',
+                            fontWeight: 700,
+                          }}
+                        >
+                          ♦
+                        </Box>
+                        <Typography
+                          sx={{
+                            color: '#000000',
+                            fontSize: '1.1rem',
+                            fontWeight: 600,
+                          }}
+                        >
+                          ETH
+                        </Typography>
+                        <KeyboardArrowDownIcon
+                          sx={{
+                            color: '#666666',
+                            fontSize: '1.2rem',
+                          }}
+                        />
+                      </Box>
+                    </Box>
+                    <Typography
+                      variant='caption'
+                      sx={{
+                        color: 'rgba(0, 0, 0, 0.6)',
+                        fontSize: '0.85rem',
+                        fontWeight: 500,
+                      }}
+                    >
+                      Balance: 0.00
+                    </Typography>
+                  </Box>
                 </Box>
 
                 {/* Swap Icon */}
@@ -823,30 +840,34 @@ const TradingPage = ({ isDarkMode }) => {
                   sx={{
                     display: 'flex',
                     justifyContent: 'center',
-                    my: 2,
+                    position: 'relative',
+                    my: -2,
+                    zIndex: 10,
                   }}
                 >
                   <Box
                     sx={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '50%',
-                      background: '#4FC3F7',
+                      width: 50,
+                      height: 50,
+                      borderRadius: 2,
+                      background: isDarkMode ? '#2A3441' : '#334155',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease',
+                      border: '2px solid',
+                      borderColor: isDarkMode ? '#1e293b' : '#475569',
                       '&:hover': {
-                        transform: 'scale(1.1)',
-                        background: '#29B6F6',
+                        transform: 'scale(1.05)',
+                        background: isDarkMode ? '#374151' : '#475569',
                       },
                     }}
                   >
                     <SwapVertIcon
                       sx={{
-                        color: '#ffffff',
-                        fontSize: '1.2rem',
+                        color: '#94a3b8',
+                        fontSize: '1rem',
                       }}
                     />
                   </Box>
@@ -856,160 +877,232 @@ const TradingPage = ({ isDarkMode }) => {
                 <Box sx={{ mb: 3 }}>
                   <Box
                     sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      mb: 1,
-                    }}
-                  >
-                    <Typography
-                      variant='body1'
-                      sx={{
-                        fontWeight: 500,
-                        color: '#ffffff',
-                        fontSize: '0.9rem',
-                      }}
-                    >
-                      Buy
-                    </Typography>
-                    <Button
-                      variant='text'
-                      size='small'
-                      sx={{
-                        color: '#4FC3F7',
-                        textTransform: 'none',
-                        fontSize: '0.8rem',
-                        fontWeight: 500,
-                        minWidth: 'auto',
-                        p: 0,
-                      }}
-                    >
-                      Use Max
-                    </Button>
-                  </Box>
-                  <Box
-                    sx={{
                       background: '#ffffff',
-                      borderRadius: 2,
-                      p: 2,
-                      mb: 1,
+                      borderRadius: 3,
+                      p: 3,
+                      mb: 1.5,
+                      border: '1px solid rgba(0, 0, 0, 0.05)',
                     }}
                   >
-                    <TextField
-                      fullWidth
-                      placeholder='0'
-                      value={buyAmount}
-                      onChange={(e) => setBuyAmount(e.target.value)}
-                      variant='standard'
+                    <Box
                       sx={{
-                        '& .MuiInput-underline:before': {
-                          borderBottom: 'none',
-                        },
-                        '& .MuiInput-underline:after': {
-                          borderBottom: 'none',
-                        },
-                        '& .MuiInput-underline:hover:not(.Mui-disabled):before':
-                          {
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        mb: 2,
+                      }}
+                    >
+                      <Typography
+                        variant='body1'
+                        sx={{
+                          fontWeight: 600,
+                          color: '#1a1a1a',
+                          fontSize: '0.9rem',
+                        }}
+                      >
+                        Buy
+                      </Typography>
+                      <Button
+                        variant='text'
+                        size='small'
+                        sx={{
+                          color: '#4FC3F7',
+                          textTransform: 'none',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          minWidth: 'auto',
+                          p: 0,
+                          '&:hover': {
+                            background: 'rgba(79, 195, 247, 0.1)',
+                          },
+                        }}
+                      >
+                        Use Max
+                      </Button>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <TextField
+                        placeholder='0'
+                        value={buyAmount}
+                        onChange={(e) => setBuyAmount(e.target.value)}
+                        variant='standard'
+                        sx={{
+                          flex: 1,
+                          '& .MuiInput-underline:before': {
                             borderBottom: 'none',
                           },
-                        '& .MuiInputBase-input': {
-                          color: '#000000',
-                          fontSize: '1.5rem',
-                          fontWeight: 600,
-                        },
+                          '& .MuiInput-underline:after': {
+                            borderBottom: 'none',
+                          },
+                          '& .MuiInput-underline:hover:not(.Mui-disabled):before':
+                            {
+                              borderBottom: 'none',
+                            },
+                          '& .MuiInputBase-input': {
+                            color: '#000000',
+                            fontSize: '2rem',
+                            fontWeight: 700,
+                            padding: 0,
+                          },
+                        }}
+                      />
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 1,
+                          cursor: 'pointer',
+                          p: 1,
+                          borderRadius: 2,
+                          '&:hover': {
+                            background: 'rgba(0, 0, 0, 0.05)',
+                          },
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: 24,
+                            height: 24,
+                            borderRadius: '50%',
+                            background:
+                              'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#ffffff',
+                            fontSize: '0.7rem',
+                            fontWeight: 700,
+                          }}
+                        >
+                          ♦
+                        </Box>
+                        <Typography
+                          sx={{
+                            color: '#000000',
+                            fontSize: '1.1rem',
+                            fontWeight: 600,
+                          }}
+                        >
+                          ETH
+                        </Typography>
+                        <KeyboardArrowDownIcon
+                          sx={{
+                            color: '#666666',
+                            fontSize: '1.2rem',
+                          }}
+                        />
+                      </Box>
+                    </Box>
+                    <Typography
+                      variant='caption'
+                      sx={{
+                        color: 'rgba(0, 0, 0, 0.6)',
+                        fontSize: '0.85rem',
+                        fontWeight: 500,
                       }}
-                      InputProps={{
-                        endAdornment: (
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 1,
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                width: 24,
-                                height: 24,
-                                borderRadius: '50%',
-                                background:
-                                  'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: '#ffffff',
-                                fontSize: '0.7rem',
-                                fontWeight: 700,
-                              }}
-                            >
-                              ETH
-                            </Box>
-                            <Typography
-                              sx={{
-                                color: '#000000',
-                                fontSize: '1rem',
-                                fontWeight: 600,
-                              }}
-                            >
-                              ETH
-                            </Typography>
-                            <KeyboardArrowDownIcon
-                              sx={{
-                                color: '#666666',
-                              }}
-                            />
-                          </Box>
-                        ),
-                      }}
-                    />
+                    >
+                      Balance: 0.00
+                    </Typography>
                   </Box>
-                  <Typography
-                    variant='caption'
-                    sx={{
-                      color: 'rgba(255, 255, 255, 0.6)',
-                      fontSize: '0.8rem',
-                    }}
-                  >
-                    Balance: 0.00
-                  </Typography>
                 </Box>
 
                 {/* Slippage Tolerance */}
-                <Box sx={{ mb: 2 }}>
+                <Box sx={{ mb: 3 }}>
                   <Typography
                     sx={{
-                      color: 'rgba(255, 255, 255, 0.6)',
-                      fontSize: '0.75rem',
-                      mb: 0.8,
+                      color: isDarkMode
+                        ? 'rgba(255, 255, 255, 0.8)'
+                        : 'rgba(0, 0, 0, 0.8)',
+                      fontSize: '0.9rem',
+                      fontWeight: 600,
+                      mb: 1.5,
                     }}
                   >
-                    Slippage Tolerance: {slippage}%
+                    Slippage Tolerance
                   </Typography>
-                  <Box sx={{ display: 'flex', gap: 0.5 }}>
-                    {[0.1, 0.5, 1.0].map((value) => (
-                      <Button
-                        key={value}
-                        variant={slippage === value ? 'contained' : 'outlined'}
-                        size='small'
-                        onClick={() => setSlippage(value)}
-                        sx={{
-                          color:
-                            slippage === value
-                              ? '#ffffff'
-                              : 'rgba(255, 255, 255, 0.6)',
-                          borderColor: 'rgba(255, 255, 255, 0.2)',
-                          background:
-                            slippage === value ? '#4FC3F7' : 'transparent',
-                          fontSize: '0.7rem',
-                          textTransform: 'none',
-                          minWidth: 'auto',
-                          px: 1.2,
-                          py: 0.4,
-                        }}
-                      >
-                        {value}%
-                      </Button>
-                    ))}
+                  <TextField
+                    fullWidth
+                    placeholder='0.00'
+                    value={slippage}
+                    onChange={(e) =>
+                      setSlippage(parseFloat(e.target.value) || 0)
+                    }
+                    sx={{
+                      mb: 2,
+                      '& .MuiOutlinedInput-root': {
+                        backgroundColor: isDarkMode
+                          ? 'rgba(255, 255, 255, 0.05)'
+                          : 'rgba(0, 0, 0, 0.05)',
+                        borderRadius: 2,
+                        '& fieldset': {
+                          borderColor: isDarkMode
+                            ? 'rgba(255, 255, 255, 0.1)'
+                            : 'rgba(0, 0, 0, 0.1)',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: isDarkMode
+                            ? 'rgba(255, 255, 255, 0.2)'
+                            : 'rgba(0, 0, 0, 0.2)',
+                        },
+                      },
+                      '& .MuiInputBase-input': {
+                        color: isDarkMode ? '#ffffff' : '#1a1a1a',
+                        fontSize: '1rem',
+                        fontWeight: 600,
+                      },
+                    }}
+                  />
+                  <Box sx={{ display: 'flex', gap: 1 }}>
+                    {['Market', '1 %', '2 %', '5 %', '10 %'].map(
+                      (label, index) => {
+                        const value = index === 0 ? 'market' : parseFloat(label)
+                        const isSelected =
+                          (index === 0 && slippage === 'market') ||
+                          slippage === value
+                        return (
+                          <Button
+                            key={label}
+                            variant={isSelected ? 'contained' : 'outlined'}
+                            size='small'
+                            onClick={() => setSlippage(value)}
+                            sx={{
+                              flex: 1,
+                              color: isSelected
+                                ? '#ffffff'
+                                : isDarkMode
+                                ? 'rgba(255, 255, 255, 0.7)'
+                                : 'rgba(0, 0, 0, 0.7)',
+                              borderColor: isDarkMode
+                                ? 'rgba(255, 255, 255, 0.2)'
+                                : 'rgba(0, 0, 0, 0.2)',
+                              background: isSelected
+                                ? '#4FC3F7'
+                                : 'transparent',
+                              fontSize: '0.8rem',
+                              fontWeight: 600,
+                              textTransform: 'none',
+                              py: 0.8,
+                              borderRadius: 1.5,
+                              '&:hover': {
+                                background: isSelected
+                                  ? '#29B6F6'
+                                  : isDarkMode
+                                  ? 'rgba(255, 255, 255, 0.1)'
+                                  : 'rgba(0, 0, 0, 0.1)',
+                              },
+                            }}
+                          >
+                            {label}
+                          </Button>
+                        )
+                      }
+                    )}
                   </Box>
                 </Box>
 
@@ -1019,26 +1112,42 @@ const TradingPage = ({ isDarkMode }) => {
                     <Typography
                       variant='body2'
                       sx={{
-                        color: 'rgba(255, 255, 255, 0.7)',
-                        mb: 1,
+                        color: isDarkMode
+                          ? 'rgba(255, 255, 255, 0.8)'
+                          : 'rgba(0, 0, 0, 0.8)',
+                        fontSize: '0.9rem',
+                        fontWeight: 600,
+                        mb: 1.5,
                       }}
                     >
                       Limit Price
                     </Typography>
                     <TextField
                       fullWidth
-                      placeholder='Enter limit price'
+                      placeholder='0.00'
                       value={limitPrice}
                       onChange={(e) => setLimitPrice(e.target.value)}
                       sx={{
                         '& .MuiOutlinedInput-root': {
-                          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                          backgroundColor: isDarkMode
+                            ? 'rgba(255, 255, 255, 0.05)'
+                            : 'rgba(0, 0, 0, 0.05)',
+                          borderRadius: 2,
                           '& fieldset': {
-                            borderColor: 'rgba(255, 255, 255, 0.2)',
+                            borderColor: isDarkMode
+                              ? 'rgba(255, 255, 255, 0.1)'
+                              : 'rgba(0, 0, 0, 0.1)',
+                          },
+                          '&:hover fieldset': {
+                            borderColor: isDarkMode
+                              ? 'rgba(255, 255, 255, 0.2)'
+                              : 'rgba(0, 0, 0, 0.2)',
                           },
                         },
                         '& .MuiInputBase-input': {
-                          color: '#ffffff',
+                          color: isDarkMode ? '#ffffff' : '#1a1a1a',
+                          fontSize: '1rem',
+                          fontWeight: 600,
                         },
                       }}
                     />
@@ -1051,8 +1160,12 @@ const TradingPage = ({ isDarkMode }) => {
                     <Typography
                       variant='body2'
                       sx={{
-                        color: 'rgba(255, 255, 255, 0.7)',
-                        mb: 1,
+                        color: isDarkMode
+                          ? 'rgba(255, 255, 255, 0.8)'
+                          : 'rgba(0, 0, 0, 0.8)',
+                        fontSize: '0.9rem',
+                        fontWeight: 600,
+                        mb: 1.5,
                       }}
                     >
                       Expiry
@@ -1062,12 +1175,29 @@ const TradingPage = ({ isDarkMode }) => {
                         value={expiry}
                         onChange={(e) => setExpiry(e.target.value)}
                         sx={{
-                          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                          backgroundColor: isDarkMode
+                            ? 'rgba(255, 255, 255, 0.05)'
+                            : 'rgba(0, 0, 0, 0.05)',
+                          borderRadius: 2,
                           '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(255, 255, 255, 0.2)',
+                            borderColor: isDarkMode
+                              ? 'rgba(255, 255, 255, 0.1)'
+                              : 'rgba(0, 0, 0, 0.1)',
+                          },
+                          '&:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: isDarkMode
+                              ? 'rgba(255, 255, 255, 0.2)'
+                              : 'rgba(0, 0, 0, 0.2)',
                           },
                           '& .MuiSelect-select': {
-                            color: '#ffffff',
+                            color: isDarkMode ? '#ffffff' : '#1a1a1a',
+                            fontSize: '1rem',
+                            fontWeight: 600,
+                          },
+                          '& .MuiSelect-icon': {
+                            color: isDarkMode
+                              ? 'rgba(255, 255, 255, 0.7)'
+                              : 'rgba(0, 0, 0, 0.7)',
                           },
                         }}
                       >
@@ -1086,19 +1216,25 @@ const TradingPage = ({ isDarkMode }) => {
                   variant='contained'
                   size='large'
                   sx={{
-                    background: '#4FC3F7',
-                    color: '#ffffff',
-                    fontWeight: 600,
-                    fontSize: '0.9rem',
-                    py: 1.2,
-                    borderRadius: 1.5,
+                    mt: 4,
+                    py: 2.5,
+                    borderRadius: 3,
+                    background:
+                      'linear-gradient(135deg, #2196F3 0%, #21CBF3 100%)',
+                    fontSize: '1rem',
+                    fontWeight: 700,
                     textTransform: 'none',
+                    boxShadow: '0 8px 32px rgba(33, 150, 243, 0.3)',
                     '&:hover': {
-                      background: '#29B6F6',
+                      background:
+                        'linear-gradient(135deg, #1976D2 0%, #1CB5E0 100%)',
+                      boxShadow: '0 12px 40px rgba(33, 150, 243, 0.4)',
+                      transform: 'translateY(-2px)',
                     },
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 >
-                  Connect Wallet
+                  Connect Ethereum Wallet
                 </Button>
               </CardContent>
             </Card>
