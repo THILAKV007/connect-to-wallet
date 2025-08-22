@@ -1,38 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material'
 import {
-  ThemeProvider,
-  createTheme,
-  CssBaseline,
-} from '@mui/material';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import TradingPage from './pages/TradingPage';
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import TradingPage from './pages/TradingPage'
+import Swap1 from './pages/Swap1'
+import Swap2 from './pages/Swap2'
+import Swap3 from './pages/Swap3'
 
 function AppContent({ isDarkMode, toggleTheme }) {
-  const location = useLocation();
-  const hiddenFooterRoutes = ['/trading'];
-  const shouldHideFooter = hiddenFooterRoutes.includes(location.pathname);
+  const location = useLocation()
+  const hiddenFooterRoutes = ['/trading', '/swap1', '/swap2', '/swap3']
+  const shouldHideFooter = hiddenFooterRoutes.includes(location.pathname)
 
   return (
     <>
       <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <Routes>
-        <Route path="/" element={<HomePage isDarkMode={isDarkMode} />} />
-        <Route path="/trading" element={<TradingPage isDarkMode={isDarkMode} />} />
+        <Route path='/' element={<HomePage isDarkMode={isDarkMode} />} />
+        <Route
+          path='/trading'
+          element={<TradingPage isDarkMode={isDarkMode} />}
+        />
+        <Route path='/swap1' element={<Swap1 isDarkMode={isDarkMode} />} />
+        <Route path='/swap2' element={<Swap2 isDarkMode={isDarkMode} />} />
+        <Route path='/swap3' element={<Swap3 isDarkMode={isDarkMode} />} />
       </Routes>
       {!shouldHideFooter && <Footer isDarkMode={isDarkMode} />}
     </>
-  );
+  )
 }
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(true)
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+    setIsDarkMode(!isDarkMode)
+  }
 
   const theme = createTheme({
     palette: {
@@ -45,7 +55,7 @@ function App() {
         paper: isDarkMode ? '#1a1f2e' : '#ffffff',
       },
     },
-  });
+  })
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

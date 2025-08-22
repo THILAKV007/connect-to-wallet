@@ -34,7 +34,7 @@ import BarChartIcon from '@mui/icons-material/BarChart'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import SwapVertIcon from '@mui/icons-material/SwapVert'
 
-const TradingPage = ({ isDarkMode }) => {
+const Swap3 = ({ isDarkMode }) => {
   const [activeTab, setActiveTab] = useState(0)
   const [sellAmount, setSellAmount] = useState('')
   const [buyAmount, setBuyAmount] = useState('')
@@ -1110,107 +1110,6 @@ const TradingPage = ({ isDarkMode }) => {
                   </Box>
                 </Box>
 
-                {/* Slippage Tolerance */}
-                <Box sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}>
-                  <Typography
-                    sx={{
-                      color: isDarkMode
-                        ? 'rgba(255, 255, 255, 0.8)'
-                        : 'rgba(0, 0, 0, 0.8)',
-                      fontSize: { xs: '0.85rem', sm: '0.9rem' },
-                      fontWeight: 600,
-                      mb: 1.5,
-                    }}
-                  >
-                    Slippage Tolerance
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    placeholder='0.00'
-                    value={slippage}
-                    onChange={(e) =>
-                      setSlippage(parseFloat(e.target.value) || 0)
-                    }
-                    sx={{
-                      mb: 2,
-                      '& .MuiOutlinedInput-root': {
-                        backgroundColor: isDarkMode
-                          ? 'rgba(255, 255, 255, 0.05)'
-                          : 'rgba(0, 0, 0, 0.05)',
-                        borderRadius: 2,
-                        '& fieldset': {
-                          borderColor: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.1)'
-                            : 'rgba(0, 0, 0, 0.1)',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.2)'
-                            : 'rgba(0, 0, 0, 0.2)',
-                        },
-                      },
-                      '& .MuiInputBase-input': {
-                        color: isDarkMode ? '#ffffff' : '#1a1a1a',
-                        fontSize: { xs: '0.9rem', sm: '1rem' },
-                        fontWeight: 600,
-                      },
-                    }}
-                  />
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      gap: { xs: 0.5, sm: 1 },
-                      flexWrap: 'wrap',
-                    }}
-                  >
-                    {['Market', '1 %', '2 %', '5 %', '10 %'].map(
-                      (label, index) => {
-                        const value = index === 0 ? 'market' : parseFloat(label)
-                        const isSelected =
-                          (index === 0 && slippage === 'market') ||
-                          slippage === value
-                        return (
-                          <Button
-                            key={label}
-                            variant={isSelected ? 'contained' : 'outlined'}
-                            size='small'
-                            onClick={() => setSlippage(value)}
-                            sx={{
-                              flex: 1,
-                              minWidth: { xs: '60px', sm: 'auto' },
-                              color: isSelected
-                                ? '#ffffff'
-                                : isDarkMode
-                                ? 'rgba(255, 255, 255, 0.7)'
-                                : 'rgba(0, 0, 0, 0.7)',
-                              borderColor: isDarkMode
-                                ? 'rgba(255, 255, 255, 0.2)'
-                                : 'rgba(0, 0, 0, 0.2)',
-                              background: isSelected
-                                ? '#4FC3F7'
-                                : 'transparent',
-                              fontSize: { xs: '0.75rem', sm: '0.8rem' },
-                              fontWeight: 600,
-                              textTransform: 'none',
-                              py: { xs: 1, sm: 0.8 },
-                              borderRadius: 1.5,
-                              '&:hover': {
-                                background: isSelected
-                                  ? '#29B6F6'
-                                  : isDarkMode
-                                  ? 'rgba(255, 255, 255, 0.1)'
-                                  : 'rgba(0, 0, 0, 0.1)',
-                              },
-                            }}
-                          >
-                            {label}
-                          </Button>
-                        )
-                      }
-                    )}
-                  </Box>
-                </Box>
-
                 {/* Limit Price (for Limit orders) */}
                 {activeTab === 1 && (
                   <Box sx={{ mb: 3 }}>
@@ -1351,4 +1250,4 @@ const TradingPage = ({ isDarkMode }) => {
   )
 }
 
-export default TradingPage
+export default Swap3

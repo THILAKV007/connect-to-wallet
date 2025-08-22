@@ -34,7 +34,7 @@ import BarChartIcon from '@mui/icons-material/BarChart'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import SwapVertIcon from '@mui/icons-material/SwapVert'
 
-const TradingPage = ({ isDarkMode }) => {
+const Swap2 = ({ isDarkMode }) => {
   const [activeTab, setActiveTab] = useState(0)
   const [sellAmount, setSellAmount] = useState('')
   const [buyAmount, setBuyAmount] = useState('')
@@ -94,15 +94,11 @@ const TradingPage = ({ isDarkMode }) => {
       return (
         <Box
           sx={{
-            background: isDarkMode ? '#10254A' : '#E5F3FE',
-            border: isDarkMode
-              ? '1px solid rgba(255, 255, 255, 0.1)'
-              : '1px solid rgba(0, 0, 0, 0.1)',
+            background: isDarkMode ? '#10254A' : '#ffffff',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             borderRadius: 1,
             p: 1.5,
-            boxShadow: isDarkMode
-              ? '0 4px 12px rgba(0, 0, 0, 0.3)'
-              : '0 4px 12px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
           }}
         >
           <Typography
@@ -128,7 +124,7 @@ const TradingPage = ({ isDarkMode }) => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: isDarkMode ? '#061536' : '#f0f9ff',
+        background: isDarkMode ? '#061536' : '#f8f9fa',
         pt: { xs: 10 },
         pb: { xs: 2, sm: 3, md: 4 },
         px: { xs: 1, sm: 2 },
@@ -148,7 +144,7 @@ const TradingPage = ({ isDarkMode }) => {
             {/* Header Section */}
             <Card
               sx={{
-                background: isDarkMode ? '#10254A' : '#E5F3FE',
+                background: isDarkMode ? '#10254A' : '#ffffff',
                 backdropFilter: 'blur(10px)',
                 mb: { xs: 1.5, sm: 2 },
                 borderRadius: { xs: 1.5, sm: 2 },
@@ -281,7 +277,7 @@ const TradingPage = ({ isDarkMode }) => {
             {/* Main Chart Card */}
             <Card
               sx={{
-                background: isDarkMode ? '#10254A' : '#E5F3FE',
+                background: isDarkMode ? '#10254A' : '#ffffff',
                 backdropFilter: 'blur(10px)',
                 height: {
                   xs: 'auto',
@@ -413,6 +409,69 @@ const TradingPage = ({ isDarkMode }) => {
                     </Box>
                   </Box>
 
+                  <Box sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          color: isDarkMode
+                            ? 'rgba(255, 255, 255, 0.9)'
+                            : 'rgba(0, 0, 0, 0.9)',
+                          fontSize: { xs: '1.1rem', sm: '1.2rem' },
+                          fontWeight: 700,
+                        }}
+                      >
+                        Expiry
+                      </Typography>
+                      <Button
+                        variant='outlined'
+                        sx={{
+                          minWidth: '120px',
+                          height: '40px',
+                          color: isDarkMode
+                            ? 'rgba(255, 255, 255, 0.8)'
+                            : 'rgba(0, 0, 0, 0.8)',
+                          borderColor: isDarkMode
+                            ? 'rgba(255, 255, 255, 0.2)'
+                            : 'rgba(0, 0, 0, 0.2)',
+                          background: 'transparent',
+                          fontSize: { xs: '0.85rem', sm: '0.9rem' },
+                          fontWeight: 600,
+                          textTransform: 'none',
+                          borderRadius: 2,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          px: 2,
+                          '&:hover': {
+                            background: isDarkMode
+                              ? 'rgba(255, 255, 255, 0.05)'
+                              : 'rgba(0, 0, 0, 0.05)',
+                            borderColor: isDarkMode
+                              ? 'rgba(255, 255, 255, 0.3)'
+                              : 'rgba(0, 0, 0, 0.3)',
+                          },
+                        }}
+                      >
+                        1 Hour
+                        <span
+                          style={{
+                            fontSize: '0.8rem',
+                            opacity: 0.7,
+                            marginLeft: '8px',
+                          }}
+                        >
+                          ▼
+                        </span>
+                      </Button>
+                    </Box>
+                  </Box>
+
                   {/* Chart Controls */}
                   <Box
                     sx={{
@@ -484,42 +543,32 @@ const TradingPage = ({ isDarkMode }) => {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <ShowChartIcon
                         sx={{
-                          color: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.7)'
-                            : 'rgba(0, 0, 0, 0.7)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           fontSize: '1rem',
                         }}
                       />
                       <BarChartIcon
                         sx={{
-                          color: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.7)'
-                            : 'rgba(0, 0, 0, 0.7)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           fontSize: '1rem',
                         }}
                       />
                       <TimelineIcon
                         sx={{
-                          color: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.7)'
-                            : 'rgba(0, 0, 0, 0.7)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           fontSize: '1rem',
                         }}
                       />
                       <KeyboardArrowDownIcon
                         sx={{
-                          color: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.6)'
-                            : 'rgba(0, 0, 0, 0.6)',
+                          color: 'rgba(255, 255, 255, 0.6)',
                           fontSize: '1rem',
                         }}
                       />
                     </Box>
                     <Typography
                       sx={{
-                        color: isDarkMode
-                          ? 'rgba(255, 255, 255, 0.7)'
-                          : 'rgba(0, 0, 0, 0.7)',
+                        color: 'rgba(255, 255, 255, 0.7)',
                         fontSize: '0.8rem',
                       }}
                     >
@@ -528,14 +577,51 @@ const TradingPage = ({ isDarkMode }) => {
                   </Box>
                 </Box>
 
+                {/* Expiry Section */}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    mt: 2,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: { xs: '0.9rem', sm: '1rem' },
+                      fontWeight: 500,
+                      color: isDarkMode ? '#ffffff' : '#1a1a1a',
+                    }}
+                  >
+                    Expiry
+                  </Typography>
+                  <Button
+                    sx={{
+                      fontSize: { xs: '0.85rem', sm: '0.9rem' },
+                      fontWeight: 500,
+                      textTransform: 'none',
+                      color: isDarkMode ? '#ffffff' : '#1a1a1a',
+                      backgroundColor: isDarkMode ? '#1C3259' : '#E5F3FE',
+                      px: 2,
+                      py: 0.8,
+                      borderRadius: 1.5,
+                      border: 'none',
+                      '&:hover': {
+                        backgroundColor: isDarkMode ? '#2A4A7A' : '#D0E8FC',
+                      },
+                    }}
+                  >
+                    1 Hour
+                    <span style={{ marginLeft: '8px', fontSize: '0.8rem' }}>▼</span>
+                  </Button>
+                </Box>
+
                 {/* Main Chart Area */}
                 <Box
                   sx={{
                     flex: 1,
                     position: 'relative',
-                    background: isDarkMode
-                      ? 'rgba(0, 0, 0, 0.1)'
-                      : 'rgba(255, 255, 255, 0.3)',
+                    background: 'rgba(0, 0, 0, 0.1)',
                     mx: { xs: 1.5, sm: 2, md: 3 },
                     mb: { xs: 2, sm: 2.5, md: 3 },
                     borderRadius: 1,
@@ -581,11 +667,7 @@ const TradingPage = ({ isDarkMode }) => {
 
                       <CartesianGrid
                         strokeDasharray='3 3'
-                        stroke={
-                          isDarkMode
-                            ? 'rgba(255, 255, 255, 0.1)'
-                            : 'rgba(0, 0, 0, 0.1)'
-                        }
+                        stroke='rgba(255, 255, 255, 0.1)'
                         horizontal={true}
                         vertical={true}
                       />
@@ -595,9 +677,7 @@ const TradingPage = ({ isDarkMode }) => {
                         axisLine={false}
                         tickLine={false}
                         tick={{
-                          fill: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.6)'
-                            : 'rgba(0, 0, 0, 0.6)',
+                          fill: 'rgba(255, 255, 255, 0.6)',
                           fontSize: 11,
                         }}
                         interval='preserveStartEnd'
@@ -608,9 +688,7 @@ const TradingPage = ({ isDarkMode }) => {
                         axisLine={false}
                         tickLine={false}
                         tick={{
-                          fill: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.6)'
-                            : 'rgba(0, 0, 0, 0.6)',
+                          fill: 'rgba(255, 255, 255, 0.6)',
                           fontSize: 11,
                         }}
                         tickFormatter={(value) => `${value.toFixed(0)}.00`}
@@ -733,7 +811,7 @@ const TradingPage = ({ isDarkMode }) => {
           >
             <Card
               sx={{
-                background: isDarkMode ? 'rgba(16, 37, 74, 0.95)' : '#E5F3FE',
+                background: isDarkMode ? 'rgba(16, 37, 74, 0.95)' : '#ffffff',
                 backdropFilter: 'blur(20px)',
                 border: isDarkMode
                   ? '1px solid rgba(255, 255, 255, 0.1)'
@@ -765,8 +843,9 @@ const TradingPage = ({ isDarkMode }) => {
                         fontSize: { xs: '0.8rem', sm: '0.85rem' },
                         fontWeight: activeTab === index ? 600 : 500,
                         textTransform: 'none',
-                        borderRadius: 1.5,
-                        backgroundColor: 'transparent',
+                        borderRadius: 0,
+                        border: 'none',
+                        backgroundColor: '#1C3259',
                         minHeight: { xs: '44px', sm: 'auto' },
                         color:
                           activeTab === index
@@ -790,7 +869,7 @@ const TradingPage = ({ isDarkMode }) => {
                 <Box>
                   <Box
                     sx={{
-                      background: '#E5F3FE',
+                      background: '#ffffff',
                       borderRadius: { xs: 2, sm: 2.5, md: 3 },
                       p: { xs: 2, sm: 2.5, md: 3 },
                       // mb: 1.5,
@@ -975,7 +1054,7 @@ const TradingPage = ({ isDarkMode }) => {
                 <Box sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}>
                   <Box
                     sx={{
-                      background: '#E5F3FE',
+                      background: '#ffffff',
                       borderRadius: { xs: 2, sm: 2.5, md: 3 },
                       p: { xs: 2, sm: 2.5, md: 3 },
                       mb: 1.5,
@@ -1124,90 +1203,109 @@ const TradingPage = ({ isDarkMode }) => {
                   >
                     Slippage Tolerance
                   </Typography>
-                  <TextField
-                    fullWidth
-                    placeholder='0.00'
-                    value={slippage}
-                    onChange={(e) =>
-                      setSlippage(parseFloat(e.target.value) || 0)
-                    }
+                </Box>
+
+                <Box sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}>
+                  <Typography
                     sx={{
-                      mb: 2,
-                      '& .MuiOutlinedInput-root': {
-                        backgroundColor: isDarkMode
-                          ? 'rgba(255, 255, 255, 0.05)'
-                          : 'rgba(0, 0, 0, 0.05)',
-                        borderRadius: 2,
-                        '& fieldset': {
-                          borderColor: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.1)'
-                            : 'rgba(0, 0, 0, 0.1)',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.2)'
-                            : 'rgba(0, 0, 0, 0.2)',
-                        },
-                      },
-                      '& .MuiInputBase-input': {
-                        color: isDarkMode ? '#ffffff' : '#1a1a1a',
-                        fontSize: { xs: '0.9rem', sm: '1rem' },
-                        fontWeight: 600,
-                      },
+                      color: isDarkMode
+                        ? 'rgba(255, 255, 255, 0.9)'
+                        : 'rgba(0, 0, 0, 0.9)',
+                      fontSize: { xs: '1.1rem', sm: '1.2rem' },
+                      fontWeight: 700,
+                      mb: 1,
                     }}
-                  />
+                  >
+                    Limit Price
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: isDarkMode
+                        ? 'rgba(255, 255, 255, 0.6)'
+                        : 'rgba(0, 0, 0, 0.6)',
+                      fontSize: { xs: '1.5rem', sm: '1.8rem' },
+                      fontWeight: 400,
+                      mb: 2,
+                    }}
+                  >
+                    0.00
+                  </Typography>
                   <Box
                     sx={{
                       display: 'flex',
-                      gap: { xs: 0.5, sm: 1 },
-                      flexWrap: 'wrap',
+                      gap: { xs: 0.8, sm: 0.5 },
+                      flexWrap: 'nowrap',
+                      overflowX: 'auto',
+                      pb: 1,
                     }}
                   >
-                    {['Market', '1 %', '2 %', '5 %', '10 %'].map(
-                      (label, index) => {
-                        const value = index === 0 ? 'market' : parseFloat(label)
-                        const isSelected =
-                          (index === 0 && slippage === 'market') ||
-                          slippage === value
-                        return (
-                          <Button
-                            key={label}
-                            variant={isSelected ? 'contained' : 'outlined'}
-                            size='small'
-                            onClick={() => setSlippage(value)}
-                            sx={{
-                              flex: 1,
-                              minWidth: { xs: '60px', sm: 'auto' },
-                              color: isSelected
-                                ? '#ffffff'
-                                : isDarkMode
-                                ? 'rgba(255, 255, 255, 0.7)'
-                                : 'rgba(0, 0, 0, 0.7)',
-                              borderColor: isDarkMode
-                                ? 'rgba(255, 255, 255, 0.2)'
-                                : 'rgba(0, 0, 0, 0.2)',
+                    {[
+                      { label: 'Market', icon: null },
+                      { label: '1 %', icon: '↑' },
+                      { label: '2 %', icon: '↑' },
+                      { label: '5 %', icon: '↑' },
+                      { label: '10 %', icon: '↑' },
+                    ].map((item, index) => {
+                      const value =
+                        index === 0 ? 'market' : parseFloat(item.label)
+                      const isSelected =
+                        (index === 0 && slippage === 'market') ||
+                        slippage === value
+                      return (
+                        <Box
+                          key={item.label}
+                          //   variant='outlined'
+                          //   size='small'
+                          onClick={() => setSlippage(value)}
+                          sx={{
+                            cursor: 'pointer',
+                            px: 1.5,
+                            py: 0.5,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: isSelected
+                              ? '#4FC3F7'
+                              : isDarkMode
+                              ? 'rgba(255, 255, 255, 0.7)'
+                              : 'rgba(0, 0, 0, 0.7)',
+
+                            background: isSelected
+                              ? isDarkMode
+                                ? 'rgba(79, 195, 247, 0.1)'
+                                : 'rgba(79, 195, 247, 0.05)'
+                              : 'transparent',
+                            fontSize: { xs: '0.75rem', sm: '0.8rem' },
+                            fontWeight: 600,
+                            textTransform: 'none',
+                            borderRadius: 2,
+
+                            gap: 0.5,
+                            '&:hover': {
                               background: isSelected
-                                ? '#4FC3F7'
-                                : 'transparent',
-                              fontSize: { xs: '0.75rem', sm: '0.8rem' },
-                              fontWeight: 600,
-                              textTransform: 'none',
-                              py: { xs: 1, sm: 0.8 },
-                              borderRadius: 1.5,
-                              '&:hover': {
-                                background: isSelected
-                                  ? '#29B6F6'
-                                  : isDarkMode
-                                  ? 'rgba(255, 255, 255, 0.1)'
-                                  : 'rgba(0, 0, 0, 0.1)',
-                              },
-                            }}
-                          >
-                            {label}
-                          </Button>
-                        )
-                      }
-                    )}
+                                ? isDarkMode
+                                  ? 'rgba(79, 195, 247, 0.15)'
+                                  : 'rgba(79, 195, 247, 0.1)'
+                                : isDarkMode
+                                ? 'rgba(255, 255, 255, 0.05)'
+                                : 'rgba(0, 0, 0, 0.05)',
+                            },
+                          }}
+                        >
+                          {item.label}
+                          {item.icon && (
+                            <span
+                              style={{
+                                fontSize: '0.7rem',
+                                opacity: 0.8,
+                              }}
+                            >
+                              {item.icon}
+                            </span>
+                          )}
+                        </Box>
+                      )
+                    })}
                   </Box>
                 </Box>
 
@@ -1351,4 +1449,4 @@ const TradingPage = ({ isDarkMode }) => {
   )
 }
 
-export default TradingPage
+export default Swap2

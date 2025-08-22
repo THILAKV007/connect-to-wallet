@@ -34,7 +34,7 @@ import BarChartIcon from '@mui/icons-material/BarChart'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import SwapVertIcon from '@mui/icons-material/SwapVert'
 
-const TradingPage = ({ isDarkMode }) => {
+const Swap1 = ({ isDarkMode }) => {
   const [activeTab, setActiveTab] = useState(0)
   const [sellAmount, setSellAmount] = useState('')
   const [buyAmount, setBuyAmount] = useState('')
@@ -94,15 +94,11 @@ const TradingPage = ({ isDarkMode }) => {
       return (
         <Box
           sx={{
-            background: isDarkMode ? '#10254A' : '#E5F3FE',
-            border: isDarkMode
-              ? '1px solid rgba(255, 255, 255, 0.1)'
-              : '1px solid rgba(0, 0, 0, 0.1)',
+            background: isDarkMode ? '#10254A' : '#ffffff',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             borderRadius: 1,
             p: 1.5,
-            boxShadow: isDarkMode
-              ? '0 4px 12px rgba(0, 0, 0, 0.3)'
-              : '0 4px 12px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
           }}
         >
           <Typography
@@ -128,7 +124,7 @@ const TradingPage = ({ isDarkMode }) => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: isDarkMode ? '#061536' : '#f0f9ff',
+        background: isDarkMode ? '#061536' : '#f8f9fa',
         pt: { xs: 10 },
         pb: { xs: 2, sm: 3, md: 4 },
         px: { xs: 1, sm: 2 },
@@ -148,7 +144,7 @@ const TradingPage = ({ isDarkMode }) => {
             {/* Header Section */}
             <Card
               sx={{
-                background: isDarkMode ? '#10254A' : '#E5F3FE',
+                background: isDarkMode ? '#10254A' : '#ffffff',
                 backdropFilter: 'blur(10px)',
                 mb: { xs: 1.5, sm: 2 },
                 borderRadius: { xs: 1.5, sm: 2 },
@@ -281,7 +277,7 @@ const TradingPage = ({ isDarkMode }) => {
             {/* Main Chart Card */}
             <Card
               sx={{
-                background: isDarkMode ? '#10254A' : '#E5F3FE',
+                background: isDarkMode ? '#10254A' : '#ffffff',
                 backdropFilter: 'blur(10px)',
                 height: {
                   xs: 'auto',
@@ -484,42 +480,32 @@ const TradingPage = ({ isDarkMode }) => {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <ShowChartIcon
                         sx={{
-                          color: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.7)'
-                            : 'rgba(0, 0, 0, 0.7)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           fontSize: '1rem',
                         }}
                       />
                       <BarChartIcon
                         sx={{
-                          color: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.7)'
-                            : 'rgba(0, 0, 0, 0.7)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           fontSize: '1rem',
                         }}
                       />
                       <TimelineIcon
                         sx={{
-                          color: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.7)'
-                            : 'rgba(0, 0, 0, 0.7)',
+                          color: 'rgba(255, 255, 255, 0.7)',
                           fontSize: '1rem',
                         }}
                       />
                       <KeyboardArrowDownIcon
                         sx={{
-                          color: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.6)'
-                            : 'rgba(0, 0, 0, 0.6)',
+                          color: 'rgba(255, 255, 255, 0.6)',
                           fontSize: '1rem',
                         }}
                       />
                     </Box>
                     <Typography
                       sx={{
-                        color: isDarkMode
-                          ? 'rgba(255, 255, 255, 0.7)'
-                          : 'rgba(0, 0, 0, 0.7)',
+                        color: 'rgba(255, 255, 255, 0.7)',
                         fontSize: '0.8rem',
                       }}
                     >
@@ -533,9 +519,7 @@ const TradingPage = ({ isDarkMode }) => {
                   sx={{
                     flex: 1,
                     position: 'relative',
-                    background: isDarkMode
-                      ? 'rgba(0, 0, 0, 0.1)'
-                      : 'rgba(255, 255, 255, 0.3)',
+                    background: 'rgba(0, 0, 0, 0.1)',
                     mx: { xs: 1.5, sm: 2, md: 3 },
                     mb: { xs: 2, sm: 2.5, md: 3 },
                     borderRadius: 1,
@@ -581,11 +565,7 @@ const TradingPage = ({ isDarkMode }) => {
 
                       <CartesianGrid
                         strokeDasharray='3 3'
-                        stroke={
-                          isDarkMode
-                            ? 'rgba(255, 255, 255, 0.1)'
-                            : 'rgba(0, 0, 0, 0.1)'
-                        }
+                        stroke='rgba(255, 255, 255, 0.1)'
                         horizontal={true}
                         vertical={true}
                       />
@@ -595,9 +575,7 @@ const TradingPage = ({ isDarkMode }) => {
                         axisLine={false}
                         tickLine={false}
                         tick={{
-                          fill: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.6)'
-                            : 'rgba(0, 0, 0, 0.6)',
+                          fill: 'rgba(255, 255, 255, 0.6)',
                           fontSize: 11,
                         }}
                         interval='preserveStartEnd'
@@ -608,9 +586,7 @@ const TradingPage = ({ isDarkMode }) => {
                         axisLine={false}
                         tickLine={false}
                         tick={{
-                          fill: isDarkMode
-                            ? 'rgba(255, 255, 255, 0.6)'
-                            : 'rgba(0, 0, 0, 0.6)',
+                          fill: 'rgba(255, 255, 255, 0.6)',
                           fontSize: 11,
                         }}
                         tickFormatter={(value) => `${value.toFixed(0)}.00`}
@@ -733,7 +709,7 @@ const TradingPage = ({ isDarkMode }) => {
           >
             <Card
               sx={{
-                background: isDarkMode ? 'rgba(16, 37, 74, 0.95)' : '#E5F3FE',
+                background: isDarkMode ? 'rgba(16, 37, 74, 0.95)' : '#ffffff',
                 backdropFilter: 'blur(20px)',
                 border: isDarkMode
                   ? '1px solid rgba(255, 255, 255, 0.1)'
@@ -790,7 +766,7 @@ const TradingPage = ({ isDarkMode }) => {
                 <Box>
                   <Box
                     sx={{
-                      background: '#E5F3FE',
+                      background: '#ffffff',
                       borderRadius: { xs: 2, sm: 2.5, md: 3 },
                       p: { xs: 2, sm: 2.5, md: 3 },
                       // mb: 1.5,
@@ -975,7 +951,7 @@ const TradingPage = ({ isDarkMode }) => {
                 <Box sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}>
                   <Box
                     sx={{
-                      background: '#E5F3FE',
+                      background: '#ffffff',
                       borderRadius: { xs: 2, sm: 2.5, md: 3 },
                       p: { xs: 2, sm: 2.5, md: 3 },
                       mb: 1.5,
@@ -1351,4 +1327,4 @@ const TradingPage = ({ isDarkMode }) => {
   )
 }
 
-export default TradingPage
+export default Swap1
