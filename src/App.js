@@ -11,6 +11,9 @@ import BlogsSection from './components/BlogsSection';
 import PopularTokenSection from './components/PopularTokenSection';
 import WhyUnidexSection from './components/WhyUnidexSection';
 
+
+
+
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
@@ -52,11 +55,13 @@ function App() {
           <BlogsSection isDarkMode={isDarkMode} />
         </Box>
         
-        {/* Footer */}
+      
+
+{/* Footer */}
         <Footer isDarkMode={isDarkMode} />
       </Box>
     </ThemeProvider>
   )
 }
 
-export default App
+export default App;

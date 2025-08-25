@@ -9,10 +9,14 @@ import {
 } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+// import SelectOption from "./SelectOption";
+
+
 
 function Header({ toggleTheme, isDarkMode }) {
-
+      const [click, setClick] = useState(false)
   return (
     <AppBar
       position="fixed"
@@ -126,20 +130,20 @@ function Header({ toggleTheme, isDarkMode }) {
           >
             Connect to Wallet
           </Button>
-
-          {/* More Options (Mobile) */}
-          <IconButton
-            sx={{
-              display: { xs: 'block', md: 'none' },
-              color: isDarkMode ? '#ffffff' : '#000000',
-            }}
-          >
-            <MoreHorizIcon />
-          </IconButton>
+          <button onClick={()=>setClick(!click)}><span className="rotate-180">...</span></button>
+        { click && ( <div className="w-44  border absolute right-1 top-20">
+            <ul className="">
+             <Link to={'/title1'}> <li className="px-3 py-4" textdecoration="none" >Swap Token</li></Link>  
+             <Link to={'/title2'}> <li className="px-3 py-4">Gasless Swap</li></Link>  
+             <Link to={'/title3'}> <li className="px-3 py-4">Liquidity Source</li></Link>  
+             <Link to={'/title4'}> <li className="px-3 py-4">Limit Source</li></Link>  
+             <Link to={'/title5'}> <li className="px-3 py-4">Cross Chain</li></Link>  
+            </ul>
+        </div> ) }
         </Box>
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default Header;

@@ -6,6 +6,7 @@ import {
   CardContent,
   CardMedia,
   Container,
+  Divider,
 } from '@mui/material'
 
 const BlogsSection = ({ isDarkMode }) => {
@@ -93,14 +94,7 @@ const BlogsSection = ({ isDarkMode }) => {
     return () => clearInterval(interval)
   }, [blogPosts.length])
 
-  const getVisibleBlogs = () => {
-    const visible = []
-    for (let i = 0; i < 4; i++) {
-      const index = (currentSlide + i) % blogPosts.length
-      visible.push(blogPosts[index])
-    }
-    return visible
-  }
+ 
 
   return (
     <Box
@@ -265,7 +259,9 @@ const BlogsSection = ({ isDarkMode }) => {
           )}
         </Box>
       </Container>
+      <Divider/>
     </Box>
+    
   )
 }
 
