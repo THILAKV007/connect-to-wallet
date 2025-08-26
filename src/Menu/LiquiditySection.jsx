@@ -34,15 +34,27 @@ const rows = [
   { source: "0X RFQ", volume: "$2.8B", volume30: "$108.5 M", networks: ["eth", "poly", "avax", "celo"] },
   { source: "Across", volume: "$1.2B", volume30: "$207.5 k", networks: ["eth", "avax"] },
 ];
+
+      
+
   return (
   <>
-      <Box sx={{ textAlign: 'center',bgcolor: "#EEF8FF",minHeight:"50vh",}}>
+      <Box sx={{ 
+        textAlign: "center", 
+        py:34,
+        minHeight:"100vh",
+        backgroundImage: `url("assets/images/LiquiditySection/Vector 111.png")`, // image inside public/assets folder
+        backgroundRepeat: "no-repeat",
+        backgroundSize:"contain",
+        backgroundPosition: "center",
+
+       }}>
         <Typography variant="h4">Go gasless with Unidex..</Typography>
         <Typography variant="h2" sx={{ fontWeight: 'bold', my: 3 }}>
           Liquidity sources
         </Typography>
         <Typography variant="body1">
-          Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ liquidity sources aggregated by Matcha!
+          Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+<br /> liquidity sources aggregated by Matcha!
         </Typography>
         <Button variant="contained" color="primary">
           Start Trading
@@ -50,13 +62,13 @@ const rows = [
       </Box>
       <Divider/>
       {/* second section */}
-       <Box sx={{bgcolor: "#EEF8FF"}}>
-      <Typography variant="h6" sx={{ fontWeight: "bold"}}>
+       <Box sx={{margin:"30px"}}>
+      <Typography variant="h6" sx={{ fontWeight: "bold",margin:"10px"}}>
         Integrated liquidity sources
       </Typography>
 
       {/* Search + Filters */}
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2, gap: 2 ,bgcolor: "#EEF8FF" }}>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2, gap: 2}}>
         <TextField
           variant="outlined"
           size="small"
@@ -77,7 +89,7 @@ const rows = [
           onChange={(e) => setNetwork(e.target.value)}
           displayEmpty
           size="small"
-          sx={{ borderRadius: "12px", bgcolor: "#EEF8FF" }}
+          sx={{ borderRadius: "12px"}}
         >
           <MenuItem value="">Network</MenuItem>
           <MenuItem value="eth">Ethereum</MenuItem>
@@ -169,13 +181,13 @@ const rows = [
           variant="h3"
           component="h1"
           gutterBottom
-          sx={{ fontWeight: "bold", color: "black" }}
+          sx={{ fontWeight: "bold"}}
         >
           Deep liquidity. <br /> AMM and RFQ combined.
         </Typography>
 
         {/* Subheadline */}
-        <Typography variant="h6" sx={{ color: "black", opacity: 0.85 }}>
+        <Typography variant="h6" sx={{opacity: 0.85 }}>
           Matcha combines 130+ liquidity sources, on-chain and off-chain.
         </Typography>
       </Container>

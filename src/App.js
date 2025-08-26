@@ -1,25 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material'
 import {
-  ThemeProvider,
-  createTheme,
-  CssBaseline,
-  Box,
-} from '@mui/material';
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom'
 import Header from './components/Header';
 import Footer from './components/Footer';
-import BlogsSection from './components/BlogsSection';
-import PopularTokenSection from './components/PopularTokenSection';
-import WhyUnidexSection from './components/WhyUnidexSection';
+import HomePage from './Menu/HomePage';
+import GasSwapSection from './Menu/GasSwapSection';
+import LimitOrderSection from './Menu/LimitOrderSection';
+import LiquiditySection from './Menu/LiquiditySection';
+import SwapTokenLanding from './Menu/SwapTokenLanding';
+import MenuDot from './Menu/MenuDot'
+import CrossChainSection from './Menu/CrossChainSection';
 
+function AppContent({ isDarkMode, toggleTheme }) {
+  const location = useLocation()
+  const hiddenFooterRoutes = ['/trading', '/swap1', '/swap2', '/swap3']
+  const shouldHideFooter = hiddenFooterRoutes.includes(location.pathname)
 
+  return (
+    <>
+      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+      <Routes>
+        <Route path='/' element={<HomePage isDarkMode={isDarkMode} />} />
+        <Route
+          path='/src/Menu/Menu.jsx'
+          element={<MenuDot/>}
+        />
+       <Route path='/title1' element={<SwapTokenLanding/>} isDarkMode={isDarkMode} />
+      <Route path='/title2' element={<GasSwapSection/>} isDarkMode={isDarkMode} />
+      <Route path='/title3' element={<LiquiditySection/>} isDarkMode={isDarkMode}/>
+      <Route path='/title4' element={<LimitOrderSection/>} isDarkMode={isDarkMode}/>
+      <Route path='/title5' element={<CrossChainSection/>} isDarkMode={isDarkMode}/>
 
+      </Routes>
+      {!shouldHideFooter && <Footer isDarkMode={isDarkMode} />}
+    </>
+  )
+}
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(true)
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+    setIsDarkMode(!isDarkMode)
+  }
 
   const theme = createTheme({
     palette: {
@@ -27,41 +55,28 @@ function App() {
       primary: {
         main: '#2196f3',
       },
+
       background: {
-        default: isDarkMode ? '#0a0e1a' : '#f5f5f5',
-        paper: isDarkMode ? '#1a1f2e' : '#ffffff',
+        default: isDarkMode ? '#061536' : '#EFF8FF',
+        paper: isDarkMode ? '#C3C3C3' : '#CBEBFF',
+
       },
+      color:{
+         default: isDarkMode ? 'white' : 'black',
+         paper: isDarkMode ? '#122A53' : '#6D6D6D',
+
+      }
     },
-  });
+  })
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-      <Box
-        sx={{
-          minHeight: '100vh',
-          background: isDarkMode 
-            ? 'linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 50%, #2a2f3e 100%)'
-            : 'linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 50%, #bbdefb 100%)',
-          display: 'flex',
-          flexDirection: 'column',
-          paddingTop: 8,
-        }}
-      >
-        {/* Main content area */}
-        <Box sx={{ flex: 1 }}>
-          <WhyUnidexSection isDarkMode={isDarkMode} />
-          <PopularTokenSection isDarkMode={isDarkMode} />
-          <BlogsSection isDarkMode={isDarkMode} />
-        </Box>
-        
-      
-
-{/* Footer */}
-        <Footer isDarkMode={isDarkMode} />
-      </Box>
+      <Router>
+        <AppContent isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+      </Router>
     </ThemeProvider>
   )
 }
 
-export default App;
+export default App
+

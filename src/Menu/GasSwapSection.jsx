@@ -49,9 +49,19 @@ export default function GasSwapSection() {
 
 
   return (
-    <Box sx={{ bgcolor: "#EEF8FF", minHeight: "100vh", py: 5 }}>
+    <Box sx={{minHeight: "100vh", py: 5 }}>
       {/* Hero Section */}
-      <Container sx={{ textAlign: "center", py: 10 }}>
+      <Container sx={{ 
+        textAlign: "center", 
+        py:34,
+        minHeight:"100vh",
+        backgroundImage: `url("assets/images/GaslessSwap/03.png")`, // image inside public/assets folder
+        backgroundRepeat: "no-repeat",
+        backgroundSize:"contain",
+        backgroundPosition: "center",
+        width: "auto",
+
+       }}>
         <Typography variant="h4" sx={{ fontWeight: "bold", color: "primary.main" }}>
           Go gasless with Unidex..
         </Typography>
@@ -67,7 +77,7 @@ export default function GasSwapSection() {
       </Container>
     <Divider/>
       {/* Instant gas-free swaps */}
-       <Container sx={{ py: 8,bgcolor: "#EEF8FF" }}>
+       <Container sx={{ py: 8}}>
       <Grid container spacing={6} alignItems="center">
         {/* Left side - Tokens grid */}
         <Grid item xs={12} md={6}>
@@ -228,7 +238,7 @@ export default function GasSwapSection() {
     </Container>
     <Divider/>
       {/* Core Swap Functions */}
-      <Box sx={{ bgcolor: "#EEF8FF", py: 8 }}>
+      <Box sx={{py: 8 }}>
       <Container Width="300">
         <Typography
           variant="h4"
@@ -291,12 +301,21 @@ export default function GasSwapSection() {
       
       
       {/* Available Supporting Chains */}
-      <Container sx={{ py: 8, textAlign: "center",bgcolor: "#EEF8FF" }}>
+      <Container  sx={{ 
+        textAlign: "center", 
+        py:8,
+        minHeight:"100vh",
+        backgroundImage: `url("assets/images/GaslessSwap/gasfun.png")`, // image inside public/assets folder
+        backgroundRepeat: "no-repeat",
+        backgroundSize:"cover",
+        backgroundPosition: "center -65%",
+
+       }} >
         <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
           Available Supporting Chains
         </Typography>
         <Typography variant="body1" sx={{ mb: 4 }}>
-          Swap crypto without native tokens. Matcha handles the gas for swaps and approvals so you can focus on trading.
+          Swap crypto without native tokens. Matcha handles the gas for<br/> swaps and approvals so you can focus on trading.
         </Typography>
       <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2,marginLeft:100,}}>
           With High Volume
@@ -319,7 +338,7 @@ export default function GasSwapSection() {
       </Container>
     <Divider/>
       {/* Unidex Auto Section */}
-      <Container sx={{ py: 8, textAlign: "center", bgcolor: "#EEF8FF"}}>
+      <Container sx={{ py: 8, textAlign: "center"}}>
         <Card sx={{ bgcolor: "primary.main", color: "white", p: 4, borderRadius: 3, maxWidth: 500, mx: "auto" }}>
           <Typography variant="h5" sx={{ mb: 2 }}>
             Unidex Auto

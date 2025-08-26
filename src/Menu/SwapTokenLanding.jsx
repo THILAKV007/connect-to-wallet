@@ -36,7 +36,17 @@ export default function SwapTokenLanding() {
     <Box sx={{ flexGrow: 1 }}>
 
       {/* Hero Section */}
-      <Container sx={{ textAlign: "center", py: 8 }}>
+      <Container sx={{ 
+        textAlign: "center", 
+        py:34,
+        minHeight:"100vh",
+        backgroundImage: `url("assets/images/swapToken/swapback.png")`, // image inside public/assets folder
+        backgroundRepeat: "no-repeat",
+        backgroundSize:"contain",
+        backgroundPosition: "center",
+        width: "auto",
+
+       }}>
         <Typography variant="h5" color="primary">
           Browse. Swap. Confirm.
         </Typography>
@@ -59,7 +69,8 @@ export default function SwapTokenLanding() {
       <Divider />
 
       {/* Trade Prices Section */}
-      <Container sx={{ py: 8 }}>
+      <Container sx={{ py: 8 ,
+      }}>
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12} md={6}>
             <Typography variant="h4" gutterBottom fontWeight="bold">
@@ -77,7 +88,7 @@ export default function SwapTokenLanding() {
                 <Typography>
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Scans multiple 
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color:"text.primary", fontWeight: 600 }}>
                   sources to find the best possible trade rates</Box>{" "}
                  </Box>{" "}
                 </Typography>
@@ -95,7 +106,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 , size:14}}>
                     Smart routing
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 600 }}>
                   ensures maximum value across liquidity pools</Box>{" "}
                 </Typography>
               }
@@ -112,7 +123,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Protects against front-running 
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 600 }}>
                   and sandwich attacks</Box>{" "}
                 </Typography>
               }
@@ -129,7 +140,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Alerts you to slippage
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 600 }}>
                   and potential price impact before you trade</Box>{" "}
                 </Typography>
               }
@@ -146,7 +157,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Optimized for smarter
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 600 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 600 }}>
                   trading with safety and transparency in every swap</Box>{" "}
                 </Typography>
               }
@@ -159,9 +170,10 @@ export default function SwapTokenLanding() {
               <Typography variant="body2" color="text.secondary">
                 Quote Expires in 20s
               </Typography>
-              <Grid container spacing={2} justifyContent="center" sx={{ my: 2 }}>
-                <Grid item>
-                  <Paper sx={{ p: 2 }}>
+              <Grid container spacing={2} justifyContent="center" sx={{ my: 2 }}
+             >
+                <Grid item >
+                  <Paper sx={{ p: 2 ,width:'184', height:'163',opacity:'1',top:'216px',left:'845px', }}>
                                     <img
                   src="assets/images/swapToken/dollar.png"
                   alt="Description"
@@ -218,10 +230,10 @@ export default function SwapTokenLanding() {
         alignItems: "center",
         justifyContent: "space-between",
         px: { xs: 2, md: 8 },
-        py: 6,
-        backgroundColor: "#F0F9FF",
-      }}
-    >
+        backgroundImage: `url("assets/images/swapToken/combaincircle.png")`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize:"cover",
+        }}>
       {/* Left Side Content */}
       <Box sx={{ maxWidth: 600 }}>
         <Typography variant="h3" sx={{ fontWeight: 700, mb: 4 }}>
@@ -240,7 +252,7 @@ export default function SwapTokenLanding() {
                 <Typography>
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     RFQ Private
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
                   Settlement</Box>{" "}
                  </Box>{" "}
                 </Typography>
@@ -258,7 +270,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 , size:14}}>
                     No public mempool
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
                   -no MEV Bot</Box>{" "}
                 </Typography>
               }
@@ -275,7 +287,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Enhanced protection with
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
                   Unidex Auto</Box>{" "}
                 </Typography>
               }
@@ -292,7 +304,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Alerts you to slippage
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
                   and potential price impact before you trade</Box>{" "}
                 </Typography>
               }
@@ -309,7 +321,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Optimized for smarter
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
                   trading with safety,transparency in every swap</Box>{" "}
                  
                 </Typography>
@@ -320,6 +332,7 @@ export default function SwapTokenLanding() {
       </Box>
 
       {/* Right Side Image */}
+      
       <Box
         component="img"
         src="assets/images/swapToken/protection.png" // <-- place your image in public folder
@@ -328,7 +341,8 @@ export default function SwapTokenLanding() {
           width: { xs: "200px", md: "300px" },
         }}
       />
-    </Box>
+
+  </Box>
 
       <Divider />
 
@@ -342,7 +356,6 @@ export default function SwapTokenLanding() {
         justifyContent: "space-between",
         px: { xs: 2, md: 8 },
         py: 6,
-        backgroundColor: "#F0F9FF",
       }}
     > {/* Right Side Image */}
       <Box
@@ -387,7 +400,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 , size:14}}>
                     No public mempool
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
                   -no MEV Bot</Box>{" "}
                 </Typography>
               }
@@ -420,7 +433,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Alerts you to slippage
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
                   and potential price impact before you trade</Box>{" "}
                 </Typography>
               }
@@ -437,7 +450,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Optimized for smarter
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "#000000", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
                   trading with safety,transparency in every swap </Box>{" "}
                  
                 </Typography>
@@ -454,7 +467,6 @@ export default function SwapTokenLanding() {
       <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(to right, #F0F9FF, #F0F9FF)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

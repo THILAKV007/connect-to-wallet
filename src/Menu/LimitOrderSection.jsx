@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Button ,Grid, Card,Stack,
+import { Box, Typography, Button ,Grid, Card,
     Divider,
     CardContent,List,
   ListItem,
@@ -15,13 +15,19 @@ import { Box, Typography, Button ,Grid, Card,Stack,
   InputAdornment,
   Tabs,
   IconButton,
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+  MenuItem,
+  Select,
+  Container,
 } from '@mui/material';
   import CheckCircleIcon from "@mui/icons-material/CheckCircle";
   import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 
-function LimitOrderSection() {
+function LimitOrderSection({isDarkMode}) {
      const features = [
     "Master volatility and get the price you want",
     "Set custom expiry time up to 28 days",
@@ -39,10 +45,26 @@ function LimitOrderSection() {
     { sell: "14 EQrd", buy: "200 ETH", expiry: "12 hours 3mins" },
   ];
   const [tab, setTab] = React.useState(1);
+   const [slippage, setSlippage] = React.useState("Market");
+  const [expiry, setExpiry] = React.useState("1 Hour");
+
+  const handleSlippage = (event, newSlippage) => {
+    if (newSlippage !== null) setSlippage(newSlippage);
+  };
   return (
     <>
     {/* first section */}
-    <Box textAlign="center" py={8} sx={{ background: '#EFF8FF'}}>
+    <Box sx={{ 
+        textAlign: "center", 
+        py:34,
+        minHeight:"100vh",
+        backgroundImage: `url("assets/images/LimitorderSection/limitback.png")`, // image inside public/assets folder
+        backgroundRepeat: "no-repeat",
+        backgroundSize:"contain",
+        backgroundPosition: "center",
+        width: "auto",
+
+       }}>
       <Typography variant="h4" color="primary" gutterBottom>
         Master volatile markets
       </Typography>
@@ -58,7 +80,7 @@ function LimitOrderSection() {
     </Box>
     <Divider/>
     {/* second section */}
-    <Box sx={{ bgcolor: "#f5fbff", py: 8, px: { xs: 2, md: 8 } }}>
+    <Box sx={{  py: 8, px: { xs: 2, md: 8 } }}>
       <Grid container spacing={6} alignItems="center">
         {/* Left Side Card */}
         <Grid item xs={12} md={6}>
@@ -68,11 +90,13 @@ function LimitOrderSection() {
               boxShadow: 3,
               maxWidth: 400,
               mx: "auto",
+              bgcolor:"white",
+              color:"black"
             }}
           >
             <CardContent>
               {/* Logo + Name */}
-              <Box display="flex" alignItems="center" gap={2} mb={2}>
+              <Box display="flex" alignItems="center" gap={2} mb={2} >
                 <Avatar
                   src="assets/images/LimitorderSection/bedrock.png" // Replace with your logo
                   alt="Bedrock"
@@ -133,7 +157,7 @@ function LimitOrderSection() {
     </Box>
     <Divider/>
    {/* third section */}
-   <Box sx={{ bgcolor: "#EFF8FF", py: 8, px: { xs: 2, md: 8 } }}>
+   <Box sx={{py: 8, px: { xs: 2, md: 8 } }}>
       <Typography
         variant="h4"
         fontWeight="bold"
@@ -143,7 +167,7 @@ function LimitOrderSection() {
         Why placeLimit Orders?
       </Typography>
 
-      <Grid container spacing={6} alignItems="flex-start">
+      <Grid container spacing={6} alignItems="flex-start" >
         {/* Left Side Features */}
         <Grid item xs={12} md={6}>
           <List>
@@ -166,7 +190,6 @@ function LimitOrderSection() {
           <Card
             sx={{
               p: 3,
-              bgcolor: "#dbefff",
               borderRadius: 4,
               boxShadow: 0,
             }}
@@ -213,7 +236,7 @@ function LimitOrderSection() {
     </Box>
     <Divider/>
     {/* foursection */}
-     <Box sx={{ bgcolor: "#EFF8FF", color: "black", py: 8, textAlign: "center" }}>
+     <Box sx={{py: 8, textAlign: "center" }}>
       {/* Title */}
       <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
         How to setup limit orders
@@ -241,7 +264,7 @@ function LimitOrderSection() {
       {/* Card with Tabs */}
       <Grid container justifyContent="center">
         <Grid item xs={12} md={4}>
-          <Card sx={{ borderRadius: 3, bgcolor: "#dbefff" }}>
+          <Card sx={{ borderRadius: 3}}>
             <Tabs
               value={tab}
               onChange={(e, newValue) => setTab(newValue)}
@@ -249,8 +272,8 @@ function LimitOrderSection() {
               indicatorColor="secondary"
               variant="fullWidth"
               sx={{
-                "& .MuiTab-root": { color: "black" },
-                "& .Mui-selected": { color: "black" },
+                "& .MuiTab-root": {},
+                "& .Mui-selected": {},
               }}
             >
               <Tab label="Market" />
@@ -358,6 +381,175 @@ function LimitOrderSection() {
         </IconButton>
       </Box>
     </Box>
+    <Divider/>
+    {/* Fifth section */}
+    <Container maxWidth="md" sx={{ textAlign: "center", py: 8 }}>
+      {/* Heading */}
+      <Typography variant="h4" fontWeight="bold" gutterBottom>
+        How to setup limit orders
+      </Typography>
+      <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+        Available on 3 chains:
+      </Typography>
+
+      {/* Chain icons */}
+    <Box display="flex" justifyContent="center" gap={3} mb={6}>
+        <Box display="flex" alignItems="center" gap={1}>
+          <Avatar src="assets/images/LimitorderSection/eth.png" sx={{ width: 28, height: 28 }} />
+          <Typography>Ethereum</Typography>
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <Avatar src="assets/images/LimitorderSection/danger.png" sx={{ width: 28, height: 28 }} />
+          <Typography>Polygon</Typography>
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <Avatar src="assets/images/LimitorderSection/bsc.png" sx={{ width: 28, height: 28 }} />
+          <Typography>BSC</Typography>
+        </Box>
+      </Box>
+      {/* Limit Order Card */}
+      <Box
+        sx={{
+          mx: "auto",
+          maxWidth: 350,
+          p: 3,
+          borderRadius: 2,
+          boxShadow: 3,
+          bgcolor: "background.paper",
+          textAlign: "left",
+        }}
+      >
+        <Typography variant="subtitle2" color="text.secondary" mb={1}>
+          Slippage Tolerance
+        </Typography>
+
+        {/* Limit Price */}
+        <Typography variant="body2" mb={1}>
+          Limit Price
+        </Typography>
+        <Box
+          sx={{
+            bgcolor: "grey.100",
+            p: 1,
+            borderRadius: 1,
+            mb: 2,
+          }}
+        >
+          <Typography color="text.secondary">0.00</Typography>
+        </Box>
+
+        {/* Slippage Buttons */}
+        <ToggleButtonGroup
+          value={slippage}
+          exclusive
+          onChange={handleSlippage}
+          fullWidth
+          sx={{ mb: 2 }}
+        >
+          <ToggleButton value="Market">Market</ToggleButton>
+          <ToggleButton value="1%">1 % ↑</ToggleButton>
+          <ToggleButton value="2%">2 % ↑</ToggleButton>
+          <ToggleButton value="5%">5 % ↑</ToggleButton>
+          <ToggleButton value="10%">10 % ↑</ToggleButton>
+        </ToggleButtonGroup>
+
+        {/* Expiry */}
+        <Typography variant="body2" mb={1}>
+          Expiry
+        </Typography>
+        <Select
+          fullWidth
+          value={expiry}
+          onChange={(e) => setExpiry(e.target.value)}
+          sx={{ mb: 3 }}
+        >
+          <MenuItem value="1 Hour">1 Hour</MenuItem>
+          <MenuItem value="6 Hours">6 Hours</MenuItem>
+          <MenuItem value="12 Hours">12 Hours</MenuItem>
+          <MenuItem value="24 Hours">24 Hours</MenuItem>
+        </Select>
+
+        {/* Connect Button */}
+        <Button
+          variant="contained"
+          fullWidth
+          sx={{ py: 1.5, fontWeight: "bold" }}
+        >
+          Connect Ethereum Wallet
+        </Button>
+      </Box>
+
+      {/* Footer text */}
+      <Typography variant="h6" sx={{ mt: 6 }}>
+        Select your Buy and Sell tokens
+      </Typography>
+
+      {/* Pagination */}
+      <Stack direction="row" justifyContent="center" spacing={1} mt={2}>
+        {[1, 2, 3, 4, 5].map((page) => (
+          <Box
+            key={page}
+            sx={{
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              bgcolor: page === 1 ? "text.primary" : "grey.400",
+            }}
+          />
+        ))}
+      </Stack>
+    </Container>
+    <Divider/>
+    {/* sixth section */}
+     <Container maxWidth="md" sx={{ textAlign: "center", py: 8 }}>
+      {/* Heading */}
+      <Typography variant="h4" fontWeight="bold" gutterBottom>
+        How to setup limit orders
+      </Typography>
+      <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+        Available on 3 chains:
+      </Typography>
+
+      {/* Chain icons */}
+    <Box display="flex" justifyContent="center" gap={3} mb={6}>
+        <Box display="flex" alignItems="center" gap={1}>
+          <Avatar src="assets/images/LimitorderSection/eth.png" sx={{ width: 28, height: 28 }} />
+          <Typography>Ethereum</Typography>
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <Avatar src="assets/images/LimitorderSection/danger.png" sx={{ width: 28, height: 28 }} />
+          <Typography>Polygon</Typography>
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <Avatar src="assets/images/LimitorderSection/bsc.png" sx={{ width: 28, height: 28 }} />
+          <Typography>BSC</Typography>
+        </Box>
+      </Box>
+      {/* Limit Order Card */}
+      <Box
+      component="img"
+                src="assets/images/LimitorderSection/flash.png" // replace with your chart image
+                alt="Graph"/>
+      {/* Footer text */}
+      <Typography variant="h6" sx={{ mt: 6 }}>
+        Select your Buy and Sell tokens
+      </Typography>
+
+      {/* Pagination */}
+      <Stack direction="row" justifyContent="center" spacing={1} mt={2}>
+        {[1, 2, 3, 4, 5].map((page) => (
+          <Box
+            key={page}
+            sx={{
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              bgcolor: page === 1 ? "text.primary" : "grey.400",
+            }}
+          />
+        ))}
+      </Stack>
+    </Container>
 </>
 
 
