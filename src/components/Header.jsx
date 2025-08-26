@@ -13,11 +13,13 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import ShareModal from './ShareModal'
 import ConnectWalletModal from './ConnectWalletModal'
+import CreateWalletModal from './CreateWalletModal'
 
 function Header({ toggleTheme, isDarkMode }) {
   const location = useLocation()
-  const [shareModalOpen, setShareModalOpen] = useState(false)
-  const [connectWalletModalOpen, setConnectWalletModalOpen] = useState(false)
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [connectWalletModalOpen, setConnectWalletModalOpen] = useState(false);
+  const [createWalletModalOpen, setCreateWalletModalOpen] = useState(false);
 
   const handleShareModalOpen = () => {
     setShareModalOpen(true)
@@ -33,6 +35,14 @@ function Header({ toggleTheme, isDarkMode }) {
 
   const handleConnectWalletModalClose = () => {
     setConnectWalletModalOpen(false)
+  }
+
+  const handleCreateWalletModalOpen = () => {
+    setCreateWalletModalOpen(true)
+  }
+
+  const handleCreateWalletModalClose = () => {
+    setCreateWalletModalOpen(false)
   }
 
   return (
@@ -134,6 +144,7 @@ function Header({ toggleTheme, isDarkMode }) {
           {/* Create Wallet Button */}
           <Button
             variant='outlined'
+            onClick={handleCreateWalletModalOpen}
             sx={{
               display: { xs: 'none', sm: 'block' },
               color: isDarkMode ? '#ffffff' : '#000000',
@@ -206,6 +217,13 @@ function Header({ toggleTheme, isDarkMode }) {
       <ConnectWalletModal
         open={connectWalletModalOpen}
         onClose={handleConnectWalletModalClose}
+        isDarkMode={isDarkMode}
+      />
+
+      {/* Create Wallet Modal */}
+      <CreateWalletModal
+        open={createWalletModalOpen}
+        onClose={handleCreateWalletModalClose}
         isDarkMode={isDarkMode}
       />
     </AppBar>
