@@ -66,10 +66,14 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
         sx={{
           width: 450,
           maxWidth: '90vw',
-          backgroundColor: '#10254A',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          backgroundColor: isDarkMode ? '#10254A' : '#FFFFFF',
+          border: isDarkMode
+            ? '1px solid rgba(255, 255, 255, 0.1)'
+            : '1px solid rgba(0, 0, 0, 0.1)',
           borderRadius: 3,
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+          boxShadow: isDarkMode
+            ? '0 8px 32px rgba(0, 0, 0, 0.3)'
+            : '0 8px 32px rgba(0, 0, 0, 0.1)',
         }}
       >
         <Box sx={{ p: 3 }}>
@@ -85,7 +89,7 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
             <Typography
               variant='h6'
               sx={{
-                color: '#ffffff',
+                color: isDarkMode ? '#ffffff' : '#000000',
                 fontWeight: 600,
                 fontSize: '18px',
               }}
@@ -95,9 +99,13 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
             <IconButton
               onClick={onClose}
               sx={{
-                color: 'rgba(255, 255, 255, 0.7)',
+                color: isDarkMode
+                  ? 'rgba(255, 255, 255, 0.7)'
+                  : 'rgba(0, 0, 0, 0.7)',
                 '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backgroundColor: isDarkMode
+                    ? 'rgba(255, 255, 255, 0.1)'
+                    : 'rgba(0, 0, 0, 0.1)',
                 },
               }}
             >
@@ -114,14 +122,18 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
                 width: '4px',
               },
               '&::-webkit-scrollbar-track': {
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                backgroundColor: isDarkMode
+                  ? 'rgba(255, 255, 255, 0.1)'
+                  : 'rgba(0, 0, 0, 0.1)',
                 borderRadius: '2px',
               },
               '&::-webkit-scrollbar-thumb': {
-                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                backgroundColor: isDarkMode ? '#fff' : 'rgba(0, 0, 0, 0.3)',
                 borderRadius: '2px',
                 '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                  backgroundColor: isDarkMode
+                    ? 'rgba(255, 255, 255, 0.5)'
+                    : 'rgba(0, 0, 0, 0.5)',
                 },
               },
             }}
@@ -136,11 +148,19 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
                   justifyContent: 'flex-start',
                   p: 2,
                   mb: 1.5,
+                  backgroundColor: isDarkMode
+                    ? 'rgba(255, 255, 255, 0.05)'
+                    : '#fff',
+
                   borderRadius: 2,
                   textTransform: 'none',
                   '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    backgroundColor: isDarkMode
+                      ? 'rgba(255, 255, 255, 0.1)'
+                      : 'rgba(0, 0, 0, 0.1)',
+                    border: isDarkMode
+                      ? '1px solid rgba(255, 255, 255, 0.2)'
+                      : '1px solid rgba(0, 0, 0, 0.2)',
                   },
                   '&:last-child': {
                     mb: 0,
@@ -169,7 +189,7 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
                   <Typography
                     variant='subtitle1'
                     sx={{
-                      color: '#ffffff',
+                      color: isDarkMode ? '#ffffff' : '#000000',
                       fontWeight: 600,
                       fontSize: '16px',
                       mb: 0.5,
@@ -180,7 +200,7 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
                   <Typography
                     variant='body2'
                     sx={{
-                      color: 'rgba(255, 255, 255, 0.7)',
+                      color: isDarkMode ? '#ffff' : 'rgba(0, 0, 0, 0.7)',
                       fontSize: '14px',
                       lineHeight: 1.4,
                     }}
