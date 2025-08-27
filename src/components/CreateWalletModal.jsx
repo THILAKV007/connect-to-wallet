@@ -3,8 +3,6 @@ import {
   Modal,
   Box,
   Typography,
-  Card,
-  CardContent,
   Button,
   IconButton,
 } from '@mui/material'
@@ -55,35 +53,39 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
       onClose={onClose}
       sx={{
         display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-end',
-        p: 2,
-        pt: 8,
-        pr: 30,
+        alignItems: { xs: 'center', sm: 'flex-start' },
+        justifyContent: { xs: 'center', sm: 'flex-end' },
+        p: { xs: 2, sm: 2 },
+        pt: { xs: 2, sm: 8 },
+        pr: { xs: 2, sm: 30 },
+        pl: { xs: 2, sm: 0 },
+        pb: { xs: 2, sm: 0 },
       }}
     >
       <Box
         sx={{
-          width: 450,
-          maxWidth: '90vw',
+          width: { xs: '100%', sm: 450 },
+          maxWidth: { xs: '100%', sm: '90vw' },
+          maxHeight: { xs: '90vh', sm: 'auto' },
           backgroundColor: isDarkMode ? '#10254A' : '#FFFFFF',
           border: isDarkMode
             ? '1px solid rgba(255, 255, 255, 0.1)'
             : '1px solid rgba(0, 0, 0, 0.1)',
-          borderRadius: 3,
+          borderRadius: { xs: 2, sm: 3 },
           boxShadow: isDarkMode
             ? '0 8px 32px rgba(0, 0, 0, 0.3)'
             : '0 8px 32px rgba(0, 0, 0, 0.1)',
+          overflow: 'hidden',
         }}
       >
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: { xs: 2, sm: 3 }, height: '100%', display: 'flex', flexDirection: 'column' }}>
           {/* Header */}
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              mb: 3,
+              mb: { xs: 2, sm: 3 },
             }}
           >
             <Typography
@@ -91,10 +93,10 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
               sx={{
                 color: isDarkMode ? '#ffffff' : '#000000',
                 fontWeight: 600,
-                fontSize: '18px',
+                fontSize: { xs: '18px', sm: '20px' },
               }}
             >
-              Connect Wallet
+              Create Wallet
             </Typography>
             <IconButton
               onClick={onClose}
@@ -116,8 +118,9 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
           {/* Features List */}
           <Box
             sx={{
-              maxHeight: '400px',
+              maxHeight: { xs: '60vh', sm: '400px' },
               overflowY: 'auto',
+              flex: 1,
               '&::-webkit-scrollbar': {
                 width: '4px',
               },
@@ -146,12 +149,15 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'flex-start',
-                  p: 2,
-                  mb: 1.5,
+                  p: { xs: 1.5, sm: 2 },
+                  mb: { xs: 1, sm: 1.5 },
+                  minHeight: { xs: 64, sm: 72 },
                   backgroundColor: isDarkMode
                     ? 'rgba(255, 255, 255, 0.05)'
                     : '#fff',
-
+                  border: isDarkMode
+                    ? '1px solid rgba(255, 255, 255, 0.1)'
+                    : '1px solid rgba(0, 0, 0, 0.1)',
                   borderRadius: 2,
                   textTransform: 'none',
                   '&:hover': {
@@ -191,7 +197,7 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
                     sx={{
                       color: isDarkMode ? '#ffffff' : '#000000',
                       fontWeight: 600,
-                      fontSize: '16px',
+                      fontSize: { xs: '14px', sm: '16px' },
                       mb: 0.5,
                     }}
                   >
@@ -200,8 +206,8 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
                   <Typography
                     variant='body2'
                     sx={{
-                      color: isDarkMode ? '#ffff' : 'rgba(0, 0, 0, 0.7)',
-                      fontSize: '14px',
+                      color: isDarkMode ? '#B0BEC5' : 'rgba(0, 0, 0, 0.7)',
+                      fontSize: { xs: '12px', sm: '14px' },
                       lineHeight: 1.4,
                     }}
                   >
