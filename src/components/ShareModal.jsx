@@ -9,7 +9,7 @@ import {
   IconButton,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
-import { XAxis, YAxis, ResponsiveContainer, Area, AreaChart } from 'recharts'
+import { ResponsiveContainer, Area, AreaChart } from 'recharts'
 function ShareModal({ open, onClose, isDarkMode }) {
   // Sample chart data for Bedrock
   const chartData = [
