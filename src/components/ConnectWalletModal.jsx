@@ -1,13 +1,10 @@
 import React from 'react'
 import {
   Modal,
-  Card,
-  CardContent,
   Typography,
   IconButton,
   Box,
   Button,
-  Divider,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 
@@ -56,24 +53,28 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
       onClose={onClose}
       sx={{
         display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-end',
-        pt: 9, // Top padding to position below header
-        pr: 12, // Right padding
+        alignItems: { xs: 'center', sm: 'flex-start' },
+        justifyContent: { xs: 'center', sm: 'flex-end' },
+        pt: { xs: 2, sm: 9 }, // Top padding to position below header
+        pr: { xs: 2, sm: 12 }, // Right padding
+        pl: { xs: 2, sm: 0 }, // Left padding for mobile
+        pb: { xs: 2, sm: 0 }, // Bottom padding for mobile
       }}
     >
       <Box
         sx={{
-          width: { xs: '90%', sm: 400, md: 450 },
-          maxWidth: 500,
-          backgroundColor: '#10254A',
-          color: '#ffffff',
-          borderRadius: 3,
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          width: { xs: '100%', sm: 400, md: 450 },
+          maxWidth: { xs: '100%', sm: 500 },
+          maxHeight: { xs: '90vh', sm: 'auto' },
+          backgroundColor: isDarkMode ? '#10254A' : '#FFFFFF',
+          color: isDarkMode ? '#ffffff' : '#000000',
+          borderRadius: { xs: 2, sm: 3 },
+          boxShadow: isDarkMode ? '0 8px 32px rgba(0, 0, 0, 0.3)' : '0 8px 32px rgba(0, 0, 0, 0.1)',
+          border: isDarkMode ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+          overflow: 'hidden',
         }}
       >
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: { xs: 2, sm: 3 }, height: '100%', display: 'flex', flexDirection: 'column' }}>
           {/* Header */}
           <Box
             sx={{
@@ -87,8 +88,8 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
               variant='h6'
               sx={{
                 fontWeight: 600,
-                fontSize: '1.25rem',
-                color: '#ffffff',
+                fontSize: { xs: '1.1rem', sm: '1.25rem' },
+                color: isDarkMode ? '#ffffff' : '#000000',
               }}
             >
               Connect Wallet
@@ -96,9 +97,9 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
             <IconButton
               onClick={onClose}
               sx={{
-                color: '#ffffff',
+                color: isDarkMode ? '#ffffff' : '#000000',
                 '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
                 },
               }}
             >
@@ -110,9 +111,9 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
           <Typography
             variant='body2'
             sx={{
-              color: 'rgba(255, 255, 255, 0.7)',
-              mb: 3,
-              fontSize: '0.9rem',
+              color: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+              mb: { xs: 2, sm: 3 },
+              fontSize: { xs: '0.85rem', sm: '0.9rem' },
             }}
           >
             Connect a wallet to your Unidex account
@@ -123,21 +124,22 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              gap: 1.5,
-              maxHeight: '500px',
+              gap: { xs: 1, sm: 1.5 },
+              maxHeight: { xs: '60vh', sm: '500px' },
               overflowY: 'auto',
+              flex: 1,
               '&::-webkit-scrollbar': {
                 width: '4px',
               },
               '&::-webkit-scrollbar-track': {
-                background: 'rgba(255, 255, 255, 0.1)',
+                background: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
                 borderRadius: '2px',
               },
               '&::-webkit-scrollbar-thumb': {
-                background: 'rgba(255, 255, 255, 0.3)',
+                background: isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
                 borderRadius: '2px',
                 '&:hover': {
-                  background: 'rgba(255, 255, 255, 0.5)',
+                  background: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
                 },
               },
             }}
@@ -149,15 +151,16 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  p: 2,
-                  backgroundColor: '#10254A',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  p: { xs: 1.5, sm: 2 },
+                  minHeight: { xs: 56, sm: 64 },
+                  backgroundColor: isDarkMode ? '#10254A' : 'rgba(0, 0, 0, 0.05)',
+                  border: isDarkMode ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
                   borderRadius: 2,
-                  color: '#ffffff',
+                  color: isDarkMode ? '#ffffff' : '#000000',
                   textTransform: 'none',
                   '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                    borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
                   },
                 }}
               >
@@ -233,8 +236,8 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
                   <Typography
                     sx={{
                       fontWeight: 500,
-                      fontSize: '1rem',
-                      color: '#ffffff',
+                      fontSize: { xs: '0.9rem', sm: '1rem' },
+                      color: isDarkMode ? '#ffffff' : '#000000',
                     }}
                   >
                     {wallet.name}
@@ -243,8 +246,8 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
                 {wallet.network && (
                   <Typography
                     sx={{
-                      fontSize: '0.875rem',
-                      color: 'rgba(255, 255, 255, 0.6)',
+                      fontSize: { xs: '0.8rem', sm: '0.875rem' },
+                      color: isDarkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)',
                       fontWeight: 400,
                     }}
                   >
@@ -261,9 +264,11 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
             sx={{
               display: 'block',
               textAlign: 'center',
-              color: 'rgba(255, 255, 255, 0.5)',
-              mt: 3,
-              fontSize: '0.75rem',
+              color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+              mt: { xs: 2, sm: 3 },
+              fontSize: { xs: '0.7rem', sm: '0.75rem' },
+              lineHeight: 1.4,
+              px: { xs: 1, sm: 0 },
             }}
           >
             By Login in I Agree to the Terms and Privacy Policy

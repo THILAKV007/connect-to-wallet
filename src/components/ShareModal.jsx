@@ -9,8 +9,7 @@ import {
   IconButton,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
-import { LineChart, Line, ResponsiveContainer } from 'recharts'
-
+import { XAxis, YAxis, ResponsiveContainer, Area, AreaChart } from 'recharts'
 function ShareModal({ open, onClose, isDarkMode }) {
   // Sample chart data for Bedrock
   const chartData = [
@@ -44,7 +43,7 @@ function ShareModal({ open, onClose, isDarkMode }) {
         sx={{
           width: { xs: '90%', sm: 500, md: 600 },
           maxWidth: 700,
-          backgroundColor: isDarkMode ? '#10254A' : '#ffffff',
+          backgroundColor: isDarkMode ? '#10254A' : '#BEE5FB',
           borderRadius: 3,
           outline: 'none',
           position: 'relative',
@@ -161,15 +160,32 @@ function ShareModal({ open, onClose, isDarkMode }) {
             {/* Chart */}
             <Box sx={{ height: 80, mb: 2 }}>
               <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={chartData}>
-                  <Line
+                <AreaChart data={chartData}>
+                  <defs>
+                    <linearGradient
+                      id='colorGradient'
+                      x1='0'
+                      y1='0'
+                      x2='0'
+                      y2='1'
+                    >
+                      <stop offset='0%' stopColor='#4caf50' stopOpacity={0.3} />
+                      <stop
+                        offset='100%'
+                        stopColor='#4caf50'
+                        stopOpacity={0.05}
+                      />
+                    </linearGradient>
+                  </defs>
+                  <Area
                     type='monotone'
                     dataKey='value'
                     stroke='#4caf50'
                     strokeWidth={2}
+                    fill='url(#colorGradient)'
                     dot={false}
                   />
-                </LineChart>
+                </AreaChart>
               </ResponsiveContainer>
             </Box>
           </Card>
