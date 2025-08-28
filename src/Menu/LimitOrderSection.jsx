@@ -54,10 +54,12 @@ function LimitOrderSection({isDarkMode}) {
   return (
     <>
     {/* first section */}
+      <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+          }}>
     <Box sx={{ 
         textAlign: "center", 
-        py:34,
-        minHeight:"100vh",
+        py:20,
+        minHeight:"80vh",
         backgroundImage: `url("assets/images/LimitorderSection/limitback.png")`, // image inside public/assets folder
         backgroundRepeat: "no-repeat",
         backgroundSize:"contain",
@@ -77,6 +79,7 @@ function LimitOrderSection({isDarkMode}) {
       <Button variant="contained" color="primary">
         Start Trading
       </Button>
+    </Box>
     </Box>
     <Divider/>
     {/* second section */}

@@ -19,36 +19,94 @@ export default function CrossChainSection(isDarkMode) {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
         textAlign: "center",
         display: "flex",
         flexDirection: "column",
       }}
-    >      <Container sx={{ 
-        textAlign: "center", 
-        py:34,
-        minHeight:"100vh",
-        backgroundImage: `url("assets/images/CrossChain/cross.png")`, // image inside public/assets folder
-        backgroundRepeat: "no-repeat",
-        backgroundSize:"contain",
-        backgroundPosition: "center",
-        width: "auto",
+    >  
+    {/* first section */}
+     <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+          }}>
+       
+  
 
-       }}>
-        <Typography variant="h4" sx={{ fontWeight: "bold", color: "#0C9FE3",
- }}>
-        where opportunity awaits
-        </Typography>
-        <Typography variant="h2" sx={{ fontWeight: "bold", mt: 2 }}>
-          Cross chain swaps
-        </Typography>
-        <Typography variant="body1" sx={{ mt: 2 , fontWeight:"700",}}>
-          Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ <br /> liquidity sources aggregated by Matcha!
-        </Typography>
-        <Button variant="contained" color="primary" sx={{ mt: 4, px: 4 }}>
-          Start Trading
-        </Button>
-      </Container>
+        {/* Hero Content */}
+        <Box
+          sx={{
+            alignItems: "center",
+            textAlign: "center",
+            gap: "22px",
+            mt: { xs: "60px", sm: "100px", md: "143px" },
+            position: "relative",
+            zIndex: 10,
+            minHeight: "58vh",
+            backgroundImage:'url("assets/images/CrossChain/y.png")',
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
+          <Typography
+            className="sub-heading"
+            sx={{
+              color: "#0c9fe3",
+              fontWeight: 700,
+              fontSize: { xs: "18px", sm: "20px", md: "24px" },
+              lineHeight: "33px",
+              fontFamily: "Manrope, sans-serif",
+              pt:2,
+            }}
+          >
+            where opportunity awaits
+          </Typography>
+
+          <Typography
+            variant="h1"
+            sx={{
+              color: "text.primary",
+              fontWeight: 700,
+              fontSize: { xs: "36px", sm: "48px", md: "62px" },
+              lineHeight: { xs: "1.2", md: "85px" },
+              fontFamily: "Manrope, sans-serif",
+              m: 0,
+            }}
+          >
+            Cross chain swaps
+          </Typography>
+
+          <Typography
+            sx={{
+              color: "text.primary",
+              fontWeight: 700,
+              fontSize: { xs: "12px", sm: "14px" },
+              lineHeight: "24px",
+              fontFamily: "Manrope, sans-serif",
+            }}
+          >
+            Deep liquidity for the best prices on 9+ million tokens across 14
+            chains. Tap into 130+ <br /> liquidity sources aggregated by Matcha!
+          </Typography>
+
+          <Button
+            sx={{
+              background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
+              color: "#fff",
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
+              lineHeight: "24px",
+              px: 2,
+              py: 1,
+              borderRadius: "8px",
+              mt: 3,
+            }}
+          >
+            Start Trading
+          </Button>
+        </Box>
+
+        
+     
+      </Box>
     <Divider/>
     
     {/* second section */}
@@ -63,7 +121,7 @@ export default function CrossChainSection(isDarkMode) {
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={6} alignItems="center">
+        <Grid container spacing={4} alignItems="center">
           {/* Left Content */}
           <Grid item xs={12} md={6}>
             <Typography
@@ -79,72 +137,80 @@ keep pace with fast-movingmarkets.
             </Typography>
           </Grid>
 
-          {/* Right Cards */}
- <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      {/* First Token Card */}
-      <Box
-        sx={{
-          borderRadius: "16px",
-          p: 2,
-          width: 180,
-          textAlign: "center",
-          boxShadow: "0px 4px 12px rgba(0,0,0,0.05)",
-          backgroundColor: isDarkMode ? '#FFFFFF' : '#FFFFFF',
-           
-        }}
-      >
-          <Box
-            component="img"
-            src="assets/images/CrossChain/do.png" // replace with your USDC image path
-            alt="USDC"
-            sx={{ width: 50, height: 50, mb: 1, mx: "auto" }}
-          />
-          <Typography variant="h6" fontWeight="bold" color="black">
-            253.63USDC
-          </Typography>
-          <Typography variant="body2" color="black">
-            $253.44
-          </Typography>
-      </Box>
-      
-          <Box
-            component="img"
-            src="assets/images/CrossChain/cent.png"
-            alt="ETH"
-            sx={{ width:99, height:99}}
-          />
-
-      {/* Second Token Card */}
-      <Box
-        sx={{
-          borderRadius: "16px",
-          p: 2,
-          width: 180,
-          textAlign: "center",
-          boxShadow: "0px 4px 12px rgba(0,0,0,0.05)",
-          backgroundColor:"white",
-        }}
-      >
-          <Box
-            component="img"
-            src="assets/images/CrossChain/eth.png" // replace with your ETH image path
-            alt="ETH"
-            sx={{ width: 50, height: 50, mb: 1, mx: "auto" }}
-          />
-          <Typography variant="h6" fontWeight="bold" color="black">
-            0.06 ETH
-          </Typography>
-          <Typography variant="body2" color="black">
-            $253.44
-          </Typography>
-      </Box>
-    </Box>
+           {/* Token Swap Visual */}
+                      <Box sx={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4, flexDirection: { xs: "column", sm: "row" },gap:10,}}>
+                        
+                        {/* Token Box 1 */}
+                        <Box
+                          sx={{
+                            backgroundColor: "#fff",
+                            borderRadius: 2,
+                            width: 180,
+                            height: 135,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            pt: 3,
+                            zIndex: 2,
+                          }}
+                        >
+                          <Box sx={{ width: 62, height: 62, position: "relative", mb: 2 }}>
+                            <Box
+                              component="img"
+                              src="assets/images/swapToken/dollar.png"
+                              alt="USDC token"
+                              sx={{ width: 62, height: 62, position: "absolute" }}
+                            />
+                          </Box>
+                          <Typography sx={{ fontWeight: 700, fontSize: 14, color: "black" }}>253.63 USDC</Typography>
+                          <Typography sx={{ fontWeight: 500, fontSize: 10, color: "black" }}>
+                            $253.44
+                          </Typography>
+                        </Box>
+          
+                       
+          
+                        {/* Token Box 2 */}
+                        <Box
+                          sx={{
+                            backgroundColor: "#fff",
+                            borderRadius: 2,
+                            width: 180,
+                            height: 135,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            pt: 3,
+                            zIndex: 2,
+                          }}
+                        >
+                          <Box
+                            component="img"
+                            src="assets/images/swapToken/eth.png"
+                            alt="ETH token"
+                            sx={{ width: 62, height: 62, mb: 2 }}
+                          />
+                          <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
+                          <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>$253.44</Typography>
+                          {/* Connecting Circle */}
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            width:110,
+                            height:110,
+                            backgroundColor: "white",
+                            borderRadius: "90%",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            zIndex: 1,
+                            display: { xs: "none", sm: "block" },
+                          }}
+                        />
+                        </Box>
+                        
+                      </Box>
+          
         </Grid>
       </Container>
     </Box>

@@ -14,7 +14,8 @@ import {
   ListItemText,
   Paper,
   Link,
-  Divider
+  Divider,
+  useTheme,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -44,17 +45,24 @@ export default function GasSwapSection() {
       link: "Learn more.",
     },
   ];
-  
+   const theme = useTheme();
+
+  // function to return background based on mode
+  const getBgColor = (hello) => {
+    return theme.palette.mode === "dark" ? "#122A53" : "#F8FCFF";
+  };
+
 
 
 
   return (
     <Box sx={{minHeight: "100vh", py: 5 }}>
       {/* Hero Section */}
+      <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,}} >
       <Container sx={{ 
         textAlign: "center", 
-        py:34,
-        minHeight:"100vh",
+        minHeight:"80vh",
+        py:20,
         backgroundImage: `url("assets/images/GaslessSwap/03.png")`, // image inside public/assets folder
         backgroundRepeat: "no-repeat",
         backgroundSize:"contain",
@@ -75,6 +83,7 @@ export default function GasSwapSection() {
           Start Trading
         </Button>
       </Container>
+      </Box>
     <Divider/>
       {/* Instant gas-free swaps */}
        <Container sx={{ py: 8}}>
@@ -256,15 +265,21 @@ export default function GasSwapSection() {
           approvals so you can focus on trading.
         </Typography>
 
-        <Grid container spacing={4} justifyContent="center">
+        <Grid container spacing={4} justifyContent="center"
+        
+        >
           {swap.map((swap, index) => (
-            <Grid item xs={12} md={4} key={index}>
+            <Grid item xs={12} md={4} key={index} sx={{
+           bgcolor: getBgColor() // calling function here
+        }}
+        >
               <Paper
                 elevation={0}
                 sx={{
                   maxwidth: "320px",
                   height: "310",
                   alignContent:"center",
+                  
 
                 }}
               >
@@ -301,6 +316,11 @@ export default function GasSwapSection() {
       
       
       {/* Available Supporting Chains */}
+      <Box sx={{backgroundImage: `url("assets/images/swapToken/down gradient.png")`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize:"cover",
+        backgroundPosition: "bottom",
+      }}>
       <Container  sx={{ 
         textAlign: "center", 
         py:8,
@@ -336,6 +356,7 @@ export default function GasSwapSection() {
           trending Pairs
         </Typography>
       </Container>
+      </Box>
     <Divider/>
       {/* Unidex Auto Section */}
       <Container sx={{ py: 8, textAlign: "center"}}>

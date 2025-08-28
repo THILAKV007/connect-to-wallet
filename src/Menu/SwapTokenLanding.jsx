@@ -33,19 +33,20 @@ export default function SwapTokenLanding() {
     },
   ];
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
 
       {/* Hero Section */}
+      <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+      }}>
       <Container sx={{ 
         textAlign: "center", 
-        py:34,
-        minHeight:"100vh",
         backgroundImage: `url("assets/images/swapToken/swapback.png")`, // image inside public/assets folder
         backgroundRepeat: "no-repeat",
         backgroundSize:"contain",
         backgroundPosition: "center",
-        width: "auto",
-
+        py: 20,
+        minHeight: "80vh",  
+        
        }}>
         <Typography variant="h5" color="primary">
           Browse. Swap. Confirm.
@@ -65,17 +66,42 @@ export default function SwapTokenLanding() {
           Start Trading
         </Button>
       </Container>
+      </Box>
 
       <Divider />
 
-      {/* Trade Prices Section */}
-      <Container sx={{ py: 8 ,
-      }}>
-        <Grid container spacing={4} alignItems="center">
-          <Grid item xs={12} md={6}>
-            <Typography variant="h4" gutterBottom fontWeight="bold">
-              Get unbeatable trade prices on Unidex.
-            </Typography>
+     {/* new trade section */}
+     
+    <Box
+      id="trade-features-section"
+      sx={{
+        py: 8,
+        px: 2,
+        display: "flex",
+        justifyContent: "center",
+        fontFamily: "'Manrope', sans-serif",
+      }}
+    >
+      <Box
+        className="trade-features-container"
+        sx={{
+          maxWidth: 1248,
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          gap: { xs: 4, md: 8 },
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
+        {/* Left Side Features */}
+        <Box sx={{ flex: 1, maxWidth: 600, pt: 2 }}>
+
+  <Box sx={{ maxWidth: 700 }}>
+        <Typography variant="h3" sx={{ fontWeight: 700, mb: 4 }}>
+          Get unbeatable trade prices on Unidex.
+        </Typography>
+
         <List>
           <ListItem>
      
@@ -87,8 +113,8 @@ export default function SwapTokenLanding() {
               primary={
                 <Typography>
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
-                    Scans multiple 
-                  <Box component="span" sx={{ color:"text.primary", fontWeight: 600 }}>
+                   Scans multiple
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
                   sources to find the best possible trade rates</Box>{" "}
                  </Box>{" "}
                 </Typography>
@@ -104,9 +130,9 @@ export default function SwapTokenLanding() {
               primary={
                 <Typography>
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 , size:14}}>
-                    Smart routing
+                    Smart routing 
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 600 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
                   ensures maximum value across liquidity pools</Box>{" "}
                 </Typography>
               }
@@ -121,9 +147,9 @@ export default function SwapTokenLanding() {
               primary={
                 <Typography>
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
-                    Protects against front-running 
+                    Protects against front-running
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 600 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
                   and sandwich attacks</Box>{" "}
                 </Typography>
               }
@@ -140,7 +166,7 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Alerts you to slippage
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
                   and potential price impact before you trade</Box>{" "}
                 </Typography>
               }
@@ -157,69 +183,119 @@ export default function SwapTokenLanding() {
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
                     Optimized for smarter
                   </Box>{" "}
-                  <Box component="span" sx={{color: "text.primary", fontWeight: 600 }}>
-                  trading with safety and transparency in every swap</Box>{" "}
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
+                  trading with safety,transparency in every swap</Box>{" "}
+                 
                 </Typography>
               }
             />
           </ListItem>
         </List>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Paper elevation={3} sx={{ p: 4, textAlign: "center" }}>
-              <Typography variant="body2" color="text.secondary">
-                Quote Expires in 20s
-              </Typography>
-              <Grid container spacing={2} justifyContent="center" sx={{ my: 2 }}
-             >
-                <Grid item >
-                  <Paper sx={{ p: 2 ,width:'184', height:'163',opacity:'1',top:'216px',left:'845px', }}>
-                                    <img
-                  src="assets/images/swapToken/dollar.png"
-                  alt="Description"
-                  style={{
-                    width: '62px',
-                  height: '62px',
-                  opacity: '1',
-                  top: '242px',
-                  left: '906px',
-                  }}
-                />
-                    <Typography variant="h6">253.63 USDC</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      $253.44
-                    </Typography>
-                  </Paper>
-                </Grid>
-                <Grid item>
-                  <Paper sx={{ p: 2 }}>
-                    <img
-                        src="assets/images/swapToken/eth.png"
-                        alt="Description"
-                        style={{
-                        width: '62px',
-                        height: '62px',
-                        opacity: '1',
-                        top: '242px',
-                        left: '1148px',
-                        }}
-                          />
-                    <Typography variant="h6">0.06 ETH</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      $253.44
-                    </Typography>
-                  </Paper>
-                </Grid>
-                
-              </Grid>
-              <Typography>Liquidity Providers: OxRFQ</Typography>
-              <Typography>1 ETH = 1562.76 USDC</Typography>
-              <Typography>Ethereum Fees: $23</Typography>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Container>
+      </Box>
+        </Box>
 
+        {/* Right Side Swap Widget */}
+        <Box sx={{ flex: 1, maxWidth: 501 }}>
+       
+            <Typography
+              sx={{ textAlign: "center", color: "#0ea5e9", fontWeight: 700, fontSize: 14, mb: 6 }}
+            >
+              Quote Expires in 20s
+            </Typography>
+             
+
+            {/* Token Swap Visual */}
+            <Box sx={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4, flexDirection: { xs: "column", sm: "row" }}}>
+              
+              {/* Token Box 1 */}
+              <Box
+                sx={{
+                  backgroundColor: "#fff",
+                  borderRadius: 2,
+                  width: 210,
+                  height: 163,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  pt: 3,
+                  zIndex: 2,
+                }}
+              >
+                <Box sx={{ width: 62, height: 62, position: "relative", mb: 2 }}>
+                  <Box
+                    component="img"
+                    src="assets/images/swapToken/dollar.png"
+                    alt="USDC token"
+                    sx={{ width: 62, height: 62, position: "absolute" }}
+                  />
+                </Box>
+                <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>253.63 USDC</Typography>
+                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "rgba(0,0,0,0.43)" }}>
+                  $253.44
+                </Typography>
+              </Box>
+
+             
+
+              {/* Token Box 2 */}
+              <Box
+                sx={{
+                  backgroundColor: "#fff",
+                  borderRadius: 2,
+                  width: 210,
+                  height: 163,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  pt: 3,
+                  zIndex: 2,
+                }}
+              >
+                <Box
+                  component="img"
+                  src="assets/images/swapToken/eth.png"
+                  alt="ETH token"
+                  sx={{ width: 62, height: 62, mb: 2 }}
+                />
+                <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
+                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>$253.44</Typography>
+                {/* Connecting Circle */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  width:120,
+                  height:130,
+                  backgroundColor: "white",
+                  borderRadius: "90%",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 1,
+                  display: { xs: "none", sm: "block" },
+                }}
+              />
+              </Box>
+              
+            </Box>
+
+            {/* Swap Details */}
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              {[
+                { label: "Liquidity Providers", value: "OxRFQ" },
+                { label: "Rate", value: "1 ETH = 1562.76 USDC($1562.77)" },
+                { label: "Ethereum Fees", value: "$ 23" },
+              ].map((row, i) => (
+                <Box key={i} sx={{ display: "flex", justifyContent: "space-between", flexDirection: { xs: "column", sm: "row" }, gap: { xs: 0.5, sm: 0 } }}>
+                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "text.primary" }}>{row.label}</Typography>
+                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "text.primary", textAlign: { xs: "left", sm: "right" } }}>{row.value}</Typography>
+                </Box>
+              ))}
+            </Box>
+      
+        </Box>
+      </Box>
+    </Box>
+  
       <Divider />
 
       {/* MEV Protection */}
@@ -230,9 +306,7 @@ export default function SwapTokenLanding() {
         alignItems: "center",
         justifyContent: "space-between",
         px: { xs: 2, md: 8 },
-        backgroundImage: `url("assets/images/swapToken/combaincircle.png")`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize:"cover",
+       
         }}>
       {/* Left Side Content */}
       <Box sx={{ maxWidth: 600 }}>
@@ -333,14 +407,24 @@ export default function SwapTokenLanding() {
 
       {/* Right Side Image */}
       
+      <Box sx={{ backgroundImage: `url("assets/images/swapToken/combaincircle.png")`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize:"cover",
+        width:"700px",
+        minHeight:"190vh",
+        display: "flex",
+        alignItems: "center", 
+        justifyContent: "center",
+        }}>
       <Box
         component="img"
         src="assets/images/swapToken/protection.png" // <-- place your image in public folder
         alt="MEV Protection Shield"
         sx={{
-          width: { xs: "200px", md: "300px" },
+          width: { xs: "300px", md: "350px" },
         }}
       />
+      </Box>
 
   </Box>
 
@@ -466,13 +550,14 @@ export default function SwapTokenLanding() {
       {/* New Trade Mode */}
       <Box
       sx={{
-        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
         py: 6,
+        backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+        minHeight: "80vh",
       }}
     >
       {/* Title */}
@@ -484,10 +569,14 @@ export default function SwapTokenLanding() {
       </Typography>
       <Typography variant="subtitle1" sx={{ color: "white", mb: 6, fontWeight:"700"}}>
         Great Prices, with more speed and less worry
+        <Box sx={{
+        backgroundImage: "url('assetsx/images/swapToken/string.png')", 
+        backgroundSize: "contain",}}/>
       </Typography>
-
+       
       {/* Features */}
-      <Grid container spacing={6} justifyContent="center">
+      <Grid container spacing={6} justifyContent="center"
+      >
         {features.map((item, index) => (
           <Grid item xs={12} md={4} key={index}>
             <Paper
@@ -520,9 +609,10 @@ export default function SwapTokenLanding() {
                 {item.text}
               </Typography>
             </Paper>
-          </Grid>
-        ))}
+          </Grid>))}
+
       </Grid>
+
     </Box>
     <Divider/>
     </Box>

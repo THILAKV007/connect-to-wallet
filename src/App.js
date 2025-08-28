@@ -58,7 +58,7 @@ function App() {
 
       background: {
         default: isDarkMode ? '#061536' : '#EFF8FF',
-        paper: isDarkMode ? '#C3C3C3' : '#CBEBFF',
+        paper: isDarkMode ? '#122A53' : '#F8FCFF',
 
       },
       color:{

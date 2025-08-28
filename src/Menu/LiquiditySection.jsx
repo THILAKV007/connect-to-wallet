@@ -38,15 +38,17 @@ const rows = [
       
 
   return (
-  <>
+  <>   {/* first section */}
+  <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+      }}>
       <Box sx={{ 
         textAlign: "center", 
-        py:34,
-        minHeight:"100vh",
+        minHeight:"80vh",
         backgroundImage: `url("assets/images/LiquiditySection/Vector 111.png")`, // image inside public/assets folder
         backgroundRepeat: "no-repeat",
         backgroundSize:"contain",
         backgroundPosition: "center",
+        py:20,
 
        }}>
         <Typography variant="h4">Go gasless with Unidex..</Typography>
@@ -59,6 +61,7 @@ const rows = [
         <Button variant="contained" color="primary">
           Start Trading
         </Button>
+      </Box>
       </Box>
       <Divider/>
       {/* second section */}
