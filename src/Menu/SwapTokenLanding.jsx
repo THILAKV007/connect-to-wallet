@@ -17,7 +17,7 @@ import BoltIcon from "@mui/icons-material/Bolt";
 import AddIcon from "@mui/icons-material/Add";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 
-export default function SwapTokenLanding() {
+export default function SwapTokenLanding(isDarkMode) {
   const features = [
     {
       icon: <BoltIcon sx={{ fontSize: 40, color: "white" }} />,
@@ -48,20 +48,20 @@ export default function SwapTokenLanding() {
         minHeight: "80vh",  
         
        }}>
-        <Typography variant="h5" color="primary">
+        <Typography variant="h5" color="primary" weight={700} fontSize={24} height={33}>
           Browse. Swap. Confirm.
         </Typography>
-        <Typography variant="h3" fontWeight="bold" gutterBottom>
+        <Typography variant="h3" fontWeight="bold" gutterBottom size="62px" height="85px">
           Swap Tokens
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="body1" gutterBottom fontWeight={700}>
           Zero fee trades on 9+ million tokens across 14 chains. Get the best
-          prices by tapping into 130+ liquidity sources.
+          prices by tapping <br/> into 130+ liquidity sources.
         </Typography>
         <Button
           variant="contained"
           size="large"
-          sx={{ mt: 3, bgcolor: "#2196f3" }}
+          sx={{ mt: 3, color:"text.primary", }}
         >
           Start Trading
         </Button>
@@ -112,9 +112,9 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                    Scans multiple
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14, }}>
                   sources to find the best possible trade rates</Box>{" "}
                  </Box>{" "}
                 </Typography>
@@ -129,10 +129,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 , size:14}}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Smart routing 
                   </Box>{" "}
-                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14, }}>
                   ensures maximum value across liquidity pools</Box>{" "}
                 </Typography>
               }
@@ -146,10 +146,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Protects against front-running
                   </Box>{" "}
-                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                   and sandwich attacks</Box>{" "}
                 </Typography>
               }
@@ -163,10 +163,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Alerts you to slippage
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14, }}>
                   and potential price impact before you trade</Box>{" "}
                 </Typography>
               }
@@ -180,10 +180,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Optimized for smarter
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                   trading with safety,transparency in every swap</Box>{" "}
                  
                 </Typography>
@@ -195,6 +195,13 @@ export default function SwapTokenLanding() {
         </Box>
 
         {/* Right Side Swap Widget */}
+        <Box sx={{ width:501,
+          height:513,
+          top:126,
+          left:815,
+          borderRadius:8,
+
+        }}>
         <Box sx={{ flex: 1, maxWidth: 501 }}>
        
             <Typography
@@ -293,6 +300,11 @@ export default function SwapTokenLanding() {
             </Box>
       
         </Box>
+        </Box>
+      
+      
+      
+      
       </Box>
     </Box>
   
@@ -324,9 +336,9 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14, }}>
                     RFQ Private
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                   Settlement</Box>{" "}
                  </Box>{" "}
                 </Typography>
@@ -341,10 +353,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 , size:14}}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     No public mempool
                   </Box>{" "}
-                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                   -no MEV Bot</Box>{" "}
                 </Typography>
               }
@@ -358,10 +370,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Enhanced protection with
                   </Box>{" "}
-                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                   Unidex Auto</Box>{" "}
                 </Typography>
               }
@@ -375,10 +387,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Alerts you to slippage
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                   and potential price impact before you trade</Box>{" "}
                 </Typography>
               }
@@ -392,10 +404,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Optimized for smarter
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14, }}>
                   trading with safety,transparency in every swap</Box>{" "}
                  
                 </Typography>
@@ -466,7 +478,7 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Unidex Source the market for the best prices
                  </Box>{" "}
                 </Typography>
@@ -481,10 +493,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 , size:14}}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     No public mempool
                   </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14, }}>
                   -no MEV Bot</Box>{" "}
                 </Typography>
               }
@@ -498,7 +510,7 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                   Enhanced protection with Matcha Auto
                   </Box>{" "}
                   
@@ -514,10 +526,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2",fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Alerts you to slippage
                   </Box>{" "}
-                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                   and potential price impact before you trade</Box>{" "}
                 </Typography>
               }
@@ -531,10 +543,10 @@ export default function SwapTokenLanding() {
             <ListItemText
               primary={
                 <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 600 }}>
+                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                     Optimized for smarter
                   </Box>{" "}
-                  <Box component="span" sx={{color: "text.primary", fontWeight: 500 }}>
+                  <Box component="span" sx={{color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
                   trading with safety,transparency in every swap </Box>{" "}
                  
                 </Typography>
@@ -567,7 +579,7 @@ export default function SwapTokenLanding() {
       <Typography variant="h3" sx={{ fontWeight: "bold", my: 1 }}>
         Swap Tokens
       </Typography>
-      <Typography variant="subtitle1" sx={{ color: "white", mb: 6, fontWeight:"700"}}>
+      <Typography variant="subtitle1" sx={{ color: "text.primary", mb: 6, fontWeight:"700"}}>
         Great Prices, with more speed and less worry
         <Box sx={{
         backgroundImage: "url('assetsx/images/swapToken/string.png')", 
