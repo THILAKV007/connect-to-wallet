@@ -10,11 +10,17 @@ import {
   Select,
   InputLabel,
   MenuItem,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
 } from '@mui/material'
 import { Link, useLocation } from 'react-router-dom'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import MenuIcon from '@mui/icons-material/Menu'
 import ShareModal from './ShareModal'
 import ConnectWalletModal from './ConnectWalletModal'
 import CreateWalletModal from './CreateWalletModal'
@@ -24,6 +30,7 @@ function Header({ toggleTheme, isDarkMode }) {
   const [shareModalOpen, setShareModalOpen] = useState(false)
   const [connectWalletModalOpen, setConnectWalletModalOpen] = useState(false)
   const [createWalletModalOpen, setCreateWalletModalOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [age, setAge] = useState('')
 
   const handleShareModalOpen = () => {
@@ -48,6 +55,14 @@ function Header({ toggleTheme, isDarkMode }) {
 
   const handleConnectWalletModalClose = () => {
     setConnectWalletModalOpen(false)
+  }
+
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const handleMobileMenuClose = () => {
+    setMobileMenuOpen(false)
   }
 
   const handleChange = (event) => {
@@ -85,7 +100,26 @@ function Header({ toggleTheme, isDarkMode }) {
           UNIDEX
         </Typography>
 
-        {/* Navigation Items */}
+        {/* Mobile Controls (Theme Toggle + Hamburger Menu) */}
+        <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+          {/* Theme Toggle (Mobile) */}
+          <IconButton
+            onClick={toggleTheme}
+            sx={{ color: isDarkMode ? '#EFF8FF' : '#061536' }}
+          >
+            {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
+          
+          {/* Hamburger Menu */}
+          <IconButton
+            sx={{ color: isDarkMode ? '#EFF8FF' : '#061536' }}
+            onClick={handleMobileMenuToggle}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
+
+        {/* Navigation Items (Desktop) */}
         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
           <Button
             component={Link}
@@ -145,8 +179,8 @@ function Header({ toggleTheme, isDarkMode }) {
           </Button>
         </Box>
 
-        {/* Right Side Buttons */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        {/* Right Side Buttons (Desktop) */}
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>
           {/* Theme Toggle */}
           <IconButton
             onClick={toggleTheme}
@@ -160,7 +194,6 @@ function Header({ toggleTheme, isDarkMode }) {
             variant='outlined'
             onClick={handleCreateWalletModalOpen}
             sx={{
-              display: { xs: 'none', sm: 'block' },
               color: isDarkMode ? '#EFF8FF' : '#061536',
               borderColor: isDarkMode
                 ? 'rgba(255, 255, 255, 0.3)'
@@ -219,6 +252,119 @@ function Header({ toggleTheme, isDarkMode }) {
           </IconButton>
         </Box>
       </Toolbar>
+
+      {/* Mobile Navigation Drawer */}
+      <Drawer
+        anchor='left'
+        open={mobileMenuOpen}
+        onClose={handleMobileMenuClose}
+        sx={{
+          display: { xs: 'block', md: 'none' },
+          '& .MuiDrawer-paper': {
+            width: 280,
+            backgroundColor: isDarkMode ? '#121A2D' : '#F0F9FF',
+            color: isDarkMode ? '#EFF8FF' : '#061536',
+          },
+        }}
+      >
+        <Box sx={{ p: 2 }}>
+          <Typography
+            variant='h6'
+            sx={{
+              fontWeight: 700,
+              color: '#2196f3',
+              mb: 2,
+            }}
+          >
+            UNIDEX
+          </Typography>
+          <Divider sx={{ mb: 2, borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)' }} />
+          
+          <List>
+            <ListItem
+              component={Link}
+              to='/'
+              onClick={handleMobileMenuClose}
+              sx={{
+                color: location.pathname === '/' ? '#2196f3' : 'inherit',
+                fontWeight: location.pathname === '/' ? 600 : 400,
+                '&:hover': {
+                  backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                },
+              }}
+            >
+              <ListItemText primary='Home' />
+            </ListItem>
+            <ListItem
+              component={Link}
+              to='/trading'
+              onClick={handleMobileMenuClose}
+              sx={{
+                color: location.pathname === '/trading' ? '#2196f3' : 'inherit',
+                fontWeight: location.pathname === '/trading' ? 600 : 400,
+                '&:hover': {
+                  backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                },
+              }}
+            >
+              <ListItemText primary='Trading' />
+            </ListItem>
+            <ListItem
+              sx={{
+                '&:hover': {
+                  backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                },
+              }}
+            >
+              <ListItemText primary='Blog' />
+            </ListItem>
+          </List>
+          
+          <Divider sx={{ my: 2, borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)' }} />
+          
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Button
+              variant='outlined'
+              onClick={() => {
+                handleCreateWalletModalOpen()
+                handleMobileMenuClose()
+              }}
+              sx={{
+                color: isDarkMode ? '#EFF8FF' : '#061536',
+                borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
+                textTransform: 'none',
+                borderRadius: 2,
+                '&:hover': {
+                  borderColor: '#2196f3',
+                  color: '#2196f3',
+                  backgroundColor: 'transparent',
+                },
+              }}
+            >
+              Create Wallet
+            </Button>
+            <Button
+              variant='contained'
+              onClick={() => {
+                handleConnectWalletModalOpen()
+                handleMobileMenuClose()
+              }}
+              sx={{
+                backgroundColor: '#2196f3',
+                color: '#ffffff',
+                textTransform: 'none',
+                borderRadius: 2,
+                '&:hover': {
+                  backgroundColor: '#1976d2',
+                },
+              }}
+            >
+              Connect to Wallet
+            </Button>
+
+          </Box>
+        </Box>
+      </Drawer>
 
       {/* Share Modal */}
       <ShareModal
