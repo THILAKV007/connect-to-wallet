@@ -20,7 +20,7 @@ function Footer({ isDarkMode }) {
       sx={{
         mt: 'auto',
         py: 6,
-        backgroundColor: isDarkMode ? '#0a0e1a' : '#f8f9fa',
+        backgroundColor: isDarkMode ? '#061536' : '#EFF8FF',
         borderTop: isDarkMode ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
       }}
     >

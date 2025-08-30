@@ -8,11 +8,17 @@ import {
 } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import HomePage from './pages/HomePage'
+import HomePage from './Menu/HomePage'
 import TradingPage from './pages/TradingPage'
 import Swap1 from './pages/Swap1'
 import Swap2 from './pages/Swap2'
 import Swap3 from './pages/Swap3'
+import GasSwapSection from './Menu/GasSwapSection'
+import LimitOrderSection from './Menu/LimitOrderSection'
+import LiquiditySection from './Menu/LiquiditySection'
+import SwapTokenLanding from './Menu/SwapTokenLanding'
+import MenuDot from './Menu/MenuDot'
+import CrossChainSection from './Menu/CrossChainSection'
 
 function AppContent({ isDarkMode, toggleTheme }) {
   const location = useLocation()
@@ -31,6 +37,15 @@ function AppContent({ isDarkMode, toggleTheme }) {
         <Route path='/swap1' element={<Swap1 isDarkMode={isDarkMode} />} />
         <Route path='/swap2' element={<Swap2 isDarkMode={isDarkMode} />} />
         <Route path='/swap3' element={<Swap3 isDarkMode={isDarkMode} />} />
+        <Route
+          path='/src/Menu/Menu.jsx'
+          element={<MenuDot />}
+        />
+        <Route path='/title1' element={<SwapTokenLanding isDarkMode={isDarkMode} />} />
+        <Route path='/title2' element={<GasSwapSection isDarkMode={isDarkMode} />} />
+        <Route path='/title3' element={<LiquiditySection isDarkMode={isDarkMode} />} />
+        <Route path='/title4' element={<LimitOrderSection isDarkMode={isDarkMode} />} />
+        <Route path='/title5' element={<CrossChainSection isDarkMode={isDarkMode} />} />
       </Routes>
       {!shouldHideFooter && <Footer isDarkMode={isDarkMode} />}
     </>
@@ -50,10 +65,17 @@ function App() {
       primary: {
         main: '#2196f3',
       },
+
       background: {
-        default: isDarkMode ? '#0a0e1a' : '#f5f5f5',
-        paper: isDarkMode ? '#1a1f2e' : '#ffffff',
+        default: isDarkMode ? '#061536' : '#EFF8FF',
+        paper: isDarkMode ? '#122A53' : '#F8FCFF',
+
       },
+      color:{
+         default: isDarkMode ? 'white' : 'black',
+         paper: isDarkMode ? '#122A53' : '#6D6D6D',
+
+      }
     },
   })
   return (
@@ -67,3 +89,4 @@ function App() {
 }
 
 export default App
+
