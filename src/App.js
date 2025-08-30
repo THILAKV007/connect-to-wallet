@@ -37,15 +37,27 @@ function AppContent({ isDarkMode, toggleTheme }) {
         <Route path='/swap1' element={<Swap1 isDarkMode={isDarkMode} />} />
         <Route path='/swap2' element={<Swap2 isDarkMode={isDarkMode} />} />
         <Route path='/swap3' element={<Swap3 isDarkMode={isDarkMode} />} />
+        <Route path='/src/Menu/Menu.jsx' element={<MenuDot />} />
         <Route
-          path='/src/Menu/Menu.jsx'
-          element={<MenuDot />}
+          path='/swap-token'
+          element={<SwapTokenLanding isDarkMode={isDarkMode} />}
         />
-        <Route path='/title1' element={<SwapTokenLanding isDarkMode={isDarkMode} />} />
-        <Route path='/title2' element={<GasSwapSection isDarkMode={isDarkMode} />} />
-        <Route path='/title3' element={<LiquiditySection isDarkMode={isDarkMode} />} />
-        <Route path='/title4' element={<LimitOrderSection isDarkMode={isDarkMode} />} />
-        <Route path='/title5' element={<CrossChainSection isDarkMode={isDarkMode} />} />
+        <Route
+          path='/gasless-swaps'
+          element={<GasSwapSection isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path='/liquidity-source'
+          element={<LiquiditySection isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path='/limit-orders'
+          element={<LimitOrderSection isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path='/cross-chains'
+          element={<CrossChainSection isDarkMode={isDarkMode} />}
+        />
       </Routes>
       {!shouldHideFooter && <Footer isDarkMode={isDarkMode} />}
     </>
@@ -69,13 +81,11 @@ function App() {
       background: {
         default: isDarkMode ? '#061536' : '#EFF8FF',
         paper: isDarkMode ? '#122A53' : '#F8FCFF',
-
       },
-      color:{
-         default: isDarkMode ? 'white' : 'black',
-         paper: isDarkMode ? '#122A53' : '#6D6D6D',
-
-      }
+      color: {
+        default: isDarkMode ? 'white' : 'black',
+        paper: isDarkMode ? '#122A53' : '#6D6D6D',
+      },
     },
   })
   return (
@@ -89,4 +99,3 @@ function App() {
 }
 
 export default App
-

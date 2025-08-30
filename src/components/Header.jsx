@@ -34,20 +34,20 @@ function Header({ toggleTheme, isDarkMode }) {
     setShareModalOpen(false)
   }
 
-  const handleConnectWalletModalOpen = () => {
-    setConnectWalletModalOpen(true)
-  }
-
-  const handleConnectWalletModalClose = () => {
-    setConnectWalletModalOpen(false)
-  }
-
   const handleCreateWalletModalOpen = () => {
     setCreateWalletModalOpen(true)
   }
 
   const handleCreateWalletModalClose = () => {
     setCreateWalletModalOpen(false)
+  }
+
+  const handleConnectWalletModalOpen = () => {
+    setConnectWalletModalOpen(true)
+  }
+
+  const handleConnectWalletModalClose = () => {
+    setConnectWalletModalOpen(false)
   }
 
   const handleChange = (event) => {
@@ -60,7 +60,9 @@ function Header({ toggleTheme, isDarkMode }) {
       elevation={0}
       sx={{
         backgroundColor: isDarkMode ? '#121A2D' : '#F0F9FF',
-        borderBottom: isDarkMode ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+        borderBottom: isDarkMode
+          ? '1px solid rgba(255, 255, 255, 0.1)'
+          : '1px solid rgba(0, 0, 0, 0.1)',
         backdropFilter: 'blur(10px)',
       }}
     >
@@ -68,11 +70,16 @@ function Header({ toggleTheme, isDarkMode }) {
         {/* Logo */}
         <Typography
           variant='h5'
-          component='div'
+          component={Link}
+          to='/'
           sx={{
             fontWeight: 700,
             color: '#2196f3',
             fontSize: '1.5rem',
+            textDecoration: 'none',
+            '&:hover': {
+              color: '#1976d2',
+            },
           }}
         >
           UNIDEX
@@ -141,7 +148,10 @@ function Header({ toggleTheme, isDarkMode }) {
         {/* Right Side Buttons */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           {/* Theme Toggle */}
-          <IconButton onClick={toggleTheme} sx={{ color: isDarkMode ? '#EFF8FF' : '#061536' }}>
+          <IconButton
+            onClick={toggleTheme}
+            sx={{ color: isDarkMode ? '#EFF8FF' : '#061536' }}
+          >
             {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
 
@@ -152,7 +162,9 @@ function Header({ toggleTheme, isDarkMode }) {
             sx={{
               display: { xs: 'none', sm: 'block' },
               color: isDarkMode ? '#EFF8FF' : '#061536',
-              borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
+              borderColor: isDarkMode
+                ? 'rgba(255, 255, 255, 0.3)'
+                : 'rgba(0, 0, 0, 0.3)',
               textTransform: 'none',
               borderRadius: 2,
               px: 3,
@@ -182,59 +194,7 @@ function Header({ toggleTheme, isDarkMode }) {
             }}
           >
             Connect to Wallet
-            </Button>
-            
-          <FormControl>
-       
-             <InputLabel id="demo"></InputLabel>
-             <Select
-                     labelId="demo"
-                     id=""
-                     label=""
-                     onChange={handleChange}
-                    
-              >
-                {/* first */}
-             <Link to={'/title1'} style={{ textDecoration: 'none'}}> <MenuItem value={10}><Box component="img"
-        src="assets/images/Header/hello.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Swap Token<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> 
-        </Link>  
-        {/* second */}
-             <Link to={'/title2'} style={{ textDecoration: 'none' }}> <MenuItem value={20}><Box component="img"
-        src="assets/images/Header/gas.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Gasless Swaps<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-
-             {/* third */}
-             <Link to={'/title3'} style={{ textDecoration: 'none' }}>  <MenuItem value={30}><Box component="img"
-        src="assets/images/Header/liq.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Liquidity Source<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-             
-             {/* fourth */}
-             <Link to={'/title4'} style={{ textDecoration: 'none' }}>  <MenuItem value={30}><Box component="img"
-        src="assets/images/Header/limit.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Limit Orders<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-
-             {/* fifth */}
-             <Link to={'/title5'} style={{ textDecoration: 'none' }}>  <MenuItem value={40}><Box component="img"
-        src="assets/images/Header/cross.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Cross Chain<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-              </Select>
-            </FormControl>
+          </Button>
 
           {/* More Options (Mobile) */}
           <IconButton
@@ -257,7 +217,6 @@ function Header({ toggleTheme, isDarkMode }) {
           >
             <MoreHorizIcon />
           </IconButton>
-             
         </Box>
       </Toolbar>
 
@@ -268,17 +227,17 @@ function Header({ toggleTheme, isDarkMode }) {
         isDarkMode={isDarkMode}
       />
 
-      {/* Connect Wallet Modal */}
-      <ConnectWalletModal
-        open={connectWalletModalOpen}
-        onClose={handleConnectWalletModalClose}
-        isDarkMode={isDarkMode}
-      />
-
       {/* Create Wallet Modal */}
       <CreateWalletModal
         open={createWalletModalOpen}
         onClose={handleCreateWalletModalClose}
+        isDarkMode={isDarkMode}
+      />
+
+      {/* Connect Wallet Modal */}
+      <ConnectWalletModal
+        open={connectWalletModalOpen}
+        onClose={handleConnectWalletModalClose}
         isDarkMode={isDarkMode}
       />
     </AppBar>

@@ -1,49 +1,49 @@
 import React from 'react'
-import {
-  Modal,
-  Typography,
-  IconButton,
-  Box,
-  Button,
-} from '@mui/material'
+import { Modal, Box, Typography, Button, IconButton } from '@mui/material'
+import { Link } from 'react-router-dom'
 import CloseIcon from '@mui/icons-material/Close'
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation'
+import OpacityIcon from '@mui/icons-material/Opacity'
+import TrendingUpIcon from '@mui/icons-material/TrendingUp'
+import LinkIcon from '@mui/icons-material/Link'
 
-function ConnectWalletModal({ open, onClose, isDarkMode }) {
-  const walletOptions = [
+const ConnectWalletModal = ({ open, onClose, isDarkMode }) => {
+  const features = [
     {
-      name: 'Crypto.com onchain',
-      icon: '🔷', // Blue diamond placeholder
-      network: null,
+      icon: <SwapHorizIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
+      title: 'Swap Token',
+      description: 'Connect a wallet to your Unidex account',
+      bgColor: '#4FC3F7',
+      path: '/swap-token',
     },
     {
-      name: 'Crypto.com onchain',
-      icon: '🔷', // Blue diamond placeholder
-      network: 'Solana',
+      icon: <LocalGasStationIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
+      title: 'Gasless Swaps',
+      description: 'Connect a wallet to your Unidex account',
+      bgColor: '#29B6F6',
+      path: '/gasless-swaps',
     },
     {
-      name: 'Crypto.com onchain',
-      icon: '🦊', // Fox placeholder for MetaMask-like
-      network: 'Solana',
+      icon: <OpacityIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
+      title: 'Liquidity Source',
+      description: 'Connect a wallet to your Unidex account',
+      bgColor: '#42A5F5',
+      path: '/liquidity-source',
     },
     {
-      name: 'Crypto.com onchain',
-      icon: '🦊', // Fox placeholder
-      network: null,
+      icon: <TrendingUpIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
+      title: 'Limit Orders',
+      description: 'Connect a wallet to your Unidex account',
+      bgColor: '#1E88E5',
+      path: '/limit-orders',
     },
     {
-      name: 'Coinbase',
-      icon: '🔵', // Blue circle placeholder
-      network: null,
-    },
-    {
-      name: 'Coinbase',
-      icon: '🌈', // Rainbow placeholder
-      network: null,
-    },
-    {
-      name: 'Wallet Connect',
-      icon: '🔗', // Link placeholder
-      network: null,
+      icon: <LinkIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
+      title: 'Cross Chains',
+      description: 'Connect a wallet to your Unidex account',
+      bgColor: '#1976D2',
+      path: '/cross-chains',
     },
   ]
 
@@ -55,41 +55,52 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
         display: 'flex',
         alignItems: { xs: 'center', sm: 'flex-start' },
         justifyContent: { xs: 'center', sm: 'flex-end' },
-        pt: { xs: 2, sm: 9 }, // Top padding to position below header
-        pr: { xs: 2, sm: 12 }, // Right padding
-        pl: { xs: 2, sm: 0 }, // Left padding for mobile
-        pb: { xs: 2, sm: 0 }, // Bottom padding for mobile
+        p: { xs: 2, sm: 2 },
+        pt: { xs: 2, sm: 8 },
+        pr: { xs: 2, sm: 13 },
+        pl: { xs: 2, sm: 0 },
+        pb: { xs: 2, sm: 0 },
       }}
     >
       <Box
         sx={{
-          width: { xs: '100%', sm: 400, md: 450 },
-          maxWidth: { xs: '100%', sm: 500 },
+          width: { xs: '100%', sm: 450 },
+          maxWidth: { xs: '100%', sm: '90vw' },
           maxHeight: { xs: '90vh', sm: 'auto' },
           backgroundColor: isDarkMode ? '#10254A' : '#FFFFFF',
-          color: isDarkMode ? '#ffffff' : '#000000',
+          border: isDarkMode
+            ? '1px solid rgba(255, 255, 255, 0.1)'
+            : '1px solid rgba(0, 0, 0, 0.1)',
           borderRadius: { xs: 2, sm: 3 },
-          boxShadow: isDarkMode ? '0 8px 32px rgba(0, 0, 0, 0.3)' : '0 8px 32px rgba(0, 0, 0, 0.1)',
-          border: isDarkMode ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+          boxShadow: isDarkMode
+            ? '0 8px 32px rgba(0, 0, 0, 0.3)'
+            : '0 8px 32px rgba(0, 0, 0, 0.1)',
           overflow: 'hidden',
         }}
       >
-        <Box sx={{ p: { xs: 2, sm: 3 }, height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <Box
+          sx={{
+            p: { xs: 2, sm: 3 },
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
           {/* Header */}
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              mb: 2,
+              mb: { xs: 2, sm: 3 },
             }}
           >
             <Typography
               variant='h6'
               sx={{
-                fontWeight: 600,
-                fontSize: { xs: '1.1rem', sm: '1.25rem' },
                 color: isDarkMode ? '#ffffff' : '#000000',
+                fontWeight: 600,
+                fontSize: { xs: '18px', sm: '20px' },
               }}
             >
               Connect Wallet
@@ -97,9 +108,13 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
             <IconButton
               onClick={onClose}
               sx={{
-                color: isDarkMode ? '#ffffff' : '#000000',
+                color: isDarkMode
+                  ? 'rgba(255, 255, 255, 0.7)'
+                  : 'rgba(0, 0, 0, 0.7)',
                 '&:hover': {
-                  backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                  backgroundColor: isDarkMode
+                    ? 'rgba(255, 255, 255, 0.1)'
+                    : 'rgba(0, 0, 0, 0.1)',
                 },
               }}
             >
@@ -107,172 +122,110 @@ function ConnectWalletModal({ open, onClose, isDarkMode }) {
             </IconButton>
           </Box>
 
-          {/* Subtitle */}
-          <Typography
-            variant='body2'
-            sx={{
-              color: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
-              mb: { xs: 2, sm: 3 },
-              fontSize: { xs: '0.85rem', sm: '0.9rem' },
-            }}
-          >
-            Connect a wallet to your Unidex account
-          </Typography>
-
-          {/* Wallet Options */}
+          {/* Features List */}
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: { xs: 1, sm: 1.5 },
-              maxHeight: { xs: '60vh', sm: '500px' },
+              maxHeight: { xs: '60vh', sm: '400px' },
               overflowY: 'auto',
               flex: 1,
               '&::-webkit-scrollbar': {
                 width: '4px',
               },
               '&::-webkit-scrollbar-track': {
-                background: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                backgroundColor: isDarkMode
+                  ? 'rgba(255, 255, 255, 0.1)'
+                  : 'rgba(0, 0, 0, 0.1)',
                 borderRadius: '2px',
               },
               '&::-webkit-scrollbar-thumb': {
-                background: isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
+                backgroundColor: isDarkMode ? '#fff' : 'rgba(0, 0, 0, 0.3)',
                 borderRadius: '2px',
                 '&:hover': {
-                  background: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  backgroundColor: isDarkMode
+                    ? 'rgba(255, 255, 255, 0.5)'
+                    : 'rgba(0, 0, 0, 0.5)',
                 },
               },
             }}
           >
-            {walletOptions.map((wallet, index) => (
+            {features.map((feature, index) => (
               <Button
                 key={index}
+                component={Link}
+                to={feature.path}
+                fullWidth
                 sx={{
                   display: 'flex',
-                  justifyContent: 'space-between',
                   alignItems: 'center',
+                  justifyContent: 'flex-start',
                   p: { xs: 1.5, sm: 2 },
-                  minHeight: { xs: 56, sm: 64 },
-                  backgroundColor: isDarkMode ? '#10254A' : 'rgba(0, 0, 0, 0.05)',
-                  border: isDarkMode ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                  mb: { xs: 1, sm: 1.5 },
+                  minHeight: { xs: 64, sm: 72 },
+                  backgroundColor: isDarkMode
+                    ? 'rgba(255, 255, 255, 0.05)'
+                    : '#fff',
+                  border: isDarkMode
+                    ? '1px solid rgba(255, 255, 255, 0.1)'
+                    : '1px solid rgba(0, 0, 0, 0.1)',
                   borderRadius: 2,
-                  color: isDarkMode ? '#ffffff' : '#000000',
                   textTransform: 'none',
                   '&:hover': {
-                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                    borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
+                    backgroundColor: isDarkMode
+                      ? 'rgba(255, 255, 255, 0.1)'
+                      : 'rgba(0, 0, 0, 0.1)',
+                    border: isDarkMode
+                      ? '1px solid rgba(255, 255, 255, 0.2)'
+                      : '1px solid rgba(0, 0, 0, 0.2)',
+                  },
+                  '&:last-child': {
+                    mb: 0,
                   },
                 }}
               >
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Box
-                    sx={
-                      wallet.icon === '🔷'
-                        ? {
-                            width: 32,
-                            height: 32,
-                            backgroundColor: '#2196f3',
-                            borderRadius: 1,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '16px',
-                            color: '#ffffff',
-                          }
-                        : wallet.icon === '🦊'
-                        ? {
-                            width: 32,
-                            height: 32,
-                            backgroundColor: '#f6851b',
-                            borderRadius: 1,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '16px',
-                          }
-                        : wallet.icon === '🔵'
-                        ? {
-                            width: 32,
-                            height: 32,
-                            backgroundColor: '#0052ff',
-                            borderRadius: 1,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '16px',
-                            color: '#ffffff',
-                          }
-                        : wallet.icon === '🌈'
-                        ? {
-                            width: 32,
-                            height: 32,
-                            background:
-                              'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1)',
-                            borderRadius: 1,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '16px',
-                          }
-                        : {
-                            width: 32,
-                            height: 32,
-                            backgroundColor: '#3b82f6',
-                            borderRadius: 1,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '16px',
-                            color: '#ffffff',
-                          }
-                    }
-                  >
-                    {wallet.icon === '🔷' && '◆'}
-                    {wallet.icon === '🦊' && '🦊'}
-                    {wallet.icon === '🔵' && '●'}
-                    {wallet.icon === '🌈' && '🌈'}
-                    {wallet.icon === '🔗' && '🔗'}
-                  </Box>
+                {/* Icon */}
+                <Box
+                  sx={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: '50%',
+                    backgroundColor: feature.bgColor,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    mr: 2,
+                    flexShrink: 0,
+                  }}
+                >
+                  {feature.icon}
+                </Box>
+
+                {/* Content */}
+                <Box sx={{ textAlign: 'left', flex: 1 }}>
                   <Typography
+                    variant='subtitle1'
                     sx={{
-                      fontWeight: 500,
-                      fontSize: { xs: '0.9rem', sm: '1rem' },
                       color: isDarkMode ? '#ffffff' : '#000000',
+                      fontWeight: 600,
+                      fontSize: { xs: '14px', sm: '16px' },
+                      mb: 0.5,
                     }}
                   >
-                    {wallet.name}
+                    {feature.title}
+                  </Typography>
+                  <Typography
+                    variant='body2'
+                    sx={{
+                      color: isDarkMode ? '#B0BEC5' : 'rgba(0, 0, 0, 0.7)',
+                      fontSize: { xs: '12px', sm: '14px' },
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {feature.description}
                   </Typography>
                 </Box>
-                {wallet.network && (
-                  <Typography
-                    sx={{
-                      fontSize: { xs: '0.8rem', sm: '0.875rem' },
-                      color: isDarkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)',
-                      fontWeight: 400,
-                    }}
-                  >
-                    {wallet.network}
-                  </Typography>
-                )}
               </Button>
             ))}
           </Box>
-
-          {/* Footer */}
-          <Typography
-            variant='caption'
-            sx={{
-              display: 'block',
-              textAlign: 'center',
-              color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
-              mt: { xs: 2, sm: 3 },
-              fontSize: { xs: '0.7rem', sm: '0.75rem' },
-              lineHeight: 1.4,
-              px: { xs: 1, sm: 0 },
-            }}
-          >
-            By Login in I Agree to the Terms and Privacy Policy
-          </Typography>
         </Box>
       </Box>
     </Modal>
