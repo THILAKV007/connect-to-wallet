@@ -71,30 +71,102 @@ const rows = [
 
   return (
   <>   {/* first section */}
-  <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,
-      }}>
-      <Box sx={{ 
-        textAlign: "center", 
-        minHeight:"80vh",
-        backgroundImage: `url("assets/images/LiquiditySection/Vector 111.png")`, // image inside public/assets folder
-        backgroundRepeat: "no-repeat",
-        backgroundSize:"contain",
-        backgroundPosition: "center",
-        py:20,
-
-       }}>
-        <Typography variant="h4">Go gasless with Unidex..</Typography>
-        <Typography variant="h2" sx={{ fontWeight: 'bold', my: 3 }}>
-          Liquidity sources
-        </Typography>
-        <Typography variant="body1">
-          Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+<br /> liquidity sources aggregated by Matcha!
-        </Typography>
-        <Button variant="contained" color="primary">
-          Start Trading
-        </Button>
-      </Box>
-      </Box>
+      <Box sx={{
+                py:1,
+                fontFamily: "'Manrope', sans-serif",
+                color: "text.primary",
+                backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+              }}>
+              <Box
+                id="hero"
+                sx={{
+                  position: "relative",
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minHeight: { md: "410px" },
+                  overflow: "hidden",
+                }}
+              >
+                {/* Single Background Decoration */}
+                <Box
+                  component="img"
+                  src="assets/images/LimitorderSection/limir.png"
+                  alt="hero"
+                  sx={{
+                    position: "absolute",
+                    top: { xs: "50px", md: "35px" },
+                    width: { xs: "100%", md: "901px" },
+                  }}
+                />
+        
+                {/* Content */}
+                <Box
+                  sx={{
+                    position: "relative",
+                    zIndex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "22px",
+                    maxWidth: "582px",
+                    width: "100%",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color: "#0c9fe3",
+                      fontWeight: 700,
+                      fontSize: { xs: "20px", md: "24px" },
+                      lineHeight: "32.78px",
+                    }}
+                  >
+                    Go Glassless with Undiex..
+                  </Typography>
+        
+                  <Typography
+                    sx={{
+                      color: "text.primary",
+                      fontWeight: 700,
+                      fontSize: { xs: "48px", md: "62px" },
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    Liquidity sources
+                  </Typography>
+        
+                  <Typography
+                    sx={{
+                      color: "text.primary",
+                      fontWeight: 700,
+                      fontSize: { xs: "13px", md: "14px" },
+                      lineHeight: "24px",
+                    }}
+                  >
+                    Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ <br/> liquidity sources aggregated by Matcha!
+                  </Typography>
+        
+                  <Button
+                    variant="contained"
+                    sx={{
+                      borderRadius: "8px",
+                      fontFamily: "Inter, sans-serif",
+                      fontWeight: 700,
+                      fontSize: "16px",
+                      lineHeight: "24px",
+                      background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
+                      color: "text.primary",
+                      textTransform: "none",
+                     
+                    }}
+                  >
+                    Start Trading
+                  </Button>
+                </Box>
+              </Box>
+              </Box>
       <Divider/>
       {/* second section */}
 

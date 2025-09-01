@@ -15,7 +15,8 @@ import {
   Link,
   Divider,
   useTheme,
-  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -51,39 +52,115 @@ export default function GasSwapSection() {
   const getBgColor = (hello) => {
     return theme.palette.mode === "dark" ? "#122A53" : "#F8FCFF";
   };
-    const [toggle, setToggle] = useState("On");
+    
+  const [toggle, setToggle] = useState("on");
+
+  const handleToggle = (_event, newValue) => {
+    if (newValue !== null) setToggle(newValue);
+  };
 
 
 
   return (
-    <Box sx={{minHeight: "100vh", py: 5 }}>
+    <Box sx={{minHeight: "100vh"}}>
       {/* Hero Section */}
-      <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,}} >
-      <Container sx={{ 
-        textAlign: "center", 
-        minHeight:"80vh",
-        py:20,
-        backgroundImage: `url("assets/images/GaslessSwap/03.png")`, // image inside public/assets folder
-        backgroundRepeat: "no-repeat",
-        backgroundSize:"contain",
-        backgroundPosition: "center",
-        width: "auto",
+      <Box sx={{
+        fontFamily: "'Manrope', sans-serif",
+        color: "text.primary",
+        backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+      }}>
+      <Box
+        id="hero"
+        sx={{
+          position: "relative",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: { md: "500px" },
+          overflow: "hidden",
+        }}
+      >
+        {/* Single Background Decoration */}
+        <Box
+          component="img"
+          src="assets/images/GaslessSwap/03.png"
+          alt="hero background decor"
+          sx={{
+            position: "absolute",
+            top: { xs: "50px", md: "35px" },
+            width: { xs: "100%", md: "901px" },
+          }}
+        />
 
-       }}>
-        <Typography variant="h4" sx={{ fontWeight: "bold", color: "primary.main" }}>
-          Go gasless with Unidex..
-        </Typography>
-        <Typography variant="h2" sx={{ fontWeight: "bold", mt: 2 }}>
-          Gasless swaps
-        </Typography>
-        <Typography variant="body1" sx={{ mt: 2 }}>
-          Swap crypto without native tokens. Matcha handles the gas for swaps and approvals so you can focus on trading.
-        </Typography>
-        <Button variant="contained" color="primary" sx={{ mt: 4, px: 4 }}>
-          Start Trading
-        </Button>
-      </Container>
+        {/* Content */}
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "22px",
+            maxWidth: "582px",
+            width: "100%",
+          }}
+        >
+          <Typography
+            sx={{
+              color: "#0c9fe3",
+              fontWeight: 700,
+              fontSize: { xs: "20px", md: "24px" },
+              lineHeight: "32.78px",
+            }}
+          >
+             Go gasless with Unidex.
+          </Typography>
+
+          <Typography
+            sx={{
+              color: "text.primary",
+              fontWeight: 700,
+              fontSize: { xs: "48px", md: "62px" },
+              lineHeight: 1.1,
+            }}
+          >
+            Gasless swaps
+          </Typography>
+
+          <Typography
+            sx={{
+              color: "text.primary",
+              fontWeight: 700,
+              fontSize: { xs: "13px", md: "14px" },
+              lineHeight: "24px",
+            }}
+          >
+            Swap crypto without native tokens. Matcha handles the gas for <br/>
+swaps and approvals so you can focus on trading.
+          </Typography>
+
+          <Button
+            variant="contained"
+            sx={{
+              borderRadius: "8px",
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
+              lineHeight: "24px",
+              background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
+              color: "text.primary",
+              textTransform: "none",
+             
+            }}
+          >
+            Start Trading
+          </Button>
+        </Box>
       </Box>
+      </Box>
+
     <Divider/>
       {/* Instant gas-free swaps */}
        <Container sx={{ py: 8}}>
@@ -288,7 +365,7 @@ export default function GasSwapSection() {
                 elevation={0}
                 sx={{
                   maxwidth: "320px",
-                  height: "310",
+                  height: "310px",
                   alignContent:"center",
                   
 
@@ -300,7 +377,7 @@ export default function GasSwapSection() {
                   sx={{
                     width:100,
                     height:100,
-                    marginLeft:12,
+                    marginLeft:14,
                   }}
                 />
                 <Typography variant="h6" sx={{width: "297.1355285644531", height: "36",opacity: "1", margin:"50px",fontWeight:"700", style:"bold",size:"33px",}}>
@@ -342,188 +419,185 @@ export default function GasSwapSection() {
                   alt="Description"
                   style={{
                     width: '100%',
-                  height: '600px',
+                  height: '100%',
                   }}
                 />
          
       </Container>
       </Box>
     <Divider/>
-      {/* Unidex Auto Section */}
- <Box
-      component="section"
-      id="features"
-      sx={{
-        py: { xs: 6, md: 10 },
-        position: "relative",
-      }}
-    >
-      {/* Background blobs */}
+      
+      {/* fifth section */}
+      <Box sx ={{backgroundImage: `url("assets/images/GaslessSwap/ddd.png")`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "bottom",
+      py: 8,
+      minHeight: "100vh",
+                 
+      }}>
+
+      {/* Content */}
       <Box
         sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: 0,
-          pointerEvents: "none",
-          display: { xs: "none", md: "block" },
+          position: "relative",
+          zIndex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
-      >
-        <Box
-          component="img"
-          src="/page/c288acba-e30e-47c2-af64-d36751fa6511/images/157_35.svg"
-          alt="background blur effect 1"
-          sx={{
-            position: "absolute",
-            top: 372,
-            left: 132,
-            width: 260,
-            height: 260,
-            filter: "blur(300px)",
-          }}
-        />
-        <Box
-          component="img"
-          src="/page/c288acba-e30e-47c2-af64-d36751fa6511/images/157_36.svg"
-          alt="background blur effect 2"
-          sx={{
-            position: "absolute",
-            top: 414,
-            left: 1021,
-            width: 260,
-            height: 260,
-            filter: "blur(300px)",
-          }}
-        />
-      </Box>
-
-      {/* Content wrapper */}
-      <Stack
-        spacing={4}
-        alignItems="center"
-        sx={{ position: "relative", zIndex: 1 }}
       >
         {/* Feature Card */}
         <Card
           sx={{
-            backgroundColor: "#048acd",
-            borderRadius: "20px",
+            bgcolor: "#048acd",
+            border: "1px solid #e7e9eb",
+            borderRadius: 3,
             boxShadow:
               "0px 1.7px 10.3px rgba(0,0,0,0.03), 0px 17.2px 60.1px rgba(0,0,0,0.06), 0px 1.7px 3.4px rgba(0,0,0,0.02)",
-            maxWidth: 478,
             width: "100%",
-            p: { xs: "30px 20px", md: "41px 25px 30px" },
-            textAlign: "center",
+            maxWidth: 478,
+            p: { xs: 3, md: 5 },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography
             variant="h6"
             sx={{
+              color: "text.primary",
               fontWeight: 500,
-              fontSize: 20,
+              textAlign: "center",
               mb: 2,
-              color: "#000000",
             }}
           >
             Unidex Auto
           </Typography>
 
-          {/* Toggle switch */}
-          <Box
+          {/* Toggle */}
+          <ToggleButtonGroup
+            value={toggle}
+            exclusive
+            onChange={handleToggle}
             sx={{
-              display: "flex",
               bgcolor: "#f1f1f4",
-              borderRadius: "14px",
               p: "4px",
               mb: 3,
-              justifyContent: "center",
-              width: "fit-content",
-              mx: "auto",
             }}
           >
-            {["On", "Off"].map((option) => (
-              <Typography
-                key={option}
-                onClick={() => setToggle(option)}
-                sx={{
-                  px: 2,
-                  py: 1,
-                  fontSize: 14,
-                  fontWeight: 500,
-                  borderRadius: "24px",
-                  cursor: "pointer",
-                  color: "#17181c",
-                  bgcolor:
-                    toggle === option ? "#ffffff" : "transparent",
-                  boxShadow:
-                    toggle === option
-                      ? "0px 2px 3px rgba(0,0,0,0.06), 0px 0px 0px 1px rgba(0,0,0,0.06)"
-                      : "none",
-                  transition: "all 0.3s",
-                }}
-              >
-                {option}
-              </Typography>
-            ))}
-          </Box>
-
-          {/* Feature list */}
-          <List sx={{ p: 0, color: "#ffffff", fontSize: 14, fontWeight: 500 }}>
-            <ListItem
+            <ToggleButton
+              value="on"
               sx={{
-                borderTop: "1px solid #f1f2f4",
-                py: 2,
-                display: "flex",
-                alignItems: "center",
+                varaiant: "contained",
+                textTransform: "none",
+                fontWeight: 500,
+                fontSize: 14,
+                px: 2,
+                borderRadius: 24,
+                "&.Mui-selected": {
+                  bgcolor: "#fff",
+                  boxShadow:
+                    "0px 2px 3px rgba(0,0,0,0.06), 0px 0px 0px 1px rgba(0,0,0,0.06)",
+                },
               }}
             >
-              <Box
-                component="img"
-                src="assets/images/GaslessSwap/green tick.png"
-                sx={{ width: 16, height: 16, mr: 17 }}
-              />
-              <Typography>No gas needed</Typography>
+              On
+            </ToggleButton>
+            <ToggleButton
+              value="off"
+              sx={{
+                textTransform: "none",
+                fontWeight: 500,
+                fontSize: 14,
+                px: 2,
+                borderRadius: 24,
+                "&.Mui-selected": {
+                  bgcolor: "#fff",
+                  boxShadow:
+                    "0px 2px 3px rgba(0,0,0,0.06), 0px 0px 0px 1px rgba(0,0,0,0.06)",
+                },
+              }}
+            >
+              Off
+            </ToggleButton>
+          </ToggleButtonGroup>
+
+          {/* Feature List */}
+          <List
+            disablePadding
+            sx={{
+              width: "100%",
+              color: "#fff",
+              fontSize: 14,
+              fontWeight: 500,
+            }}
+          >
+            <ListItem
+              
+            >
+              <ListItemIcon>
+                <Box
+                  component="img"
+                 src="assets/images/GaslessSwap/green tick.png"
+                  alt=""
+                  sx={{ width: 16, height: 16 }}
+                />
+              </ListItemIcon>
+              <Typography sx={{ flexGrow: 1, textAlign: "center" }}>
+                No gas needed
+              </Typography>
             </ListItem>
 
             <ListItem
               sx={{
                 borderTop: "1px solid #f1f2f4",
-                py: 2,
+                py: 1.5,
                 display: "flex",
                 alignItems: "center",
               }}
             >
+              <ListItemIcon>
+                <Box
+                  component="img"
+                  src="assets/images/GaslessSwap/green tick.png"
+                  alt=""
+                  sx={{ width: 16, height: 16 }}
+                />
+              </ListItemIcon>
               <Box
-                component="img"
-                src="assets/images/GaslessSwap/green tick.png"
-                sx={{ width: 16, height: 16, mr: 2 }}
-              />
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={{ xs: 0.5, sm: 1 }}
-                justifyContent="center"
-                flexGrow={1}
+                sx={{
+                  flexGrow: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: { xs: 0.5, md: 1 },
+                  flexDirection: { xs: "column", sm: "row" },
+                }}
               >
                 <Typography>MEV protection</Typography>
                 <Typography sx={{ color: "#31353c" }}>·</Typography>
                 <Typography sx={{ color: "#fafafa" }}>No slippage</Typography>
-              </Stack>
+              </Box>
             </ListItem>
 
             <ListItem
               sx={{
                 borderTop: "1px solid #f1f2f4",
-                py: 2,
+                py: 1.5,
                 display: "flex",
                 alignItems: "center",
               }}
             >
-              <Box
-                component="img"
-                src="assets/images/GaslessSwap/green tick.png"
-                sx={{ width: 16, height: 16, mr: 14 }}
-              />
-              <Typography flexGrow={1}>
+              <ListItemIcon>
+                <Box
+                  component="img"
+                  src="assets/images/GaslessSwap/green tick.png"
+                  alt=""
+                  sx={{ width: 16, height: 16 }}
+                />
+              </ListItemIcon>
+              <Typography sx={{ flexGrow: 1, textAlign: "center" }}>
                 130+ liquidity sources
               </Typography>
             </ListItem>
@@ -531,74 +605,91 @@ export default function GasSwapSection() {
             <ListItem
               sx={{
                 borderTop: "1px solid #f1f2f4",
-                py: 2,
+                py: 1.5,
                 display: "flex",
                 alignItems: "center",
               }}
             >
-              <Box
-                component="img"
+              <ListItemIcon >
+                <Box
+                  component="img"
                 src="assets/images/GaslessSwap/green tick.png"
-                sx={{ width: 16, height: 16, mr: 14}}
-              />
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={{ xs: 0.5, sm: 1 }}
-                justifyContent="center"
+                  alt=""
+                  sx={{ width: 16, height: 16 }}
+                />
+              </ListItemIcon>
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: { xs: 0.5, md: 1 },
+                  flexDirection: { xs: "column", sm: "row" },
+                }}
               >
                 <Typography>Smart Routing</Typography>
                 <Typography sx={{ color: "#31353c" }}>·</Typography>
                 <Typography sx={{ color: "#fafafa" }}>Auto</Typography>
-              </Stack>
+              </Box>
             </ListItem>
+            <ListItem sx={{
+                borderTop: "1px solid #f1f2f4",
+                py: 1.5,
+                display: "flex",
+                alignItems: "center",
+              }}></ListItem>
           </List>
 
           <Typography
             sx={{
-              color: "#ffffff",
+              color: "#fff",
               fontSize: 14,
               fontWeight: 500,
-              pt: 2,
-              mt: 2,
-              borderTop: "1px solid #f1f2f4",
-
+              textAlign: "center",
             }}
           >
             0.05% - 0.25% fee on certain pairs
           </Typography>
         </Card>
 
-        {/* Section Title & Subtitle */}
-        <Box textAlign="center" maxWidth={582}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 700,
-              fontSize: { xs: 28, sm: 32, md: 40 },
-              mb: 3,
-              color: "text.primary",
-              fontFamily: "Manrope, sans-serif",
-            }}
-          >
-            Available Supporting Chains
-          </Typography>
-          <Typography
-            sx={{
-              fontWeight: 700,
-              fontSize: 14,
-              lineHeight: "24px",
-              color: "text.primary",
-              fontFamily: "Manrope, sans-serif",
-              style:"bold",
-            }}
-          >
-            Swap crypto without native tokens. Matcha handles the gas for swaps
-            and approvals so you can focus on trading.
-          </Typography>
-        </Box>
-      </Stack>
+        {/* Section Title */}
+        <Typography
+          variant="h3"
+          sx={{
+            color: "text.primary",
+            fontWeight: 700,
+            textAlign: "center",
+            fontSize:24,
+            fontFamily: "Manrope, sans-serif",
+            mt: 4,
+          }}
+        >
+          Available Supporting Chains
+        </Typography>
+        <Typography
+          sx={{
+            color: "text.primary",
+            fontWeight: 400,
+            fontSize: 14,
+            lineHeight: "24px",
+            textAlign: "center",
+            maxWidth: 582,
+            mt:2,
+            fontFamily: "Manrope, sans-serif",
+          }}
+        >
+          Swap crypto without native tokens. Matcha handles the gas for <br/> swaps
+          and approvals so you can focus on trading.
+        </Typography>
+      </Box>
+    
     </Box>
-    </Box>
-   
+    
+    
+    
+    
+    
+</Box>
   );
 }

@@ -1,16 +1,6 @@
 import React from "react";
 import { Box, Typography, Button ,Grid, Card,
     Divider,
-    CardContent,List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Avatar,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow, Tab,
   TextField,
   InputAdornment,
   Tabs,
@@ -21,29 +11,32 @@ import { Box, Typography, Button ,Grid, Card,
   MenuItem,
   Select,
   Container,
+  useMediaQuery,
+  Avatar,
+  CardContent,
+  Tab,
 } from '@mui/material';
-  import CheckCircleIcon from "@mui/icons-material/CheckCircle";
   import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-
 function LimitOrderSection({isDarkMode}) {
      const features = [
-    "Master volatility and get the price you want",
-    "Set custom expiry time up to 28 days",
-    "Bypass MEV attacks",
-    "Limit Orders have no slippage",
-    "Trade low-cap, illiquid tokens with confidence",
-  ];
+  { text: "Master volatility and get the price you want", icon: "assets/images/LimitorderSection/tick.svg" },
+  { text: "Set custom expiry time up to 28 days", icon: "assets/images/LimitorderSection/tick.svg" },
+  { text: "Bypass MEV attacks", icon:  "assets/images/LimitorderSection/tick.svg"},
+  { text: "Limit Orders have no slippage", icon:  "assets/images/LimitorderSection/tick.svg" },
+  { text: "Trade low-cap, illiquid tokens with confidence", icon:  "assets/images/LimitorderSection/tick.svg"},
+];
 
-  const orders = [
-    { sell: "14 EQrd", buy: "200 ETH", expiry: "12 hours 3mins" },
-    { sell: "14 EQrd", buy: "200 ETH", expiry: "12 hours 3mins" },
-    { sell: "14 EQrd", buy: "200 ETH", expiry: "12 hours 3mins" },
-    { sell: "14 EQrd", buy: "200 ETH", expiry: "12 hours 3mins" },
-    { sell: "14 EQrd", buy: "200 ETH", expiry: "12 hours 3mins" },
-    { sell: "14 EQrd", buy: "200 ETH", expiry: "12 hours 3mins" },
-  ];
+const orders = [
+  { sellIcon: "assets/images/LimitorderSection/danger.svg", sell: "14 EQrd", buyIcon: "assets/images/LimitorderSection/danger.svg", buy: "200 ETH", expiry: "12 hours 3mins" },
+  { sellIcon: "assets/images/LimitorderSection/danger.svg", sell: "14 EQrd", buyIcon: "assets/images/LimitorderSection/danger.svg", buy: "200 ETH", expiry: "12 hours 3mins" },
+  { sellIcon: "assets/images/LimitorderSection/danger.svg", sell: "14 EQrd", buyIcon: "assets/images/LimitorderSection/danger.svg", buy: "200 ETH", expiry: "12 hours 3mins" },
+  { sellIcon: "assets/images/LimitorderSection/danger.svg", sell: "14 EQrd", buyIcon: "assets/images/LimitorderSection/danger.svg", buy: "200 ETH", expiry: "12 hours 3mins" },
+  { sellIcon: "assets/images/LimitorderSection/danger.svg", sell: "14 EQrd", buyIcon: "assets/images/LimitorderSection/danger.svg", buy: "200 ETH", expiry: "12 hours 3mins" },
+  { sellIcon: "assets/images/LimitorderSection/danger.svg", sell: "14 EQrd", buyIcon: "assets/images/LimitorderSection/danger.svg", buy: "200 ETH", expiry: "12 hours 3mins" },
+];
+
   const [tab, setTab] = React.useState(1);
    const [slippage, setSlippage] = React.useState("Market");
   const [expiry, setExpiry] = React.useState("1 Hour");
@@ -51,191 +44,429 @@ function LimitOrderSection({isDarkMode}) {
   const handleSlippage = (event, newSlippage) => {
     if (newSlippage !== null) setSlippage(newSlippage);
   };
+  const isTablet = useMediaQuery("(max-width:1024px)");
+  const isMobile = useMediaQuery("(max-width:768px)");
   return (
     <>
     {/* first section */}
-      <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+      <Box sx={{
+            py:1,
+            fontFamily: "'Manrope', sans-serif",
+            color: "text.primary",
+            backgroundImage: `url("assets/images/swapToken/gradient.png")`,
           }}>
-    <Box sx={{ 
-        textAlign: "center", 
-        py:20,
-        minHeight:"80vh",
-        backgroundImage: `url("assets/images/LimitorderSection/limitback.png")`, // image inside public/assets folder
-        backgroundRepeat: "no-repeat",
-        backgroundSize:"contain",
-        backgroundPosition: "center",
-        width: "auto",
-
-       }}>
-      <Typography variant="h4" color="primary" gutterBottom>
-        Master volatile markets
-      </Typography>
-      <Typography variant="h2" fontWeight="bold" gutterBottom>
-        Limit orders
-      </Typography>
-      <Typography variant="body1" mb={4}>
-        Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ liquidity sources aggregated by Matcha!
-      </Typography>
-      <Button variant="contained" color="primary">
-        Start Trading
-      </Button>
-    </Box>
-    </Box>
-    <Divider/>
-    {/* second section */}
-    <Box sx={{  py: 8, px: { xs: 2, md: 8 } }}>
-      <Grid container spacing={6} alignItems="center">
-        {/* Left Side Card */}
-        <Grid item xs={12} md={6}>
-          <Card
+          <Box
+            id="hero"
             sx={{
-              borderRadius: 4,
-              boxShadow: 3,
-              maxWidth: 400,
-              mx: "auto",
-              bgcolor:"white",
-              color:"black"
+              position: "relative",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: { md: "410px" },
+              overflow: "hidden",
             }}
           >
-            <CardContent>
-              {/* Logo + Name */}
-              <Box display="flex" alignItems="center" gap={2} mb={2} >
-                <Avatar
-                  src="assets/images/LimitorderSection/bedrock.png" // Replace with your logo
-                  alt="Bedrock"
-                  sx={{ width: 56, height: 56 }}
-                />
-                <Box>
-                  <Typography variant="h6" fontWeight="bold">
-                    Bedrock
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Be
-                  </Typography>
-                </Box>
-              </Box>
-
-              {/* Price */}
-              <Typography variant="h4" fontWeight="bold">
-                $9209.00
+            {/* Single Background Decoration */}
+            <Box
+              component="img"
+              src="assets/images/LimitorderSection/limitback.png"
+              alt="hero"
+              sx={{
+                position: "absolute",
+                top: { xs: "50px", md: "35px" },
+                width: { xs: "100%", md: "901px" },
+              }}
+            />
+    
+            {/* Content */}
+            <Box
+              sx={{
+                position: "relative",
+                zIndex: 1,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "22px",
+                maxWidth: "582px",
+                width: "100%",
+              }}
+            >
+              <Typography
+                sx={{
+                  color: "#0c9fe3",
+                  fontWeight: 700,
+                  fontSize: { xs: "20px", md: "24px" },
+                  lineHeight: "32.78px",
+                }}
+              >
+                Master volatile markets
               </Typography>
-              <Typography variant="body2" sx={{ color: "green", mb: 2 }}>
-                8.0% Last 24 Hours
+    
+              <Typography
+                sx={{
+                  color: "text.primary",
+                  fontWeight: 700,
+                  fontSize: { xs: "48px", md: "62px" },
+                  lineHeight: 1.1,
+                }}
+              >
+                Limit Orders
               </Typography>
+    
+              <Typography
+                sx={{
+                  color: "text.primary",
+                  fontWeight: 700,
+                  fontSize: { xs: "13px", md: "14px" },
+                  lineHeight: "24px",
+                }}
+              >
+                Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ <br/> liquidity sources aggregated by Matcha!
+              </Typography>
+    
+              <Button
+                variant="contained"
+                sx={{
+                  borderRadius: "8px",
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
+                  color: "text.primary",
+                  textTransform: "none",
+                 
+                }}
+              >
+                Start Trading
+              </Button>
+            </Box>
+          </Box>
+          </Box>
+    <Divider/>
+    {/* second section */}
+<Box
+      component="section"
+      sx={{
+        py: isMobile ? 6 : 10,
+        px: 2,
+        position: "relative",
+        overflow: "hidden",
+        minHeight: 595,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: 1440,
+          width: "100%",
+          mx: "auto",
+          display: "flex",
+          flexDirection: isTablet ? "column" : "row",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: isTablet ? 6 : 14,
+          textAlign: isTablet ? "center" : "left",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        {/* Chart Card */}
+        <Card
+          sx={{
+            width: isMobile ? "100%" : 504,
+            height: isMobile ? "auto" : 390,
+            borderRadius: 2,
+            p: 3,
+            display: "flex",
+            flexDirection: "column",
+            bgcolor: "#feffff",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Avatar
+              src="assets/images/LimitorderSection/danger.svg"
+              alt="Bedrock logo"
+              sx={{ width: 73, height: 73 }}
+            />
+            <Box>
+              <Typography
+                variant="h5"
+                sx={{ fontFamily: "Manrope", fontWeight: 700}}
+              >
+                Bedrock
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: "#595959", fontWeight: 700, mt: -1 }}
+              >
+                Be
+              </Typography>
+            </Box>
+          </Box>
 
-              {/* Graph Placeholder */}
+          <CardContent sx={{ mt: 2 }}>
+            <Typography
+              sx={{ fontFamily: "Manrope", fontSize: 24, fontWeight: 400}}
+            >
+              $9209.00
+            </Typography>
+            <Box sx={{ display: "flex", gap: 1, mt: 0.5 }}>
+              <Typography sx={{ fontSize: 12, color: "#097d27" }}>8.0%</Typography>
+              <Typography sx={{ fontSize: 12, color: "#6b6b6b" }}>
+                Last 24 Hours
+              </Typography>
+            </Box>
+
+            {/* Chart area */}
+            <Box sx={{ mt: isMobile ? 2 : 5, position: "relative", height: 124 }}>
+              <Box
+                sx={{
+                  position: "absolute",
+                  width: 365,
+                  height: 13,
+                  bgcolor: "#00a92b",
+                  filter: "blur(100px)",
+                  top: 15,
+                  left: isMobile ? "50%" : 104,
+                  transform: isMobile ? "translateX(-50%)" : "none",
+                }}
+              />
               <Box
                 component="img"
-                src="assets/images/LimitorderSection/graph.png" // replace with your chart image
-                alt="Graph"
-                sx={{ width: "100%", height: "auto", borderRadius: 2 }}
-              /> <Stack direction="row" spacing={2} alignItems="center">
-      <Typography variant="body1">2PM</Typography>
-      <Typography variant="body1">4PM</Typography>
-      <Typography variant="body1">7PM</Typography>
-      <Typography variant="body1">10PM</Typography>
-      <Typography variant="body1">JUN18</Typography>
-      <Typography variant="body1">3AM</Typography>
-      <Typography variant="body1">6AM</Typography>
-    </Stack>
-            </CardContent>
-          </Card>
-        </Grid>
+                src="assets/images/LimitorderSection/graph.png"
+                alt="Price chart"
+                sx={{ width: "100%", height: "100%", objectFit: "contain" }}
+              />
+            </Box>
 
-        {/* Right Side Content */}
-        <Grid item xs={12} md={6}>
+            {/* Time Labels */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: isMobile ? "center" : "space-between",
+                flexWrap: isMobile ? "wrap" : "nowrap",
+                gap: isMobile ? 2 : 0,
+                mt: 2,
+              }}
+            >
+              {["2 PM", "4 PM", "7 PM", "10 PM", "JUN 18", "3 AM", "6 AM"].map(
+                (label, i) => (
+                  <Typography
+                    key={i}
+                    sx={{ fontSize: 12, color: "#6b6b6b", fontFamily: "Manrope" }}
+                  >
+                    {label}
+                  </Typography>
+                )
+              )}
+            </Box>
+          </CardContent>
+        </Card>
+
+        {/* Content Column */}
+        <Box sx={{ maxWidth: 444, display: "flex", flexDirection: "column", alignItems: isTablet ? "center" : "flex-start" }}>
           <Typography
-            variant="h4"
-            fontWeight="bold"
-            sx={{ mb: 2 }}
+            variant={isMobile ? "h4" : "h3"}
+            sx={{ fontFamily: "Manrope", fontWeight: 700 }}
           >
-            Set price, time, <br /> and sit tight
+            Set price, time,
+            <br /> and sit tight
           </Typography>
-          <Typography variant="body1" color="text.secondary">
-            Place a limit order to buy or sell crypto at an exact price
-            within a chosen period.
+
+          <Typography
+            sx={{
+              fontFamily: "Inter",
+              fontSize: 16,
+              lineHeight: "25px",
+              color: "text.primary",
+              mt: 3,
+              maxWidth: 334,
+              textAlign: isTablet ? "center" : "left",
+            }}
+          >
+            Place a limit order to buy or sell crypto at an<br/> exact price within a chosen period.
           </Typography>
-        </Grid>
-      </Grid>
+
+          
+        </Box>
+      </Box>
+
+      {/* Background decoration */}
+      <Box
+        component="img"
+        src="assets/images/LimitorderSection/spiral.png"
+        alt="Decorative background"
+        sx={{
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          width:150,
+          height:150,
+          
+          opacity: isMobile ? 0.5 : 1,
+          transform: isMobile ? "scale(0.8) translate(10%,10%)" : "none",
+          zIndex: 0,
+        }}
+      />
     </Box>
     <Divider/>
    {/* third section */}
-   <Box sx={{py: 8, px: { xs: 2, md: 8 } }}>
-      <Typography
-        variant="h4"
-        fontWeight="bold"
-        align="center"
-        sx={{ mb: 6 }}
-      >
-        Why placeLimit Orders?
-      </Typography>
+   <Box
+      id="limit-orders"
+      sx={{
+        py: { xs: 6, md: 10 },
+      }}
+    >
+      <Box maxWidth="1200px" mx="auto" px={2}>
+        {/* Title */}
+        <Typography
+          variant="h4"
+          align="center"
+          fontWeight={700}
+          sx={{
+            mb: { xs: 6, md: 10 },
+            fontSize: { xs: "28px", md: "33.33px" },
+            lineHeight: "38px",
+          }}
+        >
+          Why place Limit Orders?
+        </Typography>
 
-      <Grid container spacing={6} alignItems="flex-start" >
-        {/* Left Side Features */}
-        <Grid item xs={12} md={6}>
-          <List>
-            {features.map((text, index) => (
-              <ListItem key={index}>
-                <ListItemIcon>
-                  <CheckCircleIcon sx={{ color: "green" }} />
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  primaryTypographyProps={{ fontSize: "1rem" }}
-                />
-              </ListItem>
-            ))}
-          </List>
-        </Grid>
+        {/* Content */}
+        <Grid
+          container
+          spacing={{ xs: 6, md: 12 }}
+          justifyContent="center"
+          alignItems="flex-start"
+        >
+          {/* Features List */}
+          <Grid item xs={12} md={6}>
+            <Stack spacing={4}>
+              {features.map((f, i) => (
+                <Stack direction="row" spacing={2} alignItems="center" key={i}>
+                  <Box
+                    sx={{
+                      width: 24,
+                      height: 24,
+                      borderRadius: "50%",
+                      background:
+                        "linear-gradient(308deg, #02a863 0%, rgba(2, 168, 99, 0.49) 140.51%)",
+                      boxShadow:
+                        "inset 0px -1px 0px rgba(0,0,0,0.16), 0px 1px 3px rgba(0,0,0,0.12)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Avatar
+                      src={f.icon}
+                      alt="icon"
+                      sx={{ width: 16, height: 16, bgcolor: "transparent" }}
+                      variant="square"
+                    />
+                  </Box>
+                  <Typography
+                    variant="body1"
+                    sx={{ fontWeight: 500, fontSize: 18, lineHeight: "25px" }}
+                  >
+                    {f.text}
+                  </Typography>
+                </Stack>
+              ))}
+            </Stack>
+          </Grid>
 
-        {/* Right Side Table */}
-        <Grid item xs={12} md={6}>
-          <Card
-            sx={{
-              p: 3,
-              borderRadius: 4,
-              boxShadow: 0,
-            }}
-          >
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: "bold" }}>Order history</TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>Open Orders</TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>Expiration Date</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {orders.map((order, index) => (
-                  <TableRow key={index}>
-                    <TableCell>
-                      <Box display="flex" alignItems="center" gap={1}>
-                        <Avatar
-                          src="assets/images/LimitorderSection/danger.png" // replace with your logo
-                          alt="token"
-                          sx={{ width: 24, height: 24 }}
-                        />
-                        {order.sell}
-                      </Box>
-                    </TableCell>
-                    <TableCell>
-                      <Box display="flex" alignItems="center" gap={1}>
-                        <Avatar
-                          src="assets/images/LimitorderSection/danger.png" // replace with your logo
-                          alt="token"
-                          sx={{ width: 24, height: 24 }}
-                        />
-                        {order.buy}
-                      </Box>
-                    </TableCell>
-                    <TableCell>{order.expiry}</TableCell>
-                  </TableRow>
+          {/* Orders Card */}
+          <Grid item xs={12} md={6}>
+            <Card
+              sx={{
+                bgcolor:"default2",
+                borderRadius: 2,
+                p: { xs: 2, md: 3 },
+              }}
+            >
+              {/* Tabs */}
+              <Stack direction="row" spacing={3} mb={2}>
+                <Typography
+                  variant="body1"
+                  fontWeight={700}
+                  sx={{ color: "rgba(0,0,0,0.44)" }}
+                >
+                  Order history
+                </Typography>
+                <Typography variant="body1" fontWeight={700} color="black">
+                  Open Orders
+                </Typography>
+              </Stack>
+
+              {/* Table */}
+              <Stack spacing={2}>
+                {/* Header */}
+                <Box
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1.5fr 1.5fr",
+                    gap: { xs: 1, md: 2 },
+                    px: 1,
+                  }}
+                >
+                  <Typography variant="caption" fontWeight={700}>
+                    Sell
+                  </Typography>
+                  <Typography variant="caption" fontWeight={700} sx={{ pl: 1 }}>
+                    Buy
+                  </Typography>
+                  <Typography variant="caption" fontWeight={700}>
+                    Expiration Date
+                  </Typography>
+                </Box>
+
+                {/* Rows */}
+                {orders.map((o, i) => (
+                  <Box
+                    key={i}
+                    sx={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1.5fr 1.5fr",
+                      gap: { xs: 1, md: 2 },
+                      alignItems: "center",
+                      px: 1,
+                    }}
+                  >
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <Avatar
+                        src={o.sellIcon}
+                        sx={{ width: 24, height: 24 }}
+                      />
+                      <Typography variant="caption" color="#656565">
+                        {o.sell}
+                      </Typography>
+                    </Stack>
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <Avatar
+                        src={o.buyIcon}
+                        sx={{ width: 24, height: 24 }}
+              
+                      />
+                      <Typography variant="caption" color="#656565">
+                        {o.buy}
+                      </Typography>
+                    </Stack>
+                    <Typography variant="caption" color="#656565">
+                      {o.expiry}
+                    </Typography>
+                  </Box>
                 ))}
-              </TableBody>
-            </Table>
-          </Card>
+              </Stack>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
     </Box>
     <Divider/>
     {/* foursection */}
@@ -307,7 +538,7 @@ function LimitOrderSection({isDarkMode}) {
                     disableUnderline: true,
                     startAdornment: (
                       <InputAdornment position="end">
-                        <Typography color="text.secondary">Balance: 0.00</Typography>
+                        <Typography >Balance: 0.00</Typography>
                       </InputAdornment>
                     ),
                     endAdornment: (
@@ -418,7 +649,7 @@ function LimitOrderSection({isDarkMode}) {
           p: 3,
           borderRadius: 2,
           boxShadow: 3,
-          bgcolor: "background.paper",
+           bgcolor: "default2",
           textAlign: "left",
         }}
       >
@@ -504,55 +735,238 @@ function LimitOrderSection({isDarkMode}) {
     </Container>
     <Divider/>
     {/* sixth section */}
-     <Container maxWidth="md" sx={{ textAlign: "center", py: 8 }}>
-      {/* Heading */}
-      <Typography variant="h4" fontWeight="bold" gutterBottom>
-        How to setup limit orders
-      </Typography>
-      <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-        Available on 3 chains:
-      </Typography>
+    <Box
+      id="feature"
+      sx={{
+        py: { xs: 6, md: 10 },
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <Container
+        maxWidth="lg"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        {/* Title */}
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: "Manrope, sans-serif",
+            fontWeight: 800,
+            fontSize: { xs: 28, md: 32 },
+            lineHeight: { xs: "34px", md: "38px" },
+            color: "text.primary",
+          }}
+        >
+          How to setup limit orders
+        </Typography>
 
-      {/* Chain icons */}
-    <Box display="flex" justifyContent="center" gap={3} mb={6}>
-        <Box display="flex" alignItems="center" gap={1}>
-          <Avatar src="assets/images/LimitorderSection/eth.png" sx={{ width: 28, height: 28 }} />
-          <Typography>Ethereum</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" gap={1}>
-          <Avatar src="assets/images/LimitorderSection/danger.png" sx={{ width: 28, height: 28 }} />
-          <Typography>Polygon</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" gap={1}>
-          <Avatar src="assets/images/LimitorderSection/bsc.png" sx={{ width: 28, height: 28 }} />
-          <Typography>BSC</Typography>
-        </Box>
-      </Box>
-      {/* Limit Order Card */}
-      <Box
-      component="img"
-                src="assets/images/LimitorderSection/flash.png" // replace with your chart image
-                alt="Graph"/>
-      {/* Footer text */}
-      <Typography variant="h6" sx={{ mt: 6 }}>
-        Select your Buy and Sell tokens
-      </Typography>
+        {/* Subtitle */}
+        <Typography
+          sx={{
+            color: "text.primary",
+            fontFamily: "Manrope, sans-serif",
+            fontWeight: 400,
+            fontSize: { xs: 16, md: 17 },
+            lineHeight: "25px",
+            mt: 3,
+          }}
+        >
+          Available on 3 chains:
+        </Typography>
 
-      {/* Pagination */}
-      <Stack direction="row" justifyContent="center" spacing={1} mt={2}>
-        {[1, 2, 3, 4, 5].map((page) => (
-          <Box
-            key={page}
+        {/* Chains List */}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "12px 24px",
+            mt: 3,
+          }}
+        >
+          {[
+            {
+              name: "Ethereum",
+              logo: "assets/images/LimitorderSection/eth.png",
+            },
+            {
+              name: "Polygon",
+              logo: "assets/images/LimitorderSection/matic.svg.png",
+            },
+            {
+              name: "BSC",
+              logo: "assets/images/LimitorderSection/bsc.png",
+            },
+          ].map((chain, idx) => (
+            <Box key={idx} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Box
+                component="img"
+                src={chain.logo}
+                alt={`${chain.name} logo`}
+                sx={{ width: 20, height: 20 }}
+              />
+              <Typography
+                sx={{
+                  color: "text.primary",
+                  fontFamily: "Manrope, sans-serif",
+                  fontSize: 16,
+                  lineHeight: "25px",
+                }}
+              >
+                {chain.name}
+              </Typography>
+            </Box>
+          ))}
+        </Box>
+
+       {/* Right Side Swap Widget */}
+        <Box sx={{ width:501,
+          height:513,
+          top:126,
+          left:815,
+          borderRadius:8,
+
+        }}>
+        <Box sx={{ flex: 1, maxWidth: 501, py:8, }}>
+             
+
+            {/* Token Swap Visual */}
+            <Box sx={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4, flexDirection: { xs: "column", sm: "row" }}}>
+              
+              {/* Token Box 1 */}
+              <Box
+                sx={{
+                  backgroundColor: "#fff",
+                  borderRadius: 2,
+                  width: 210,
+                  height: 163,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  pt: 3,
+                  zIndex: 2,
+                }}
+              >
+                <Box sx={{ width: 62, height: 62, position: "relative", mb: 2 }}>
+                  <Box
+                    component="img"
+                    src="assets/images/swapToken/dollar.png"
+                    alt="USDC token"
+                    sx={{ width: 62, height: 62, position: "absolute" }}
+                  />
+                </Box>
+                <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>253.63 USDC</Typography>
+                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "rgba(0,0,0,0.43)" }}>
+                  $253.44
+                </Typography>
+              </Box>
+
+             
+
+              {/* Token Box 2 */}
+              <Box
+                sx={{
+                  backgroundColor: "#fff",
+                  borderRadius: 2,
+                  width: 210,
+                  height: 163,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  pt: 3,
+                  zIndex: 2,
+                }}
+              >
+                <Box
+                  component="img"
+                  src="assets/images/swapToken/eth.png"
+                  alt="ETH token"
+                  sx={{ width: 62, height: 62, mb: 2 }}
+                />
+                <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
+                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>$253.44</Typography>
+                {/* Connecting Circle */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  width:120,
+                  height:130,
+                  backgroundColor: "white",
+                  borderRadius: "90%",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 1,
+                  display: { xs: "none", sm: "block" },
+                }}
+              />
+              </Box>
+              
+            </Box>
+
+            {/* Swap Details */}
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              {[
+                { label: "Liquidity Providers", value: "OxRFQ" },
+                { label: "Rate", value: "1 ETH = 1562.76 USDC($1562.77)" },
+                { label: "Ethereum Fees", value: "$ 23" },
+              ].map((row, i) => (
+                <Box key={i} sx={{ display: "flex", justifyContent: "space-between", flexDirection: { xs: "column", sm: "row" }, gap: { xs: 0.5, sm: 0 } }}>
+                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "text.primary" }}>{row.label}</Typography>
+                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "text.primary", textAlign: { xs: "left", sm: "right" } }}>{row.value}</Typography>
+                </Box>
+              ))}
+            </Box>
+      
+        </Box>
+         {/* Selection Title */}
+        <Typography
+          sx={{
+            color: "text.primary",
+            fontFamily: "Inter, sans-serif",
+            fontWeight: 400,
+            fontSize: 20,
+            lineHeight: "25px",
+            mt: 4,
+          }}
+        >
+          Select your Buy and Sell tokens
+        </Typography>
+
+       {/* Pagination */}
+      <Box display="flex" justifyContent="center" alignItems="center" gap={2} mt={4}>
+        <IconButton sx={{ color: "black" }}>
+          <ArrowBackIosNewIcon fontSize="small" />
+        </IconButton>
+        {[1, 2, 3, 4, 5].map((num, i) => (
+          <Typography
+            key={i}
             sx={{
-              width: 10,
-              height: 10,
-              borderRadius: "50%",
-              bgcolor: page === 1 ? "text.primary" : "grey.400",
+              mx: 1,
+              fontWeight: num === 1 ? "bold" : "normal",
+              color: num === 1 ? "black" : "#90a4ae",
             }}
-          />
+          >
+            {num}
+          </Typography>
         ))}
-      </Stack>
-    </Container>
+        <IconButton sx={{ color: "black" }}>
+          <ArrowForwardIosIcon fontSize="small" />
+        </IconButton>
+      </Box>
+        </Box>
+      
+
+       
+      </Container>
+    </Box>
 </>
 
 

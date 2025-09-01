@@ -3,69 +3,173 @@ import {
   Typography,
   Button,
   Box,
-  Container,
   Grid,
-  Paper,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Divider,
+  useMediaQuery,
+  Container,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import BoltIcon from "@mui/icons-material/Bolt";
-import AddIcon from "@mui/icons-material/Add";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
+
 
 export default function SwapTokenLanding(isDarkMode) {
-  const features = [
+   const isTablet = useMediaQuery("(max-width:992px)");
+  const isMobile = useMediaQuery("(max-width:768px)");
+   const features = [
     {
-      icon: <BoltIcon sx={{ fontSize: 40, color: "white" }} />,
-      text: "Faster trade Confirmation",
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>RFQ Private </span>Settlement
+        </>
+      ),
     },
     {
-      icon: <AddIcon sx={{ fontSize: 40, color: "white" }} />,
-      text: "Reduce failed rate by 75 %",
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>No public mempool - </span>no MEV
+          bots
+        </>
+      ),
     },
     {
-      icon: <WhatshotIcon sx={{ fontSize: 40, color: "white" }} />,
-      text: "Matches handles Gases",
+       icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Enhanced protection with </span>
+          Unidex Auto
+        </>
+      ),
+    },
+    {
+       icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Alerts you to slippage</span> and
+          potential price impact before you trade
+        </>
+      ),
+    },
+    {
+       icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Optimized for smarter </span>
+          trading with safety,transparency in every swap
+        </>
+      ),
     },
   ];
-  return (
-    <Box>
 
-      {/* Hero Section */}
-      <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+  return (
+    <Box sx={{
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
       }}>
-      <Container sx={{ 
-        textAlign: "center", 
-        backgroundImage: `url("assets/images/swapToken/swapback.png")`, // image inside public/assets folder
-        backgroundRepeat: "no-repeat",
-        backgroundSize:"contain",
-        backgroundPosition: "center",
-        py: 20,
-        minHeight: "80vh",  
-        
-       }}>
-        <Typography variant="h5" color="primary" weight={700} fontSize={24} height={33}>
-          Browse. Swap. Confirm.
-        </Typography>
-        <Typography variant="h3" fontWeight="bold" gutterBottom size="62px" height="85px">
-          Swap Tokens
-        </Typography>
-        <Typography variant="body1" gutterBottom fontWeight={700}>
-          Zero fee trades on 9+ million tokens across 14 chains. Get the best
-          prices by tapping <br/> into 130+ liquidity sources.
-        </Typography>
-        <Button
-          variant="contained"
-          size="large"
-          sx={{ mt: 3, color:"text.primary", }}
+
+     
+      {/* Hero Section */}
+      <Box sx={{
+        py:4,
+        fontFamily: "'Manrope', sans-serif",
+        color: "text.primary",
+        backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+      }}>
+      <Box
+        id="hero"
+        sx={{
+          position: "relative",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: { md: "515px" },
+          overflow: "hidden",
+        }}
+      >
+        {/* Single Background Decoration */}
+        <Box
+          component="img"
+          src="assets/images/swapToken/swapback.png"
+          alt="hero background decor"
+          sx={{
+            position: "absolute",
+            top: { xs: "50px", md: "35px" },
+            width: { xs: "100%", md: "901px" },
+          }}
+        />
+
+        {/* Content */}
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "22px",
+            maxWidth: "582px",
+            width: "100%",
+          }}
         >
-          Start Trading
-        </Button>
-      </Container>
+          <Typography
+            sx={{
+              color: "#0c9fe3",
+              fontWeight: 700,
+              fontSize: { xs: "20px", md: "24px" },
+              lineHeight: "32.78px",
+            }}
+          >
+            Browse. Swap. Confirm.
+          </Typography>
+
+          <Typography
+            sx={{
+              color: "text.primary",
+              fontWeight: 700,
+              fontSize: { xs: "48px", md: "62px" },
+              lineHeight: 1.1,
+            }}
+          >
+            Swap Tokens
+          </Typography>
+
+          <Typography
+            sx={{
+              color: "text.primary",
+              fontWeight: 700,
+              fontSize: { xs: "13px", md: "14px" },
+              lineHeight: "24px",
+            }}
+          >
+            Zero fee trades on 9+ million tokens across 14 chains. Get the best
+            prices by tapping into 130+ liquidity sources
+          </Typography>
+
+          <Button
+            variant="contained"
+            sx={{
+              borderRadius: "8px",
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
+              lineHeight: "24px",
+              background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
+              color: "white",
+              textTransform: "none",
+             
+            }}
+          >
+            Start Trading
+          </Button>
+        </Box>
+      </Box>
       </Box>
 
       <Divider />
@@ -311,135 +415,133 @@ export default function SwapTokenLanding(isDarkMode) {
       <Divider />
 
       {/* MEV Protection */}
-            <Box
+ <Box
+      id="mev-protection"
       sx={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        px: { xs: 2, md: 8 },
-       
-        }}>
-      {/* Left Side Content */}
-      <Box sx={{ maxWidth: 600 }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 4 }}>
-          MEV Protection
-        </Typography>
-
-        <List>
-          <ListItem>
-     
-            
-            <ListItemIcon>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14, }}>
-                    RFQ Private
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
-                  Settlement</Box>{" "}
-                 </Box>{" "}
-                </Typography>
-              }
+        position: "relative",
+        overflow: "hidden",
+        py: { xs: 6, md: 10 },
+      }}
+    >
+      {/* Background Shapes (hidden on tablet/mobile) */}
+      {!isTablet && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+        >
+          {["46", "48", "12", "13"].map((id, idx) => (
+            <Box
+              key={idx}
+              component="img"
+              src={`/page/d217867e-d6a5-4b6d-a6f4-5b0d4b6cb0aa/images/137_${id}.svg`}
+              alt="decorative background shape"
+              sx={{
+                position: "absolute",
+                borderRadius: "50%",
+                border: "1px solid rgba(4, 138, 205, 0.2)",
+                top: "-116px",
+                width: 801,
+                height: 801,
+                left: `${778 + idx * 120}px`,
+              }}
             />
-          </ListItem>
+          ))}
+        </Box>
+      )}
 
-          <ListItem>
-            <ListItemIcon>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
-                    No public mempool
-                  </Box>{" "}
-                  <Box component="span" sx={{color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
-                  -no MEV Bot</Box>{" "}
-                </Typography>
-              }
-            />
-          </ListItem>
-
-          <ListItem>
-            <ListItemIcon>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
-                    Enhanced protection with
-                  </Box>{" "}
-                  <Box component="span" sx={{color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
-                  Unidex Auto</Box>{" "}
-                </Typography>
-              }
-            />
-          </ListItem>
-
-          <ListItem>
-            <ListItemIcon>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
-                    Alerts you to slippage
-                  </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
-                  and potential price impact before you trade</Box>{" "}
-                </Typography>
-              }
-            />
-          </ListItem>
-
-          <ListItem>
-            <ListItemIcon>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
-                    Optimized for smarter
-                  </Box>{" "}
-                  <Box component="span" sx={{ color: "text.primary", fontWeight: 700, fontStyle:"bold",fontSize:14, }}>
-                  trading with safety,transparency in every swap</Box>{" "}
-                 
-                </Typography>
-              }
-            />
-          </ListItem>
-        </List>
-      </Box>
-
-      {/* Right Side Image */}
-      
-      <Box sx={{ backgroundImage: `url("assets/images/swapToken/combaincircle.png")`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize:"cover",
-        width:"700px",
-        minHeight:"190vh",
-        display: "flex",
-        alignItems: "center", 
-        justifyContent: "center",
-        }}>
-      <Box
-        component="img"
-        src="assets/images/swapToken/protection.png" // <-- place your image in public folder
-        alt="MEV Protection Shield"
+      <Container
+        maxWidth="lg"
         sx={{
-          width: { xs: "300px", md: "350px" },
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: { xs: 6, md: 8 },
+          flexDirection: { xs: "column", md: "row" },
+          textAlign: { xs: "center", md: "left" },
+          position: "relative",
+          zIndex: 2,
         }}
-      />
-      </Box>
+      >
+        {/* Text Content */}
+        <Box
+          sx={{
+            flex: { md: "0 0 530px" },
+            order: { xs: 2, md: 1 },
+          }}
+        >
+          <Typography
+            variant={isMobile ? "h4" : "h3"}
+            sx={{
+              fontWeight: 700,
+              mb: { xs: 4, md: 9 },
+              lineHeight: { xs: 1.3, md: "55px" },
+              color: "text.primary",
+            }}
+          >
+            MEV Protection
+          </Typography>
 
-  </Box>
+          <List sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            {features.map((item, idx) => (
+              <ListItem
+                key={idx}
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 2,
+                  p: 0,
+                }}
+              >
+                <ListItemIcon sx={{ minWidth: "unset" }}>
+                  <Box
+                    component="img"
+                    src={item.icon}
+                    alt="Checkmark icon"
+                    sx={{ width: 24, height: 24, mt: "2px" }}
+                  />
+                </ListItemIcon>
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontSize: 14,
+                    fontWeight: 700,
+                    lineHeight: "24px",
+                    color: "text.primary",
+                  }}
+                  primary={item.text}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
 
+        {/* Image Content */}
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            justifyContent: { xs: "center", md: "flex-end" },
+            order: { xs: 1, md: 2 },
+          }}
+        >
+          <Box
+            component="img"
+            src="assets/images/swapToken/protection.png"
+            alt="MEV Protection Shield"
+            sx={{
+              width: { xs: 280, md: 371 },
+              height: { xs: "auto", md: 456 },
+            }}
+          />
+        </Box>
+      </Container>
+    </Box>
       <Divider />
 
 
@@ -557,75 +659,183 @@ export default function SwapTokenLanding(isDarkMode) {
       </Box>
     </Box>
      <Divider/>
-
-
-      {/* New Trade Mode */}
-      <Box
+    {/* last section */}
+    <Box
+      component="section"
+      id="trade-features"
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        py: 6,
-        backgroundImage: `url("assets/images/swapToken/gradient.png")`,
-        minHeight: "80vh",
+        position: "relative",
+        overflow: "hidden",
+        py: { xs: 6, md: 10 },
       }}
     >
-      {/* Title */}
-      <Typography variant="h6" sx={{ color: "#2196f3", fontWeight: 600 }}>
-        New Trade Mode :
-      </Typography>
-      <Typography variant="h3" sx={{ fontWeight: "bold", my: 1 }}>
-        Swap Tokens
-      </Typography>
-      <Typography variant="subtitle1" sx={{ color: "text.primary", mb: 6, fontWeight:"700"}}>
-        Great Prices, with more speed and less worry
-        <Box sx={{
-        backgroundImage: "url('assetsx/images/swapToken/string.png')", 
-        backgroundSize: "contain",}}/>
-      </Typography>
-       
-      {/* Features */}
-      <Grid container spacing={6} justifyContent="center"
+      {/* Background elements */}
+      <Box
+        className="background-elements"
+        sx={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
       >
-        {features.map((item, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <Paper
-              elevation={0}
-              sx={{
-                background: "transparent",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              {/* Circle with Icon */}
+      <Box sx ={{
+           backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+
+      }}></Box>
+      
+        {/* Background vectors */}
+        {["assets/images/LimitorderSection/backwaves.png"].map((file, idx) => (
+          <Box
+            key={idx}
+            component="img"
+            src={`/page/559a3c5f-ac99-4461-9378-ee9ce5cbbe95/images/${file}`}
+            alt=""
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%) rotate(32.56deg)",
+              opacity: idx === 1 ? 0.7 : 0.5,
+              width: "150%",
+            }}
+          />
+        ))}
+      </Box>
+
+      {/* Content container */}
+      <Box
+        className="container"
+        sx={{
+          maxWidth: "1440px",
+          mx: "auto",
+          px: { xs: 2, md: 5 },
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
+        {/* Section header */}
+        <Box textAlign="center" mb={{ xs: 6, md: 10 }}>
+          <Typography
+            variant="h6"
+            sx={{
+              color: "#0c9fe3",
+              fontWeight: 700,
+              fontSize: { xs: 20, md: 24 },
+              mb: 2,
+            }}
+          >
+            New Trade Mode :
+          </Typography>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: 36, md: 44 },
+              color: "text.primary",
+              mb: 2,
+            }}
+          >
+            Swap Tokens
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontWeight: 700,
+              fontSize: 14,
+              color: "text.primary",
+              lineHeight: 1.7,
+            }}
+          >
+            Great Prices, with more speed and less worry
+          </Typography>
+        </Box>
+
+        {/* Features grid */}
+        <Grid
+          container
+          spacing={isMobile ? 6 : 4}
+          justifyContent="center"
+          alignItems="flex-start"
+        >
+          {[
+            {
+              circles: ["assets/images/swapToken/circle inner.png"],
+              icon: "assets/images/swapToken/flash.png",
+              text: "Faster trade Confirmation",
+            },
+            {
+              circles: ["assets/images/swapToken/circle inner.png"],
+              icon: "139_32.svg",
+              text: "Reduce failed rate by 75 %",
+            },
+            {
+              circles: ["assets/images/swapToken/circle inner.png"],
+              icon: "139_33.svg",
+              text: "Matches handles Gases",
+            },
+          ].map((feature, idx) => (
+            <Grid item xs={12} sm={6} md={4} key={idx}>
               <Box
-                sx={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: "50%",
-                  background: "radial-gradient(circle, #0288d1 60%, #03a9f4 90%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  mb: 2,
-                }}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                textAlign="center"
               >
-                {item.icon}
+                {/* Icon stack */}
+                <Box
+                  sx={{
+                    position: "relative",
+                    width: 130,
+                    height: 130,
+                    mb: 3,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {feature.circles.map((circle, cIdx) => (
+                    <Box
+                      key={cIdx}
+                      component="img"
+                      src={"assets/images/swapToken/circle inner.png"}
+                      alt="circle"
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        width: cIdx === 0 ? 130 : cIdx === 1 ? 111 : 81,
+                        height: cIdx === 0 ? 130 : cIdx === 1 ? 111 : 81,
+                      }}
+                    />
+                  ))}
+                  <Box
+                    component="img"
+                    src={"assets/images/swapToken/center fire.png"}
+                    alt="icon"
+                    sx={{ width: 45, height: 45, zIndex: 2 }}
+                  />
+                </Box>
+                <Typography
+                  sx={{
+                    color: "text.primary",
+                    fontSize: 16,
+                    fontWeight: 700,
+                    lineHeight: 1.4,
+                    maxWidth: 201,
+                  }}
+                >
+                  {feature.text}
+                </Typography>
               </Box>
-
-              {/* Text */}
-              <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-                {item.text}
-              </Typography>
-            </Paper>
-          </Grid>))}
-
-      </Grid>
-
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Box>
+
+     
     <Divider/>
     </Box>
   );

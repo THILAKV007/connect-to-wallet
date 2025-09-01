@@ -245,7 +245,7 @@ export default function CrossChainSection(isDarkMode) {
     {/* third section */}
      <Box
       sx={{
-        minHeight: "100vh", // light blue
+        minHeight: "90vh", // light blue
         backgroundImage: "url('assets/images/CrossChain/edit.png')", // place wave background here
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -280,8 +280,8 @@ export default function CrossChainSection(isDarkMode) {
               sx={{
                 borderRadius: "20px",
                 boxShadow: "0px 8px 24px rgba(0,0,0,0.08)",
-                width: 587,
-                height:319,
+                width:500,
+                height:250,
               opacity: 1,}}>
               <CardContent>
                 <Grid container spacing={4}>
