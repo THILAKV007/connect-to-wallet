@@ -60,28 +60,49 @@ function LimitOrderSection({ isDarkMode }) {
   return (
     <>
       {/* first section */}
-      <Box
-        sx={{ backgroundImage: `url("assets/images/swapToken/gradient.png")` }}
-      >
+      <Box sx={{}}>
         <Box
           sx={{
             textAlign: 'center',
-            py: 20,
-            minHeight: '80vh',
-            backgroundImage: `url("assets/images/LimitorderSection/limitback.png")`, // image inside public/assets folder
+            py: { xs: 8, sm: 12, md: 16, lg: 20 },
+            minHeight: { xs: '60vh', sm: '70vh', md: '80vh' },
+            backgroundImage: `url("assets/images/LimitorderSection/limitback.png")`,
             backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain',
+            backgroundSize: { xs: 'cover', sm: 'contain' },
             backgroundPosition: 'center',
             width: 'auto',
+            px: { xs: 2, sm: 4 },
           }}
         >
-          <Typography variant='h4' color='primary' gutterBottom>
+          <Typography
+            variant='h4'
+            color='primary'
+            gutterBottom
+            sx={{
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' },
+            }}
+          >
             Master volatile markets
           </Typography>
-          <Typography variant='h2' fontWeight='bold' gutterBottom>
+          <Typography
+            variant='h2'
+            fontWeight='bold'
+            gutterBottom
+            sx={{
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem', lg: '3.75rem' },
+            }}
+          >
             Limit orders
           </Typography>
-          <Typography variant='body1' mb={4}>
+          <Typography
+            variant='body1'
+            mb={4}
+            sx={{
+              fontSize: { xs: '0.875rem', sm: '1rem' },
+              maxWidth: { xs: '100%', sm: '80%', md: '60%' },
+              mx: 'auto',
+            }}
+          >
             Deep liquidity for the best prices on 9+ million tokens across 14
             chains. Tap into 130+ liquidity sources aggregated by Matcha!
           </Typography>
@@ -100,10 +121,11 @@ function LimitOrderSection({ isDarkMode }) {
               sx={{
                 borderRadius: 4,
                 boxShadow: 3,
-                maxWidth: 400,
+                maxWidth: { xs: '100%', sm: 350, md: 400 },
                 mx: 'auto',
                 bgcolor: 'white',
                 color: 'black',
+                p: { xs: 1, sm: 2 },
               }}
             >
               <CardContent>
@@ -112,13 +134,24 @@ function LimitOrderSection({ isDarkMode }) {
                   <Avatar
                     src='assets/images/LimitorderSection/bedrock.png'
                     alt='Bedrock'
-                    sx={{ width: 56, height: 56 }}
+                    sx={{
+                      width: { xs: 48, sm: 56 },
+                      height: { xs: 48, sm: 56 },
+                    }}
                   />
                   <Box>
-                    <Typography variant='h6' fontWeight='bold'>
+                    <Typography
+                      variant='h6'
+                      fontWeight='bold'
+                      sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }}
+                    >
                       Bedrock
                     </Typography>
-                    <Typography variant='body2' color='text.secondary'>
+                    <Typography
+                      variant='body2'
+                      color='text.secondary'
+                      sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
+                    >
                       Be
                     </Typography>
                   </Box>
@@ -196,53 +229,97 @@ function LimitOrderSection({ isDarkMode }) {
           <Grid item xs={12} md={6}>
             <Card
               sx={{
-                p: 3,
+                p: { xs: 1, sm: 2, md: 3 },
                 borderRadius: 4,
                 boxShadow: 0,
+                overflow: 'hidden',
               }}
             >
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell sx={{ fontWeight: 'bold' }}>
-                      Order history
-                    </TableCell>
-                    <TableCell sx={{ fontWeight: 'bold' }}>
-                      Open Orders
-                    </TableCell>
-                    <TableCell sx={{ fontWeight: 'bold' }}>
-                      Expiration Date
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {orders.map((order, index) => (
-                    <TableRow key={index}>
-                      <TableCell>
-                        <Box display='flex' alignItems='center' gap={1}>
-                          <Avatar
-                            src='assets/images/LimitorderSection/danger.png' // replace with your logo
-                            alt='token'
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          {order.sell}
-                        </Box>
+              <Box sx={{ overflowX: 'auto' }}>
+                <Table sx={{ minWidth: { xs: 300, sm: 400 } }}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell
+                        sx={{
+                          fontWeight: 'bold',
+                          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                          px: { xs: 1, sm: 2 },
+                        }}
+                      >
+                        Order history
                       </TableCell>
-                      <TableCell>
-                        <Box display='flex' alignItems='center' gap={1}>
-                          <Avatar
-                            src='assets/images/LimitorderSection/danger.png' // replace with your logo
-                            alt='token'
-                            sx={{ width: 24, height: 24 }}
-                          />
-                          {order.buy}
-                        </Box>
+                      <TableCell
+                        sx={{
+                          fontWeight: 'bold',
+                          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                          px: { xs: 1, sm: 2 },
+                        }}
+                      >
+                        Open Orders
                       </TableCell>
-                      <TableCell>{order.expiry}</TableCell>
+                      <TableCell
+                        sx={{
+                          fontWeight: 'bold',
+                          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                          px: { xs: 1, sm: 2 },
+                        }}
+                      >
+                        Expiration Date
+                      </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHead>
+                  <TableBody>
+                    {orders.map((order, index) => (
+                      <TableRow key={index}>
+                        <TableCell
+                          sx={{
+                            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                            px: { xs: 1, sm: 2 },
+                          }}
+                        >
+                          <Box display='flex' alignItems='center' gap={1}>
+                            <Avatar
+                              src='assets/images/LimitorderSection/danger.png' // replace with your logo
+                              alt='token'
+                              sx={{
+                                width: { xs: 20, sm: 24 },
+                                height: { xs: 20, sm: 24 },
+                              }}
+                            />
+                            {order.sell}
+                          </Box>
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                            px: { xs: 1, sm: 2 },
+                          }}
+                        >
+                          <Box display='flex' alignItems='center' gap={1}>
+                            <Avatar
+                              src='assets/images/LimitorderSection/danger.png' // replace with your logo
+                              alt='token'
+                              sx={{
+                                width: { xs: 20, sm: 24 },
+                                height: { xs: 20, sm: 24 },
+                              }}
+                            />
+                            {order.buy}
+                          </Box>
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                            px: { xs: 1, sm: 2 },
+                          }}
+                        >
+                          {order.expiry}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Box>
             </Card>
           </Grid>
         </Grid>
@@ -259,34 +336,53 @@ function LimitOrderSection({ isDarkMode }) {
         </Typography>
 
         {/* Chain Logos */}
-        <Box display='flex' justifyContent='center' gap={3} mb={6}>
+        <Box
+          display='flex'
+          justifyContent='center'
+          gap={{ xs: 1, sm: 2, md: 3 }}
+          mb={6}
+          flexWrap='wrap'
+          px={{ xs: 2, sm: 0 }}
+        >
           <Box display='flex' alignItems='center' gap={1}>
             <Avatar
               src='assets/images/LimitorderSection/eth.png'
-              sx={{ width: 28, height: 28 }}
+              sx={{ width: { xs: 24, sm: 28 }, height: { xs: 24, sm: 28 } }}
             />
-            <Typography>Ethereum</Typography>
+            <Typography sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+              Ethereum
+            </Typography>
           </Box>
           <Box display='flex' alignItems='center' gap={1}>
             <Avatar
               src='assets/images/LimitorderSection/danger.png'
-              sx={{ width: 28, height: 28 }}
+              sx={{ width: { xs: 24, sm: 28 }, height: { xs: 24, sm: 28 } }}
             />
-            <Typography>Polygon</Typography>
+            <Typography sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+              Polygon
+            </Typography>
           </Box>
           <Box display='flex' alignItems='center' gap={1}>
             <Avatar
               src='assets/images/LimitorderSection/bsc.png'
-              sx={{ width: 28, height: 28 }}
+              sx={{ width: { xs: 24, sm: 28 }, height: { xs: 24, sm: 28 } }}
             />
-            <Typography>BSC</Typography>
+            <Typography sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+              BSC
+            </Typography>
           </Box>
         </Box>
 
         {/* Card with Tabs */}
         <Grid container justifyContent='center'>
-          <Grid item xs={12} md={4}>
-            <Card sx={{ borderRadius: 3 }}>
+          <Grid item xs={12} sm={8} md={6} lg={4}>
+            <Card
+              sx={{
+                borderRadius: 3,
+                mx: { xs: 1, sm: 2 },
+                maxWidth: { xs: '100%', sm: 400 },
+              }}
+            >
               <Tabs
                 value={tab}
                 onChange={(e, newValue) => setTab(newValue)}
@@ -309,7 +405,7 @@ function LimitOrderSection({ isDarkMode }) {
                   sx={{
                     bgcolor: 'white',
                     borderRadius: 2,
-                    p: 2,
+                    p: { xs: 1.5, sm: 2 },
                     mb: 2,
                     textAlign: 'left',
                     color: 'black',
@@ -345,7 +441,7 @@ function LimitOrderSection({ isDarkMode }) {
                   sx={{
                     bgcolor: 'white',
                     borderRadius: 2,
-                    p: 2,
+                    p: { xs: 1.5, sm: 2 },
                     textAlign: 'left',
                     color: 'black',
                   }}
@@ -450,9 +546,9 @@ function LimitOrderSection({ isDarkMode }) {
         {/* Limit Order Card */}
         <Box
           sx={{
-            mx: 'auto',
-            maxWidth: 350,
-            p: 3,
+            mx: { xs: 2, sm: 'auto' },
+            maxWidth: { xs: '100%', sm: 350 },
+            p: { xs: 2, sm: 3 },
             borderRadius: 2,
             boxShadow: 3,
             bgcolor: 'background.paper',
@@ -484,7 +580,14 @@ function LimitOrderSection({ isDarkMode }) {
             exclusive
             onChange={handleSlippage}
             fullWidth
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 2,
+              '& .MuiToggleButton-root': {
+                fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                px: { xs: 0.5, sm: 1 },
+                py: { xs: 0.5, sm: 1 },
+              },
+            }}
           >
             <ToggleButton value='Market'>Market</ToggleButton>
             <ToggleButton value='1%'>1 % ↑</ToggleButton>
@@ -579,6 +682,13 @@ function LimitOrderSection({ isDarkMode }) {
           component='img'
           src='assets/images/LimitorderSection/flash.png'
           alt='Graph'
+          sx={{
+            width: { xs: '100%', sm: '80%', md: '60%' },
+            maxWidth: { xs: 320, sm: 400, md: 500 },
+            height: 'auto',
+            mx: 'auto',
+            display: 'block',
+          }}
         />
         {/* Footer text */}
         <Typography variant='h6' sx={{ mt: 6 }}>
