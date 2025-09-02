@@ -157,7 +157,7 @@ const rows = [
                       fontSize: "16px",
                       lineHeight: "24px",
                       background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-                      color: "text.primary",
+                      color: "white",
                       textTransform: "none",
                      
                     }}
@@ -308,12 +308,12 @@ const rows = [
  <Box
       sx={{
         position: "relative",
-        minHeight: "100vh",
+        minHeight: "60vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         backgroundImage: "url('assets/images/LiquiditySection/back.png')", // <-- place your bg image inside public/assets/images
-        backgroundSize: "cover",
+        backgroundSize: "contain",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         textAlign: "center",
