@@ -122,7 +122,19 @@ export default function SwapTokenLanding(isDarkMode) {
             }}
           >
             <Box sx={{ maxWidth: 700 }}>
-              <Typography variant='h3' sx={{ fontWeight: 700, mb: 4 }}>
+              <Typography 
+                variant='h3' 
+                sx={{ 
+                  fontWeight: 700, 
+                  mb: 4,
+                  fontSize: {
+                    xs: '1.5rem',
+                    sm: '2rem', 
+                    md: '2.5rem',
+                    lg: '3rem'
+                  }
+                }}
+              >
                 Get unbeatable trade prices on Unidex.
               </Typography>
 
@@ -140,7 +152,11 @@ export default function SwapTokenLanding(isDarkMode) {
                             color: '#1976d2',
                             fontWeight: 700,
                             fontStyle: 'bold',
-                            fontSize: 14,
+                            fontSize: {
+                              xs: 12,
+                              sm: 14,
+                              md: 16
+                            },
                           }}
                         >
                           Scans multiple
@@ -150,7 +166,11 @@ export default function SwapTokenLanding(isDarkMode) {
                               color: 'text.primary',
                               fontWeight: 700,
                               fontStyle: 'bold',
-                              fontSize: 14,
+                              fontSize: {
+                                xs: 12,
+                                sm: 14,
+                                md: 16
+                              },
                             }}
                           >
                             sources to find the best possible trade rates
@@ -174,7 +194,11 @@ export default function SwapTokenLanding(isDarkMode) {
                             color: '#1976d2',
                             fontWeight: 700,
                             fontStyle: 'bold',
-                            fontSize: 14,
+                            fontSize: {
+                              xs: 12,
+                              sm: 14,
+                              md: 16
+                            },
                           }}
                         >
                           Smart routing
@@ -185,7 +209,11 @@ export default function SwapTokenLanding(isDarkMode) {
                             color: 'text.primary',
                             fontWeight: 700,
                             fontStyle: 'bold',
-                            fontSize: 14,
+                            fontSize: {
+                              xs: 12,
+                              sm: 14,
+                              md: 16
+                            },
                           }}
                         >
                           ensures maximum value across liquidity pools
@@ -208,7 +236,11 @@ export default function SwapTokenLanding(isDarkMode) {
                             color: '#1976d2',
                             fontWeight: 700,
                             fontStyle: 'bold',
-                            fontSize: 14,
+                            fontSize: {
+                              xs: 12,
+                              sm: 14,
+                              md: 16
+                            },
                           }}
                         >
                           Protects against front-running
@@ -219,7 +251,11 @@ export default function SwapTokenLanding(isDarkMode) {
                             color: 'text.primary',
                             fontWeight: 700,
                             fontStyle: 'bold',
-                            fontSize: 14,
+                            fontSize: {
+                              xs: 12,
+                              sm: 14,
+                              md: 16
+                            },
                           }}
                         >
                           and sandwich attacks
@@ -242,7 +278,11 @@ export default function SwapTokenLanding(isDarkMode) {
                             color: '#1976d2',
                             fontWeight: 700,
                             fontStyle: 'bold',
-                            fontSize: 14,
+                            fontSize: {
+                              xs: 12,
+                              sm: 14,
+                              md: 16
+                            },
                           }}
                         >
                           Alerts you to slippage
@@ -253,7 +293,11 @@ export default function SwapTokenLanding(isDarkMode) {
                             color: 'text.primary',
                             fontWeight: 700,
                             fontStyle: 'bold',
-                            fontSize: 14,
+                            fontSize: {
+                              xs: 12,
+                              sm: 14,
+                              md: 16
+                            },
                           }}
                         >
                           and potential price impact before you trade
@@ -276,7 +320,11 @@ export default function SwapTokenLanding(isDarkMode) {
                             color: '#1976d2',
                             fontWeight: 700,
                             fontStyle: 'bold',
-                            fontSize: 14,
+                            fontSize: {
+                              xs: 12,
+                              sm: 14,
+                              md: 16
+                            },
                           }}
                         >
                           Optimized for smarter
@@ -287,7 +335,11 @@ export default function SwapTokenLanding(isDarkMode) {
                             color: 'text.primary',
                             fontWeight: 700,
                             fontStyle: 'bold',
-                            fontSize: 14,
+                            fontSize: {
+                              xs: 12,
+                              sm: 14,
+                              md: 16
+                            },
                           }}
                         >
                           trading with safety,transparency in every swap
