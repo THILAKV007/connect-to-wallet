@@ -5,33 +5,23 @@ import { Box, Typography, Button ,Grid, Card,
   InputAdornment,
   Tabs,
   Stack,
-  styled,
   Container,
   useMediaQuery,
   Avatar,
   CardContent,
   Tab,
-  Paper,
+  MenuItem,
+  Select,
+  ToggleButton,
+  ToggleButtonGroup,
+
 } from '@mui/material';
 
 
+
 function LimitOrderSection({isDarkMode}) {
-  const icons = [
-  "assets/images/LimitorderSection/Item.png", // Ethereum
-  "assets/images/LimitorderSection/Item (1).png", // Polygon
-  "assets/images/LimitorderSection/Item (2).png", // Arbitrum
-  "assets/images/LimitorderSection/Item (3).png", // Optimism
-  "assets/images/LimitorderSection/Item (4).png", // Binance
-  "assets/images/LimitorderSection/Item (5).png", // Meter
-  "assets/images/LimitorderSection/Item (6).png", // Scroll
-  "assets/images/LimitorderSection/Item (7).png", // Unknown logo (placeholder)
-  "assets/images/LimitorderSection/Item (8).png", // BitTorrent
-  "assets/images/LimitorderSection/Item (9).png", // Avalanche
-  "assets/images/LimitorderSection/Item (10).png", // Verasity
- 
-];
-const colorTextPrimary = '#000000';
-const colorTextSecondary = '#555555';
+
+
 
      const features = [
   { text: "Master volatility and get the price you want", icon: "assets/images/LimitorderSection/tick.svg" },
@@ -54,124 +44,22 @@ const orders = [
    
   const isTablet = useMediaQuery("(max-width:1024px)");
   const isMobile = useMediaQuery("(max-width:768px)");
-  const ChainsSectionRoot = styled('section')(({ theme }) => ({
-  padding: '80px 20px',
-  [theme.breakpoints.down('md')]: {
-    padding: '60px 15px',
-  },
-}));
 
-const ChainsContainer = styled(Box)(({ theme }) => ({
-  maxWidth: 1440,
-  margin: '0 auto',
-  position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  overflow: 'hidden',
-}));
+
+   const [selected, setSelected] = React.useState("market");
+  const [expiry, setExpiry] = React.useState("1h");
+
+  const handleChange = (event, newValue) => {
+    if (newValue !== null) {
+      setSelected(newValue);
+    }
+  };
 
 
 
-const ChainsHeader = styled('header')({
-  textAlign: 'center',
-  position: 'relative',
-  zIndex: 1,
-  marginBottom: 50,
-});
 
-const ChainsTitle = styled(Typography)(({ theme }) => ({
-  color: colorTextPrimary,
-  fontWeight: 700,
-  fontSize: 40,
-  lineHeight: 1.37,
-  margin: 0,
-  [theme.breakpoints.down('md')]: {
-    fontSize: 32,
-  },
-}));
 
-const ChainsSubtitle = styled(Typography)({
-  color: colorTextSecondary,
-  fontWeight: 700,
-  fontSize: 14,
-  lineHeight: 1.71,
-  maxWidth: 582,
-  margin: '25px auto 0',
-  whiteSpace: 'pre-line', // to handle <br> line breaks
-});
 
-const ChainsContentWrapper = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: 40,
-  position: 'relative',
-  zIndex: 1,
-  width: '100%',
-  [theme.breakpoints.down('lg')]: {
-    gap: 20,
-  },
-  [theme.breakpoints.down('md')]: {
-    flexDirection: 'column',
-    gap: 40,
-  },
-}));
-
-const Annotation = styled(Stack)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: 20,
-  color: colorTextPrimary,
-  fontWeight: 700,
-  fontSize: 23,
-  lineHeight: 1.37,
-  whiteSpace: 'nowrap',
-  margin: 0,
-  [theme.breakpoints.down('md')]: {
-    justifyContent: 'center',
-    textAlign: 'center',
-    whiteSpace: 'normal',
-  },
-}));
-
-const AnnotationTrending = styled(Annotation)(({ theme }) => ({
-  textAlign: 'right',
-  alignSelf: 'flex-end',
-  marginBottom: 20,
-  flexDirection: 'row-reverse',
-  [theme.breakpoints.down('md')]: {
-    order: 3,
-    flexDirection: 'column',
-    alignSelf: 'center',
-    marginBottom: 0,
-    textAlign: 'center',
-  },
-}));
-
-const AnnotationVolume = styled(Annotation)(({ theme }) => ({
-  alignSelf: 'flex-start',
-  marginTop: 20,
-  [theme.breakpoints.down('md')]: {
-    order: 1,
-    flexDirection: 'column-reverse',
-    alignSelf: 'center',
-    marginTop: 0,
-    textAlign: 'center',
-  },
-}));
-
-const AnnotationLine = styled('img')(({ theme }) => ({
-  width: 260,
-  height: 1,
-  [theme.breakpoints.down('lg')]: {
-    width: 150,
-  },
-  [theme.breakpoints.down('md')]: {
-    width: 50,
-    transform: 'rotate(90deg)',
-  },
-}));
 
 
 
@@ -257,7 +145,7 @@ const AnnotationLine = styled('img')(({ theme }) => ({
                   lineHeight: "24px",
                 }}
               >
-                Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ <br/> liquidity sources aggregated by Matcha!
+                Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ <br/> liquidity sources aggregated by Unidex!
               </Typography>
     
               <Button
@@ -269,7 +157,7 @@ const AnnotationLine = styled('img')(({ theme }) => ({
                   fontSize: "16px",
                   lineHeight: "24px",
                   background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-                  color: "text.primary",
+                  color: "white",
                   textTransform: "none",
                  
                 }}
@@ -729,78 +617,188 @@ const AnnotationLine = styled('img')(({ theme }) => ({
     </Box>
     <Divider/>
     {/* Fifth section */}
-  <ChainsSectionRoot id="chains-section">
-      <ChainsContainer>
+  <Box
+      component="section"
+      id="limit-orders"
+      sx={{
        
-        <ChainsHeader>
-          <ChainsTitle component="h2">Available Supporting Chains</ChainsTitle>
-          <ChainsSubtitle component="p">
-            Swap crypto without native tokens. Matcha handles the gas for{'\n'}
-            swaps and approvals so you can focus on trading.
-          </ChainsSubtitle>
-        </ChainsHeader>
-        <ChainsContentWrapper>
-          <AnnotationTrending direction="row-reverse" spacing={2}>
-            <AnnotationLine
-              src="assets/images/LimitorderSection/most.png"
-              alt="Dotted line pointing to icons"
-              loading="lazy"
-            /><Typography>With most{'\n'}trending Pairs</Typography>
-          </AnnotationTrending>
-        
-
-
-
-    <Box 
-      sx={{ 
-        maxWidth: 320, 
-        margin: 'auto', 
-        mt: 5,
-        p: 2,
-        borderRadius: 4,
+        py: { xs: 5, md: 8 },
+        px: { xs: 2, md: 4 },
+        display: "flex",
+        justifyContent: "center",
       }}
     >
-      <Grid container spacing={2} justifyContent="center">
-        {icons.map((icon, index) => (
-          <Grid item xs={3} key={index} display="flex" justifyContent="center">
-            <Paper 
-              elevation={6} 
-              sx={{ 
-                borderRadius: 3, 
-                padding: 1.5, 
-                width:70,
-                height:70, 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-              }}
-            >
-              <img 
-                src={icon} 
-                alt={`icon-${index}`} 
-                style={{ 
-                  maxWidth: '200%', 
-                  maxHeight: '200%', 
-                  objectFit: 'contain' 
-                }} 
+      <Box
+        className="container"
+        sx={{
+          maxWidth: "1440px",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        {/* Title */}
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: "Manrope, sans-serif",
+            fontWeight: 800,
+            fontSize: { xs: "28px", md: "32px" },
+            lineHeight: { xs: "34px", md: "38px" },
+            color: "text.primary",
+            mb: 3,
+          }}
+        >
+          How to setup limit orders
+        </Typography>
+
+        {/* Subtitle */}
+        <Typography
+          sx={{
+            fontFamily: "Manrope, sans-serif",
+            fontWeight: 400,
+            fontSize: { xs: "16px", md: "17px" },
+            lineHeight: "25px",
+            color: "text.primary",
+            mb: 4,
+          }}
+        >
+          Available on 3 chains:
+        </Typography>
+
+        {/* Chain list */}
+        <Stack
+          direction="row"
+          spacing={isMobile ? 2.5 : 3.5}
+          flexWrap="wrap"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ mb: 5 }}
+        >
+          {[
+            {
+              src: "assets/images/LimitorderSection/eth.png",
+              alt: "Ethereum icon",
+              name: "Ethereum",
+            },
+            {
+              src: "assets/images/LimitorderSection/ploygon.png",
+              alt: "Polygon icon",
+              name: "Polygon",
+            },
+            {
+              src: "assets/images/LimitorderSection/bsc.png",
+              alt: "BSC icon",
+              name: "BSC",
+            },
+          ].map((chain) => (
+            <Stack key={chain.name} direction="row" alignItems="center" spacing={1}>
+              <Box
+                component="img"
+                src={chain.src}
+                alt={chain.alt}
+                sx={{ width: 20, height: 20 }}
               />
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
+              <Typography
+                sx={{
+                  fontFamily: "Manrope, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: "25px",
+                  color: "#5e6773",
+                }}
+              >
+                {chain.name}
+              </Typography>
+            </Stack>
+          ))}
+        </Stack>
+             <Box
+      sx={{
+        border:2,
+        p: 3,
+        borderRadius: 2,
+        maxWidth: 320,
+      }}
+    >
+      {/* Title */}
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        gutterBottom
+        sx={{ fontWeight: 500 }}
+      >
+        Slippage Tolerance
+      </Typography>
+
+      {/* Limit Price */}
+      <Typography variant="body2" sx={{ fontWeight: 600 }}>
+        Limit Price
+      </Typography>
+      <Typography variant="body2"  gutterBottom>
+        0.00
+      </Typography>
+
+      {/* Toggle Buttons */}
+      <ToggleButtonGroup
+        value={selected}
+        exclusive
+        onChange={handleChange}
+        sx={{ mb: 2 }}
+      >
+        <ToggleButton value="market">Market</ToggleButton>
+        <ToggleButton value="1">1 % ↑</ToggleButton>
+        <ToggleButton value="2">2 % ↑</ToggleButton>
+        <ToggleButton value="5">5 % ↑</ToggleButton>
+        <ToggleButton value="10">10 % ↑</ToggleButton>
+      </ToggleButtonGroup>
+
+      {/* Expiry */}
+      <Typography variant="body2" sx={{ fontWeight: 600 }}>
+        Expiry
+      </Typography>
+      <Select
+        value={expiry}
+        onChange={(e) => setExpiry(e.target.value)}
+        size="small"
+        sx={{
+          
+          mt: 1,
+          mb: 2,
+          borderRadius: 1,
+          minWidth: 120,
+        }}
+      >
+        <MenuItem value="1h">1 Hour</MenuItem>
+        <MenuItem value="6h">6 Hours</MenuItem>
+        <MenuItem value="12h">12 Hours</MenuItem>
+        <MenuItem value="24h">24 Hours</MenuItem>
+      </Select>
+
+      {/* Wallet Button */}
+      <Button
+        variant="contained"
+        fullWidth
+        sx={{
+          mt: 2,
+          bgcolor: "linear-gradient(to right, #00aaff, #0072ff)",
+          textTransform: "none",
+          fontWeight: 600,
+          borderRadius: 1.5,
+          py: 1.2,
+        }}
+      >
+        Connect Ethereum Wallet
+      </Button>
     </Box>
-  
-          <AnnotationVolume direction="row" spacing={2}>
-            <AnnotationLine
-              src="assets/images/LimitorderSection/ghi.png"
-              alt="Dotted line pointing to icons"
-              loading="lazy"
-            />
-            <Typography>With High volume</Typography>
-          </AnnotationVolume>
-        </ChainsContentWrapper>
-      </ChainsContainer>
-    </ChainsSectionRoot>
+        
+      
+       
+      </Box>
+    </Box>
+
     <Divider/>
     {/* sixth section */}
     <Box

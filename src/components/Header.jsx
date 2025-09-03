@@ -151,11 +151,12 @@ function Header({ toggleTheme, isDarkMode }) {
                      label=""
                      onChange={handleChange}
                     
+                    
               >
                 {/* first */}
              <Link to={'/title1'} style={{ textDecoration: 'none'}}> <MenuItem value={10}><Box component="img"
         src="assets/images/Header/hello.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Swap Token<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
+        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Swap Token<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
                   Connect a wallet to your Unidex account
                 </Typography>
                 </Box></MenuItem> 
@@ -163,7 +164,7 @@ function Header({ toggleTheme, isDarkMode }) {
         {/* second */}
              <Link to={'/title2'} style={{ textDecoration: 'none' }}> <MenuItem value={20}><Box component="img"
         src="assets/images/Header/gas.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Gasless Swaps<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
+        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Gasless Swaps<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
                   Connect a wallet to your Unidex account
                 </Typography>
                 </Box></MenuItem> </Link>
@@ -171,7 +172,7 @@ function Header({ toggleTheme, isDarkMode }) {
              {/* third */}
              <Link to={'/title3'} style={{ textDecoration: 'none' }}>  <MenuItem value={30}><Box component="img"
         src="assets/images/Header/liq.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Liquidity Source<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
+        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Liquidity Source<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
                   Connect a wallet to your Unidex account
                 </Typography>
                 </Box></MenuItem> </Link>
@@ -179,7 +180,7 @@ function Header({ toggleTheme, isDarkMode }) {
              {/* fourth */}
              <Link to={'/title4'} style={{ textDecoration: 'none' }}>  <MenuItem value={30}><Box component="img"
         src="assets/images/Header/limit.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Limit Orders<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
+        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Limit Orders<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
                   Connect a wallet to your Unidex account
                 </Typography>
                 </Box></MenuItem> </Link>
@@ -187,7 +188,7 @@ function Header({ toggleTheme, isDarkMode }) {
              {/* fifth */}
              <Link to={'/title5'} style={{ textDecoration: 'none' }}> <MenuItem value={30}><Box component="img"
         src="assets/images/Header/cross.svg"
-        alt="Ethereum" sx={{ width: 44, height:44,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Cross Chains<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
+        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Cross Chains<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
                   Connect a wallet to your Unidex account
                 </Typography>
                 </Box></MenuItem> </Link>

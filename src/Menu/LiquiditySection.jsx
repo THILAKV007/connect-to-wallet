@@ -145,7 +145,7 @@ const rows = [
                       lineHeight: "24px",
                     }}
                   >
-                    Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ <br/> liquidity sources aggregated by Matcha!
+                    Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ <br/> liquidity sources aggregated by Unidex!
                   </Typography>
         
                   <Button
@@ -332,7 +332,7 @@ const rows = [
 
         {/* Subheadline */}
         <Typography variant="h6" sx={{opacity: 0.85 }}>
-          Matcha combines 130+ liquidity sources, on-chain and off-chain.
+          Unidex combines 130+ liquidity sources, on-chain and off-chain.
         </Typography>
       </Container>
     </Box>

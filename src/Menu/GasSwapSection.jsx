@@ -137,7 +137,7 @@ export default function GasSwapSection() {
               lineHeight: "24px",
             }}
           >
-            Swap crypto without native tokens. Matcha handles the gas for <br/>
+            Swap crypto without native tokens.Unidex handles the gas for <br/>
 swaps and approvals so you can focus on trading.
           </Typography>
 
@@ -150,7 +150,7 @@ swaps and approvals so you can focus on trading.
               fontSize: "16px",
               lineHeight: "24px",
               background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-              color: "text.primary",
+              color: "white",
               textTransform: "none",
              
             }}
@@ -349,7 +349,7 @@ swaps and approvals so you can focus on trading.
           align="center"
           sx={{ maxWidth: "600px", mx: "auto", mb: 6, color: "text.secondary" , fontWeight:"700"}}
         >
-          Swap crypto without native tokens. Matcha handles the gas for swaps and
+          Swap crypto without native tokens. Unidex handles the gas for swaps and
           approvals so you can focus on trading.
         </Typography>
 
@@ -411,7 +411,7 @@ swaps and approvals so you can focus on trading.
           Available Supporting Chains
         </Typography>
         <Typography variant="body1" sx={{ fontWeight: "400", mb: 2 , style:"bold", textAlign:"center", margin:4}}>
-          Swap crypto without native tokens. Matcha handles the gas for<br/> swaps and approvals so you can focus on trading.
+          Swap crypto without native tokens. Unidex handles the gas for<br/> swaps and approvals so you can focus on trading.
         </Typography>
       
          <img
@@ -679,7 +679,7 @@ swaps and approvals so you can focus on trading.
             fontFamily: "Manrope, sans-serif",
           }}
         >
-          Swap crypto without native tokens. Matcha handles the gas for <br/> swaps
+          Swap crypto without native tokens. Unidex handles the gas for <br/> swaps
           and approvals so you can focus on trading.
         </Typography>
       </Box>

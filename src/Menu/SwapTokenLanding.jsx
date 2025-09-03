@@ -613,7 +613,7 @@ export default function SwapTokenLanding(isDarkMode) {
               primary={
                 <Typography>
                   <Box component="span" sx={{ color: "#1976d2", fontWeight: 700, fontStyle:"bold",fontSize:14,}}>
-                  Enhanced protection with Matcha Auto
+                  Enhanced protection with Unidex Auto
                   </Box>{" "}
                   
                 </Typography>
@@ -660,6 +660,12 @@ export default function SwapTokenLanding(isDarkMode) {
     </Box>
      <Divider/>
     {/* last section */}
+    <Box sx={{
+        
+        fontFamily: "'Manrope', sans-serif",
+        color: "text.primary",
+        backgroundImage: `url("assets/images/swapToken/gradient.png")`,
+      }}>
     <Box
       component="section"
       id="trade-features"
@@ -761,13 +767,13 @@ export default function SwapTokenLanding(isDarkMode) {
           {[
             {
               circles: ["assets/images/swapToken/circle inner.png"],
-              icon: "assets/images/swapToken/flash.png",
+             icon: "139_32.svg",
               text: "Faster trade Confirmation",
             },
             {
               circles: ["assets/images/swapToken/circle inner.png"],
               icon: "139_32.svg",
-              text: "Reduce failed rate by 75 %",
+              text: "Reduce failed rate by75%",
             },
             {
               circles: ["assets/images/swapToken/circle inner.png"],
@@ -834,7 +840,7 @@ export default function SwapTokenLanding(isDarkMode) {
         </Grid>
       </Box>
     </Box>
-
+    </Box>
      
     <Divider/>
     </Box>

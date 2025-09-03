@@ -83,7 +83,7 @@ export default function CrossChainSection(isDarkMode) {
             }}
           >
             Deep liquidity for the best prices on 9+ million tokens across 14
-            chains. Tap into 130+ <br /> liquidity sources aggregated by Matcha!
+            chains. Tap into 130+ <br /> liquidity sources aggregated by Unidex!
           </Typography>
 
           <Button
@@ -141,7 +141,7 @@ export default function CrossChainSection(isDarkMode) {
           Get unbeatable trade prices on Unidex.
         </Typography>
         <Typography sx={{ fontWeight: 400,mb: 4,color:"text.primary" }}>
-          Matcha does the hard work to find efficient and secure paths for <br/>
+          Unidex does the hard work to find efficient and secure paths for <br/>
           your cross-chain trades.
         </Typography>
       </Box>
@@ -393,7 +393,7 @@ left="20px" />
         color="text.secondary"
         sx={{ mb: 6, maxWidth: 600, mx: "auto" }}
       >
-        Swap crypto without native tokens. Matcha handles the gas for swaps and
+        Swap crypto without native tokens. Unidex handles the gas for swaps and
         approvals so you can focus on trading.
       </Typography>
       <Box
