@@ -337,7 +337,7 @@ export default function SwapTokenLanding(isDarkMode) {
                     component="img"
                     src="assets/images/swapToken/dollar.png"
                     alt="USDC token"
-                    sx={{ width: 62, height: 62, position: "absolute" }}
+                    sx={{ width: 62, height: 62,position:"center" }}
                   />
                 </Box>
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>253.63 USDC</Typography>
@@ -366,7 +366,7 @@ export default function SwapTokenLanding(isDarkMode) {
                   component="img"
                   src="assets/images/swapToken/eth.png"
                   alt="ETH token"
-                  sx={{ width: 62, height: 62, mb: 2 }}
+                 sx={{ width: 62, height: 62,position:"center" }}
                 />
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
                 <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>$253.44</Typography>
@@ -660,6 +660,19 @@ export default function SwapTokenLanding(isDarkMode) {
     </Box>
      <Divider/>
     {/* last section */}
+    <Box
+      sx={{
+         
+        backgroundImage: "url('assets/images/CrossChain/edit.png')", // place wave background here
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      
+        alignItems: "center",
+        
+        textAlign:"center",
+      }}
+    >
     <Box sx={{
         
         fontFamily: "'Manrope', sans-serif",
@@ -841,7 +854,7 @@ export default function SwapTokenLanding(isDarkMode) {
       </Box>
     </Box>
     </Box>
-     
+     </Box>
     <Divider/>
     </Box>
   );

@@ -93,7 +93,7 @@ const orders = [
             {/* Single Background Decoration */}
             <Box
               component="img"
-              src="assets/images/LimitorderSection/limitback.png"
+              src="assets/images/LimitorderSection/littlewaves.png"
               alt="hero"
               sx={{
                 position: "absolute",
@@ -804,7 +804,7 @@ const orders = [
     <Box
       id="feature"
       sx={{
-        py: { xs: 6, md: 10 },
+        py:"8",
         display: "flex",
         justifyContent: "center",
        
@@ -817,7 +817,7 @@ const orders = [
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-           minHeight:"50vh",
+          py:"8",
         }}
       >
         {/* Title */}
@@ -866,7 +866,7 @@ const orders = [
             },
             {
               name: "Polygon",
-              logo: "assets/images/LimitorderSection/matic.svg.png",
+              logo: "assets/images/LimitorderSection/ploygon.png",
             },
             {
               name: "BSC",
@@ -927,7 +927,7 @@ const orders = [
                     component="img"
                     src="assets/images/swapToken/dollar.png"
                     alt="USDC token"
-                    sx={{ width: 62, height: 62, position: "absolute",}}
+                    sx={{ width: 62, height: 62,position:"center" }}
                   />
                 </Box>
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>253.63 USDC</Typography>
@@ -956,7 +956,7 @@ const orders = [
                   component="img"
                   src="assets/images/swapToken/eth.png"
                   alt="ETH token"
-                  sx={{ width: 62, height: 62, mb: 2 }}
+                  sx={{ width: 62, height: 62,position:"center" }}
                 />
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
                 <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>$253.44</Typography>

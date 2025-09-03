@@ -171,7 +171,7 @@ function Header({ toggleTheme, isDarkMode }) {
 
              {/* third */}
              <Link to={'/title3'} style={{ textDecoration: 'none' }}>  <MenuItem value={30}><Box component="img"
-        src="assets/images/Header/liq.svg"
+        src="assets/images/Header/firelist.svg"
         alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Liquidity Source<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
                   Connect a wallet to your Unidex account
                 </Typography>
