@@ -13,6 +13,9 @@ import {
   Container,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import BoltIcon from '@mui/icons-material/Bolt';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 
 
 export default function SwapTokenLanding(isDarkMode) {
@@ -660,201 +663,148 @@ export default function SwapTokenLanding(isDarkMode) {
     </Box>
      <Divider/>
     {/* last section */}
-    <Box
-      sx={{
-         
-        backgroundImage: "url('assets/images/CrossChain/edit.png')", // place wave background here
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      
-        alignItems: "center",
-        
-        textAlign:"center",
-      }}
-    >
     <Box sx={{
         
         fontFamily: "'Manrope', sans-serif",
         color: "text.primary",
         backgroundImage: `url("assets/images/swapToken/gradient.png")`,
-      }}>
-    <Box
-      component="section"
-      id="trade-features"
-      sx={{
-        position: "relative",
-        overflow: "hidden",
-        py: { xs: 6, md: 10 },
       }}
     >
-      {/* Background elements */}
+      <Box sx={{
+        minHeight:"70vh",
+        backgroundImage: "url('assets/images/CrossChain/edit.png')", // place wave background here
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+       
+      }}> 
+  <Typography
+    variant="h5"
+    sx={{
+      color: '#2196f3',
+      fontWeight: 700,
+      mt: 4,
+      mb: 1,
+      textAlign: 'center',
+    }}
+  >
+    New Trade Mode :
+  </Typography>
+  <Typography
+    variant="h2"
+    sx={{
+      fontWeight: 800,
+      mb: 2,
+      color: 'text.primary',
+      textAlign: 'center',
+    }}
+  >
+    Swap Tokens
+  </Typography>
+  <Typography
+    variant="subtitle1"
+    sx={{
+      color: "text.primary",
+      fontWeight: 500,
+      mb: 6,
+      textAlign: "center",
+      opacity: 0.75
+    }}
+  >
+    Great Prices, with more speed and less worry
+  </Typography>
+  
+  <Grid
+    container
+    spacing={5}
+    justifyContent="center"
+    alignItems="flex-start"
+    sx={{ mt: 2, mb: 8 }}
+  >
+    <Grid item xs={12} md={4} display="flex" flexDirection="column" alignItems="center">
       <Box
-        className="background-elements"
         sx={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 0,
-          pointerEvents: "none",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "rgba(33,150,243,0.8)",
+          borderRadius: "50%",
+          width: 140,
+          height: 140,
+          boxShadow: "0 0 50px 5px #bbe2fd",
+          mb: 2,
         }}
       >
-      <Box sx ={{
-           backgroundImage: `url("assets/images/swapToken/gradient.png")`,
-
-      }}></Box>
-      
-        {/* Background vectors */}
-        {["assets/images/LimitorderSection/backwaves.png"].map((file, idx) => (
-          <Box
-            key={idx}
-            component="img"
-            src={`/page/559a3c5f-ac99-4461-9378-ee9ce5cbbe95/images/${file}`}
-            alt=""
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%) rotate(32.56deg)",
-              opacity: idx === 1 ? 0.7 : 0.5,
-              width: "150%",
-            }}
-          />
-        ))}
+        <BoltIcon sx={{ fontSize: 48, color: "#fff" }} />
       </Box>
-
-      {/* Content container */}
-      <Box
-        className="container"
+      <Typography
         sx={{
-          maxWidth: "1440px",
-          mx: "auto",
-          px: { xs: 2, md: 5 },
-          position: "relative",
-          zIndex: 2,
+          textAlign: "center",
+          fontWeight: 500,
+          fontSize: 20,
+          color: "text.primary"
+        }}>
+        Faster trade Confirmation
+      </Typography>
+    </Grid>
+    <Grid item xs={12} md={4} display="flex" flexDirection="column" alignItems="center">
+      <Box
+        sx={{
+        
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "rgba(33,150,243,0.8)",
+          borderRadius: "50%",
+          width: 140,
+          height: 140,
+          boxShadow: "0 0 50px 5px #bbe2fd",
+          mb: 2,
         }}
       >
-        {/* Section header */}
-        <Box textAlign="center" mb={{ xs: 6, md: 10 }}>
-          <Typography
-            variant="h6"
-            sx={{
-              color: "#0c9fe3",
-              fontWeight: 700,
-              fontSize: { xs: 20, md: 24 },
-              mb: 2,
-            }}
-          >
-            New Trade Mode :
-          </Typography>
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 700,
-              fontSize: { xs: 36, md: 44 },
-              color: "text.primary",
-              mb: 2,
-            }}
-          >
-            Swap Tokens
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              fontWeight: 700,
-              fontSize: 14,
-              color: "text.primary",
-              lineHeight: 1.7,
-            }}
-          >
-            Great Prices, with more speed and less worry
-          </Typography>
-        </Box>
-
-        {/* Features grid */}
-        <Grid
-          container
-          spacing={isMobile ? 6 : 4}
-          justifyContent="center"
-          alignItems="flex-start"
-        >
-          {[
-            {
-              circles: ["assets/images/swapToken/circle inner.png"],
-             icon: "139_32.svg",
-              text: "Faster trade Confirmation",
-            },
-            {
-              circles: ["assets/images/swapToken/circle inner.png"],
-              icon: "139_32.svg",
-              text: "Reduce failed rate by75%",
-            },
-            {
-              circles: ["assets/images/swapToken/circle inner.png"],
-              icon: "139_33.svg",
-              text: "Matches handles Gases",
-            },
-          ].map((feature, idx) => (
-            <Grid item xs={12} sm={6} md={4} key={idx}>
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                textAlign="center"
-              >
-                {/* Icon stack */}
-                <Box
-                  sx={{
-                    position: "relative",
-                    width: 130,
-                    height: 130,
-                    mb: 3,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {feature.circles.map((circle, cIdx) => (
-                    <Box
-                      key={cIdx}
-                      component="img"
-                      src={"assets/images/swapToken/circle inner.png"}
-                      alt="circle"
-                      sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: cIdx === 0 ? 130 : cIdx === 1 ? 111 : 81,
-                        height: cIdx === 0 ? 130 : cIdx === 1 ? 111 : 81,
-                      }}
-                    />
-                  ))}
-                  <Box
-                    component="img"
-                    src={"assets/images/swapToken/center fire.png"}
-                    alt="icon"
-                    sx={{ width: 45, height: 45, zIndex: 2 }}
-                  />
-                </Box>
-                <Typography
-                  sx={{
-                    color: "text.primary",
-                    fontSize: 16,
-                    fontWeight: 700,
-                    lineHeight: 1.4,
-                    maxWidth: 201,
-                  }}
-                >
-                  {feature.text}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
+        <AddCircleIcon sx={{ fontSize: 48, color: "#fff" }} />
       </Box>
-    </Box>
-    </Box>
-     </Box>
+      <Typography
+        sx={{
+          textAlign: "center",
+          fontWeight: 500,
+          fontSize: 20,
+          color: "text.primary"
+        }}>
+        Reduce failed rate by 75 %
+      </Typography>
+    </Grid>
+    <Grid item xs={12} md={4} display="flex" flexDirection="column" alignItems="center">
+      <Box
+        sx={{
+          
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "rgba(33,150,243,0.8)",
+          borderRadius: "50%",
+          width: 140,
+          height: 140,
+          boxShadow: "0 0 50px 5px #bbe2fd",
+          mb: 2,
+        }}
+      >
+        <LocalFireDepartmentIcon sx={{ fontSize: 48, color: "#fff" }} />
+      </Box>
+      <Typography
+        sx={{
+          textAlign: "center",
+          fontWeight: 500,
+          fontSize: 20,
+          color: "text.primary"
+        }}>
+        Matches handles Gases
+      </Typography>
+    </Grid>
+  </Grid>
+  </Box>
+</Box>
+
     <Divider/>
     </Box>
   );
