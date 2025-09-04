@@ -716,10 +716,10 @@ export default function SwapTokenLanding(isDarkMode) {
   
   <Grid
     container
-    spacing={5}
+    spacing={40}
     justifyContent="center"
     alignItems="flex-start"
-    sx={{ mt: 2, mb: 8 }}
+    sx={{ mt:2, mb: 8 }}
   >
     <Grid item xs={12} md={4} display="flex" flexDirection="column" alignItems="center">
       <Box
