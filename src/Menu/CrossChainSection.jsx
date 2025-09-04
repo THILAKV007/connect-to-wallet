@@ -140,7 +140,7 @@ export default function CrossChainSection(isDarkMode) {
         <Typography variant="h3" sx={{ fontWeight: 700, mb: 4 }}>
           Get unbeatable trade prices on Unidex.
         </Typography>
-        <Typography sx={{ fontWeight: 400,mb: 4,color:"text.primary" }}>
+        <Typography sx={{ fontWeight: 400,mb: 4,color:"#b3b3b3"}}>
           Unidex does the hard work to find efficient and secure paths for <br/>
           your cross-chain trades.
         </Typography>
@@ -184,7 +184,7 @@ export default function CrossChainSection(isDarkMode) {
                   />
                 </Box>
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>253.63 USDC</Typography>
-                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "rgba(0,0,0,0.43)" }}>
+                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "#b3b3b3" }}>
                   $253.44
                 </Typography>
               </Box>
@@ -209,10 +209,10 @@ export default function CrossChainSection(isDarkMode) {
                   component="img"
                   src="assets/images/swapToken/eth.png"
                   alt="ETH token"
-                  sx={{ width: 62, height: 62,position:"center" }}
+                  sx={{ width: 62, height: 62,position:"center",mb:2 }}
                 />
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
-                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>$253.44</Typography>
+                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#b3b3b3" }}>$253.44</Typography>
                 {/* Connecting Circle */}
               <Box
                 sx={{
@@ -296,18 +296,19 @@ export default function CrossChainSection(isDarkMode) {
                     <List dense>
                       <ListItem>
                         <ListItemIcon>
-                          <CheckIcon sx={{ color: "text.primary" }} />
+                          <CheckIcon sx={{ color: "#b3b3b3" }} />
                         </ListItemIcon>
                         <ListItemText primary="Aggregated liquidity" width="201.05999755859375"
 height="24"
 opacity="1"
 top="36px"
 left="20px"
+color="#b3b3b3"
  />
                       </ListItem>
                       <ListItem>
                         <ListItemIcon>
-                          <CheckIcon sx={{ color: "text.primary" }} />
+                          <CheckIcon sx={{ color: "#b3b3b3" }} />
                         </ListItemIcon>
                         <ListItemText primary="Trustless" width="201.05999755859375"
 height="24"
@@ -317,7 +318,7 @@ left="20px"/>
                       </ListItem>
                       <ListItem>
                         <ListItemIcon>
-                          <CheckIcon sx={{ color: "text.primary" }} />
+                          <CheckIcon sx={{ color: "#b3b3b3"}} />
                         </ListItemIcon>
                         <ListItemText primary="Non-custodial" width="201.05999755859375"
 height="24"
@@ -339,13 +340,13 @@ left="20px" />
                     <List dense>
                       <ListItem>
                         <ListItemIcon>
-                          <CloseIcon sx={{ color: "text.primary" }} />
+                          <CloseIcon sx={{ color: "#b3b3b3" }} />
                         </ListItemIcon>
                         <ListItemText primary="Fragmented liquidity"  />
                       </ListItem>
                       <ListItem>
                         <ListItemIcon>
-                          <CloseIcon sx={{ color: "text.primary" }} />
+                          <CloseIcon sx={{ color: "#b3b3b3" }} />
                         </ListItemIcon>
                         <ListItemText primary="Requires deposits" width="201.05999755859375"
 height="24"
@@ -355,7 +356,7 @@ left="20px" />
                       </ListItem>
                       <ListItem>
                         <ListItemIcon>
-                          <CloseIcon sx={{ color: "text.primary" }} />
+                          <CloseIcon sx={{ color: "#b3b3b3" }} />
                         </ListItemIcon>
                         <ListItemText primary="Custodial apps" width="201.05999755859375"
 height="24"
@@ -390,7 +391,7 @@ left="20px" />
       </Typography>
       <Typography
         variant="body1"
-        color="text.secondary"
+        color="#b3b3b3"
         sx={{ mb: 6, maxWidth: 600, mx: "auto" }}
       >
         Swap crypto without native tokens. Unidex handles the gas for swaps and

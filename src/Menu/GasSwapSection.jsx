@@ -44,7 +44,7 @@ const SubTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 400,
   fontSize: '16px',
   lineHeight: '54.64px',
-  color: 'text.primary',
+  color: '#B3B3B3',
   textAlign: 'center',
   marginBottom: theme.spacing(2),
 }))
@@ -396,7 +396,7 @@ swaps and approvals so you can focus on trading.
         </Typography>
         <Typography
           align="center"
-          color="textSecondary"
+          color="#B3B3B3"
           sx={{ mb: 6, fontSize: { xs: "1rem", md: "1.25rem" } }}
         >
           Swap crypto without native tokens.Unidex handles the gas for <br/> swaps and approvals so you can focus on trading.

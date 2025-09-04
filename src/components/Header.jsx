@@ -66,7 +66,7 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-            <Link to={'/title6'} style={{ textDecoration: 'none'}} >Features</Link>
+            <Link to={'/title6'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary"}}>Features</Typography></Link>
           </Button>
           <Button
             sx={{
@@ -80,7 +80,7 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-           <Link to={'/title7'} style={{ textDecoration: 'none'}}>Company</Link> 
+           <Link to={'/title7'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary"}}>Company</Typography></Link> 
           </Button>
           <Button
             sx={{
@@ -94,7 +94,7 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-             <Link to={'/title8'} style={{ textDecoration: 'none'}}>Blog</Link>
+             <Link to={'/title8'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary"}}>Blog</Typography></Link>
           </Button>
           <Button
             sx={{
@@ -108,7 +108,7 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-             <Link to={'/title9'} style={{ textDecoration: 'none'}}>Trade History</Link>
+             <Link to={'/title9'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary"}}>Trade History</Typography></Link>
           </Button>
         </Box>
 

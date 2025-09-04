@@ -11,7 +11,6 @@ import {
   TextField,
   Avatar,
   Stack,
-  Pagination,
   InputAdornment,
   Button,
   Divider,
@@ -297,10 +296,7 @@ const rows = [
           </Table>
         </TableContainer>
 
-        {/* Pagination */}
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-          <Pagination count={5} shape="rounded" />
-        </Box>
+       
       </Box>
     </Box>
 

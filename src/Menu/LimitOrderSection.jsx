@@ -305,7 +305,7 @@ const orders = [
               fontFamily: "Inter",
               fontSize: 16,
               lineHeight: "25px",
-              color: "text.primary",
+              color: "#B3B3B3",
               mt: 3,
               maxWidth: 334,
               textAlign: isTablet ? "center" : "left",
@@ -419,7 +419,7 @@ const orders = [
                 <Button
                   variant="body1"
                   fontWeight={700}
-                  sx={{ color: "text.primary" }}
+                  sx={{ color: "#B3B3B3" }}
                 >
                   Order history
                 </Button>
@@ -469,7 +469,7 @@ const orders = [
                         src={o.sellIcon}
                         sx={{ width: 24, height: 24 }}
                       />
-                      <Typography variant="caption" color="text.primary">
+                      <Typography variant="caption" color="#B3B3B3">
                         {o.sell}
                       </Typography>
                     </Stack>
@@ -479,11 +479,11 @@ const orders = [
                         sx={{ width: 24, height: 24 }}
               
                       />
-                      <Typography variant="caption" color="text.primary">
+                      <Typography variant="caption" color="#B3B3B3">
                         {o.buy}
                       </Typography>
                     </Stack>
-                    <Typography variant="caption" color="text.primary">
+                    <Typography variant="caption" color="#B3B3B3">
                       {o.expiry}
                     </Typography>
                   </Box>
@@ -501,7 +501,7 @@ const orders = [
       <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
         How to setup limit orders
       </Typography>
-      <Typography variant="body1" sx={{ mb: 4, color: "#5E6773" }}>
+      <Typography variant="body1" sx={{ mb: 4, color: "#B3B3B3" }}>
         Available on 3 chains:
       </Typography>
 
@@ -509,15 +509,15 @@ const orders = [
       <Box display="flex" justifyContent="center" gap={3} mb={6}>
         <Box display="flex" alignItems="center" gap={1}>
           <Avatar src="assets/images/LimitorderSection/eth.png" sx={{ width: 28, height: 28 }} />
-          <Typography>Ethereum</Typography>
+          <Typography sx={{color:"#B3B3B3"}}>Ethereum</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap={1}>
           <Avatar src="assets/images/LimitorderSection/danger.png" sx={{ width: 28, height: 28 }} />
-          <Typography>Polygon</Typography>
+          <Typography sx={{color:"#B3B3B3"}}>Polygon</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap={1}>
           <Avatar src="assets/images/LimitorderSection/bsc.png" sx={{ width: 28, height: 28 }} />
-          <Typography>BSC</Typography>
+          <Typography sx={{color:"#B3B3B3"}}>BSC</Typography>
         </Box>
       </Box>
 
@@ -661,7 +661,7 @@ const orders = [
             fontWeight: 400,
             fontSize: { xs: "16px", md: "17px" },
             lineHeight: "25px",
-            color: "text.primary",
+            color: "#B3B3B3",
             mb: 4,
           }}
         >
@@ -707,7 +707,7 @@ const orders = [
                   fontWeight: 400,
                   fontSize: "16px",
                   lineHeight: "25px",
-                  color: "#5e6773",
+                  color: "#B3B3B3",
                 }}
               >
                 {chain.name}
@@ -837,7 +837,7 @@ const orders = [
         {/* Subtitle */}
         <Typography
           sx={{
-            color: "text.primary",
+            color: "#B3B3B3",
             fontFamily: "Manrope, sans-serif",
             fontWeight: 400,
             fontSize: { xs: 16, md: 17 },
@@ -882,7 +882,7 @@ const orders = [
               />
               <Typography
                 sx={{
-                  color: "text.primary",
+                  color: "#b3b3b3",
                   fontFamily: "Manrope, sans-serif",
                   fontSize: 16,
                   lineHeight: "25px",
@@ -931,7 +931,7 @@ const orders = [
                   />
                 </Box>
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>253.63 USDC</Typography>
-                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "rgba(0,0,0,0.43)" }}>
+                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "#b3b3b3" }}>
                   $253.44
                 </Typography>
               </Box>
@@ -956,10 +956,10 @@ const orders = [
                   component="img"
                   src="assets/images/swapToken/eth.png"
                   alt="ETH token"
-                  sx={{ width: 62, height: 62,position:"center" }}
+                  sx={{ width: 62, height: 62,position:"center",mb:2 }}
                 />
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
-                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>$253.44</Typography>
+                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#b3b3b3" }}>$253.44</Typography>
                 {/* Connecting Circle */}
               <Box
                 sx={{
