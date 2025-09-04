@@ -62,11 +62,11 @@ function Header({ toggleTheme, isDarkMode }) {
               fontWeight: 500,
               '&:hover': {
                 backgroundColor: 'transparent',
-                color: '#2196f3',
+                color: 'text.primary',
               },
             }}
           >
-            Features
+            <Link to={'/title6'} style={{ textDecoration: 'none'}} >Features</Link>
           </Button>
           <Button
             sx={{
@@ -76,11 +76,11 @@ function Header({ toggleTheme, isDarkMode }) {
               fontWeight: 500,
               '&:hover': {
                 backgroundColor: 'transparent',
-                color: '#2196f3',
+               color: 'text.primary',
               },
             }}
           >
-            Company
+           <Link to={'/title7'} style={{ textDecoration: 'none'}}>Company</Link> 
           </Button>
           <Button
             sx={{
@@ -90,11 +90,25 @@ function Header({ toggleTheme, isDarkMode }) {
               fontWeight: 500,
               '&:hover': {
                 backgroundColor: 'transparent',
-                color: '#2196f3',
+                color: 'text.primary',
               },
             }}
           >
-            Blog
+             <Link to={'/title8'} style={{ textDecoration: 'none'}}>Blog</Link>
+          </Button>
+          <Button
+            sx={{
+              
+              textTransform: 'none',
+              fontSize: '1rem',
+              fontWeight: 500,
+              '&:hover': {
+                backgroundColor: 'transparent',
+                color: 'text.primary',
+              },
+            }}
+          >
+             <Link to={'/title9'} style={{ textDecoration: 'none'}}>Trade History</Link>
           </Button>
         </Box>
 

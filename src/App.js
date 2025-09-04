@@ -15,6 +15,11 @@ import LiquiditySection from './Menu/LiquiditySection';
 import SwapTokenLanding from './Menu/SwapTokenLanding';
 import MenuDot from './Menu/MenuDot'
 import CrossChainSection from './Menu/CrossChainSection';
+import Articles from './Menu/Articles';
+import Features from './Menu/Features';
+import Company from './Menu/Company';
+import BlogDetails from './Menu/BlogDetails';
+import TradeHistory from './Menu/TradeHistory';
 
 function AppContent({ isDarkMode, toggleTheme }) {
   const location = useLocation()
@@ -30,17 +35,29 @@ function AppContent({ isDarkMode, toggleTheme }) {
           path='/src/Menu/Menu.jsx'
           element={<MenuDot/>}
         />
+         <Route
+          path='/src/Menu/Menu.jsx'
+          element={<Articles/>}
+        />
+
        <Route path='/title1' element={<SwapTokenLanding/>} isDarkMode={isDarkMode} />
       <Route path='/title2' element={<GasSwapSection/>} isDarkMode={isDarkMode} />
       <Route path='/title3' element={<LiquiditySection/>} isDarkMode={isDarkMode}/>
       <Route path='/title4' element={<LimitOrderSection/>} isDarkMode={isDarkMode}/>
       <Route path='/title5' element={<CrossChainSection/>} isDarkMode={isDarkMode}/>
-
+       <Route path='/title6' element={<Features/>} isDarkMode={isDarkMode}/>
+        <Route path='/title7' element={<Company/>} isDarkMode={isDarkMode}/>
+         <Route path='/title8' element={<BlogDetails/>} isDarkMode={isDarkMode}/>
+         <Route path='/title9' element={<TradeHistory/>} isDarkMode={isDarkMode}/>
+      
       </Routes>
       {!shouldHideFooter && <Footer isDarkMode={isDarkMode} />}
     </>
   )
 }
+
+
+
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true)
@@ -79,5 +96,5 @@ function App() {
   )
 }
 
-export default App
+export default App;
 
