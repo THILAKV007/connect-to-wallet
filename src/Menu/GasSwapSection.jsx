@@ -397,7 +397,7 @@ swaps and approvals so you can focus on trading.
         <Typography
           align="center"
           color="#B3B3B3"
-          sx={{ mb: 6, fontSize: { xs: "1rem", md: "1.25rem" } }}
+          sx={{ mb: 6, fontSize: { xs: "1rem", md: "1.25rem"}}}
         >
           Swap crypto without native tokens.Unidex handles the gas for <br/> swaps and approvals so you can focus on trading.
         </Typography>
@@ -407,33 +407,33 @@ swaps and approvals so you can focus on trading.
               <CardContent sx={{ alignItems: "center", display: "flex", flexDirection: "column" }}>
                <Box
                   component="img"
-                 src="assets/images/GaslessSwap/shei.png"
+                 src="assets/images/GaslessSwap/mevx.svg"
                   alt=""
                   sx={{ width: "20%", height: "20%" }}
                 />
-                <Typography variant="h5" sx={{ fontWeight: 700 }} gutterBottom>
+                <Typography variant="h4" sx={{ fontWeight:700,textAlign:"initial" }} gutterBottom>
                   MEV protection
                 </Typography>
-                <Typography align="center" color="textSecondary" sx={{ mb: 2 }}>
-                  Say goodbye to sandwich attacks and <br/> frontrunning. Protect from MEV without<br/> a second thought.&nbsp;
+                <Typography align="center" color="textSecondary" sx={{ mb: 2,textAlign:"initial"}}>
+                  Say goodbye to sandwich attacks and <br/> frontrunning. Protect from MEV <br/> without a second thought.&nbsp;
                   <Button href="#" sx={{ textTransform: "none", p: 0, minWidth: 0 }}>Learn more.</Button>
                 </Typography>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Card sx={{ p: 3, borderRadius: 3, boxShadow: 3 }}>
+            <Card sx={{ p: 3, borderRadius: 3, boxShadow: 3,width:360, height:300 }}>
               <CardContent sx={{ alignItems: "center", display: "flex", flexDirection: "column" }}>
                 <Box
                   component="img"
-                 src="assets/images/GaslessSwap/Dollar.png"
+                 src="assets/images/GaslessSwap/dollar.svg"
                   alt=""
-                  sx={{ width: "40%", height: "40%" }}
+                  sx={{ width: "20%", height: "20%" }}
                 />
-                <Typography variant="h5" sx={{ fontWeight: 700 }} gutterBottom>
+                <Typography variant="h4" sx={{ fontWeight: 700,textAlign:"initial" }} gutterBottom>
                   Get more than <br/> you pay for
                 </Typography>
-                <Typography align="center" color="textSecondary">
+                <Typography  color="textSecondary" textAlign="initial">
                   Save on slippage and cut <br/> down opportunity cost.
                 </Typography>
               </CardContent>
@@ -444,14 +444,14 @@ swaps and approvals so you can focus on trading.
               <CardContent sx={{ alignItems: "center", display: "flex", flexDirection: "column" }}>
                 <Box
                   component="img"
-                 src="assets/images/GaslessSwap/thunder.png"
+                 src="assets/images/GaslessSwap/thu.svg"
                   alt=""
-                  sx={{ width: "10%", height: "10%" }}
+                  sx={{ width: "15%", height: "15%" }}
                 />
-                <Typography variant="h5" sx={{ fontWeight: 700 }} gutterBottom>
+                <Typography variant="h4" sx={{ fontWeight: 700,textAlign:"initial" }} gutterBottom>
                   MEV protection
                 </Typography>
-                <Typography align="center" color="textSecondary" sx={{ mb: 2 }}>
+                <Typography align="center" color="textSecondary" sx={{ mb: 2,textAlign:"initial" }}>
                   Say goodbye to sandwich attacks and <br/> frontrunning. Protect from MEV <br/> without a second thought.&nbsp;
                   <Button href="#" sx={{ textTransform: "none", p: 0, minWidth: 0 }}>Learn more.</Button>
                 </Typography>
@@ -569,6 +569,7 @@ swaps and approvals so you can focus on trading.
                 fontWeight: 500,
                 fontSize: 14,
                 px: 2,
+                color:"#0000",
                 borderRadius: 24,
                 "&.Mui-selected": {
                   bgcolor: "#fff",
@@ -577,7 +578,7 @@ swaps and approvals so you can focus on trading.
                 },
               }}
             >
-              On
+              on 
             </ToggleButton>
             <ToggleButton
               value="off"
@@ -586,6 +587,7 @@ swaps and approvals so you can focus on trading.
                 fontWeight: 500,
                 fontSize: 14,
                 px: 2,
+                 color:"#0000",
                 borderRadius: 24,
                 "&.Mui-selected": {
                   bgcolor: "#fff",

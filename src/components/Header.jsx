@@ -66,7 +66,11 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-            <Link to={'/title6'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary"}}>Features</Typography></Link>
+            <Link to={'/title6'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary",'&:hover': {
+                borderColor: '#0000',
+                color: '#2196f3',
+                backgroundColor: 'transparent',
+              },}}>Features</Typography></Link>
           </Button>
           <Button
             sx={{
@@ -80,7 +84,11 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-           <Link to={'/title7'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary"}}>Company</Typography></Link> 
+           <Link to={'/title7'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary",'&:hover': {
+                borderColor: '#0000',
+                color: '#2196f3',
+                backgroundColor: 'transparent',
+              },}}>Company</Typography></Link> 
           </Button>
           <Button
             sx={{
@@ -94,7 +102,11 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-             <Link to={'/title8'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary"}}>Blog</Typography></Link>
+             <Link to={'/title8'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary",'&:hover': {
+                borderColor: '#0000',
+                color: '#2196f3',
+                backgroundColor: 'transparent',
+              },}}>Blog</Typography></Link>
           </Button>
           <Button
             sx={{
@@ -108,7 +120,11 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-             <Link to={'/title9'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary"}}>Trade History</Typography></Link>
+             <Link to={'/title9'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary",'&:hover': {
+                borderColor: '#0000',
+                color: '#2196f3',
+                backgroundColor: 'transparent',
+              },}}>Trade History</Typography></Link>
           </Button>
         </Box>
 
@@ -184,8 +200,8 @@ function Header({ toggleTheme, isDarkMode }) {
                 </Box></MenuItem> </Link>
 
              {/* third */}
-             <Link to={'/title3'} style={{ textDecoration: 'none' }}>  <MenuItem value={30}><Box component="img"
-        src="assets/images/Header/firelist.svg"
+             <Link to={'/title3'} style={{ textDecoration: 'none' }}><MenuItem value={30}><Box component="img"
+        src="assets/images/Header/liquidity.svg"
         alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Liquidity Source<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
                   Connect a wallet to your Unidex account
                 </Typography>

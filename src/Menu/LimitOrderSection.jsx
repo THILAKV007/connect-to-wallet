@@ -55,21 +55,8 @@ const orders = [
     }
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  return (
-    <>
+return (
+    <Box>
     {/* first section */}
       <Box sx={{
             py:1,
@@ -169,7 +156,7 @@ const orders = [
           </Box>
     <Divider/>
     {/* second section */}
-<Box
+    <Box
       component="section"
       sx={{
         py: isMobile ? 6 : 10,
@@ -191,7 +178,7 @@ const orders = [
           flexDirection: isTablet ? "column" : "row",
           alignItems: "center",
           justifyContent: "center",
-          gap: isTablet ? 6 : 14,
+          gap: isTablet ? 20 : 14,
           textAlign: isTablet ? "center" : "left",
           position: "relative",
           zIndex: 1,
@@ -207,6 +194,7 @@ const orders = [
             display: "flex",
             flexDirection: "column",
             bgcolor: "#feffff",
+            margin:"10px",
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -328,8 +316,8 @@ const orders = [
           position: "absolute",
           bottom: 0,
           right: 0,
-          width:150,
-          height:150,
+          width:250,
+          height:250,
           
           opacity: isMobile ? 0.5 : 1,
           transform: isMobile ? "scale(0.8) translate(10%,10%)" : "none",
@@ -339,12 +327,25 @@ const orders = [
     </Box>
     <Divider/>
    {/* third section */}
+   
    <Box
       id="limit-orders"
       sx={{
         py: { xs: 6, md: 10 },
       }}
     >
+      <Box
+        component="img"
+         src="assets/images/LimitorderSection/spiral.png"
+        alt=""
+        sx={{
+          position: "absolute",
+          bottom:-1000,
+          right: 0,
+          width:200,
+          height:200,
+        }}
+      />
       <Box maxWidth="1200px" mx="auto" px={2}>
         {/* Title */}
         <Typography
@@ -404,7 +405,7 @@ const orders = [
               ))}
             </Stack>
           </Grid>
-
+              
           {/* Orders Card */}
           <Grid item xs={12} md={6}>
             <Card
@@ -491,9 +492,13 @@ const orders = [
               </Stack>
             </Card>
           </Grid>
+         
         </Grid>
       </Box>
+       
+      
     </Box>
+     
     <Divider/>
     {/* foursection */}
      <Box sx={{py: 8, textAlign: "center" }}>
@@ -640,19 +645,9 @@ const orders = [
         }}
       >
         {/* Title */}
-        <Typography
-          variant="h4"
-          sx={{
-            fontFamily: "Manrope, sans-serif",
-            fontWeight: 800,
-            fontSize: { xs: "28px", md: "32px" },
-            lineHeight: { xs: "34px", md: "38px" },
-            color: "text.primary",
-            mb: 3,
-          }}
-        >
-          How to setup limit orders
-        </Typography>
+         <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
+        How to setup limit orders
+      </Typography>
 
         {/* Subtitle */}
         <Typography
@@ -801,98 +796,80 @@ const orders = [
 
     <Divider/>
     {/* sixth section */}
-    <Box
-      id="feature"
-      sx={{
-        py:"8",
-        display: "flex",
-        justifyContent: "center",
-       
-      }}
-    >
       <Container
-        maxWidth="lg"
+         
         sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-          py:"8",
+        
         }}
       >
-        {/* Title */}
-        <Typography
-          variant="h4"
-          sx={{
-            fontFamily: "Manrope, sans-serif",
-            fontWeight: 800,
-            fontSize: { xs: 28, md: 32 },
-            lineHeight: { xs: "34px", md: "38px" },
-            color: "text.primary",
-          }}
-        >
-          How to setup limit orders
-        </Typography>
+       {/* Title */}
+         <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
+           How to setup limit orders
+      </Typography>
 
         {/* Subtitle */}
         <Typography
           sx={{
-            color: "#B3B3B3",
             fontFamily: "Manrope, sans-serif",
             fontWeight: 400,
-            fontSize: { xs: 16, md: 17 },
+            fontSize: { xs: "16px", md: "17px" },
             lineHeight: "25px",
-            mt: 3,
+            color: "#B3B3B3",
           }}
         >
           Available on 3 chains:
         </Typography>
 
-        {/* Chains List */}
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "12px 24px",
-            mt: 3,
-          }}
+        {/* Chain list */}
+        <Stack
+          direction="row"
+          flexWrap="wrap"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ mb: 5 }}
         >
           {[
             {
+              src: "assets/images/LimitorderSection/eth.png",
+              alt: "Ethereum icon",
               name: "Ethereum",
-              logo: "assets/images/LimitorderSection/eth.png",
             },
             {
+              src: "assets/images/LimitorderSection/ploygon.png",
+              alt: "Polygon icon",
               name: "Polygon",
-              logo: "assets/images/LimitorderSection/ploygon.png",
             },
             {
+              src: "assets/images/LimitorderSection/bsc.png",
+              alt: "BSC icon",
               name: "BSC",
-              logo: "assets/images/LimitorderSection/bsc.png",
             },
-          ].map((chain, idx) => (
-            <Box key={idx} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          ].map((chain) => (
+            <Stack key={chain.name} direction="row" alignItems="center" spacing={1}>
               <Box
                 component="img"
-                src={chain.logo}
-                alt={`${chain.name} logo`}
+                src={chain.src}
+                alt={chain.alt}
                 sx={{ width: 20, height: 20 }}
               />
               <Typography
                 sx={{
-                  color: "#b3b3b3",
                   fontFamily: "Manrope, sans-serif",
-                  fontSize: 16,
+                  fontWeight: 400,
+                  fontSize: "16px",
                   lineHeight: "25px",
+                  color: "#B3B3B3",
                 }}
               >
                 {chain.name}
               </Typography>
-            </Box>
+            </Stack>
           ))}
-        </Box>
+        </Stack>
 
        {/* Right Side Swap Widget */}
         <Box sx={{ width:501,
@@ -902,7 +879,7 @@ const orders = [
           borderRadius:8,
 
         }}>
-        <Box sx={{ flex: 1, maxWidth: 501, py:8, }}>
+        <Box sx={{ flex: 1, maxWidth: 501}}>
              
 
             {/* Token Swap Visual */}
@@ -996,12 +973,13 @@ const orders = [
         </Box>
         
         </Box>
-      
-
        
-      </Container>
-    </Box>
-</>
+        </Container>
+        
+        <Divider/>
+       
+  
+</Box>
 
 
 

@@ -137,12 +137,12 @@ export default function CrossChainSection(isDarkMode) {
         <Box sx={{ flex: 1, maxWidth: 600, pt: 2 }}>
 
   <Box sx={{ maxWidth: 700 }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 4 }}>
-          Get unbeatable trade prices on Unidex.
+        <Typography variant="h4" sx={{ fontWeight:"700", mb: 4,textAlign:"initial"}}>
+          Move seamlessly across chains.
         </Typography>
-        <Typography sx={{ fontWeight: 400,mb: 4,color:"#b3b3b3"}}>
-          Unidex does the hard work to find efficient and secure paths for <br/>
-          your cross-chain trades.
+        <Typography sx={{ fontWeight: 420,mb: 4,color:"#b3b3b3",textAlign:"initial"}}>
+         Swap tokens between chains inone trade to <br/>
+keep pace with fast-movingmarkets.
         </Typography>
       </Box>
         </Box>
@@ -235,11 +235,24 @@ export default function CrossChainSection(isDarkMode) {
         
         </Box>
         </Box>
-      
+      <Box
+        component="img"
+         src="assets/images/LimitorderSection/spiral.png"
+        alt=""
+        sx={{
+          position: "absolute",
+          bottom:-195,
+          right: 0,
+          width:150,
+          height:150,
+        }}
+      />
       
       
       
       </Box>
+    
+    
     </Box>
     <Divider/>
     {/* third section */}
@@ -257,18 +270,18 @@ export default function CrossChainSection(isDarkMode) {
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={6} alignItems="center">
+        <Grid container spacing={20} alignItems="center">
           {/* Left Side Content */}
           <Grid item xs={12} md={6}>
             <Typography
               variant="h4"
-              sx={{ fontWeight: "bold", mb: 2,width: 378,height: 135,}}
+              sx={{ fontWeight: "bold", mb: 2,width: 378,height: 135,textAlign:"initial"}}
             >
               Better than CEXs <br /> for L2 trading
             </Typography>
             <Typography
               variant="body1"
-              sx={{width: 443,height: 67, fontWeight:400, fontSize:16,}}>
+              sx={{width: 443,height: 67, fontWeight:400, fontSize:16,textAlign:"initial"}}>
               Trustless and non-custodial trades across chains. You stay in
               control of your funds.
             </Typography>

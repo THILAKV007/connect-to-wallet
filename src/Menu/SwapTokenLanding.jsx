@@ -205,7 +205,7 @@ export default function SwapTokenLanding(isDarkMode) {
         <Box sx={{ flex: 1, maxWidth: 600, pt: 2 }}>
 
   <Box sx={{ maxWidth: 700 }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 4 }}>
+        <Typography variant="h3" sx={{ fontWeight: 600, mb: 4, textAlign:"initial"}}>
           Get unbeatable trade prices on Unidex.
         </Typography>
 
@@ -569,7 +569,7 @@ export default function SwapTokenLanding(isDarkMode) {
         }}
       /> {/* Left Side Content */}
       <Box sx={{ maxWidth: 600 }}>
-        <Typography variant="h3" sx={{ fontWeight: 700, mb: 4 }}>
+        <Typography variant="h3" sx={{ fontWeight: 700, mb: 4, textAlign:"initial"}}>
           Smart Routing
         </Typography>
 
@@ -578,7 +578,7 @@ export default function SwapTokenLanding(isDarkMode) {
      
             
             <ListItemIcon>
-              <CheckCircleIcon sx={{ color: "green" }} />
+              <CheckCircleIcon sx={{ color: "green",}} />
             </ListItemIcon>
             <ListItemText
               primary={
