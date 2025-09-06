@@ -569,7 +569,7 @@ swaps and approvals so you can focus on trading.
                 fontWeight: 500,
                 fontSize: 14,
                 px: 2,
-                color:"#0000",
+                color:"black",
                 borderRadius: 24,
                 "&.Mui-selected": {
                   bgcolor: "#fff",
@@ -578,7 +578,7 @@ swaps and approvals so you can focus on trading.
                 },
               }}
             >
-              on 
+              <Typography>On</Typography>
             </ToggleButton>
             <ToggleButton
               value="off"
@@ -587,7 +587,7 @@ swaps and approvals so you can focus on trading.
                 fontWeight: 500,
                 fontSize: 14,
                 px: 2,
-                 color:"#0000",
+                 color:"black",
                 borderRadius: 24,
                 "&.Mui-selected": {
                   bgcolor: "#fff",
@@ -596,7 +596,7 @@ swaps and approvals so you can focus on trading.
                 },
               }}
             >
-              Off
+              <Typography>Off</Typography>
             </ToggleButton>
           </ToggleButtonGroup>
 

@@ -13,9 +13,7 @@ import {
   Container,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import BoltIcon from '@mui/icons-material/Bolt';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+
 
 
 export default function SwapTokenLanding(isDarkMode) {
@@ -722,20 +720,14 @@ export default function SwapTokenLanding(isDarkMode) {
     sx={{ mt:2, mb: 8 }}
   >
     <Grid item xs={12} md={4} display="flex" flexDirection="column" alignItems="center">
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          bgcolor: "rgba(33,150,243,0.8)",
-          borderRadius: "50%",
-          width: 140,
-          height: 140,
-          boxShadow: "0 0 50px 5px #bbe2fd",
-          mb: 2,
-        }}
-      >
-        <BoltIcon sx={{ fontSize: 48, color: "#fff" }} />
+         
+      <Box>
+          
+          <img
+        src="assets/images/swapToken/one.png"
+        alt="MUI Logo"
+        style={{ width: "90%",height:"90%" }}/>
+       
       </Box>
       <Typography
         sx={{
@@ -748,21 +740,13 @@ export default function SwapTokenLanding(isDarkMode) {
       </Typography>
     </Grid>
     <Grid item xs={12} md={4} display="flex" flexDirection="column" alignItems="center">
-      <Box
-        sx={{
-        
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          bgcolor: "rgba(33,150,243,0.8)",
-          borderRadius: "50%",
-          width: 140,
-          height: 140,
-          boxShadow: "0 0 50px 5px #bbe2fd",
-          mb: 2,
-        }}
-      >
-        <AddCircleIcon sx={{ fontSize: 48, color: "#fff" }} />
+     <Box>
+          
+          <img
+        src="assets/images/swapToken/two.png"
+        alt="MUI Logo"
+        style={{ width: "90%",height:"90%" }}/>
+       
       </Box>
       <Typography
         sx={{
@@ -775,21 +759,13 @@ export default function SwapTokenLanding(isDarkMode) {
       </Typography>
     </Grid>
     <Grid item xs={12} md={4} display="flex" flexDirection="column" alignItems="center">
-      <Box
-        sx={{
+     <Box>
           
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          bgcolor: "rgba(33,150,243,0.8)",
-          borderRadius: "50%",
-          width: 140,
-          height: 140,
-          boxShadow: "0 0 50px 5px #bbe2fd",
-          mb: 2,
-        }}
-      >
-        <LocalFireDepartmentIcon sx={{ fontSize: 48, color: "#fff" }} />
+          <img
+        src="assets/images/swapToken/thyree.png"
+        alt="MUI Logo"
+        style={{ width: "90%",height:"90%" }}/>
+       
       </Box>
       <Typography
         sx={{
@@ -801,6 +777,8 @@ export default function SwapTokenLanding(isDarkMode) {
         Matches handles Gases
       </Typography>
     </Grid>
+  
+  
   </Grid>
   </Box>
 </Box>
