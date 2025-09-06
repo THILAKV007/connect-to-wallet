@@ -41,20 +41,25 @@ const PopularTokenSection = ({ isDarkMode }) => {
         px: { xs: 2, md: 3 },
         background: isDarkMode ? '#F8FAFF' : '#CCEBFF',
         position: 'relative',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: isDarkMode
-            ? 'radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)'
-            : 'radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
-          pointerEvents: 'none',
-        },
+        overflow: 'hidden',
       }}
     >
+      <Box
+        sx={{
+          zIndex: 0,
+          position: 'absolute',
+          top: -1300,
+          left: -190,
+          width: '160%',
+          overflow: 'hidden',
+        }}
+      >
+        <img
+          src='/assets/images/WhyUNIDEX/bg.svg'
+          alt=''
+          style={{ width: '100%', height: 'auto', display: 'block' }}
+        />
+      </Box>
       <Box sx={{ maxWidth: 1400, mx: 'auto', position: 'relative', zIndex: 1 }}>
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 4 }}>

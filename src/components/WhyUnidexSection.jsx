@@ -51,21 +51,24 @@ const WhyUnidexSection = ({ isDarkMode }) => {
         background: isDarkMode ? '#061536' : '#E8F6FF',
         position: 'relative',
         overflow: 'hidden',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: isDarkMode
-            ? 'radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)'
-            : 'radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)',
-          pointerEvents: 'none',
-        },
       }}
     >
-      <Container maxWidth='lg' sx={{ position: 'relative', zIndex: 1 }}>
+      <Box
+        sx={{
+          zIndex: 0,
+          position: 'absolute',
+          bottom: -900,
+          left: -700,
+          width: '160%',
+        }}
+      >
+        <img
+          src='/assets/images/WhyUNIDEX/bg.svg'
+          alt=''
+          style={{ width: '100%', height: 'auto', display: 'block' }}
+        />
+      </Box>
+      <Container maxWidth='lg' sx={{ position: 'relative', zIndex: 2 }}>
         {/* Header Section */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography
@@ -86,7 +89,7 @@ const WhyUnidexSection = ({ isDarkMode }) => {
           <Typography
             variant='h6'
             sx={{
-              color: isDarkMode ? '#94a3b8' : '#64748b',
+              color: isDarkMode ? '#E3E3E3' : '#64748b',
               fontWeight: 400,
               maxWidth: 600,
               mx: 'auto',
@@ -117,10 +120,7 @@ const WhyUnidexSection = ({ isDarkMode }) => {
               <Card
                 sx={{
                   height: '100%',
-                  minHeight: 250,
-                  background: isDarkMode
-                    ? '#10254A'
-                    : 'rgba(255, 255, 255, 0.9)',
+                  background: isDarkMode ? '#10254A' : '#F5FBFF',
                   borderRadius: '20px',
                   border: isDarkMode
                     ? '1px solid rgba(51, 65, 85, 0.3)'
@@ -149,37 +149,43 @@ const WhyUnidexSection = ({ isDarkMode }) => {
                   {/* Icon */}
                   <Box
                     sx={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: '50%',
-                      background: '#1F3B6B',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
-                      mb: 2.5,
+                      gap: 4,
                     }}
                   >
-                    I
-                  </Box>
+                    <Box
+                      sx={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: '50%',
+                        background: isDarkMode ? '#1F3B6B' : '#E4F2FF',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        mb: 2.5,
+                      }}
+                    ></Box>
 
-                  {/* Title */}
-                  <Typography
-                    variant='h6'
-                    sx={{
-                      fontWeight: 600,
-                      mb: 1.5,
-                      color: isDarkMode ? '#ffffff' : '#1a1a1a',
-                      fontSize: '1.1rem',
-                    }}
-                  >
-                    {feature.title}
-                  </Typography>
+                    {/* Title */}
+                    <Typography
+                      variant='h6'
+                      sx={{
+                        fontWeight: 600,
+                        mb: 1.5,
+                        color: isDarkMode ? '#0C9FE3' : '#0EA5E9',
+                        fontSize: '1.1rem',
+                      }}
+                    >
+                      {feature.title}
+                    </Typography>
+                  </Box>
 
                   {/* Description */}
                   <Typography
                     variant='body2'
                     sx={{
-                      color: isDarkMode ? '#94a3b8' : '#64748b',
+                      color: isDarkMode ? '#E3E3E3' : '#64748b',
                       lineHeight: 1.5,
                       fontSize: '0.875rem',
                       flex: 1,

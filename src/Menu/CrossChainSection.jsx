@@ -1,72 +1,71 @@
-import React from "react";
+import React from 'react'
 import {
-
   Typography,
   Button,
   Box,
   Container,
-  Grid,Card, CardContent,
+  Grid,
+  Card,
+  CardContent,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Divider,
-} from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
-import CloseIcon from "@mui/icons-material/Close";
+} from '@mui/material'
+import CheckIcon from '@mui/icons-material/Check'
+import CloseIcon from '@mui/icons-material/Close'
 
 export default function CrossChainSection(isDarkMode) {
   return (
-    <Box
+    <Box>
       sx={{
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
+        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'column',
       }}
-    >  
-    {/* first section */}
-     <Box sx={{backgroundImage: `url("assets/images/swapToken/gradient.png")`,
-          }}>
-       
-  
-
+    
+      {/* first section */}
+      <Box sx={{}}>
         {/* Hero Content */}
         <Box
           sx={{
-            alignItems: "center",
-            textAlign: "center",
-            gap: "22px",
-            mt: { xs: "60px", sm: "100px", md: "143px" },
-            position: "relative",
+            alignItems: 'center',
+            textAlign: 'center',
+            gap: '22px',
+            mt: { xs: '60px', sm: '100px', md: '143px' },
+            position: 'relative',
             zIndex: 10,
-            minHeight: "58vh",
-            backgroundImage:'url("assets/images/CrossChain/y.png")',
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
+            minHeight: { xs: '50vh', sm: '58vh' },
+            backgroundImage: 'url("assets/images/CrossChain/y.png")',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: { xs: 'cover', sm: 'contain' },
+            px: { xs: 2, sm: 4 },
           }}
         >
           <Typography
-            className="sub-heading"
+            className='sub-heading'
             sx={{
-              color: "#0c9fe3",
+              color: '#0c9fe3',
               fontWeight: 700,
-              fontSize: { xs: "18px", sm: "20px", md: "24px" },
-              lineHeight: "33px",
-              fontFamily: "Manrope, sans-serif",
-              pt:2,
+              fontSize: { xs: '18px', sm: '20px', md: '24px' },
+              lineHeight: '33px',
+              fontFamily: 'Manrope, sans-serif',
+              pt: 2,
             }}
           >
             where opportunity awaits
           </Typography>
 
           <Typography
-            variant="h1"
+            variant='h1'
             sx={{
-              color: "text.primary",
+              color: 'text.primary',
               fontWeight: 700,
-              fontSize: { xs: "36px", sm: "48px", md: "62px" },
-              lineHeight: { xs: "1.2", md: "85px" },
-              fontFamily: "Manrope, sans-serif",
+              fontSize: { xs: '36px', sm: '48px', md: '62px' },
+              lineHeight: { xs: '1.2', md: '85px' },
+              fontFamily: 'Manrope, sans-serif',
               m: 0,
             }}
           >
@@ -75,11 +74,11 @@ export default function CrossChainSection(isDarkMode) {
 
           <Typography
             sx={{
-              color: "text.primary",
+              color: 'text.primary',
               fontWeight: 700,
-              fontSize: { xs: "12px", sm: "14px" },
-              lineHeight: "24px",
-              fontFamily: "Manrope, sans-serif",
+              fontSize: { xs: '12px', sm: '14px' },
+              lineHeight: '24px',
+              fontFamily: 'Manrope, sans-serif',
             }}
           >
             Deep liquidity for the best prices on 9+ million tokens across 14
@@ -88,24 +87,21 @@ export default function CrossChainSection(isDarkMode) {
 
           <Button
             sx={{
-              background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-              color: "#fff",
-              fontFamily: "Inter, sans-serif",
+              background: 'linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)',
+              color: '#fff',
+              fontFamily: 'Inter, sans-serif',
               fontWeight: 700,
-              fontSize: "16px",
-              lineHeight: "24px",
+              fontSize: '16px',
+              lineHeight: '24px',
               px: 2,
               py: 1,
-              borderRadius: "8px",
+              borderRadius: '8px',
               mt: 3,
             }}
           >
             Start Trading
           </Button>
         </Box>
-
-        
-     
       </Box>
     <Divider/>
     
@@ -137,12 +133,12 @@ export default function CrossChainSection(isDarkMode) {
         <Box sx={{ flex: 1, maxWidth: 600, pt: 2 }}>
 
   <Box sx={{ maxWidth: 700 }}>
-        <Typography variant="h4" sx={{ fontWeight:"700", mb: 4,textAlign:"initial"}}>
-          Move seamlessly across chains.
+        <Typography variant="h3" sx={{ fontWeight: 700, mb: 4 }}>
+          Get unbeatable trade prices on Unidex.
         </Typography>
-        <Typography sx={{ fontWeight: 420,mb: 4,color:"#b3b3b3",textAlign:"initial"}}>
-         Swap tokens between chains inone trade to <br/>
-keep pace with fast-movingmarkets.
+        <Typography sx={{ fontWeight: 400,mb: 4,color:"text.primary" }}>
+          Matcha does the hard work to find efficient and secure paths for <br/>
+          your cross-chain trades.
         </Typography>
       </Box>
         </Box>
@@ -180,11 +176,11 @@ keep pace with fast-movingmarkets.
                     component="img"
                     src="assets/images/swapToken/dollar.png"
                     alt="USDC token"
-                    sx={{ width: 62, height: 62, position:"center"}}
+                    sx={{ width: 62, height: 62, position: "absolute" }}
                   />
                 </Box>
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>253.63 USDC</Typography>
-                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "#b3b3b3" }}>
+                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "rgba(0,0,0,0.43)" }}>
                   $253.44
                 </Typography>
               </Box>
@@ -209,56 +205,50 @@ keep pace with fast-movingmarkets.
                   component="img"
                   src="assets/images/swapToken/eth.png"
                   alt="ETH token"
-                  sx={{ width: 62, height: 62,position:"center",mb:2 }}
+                  sx={{ width: 62, height: 62, mb: 2 }}
                 />
                 <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
-                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#b3b3b3" }}>$253.44</Typography>
+                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>$253.44</Typography>
                 {/* Connecting Circle */}
               <Box
                 sx={{
-                  position: "absolute",
-                  width:120,
-                  height:130,
-                  backgroundColor: "white",
-                  borderRadius: "90%",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 1,
-                  display: { xs: "none", sm: "block" },
+                  width: { xs: 50, sm: 62 },
+                  height: { xs: 50, sm: 62 },
+                  mb: 2,
                 }}
               />
-              </Box>
-              
+              <Typography
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: 12, sm: 14 },
+                  color: '#000',
+                }}
+              >
+                0.06 ETH
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: 9, sm: 10 },
+                  color: '#000',
+                }}
+              >
+                $253.44
+              </Typography>
             </Box>
-
-        
+          </Box>
         </Box>
-        </Box>
-      <Box
-        component="img"
-         src="assets/images/LimitorderSection/spiral.png"
-        alt=""
-        sx={{
-          position: "absolute",
-          bottom:-195,
-          right: 0,
-          width:150,
-          height:150,
-        }}
-      />
+      
       
       
       
       </Box>
-    
-    
     </Box>
     <Divider/>
     {/* third section */}
      <Box
       sx={{
-        minHeight: "90vh", // light blue
+        minHeight: "100vh", // light blue
         backgroundImage: "url('assets/images/CrossChain/edit.png')", // place wave background here
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
@@ -270,18 +260,18 @@ keep pace with fast-movingmarkets.
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={20} alignItems="center">
+        <Grid container spacing={6} alignItems="center">
           {/* Left Side Content */}
           <Grid item xs={12} md={6}>
             <Typography
               variant="h4"
-              sx={{ fontWeight: "bold", mb: 2,width: 378,height: 135,textAlign:"initial"}}
+              sx={{ fontWeight: "bold", mb: 2,width: 378,height: 135,}}
             >
               Better than CEXs <br /> for L2 trading
             </Typography>
             <Typography
               variant="body1"
-              sx={{width: 443,height: 67, fontWeight:400, fontSize:16,textAlign:"initial"}}>
+              sx={{width: 443,height: 67, fontWeight:400, fontSize:16,}}>
               Trustless and non-custodial trades across chains. You stay in
               control of your funds.
             </Typography>
@@ -293,8 +283,8 @@ keep pace with fast-movingmarkets.
               sx={{
                 borderRadius: "20px",
                 boxShadow: "0px 8px 24px rgba(0,0,0,0.08)",
-                width:500,
-                height:250,
+                width: 587,
+                height:319,
               opacity: 1,}}>
               <CardContent>
                 <Grid container spacing={4}>
@@ -309,19 +299,18 @@ keep pace with fast-movingmarkets.
                     <List dense>
                       <ListItem>
                         <ListItemIcon>
-                          <CheckIcon sx={{ color: "#b3b3b3" }} />
+                          <CheckIcon sx={{ color: "text.primary" }} />
                         </ListItemIcon>
                         <ListItemText primary="Aggregated liquidity" width="201.05999755859375"
 height="24"
 opacity="1"
 top="36px"
 left="20px"
-color="#b3b3b3"
  />
                       </ListItem>
                       <ListItem>
                         <ListItemIcon>
-                          <CheckIcon sx={{ color: "#b3b3b3" }} />
+                          <CheckIcon sx={{ color: "text.primary" }} />
                         </ListItemIcon>
                         <ListItemText primary="Trustless" width="201.05999755859375"
 height="24"
@@ -331,7 +320,7 @@ left="20px"/>
                       </ListItem>
                       <ListItem>
                         <ListItemIcon>
-                          <CheckIcon sx={{ color: "#b3b3b3"}} />
+                          <CheckIcon sx={{ color: "text.primary" }} />
                         </ListItemIcon>
                         <ListItemText primary="Non-custodial" width="201.05999755859375"
 height="24"
@@ -353,13 +342,13 @@ left="20px" />
                     <List dense>
                       <ListItem>
                         <ListItemIcon>
-                          <CloseIcon sx={{ color: "#b3b3b3" }} />
+                          <CloseIcon sx={{ color: "text.primary" }} />
                         </ListItemIcon>
                         <ListItemText primary="Fragmented liquidity"  />
                       </ListItem>
                       <ListItem>
                         <ListItemIcon>
-                          <CloseIcon sx={{ color: "#b3b3b3" }} />
+                          <CloseIcon sx={{ color: "text.primary" }} />
                         </ListItemIcon>
                         <ListItemText primary="Requires deposits" width="201.05999755859375"
 height="24"
@@ -369,7 +358,7 @@ left="20px" />
                       </ListItem>
                       <ListItem>
                         <ListItemIcon>
-                          <CloseIcon sx={{ color: "#b3b3b3" }} />
+                          <CloseIcon sx={{ color: "text.primary" }} />
                         </ListItemIcon>
                         <ListItemText primary="Custodial apps" width="201.05999755859375"
 height="24"
@@ -404,10 +393,10 @@ left="20px" />
       </Typography>
       <Typography
         variant="body1"
-        color="#b3b3b3"
+        color="text.secondary"
         sx={{ mb: 6, maxWidth: 600, mx: "auto" }}
       >
-        Swap crypto without native tokens. Unidex handles the gas for swaps and
+        Swap crypto without native tokens. Matcha handles the gas for swaps and
         approvals so you can focus on trading.
       </Typography>
       <Box
@@ -417,7 +406,9 @@ left="20px" />
                 
               />
       </Box>
-      <Divider/>
+      <Divider />
     </Box>
-  );
+    </Box>
+  )
 }
+   
