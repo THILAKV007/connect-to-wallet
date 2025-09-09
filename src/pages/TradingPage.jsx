@@ -8,13 +8,13 @@ import {
   Button,
   TextField,
   Chip,
-  IconButton,
-  Tabs,
-  Tab,
+  // IconButton,
+  // Tabs,
+  // Tab,
   Select,
   MenuItem,
   FormControl,
-  Avatar,
+  // Avatar,
 } from '@mui/material'
 import {
   LineChart,
@@ -26,9 +26,9 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from 'recharts'
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
+// import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import TrendingUpIcon from '@mui/icons-material/TrendingUp'
+// import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import ShowChartIcon from '@mui/icons-material/ShowChart'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import TimelineIcon from '@mui/icons-material/Timeline'
@@ -42,15 +42,15 @@ const TradingPage = ({ isDarkMode }) => {
   const [limitPrice, setLimitPrice] = useState('')
   const [expiry, setExpiry] = useState('1h')
 
-  const handleTabChange = (event, newValue) => {
-    setActiveTab(newValue)
-  }
+  // const handleTabChange = (event, newValue) => {
+  //   setActiveTab(newValue)
+  // }
 
-  // Mock data for demonstration
-  const currentPrice = 9209.0
-  const priceChange = 2.45
-  const volume24h = '1.2B'
-  const marketCap = '180.5B'
+  // // Mock data for demonstration
+  // const currentPrice = 9209.0
+  // const priceChange = 2.45
+  // const volume24h = '1.2B'
+  // const marketCap = '180.5B'
 
   // Generate realistic trading chart data
   const generateChartData = () => {

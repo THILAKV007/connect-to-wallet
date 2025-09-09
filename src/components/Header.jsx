@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -6,15 +6,13 @@ import {
   Button,
   Box,
   IconButton,
-  FormControl,
-  Select,
-  InputLabel,
+  Menu,
+  
   MenuItem,
   
 } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -22,11 +20,17 @@ import { Link } from "react-router-dom";
 
 function Header({ toggleTheme, isDarkMode }) {
       
-      const [setAge] = useState('');
+      
+      const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
-      const handleChange = (event) => {
-        setAge(event.target.value);
-      };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   return (
     <AppBar
@@ -134,26 +138,148 @@ function Header({ toggleTheme, isDarkMode }) {
           <IconButton onClick={toggleTheme} sx={{ color: isDarkMode ? '#EFF8FF' : '#061536' }}>
             {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
+<Button
+        variant="outlined"
+        onClick={handleClick}
+        sx={{
+          display: { xs: "none", sm: "block" },
+          color: isDarkMode ? "#EFF8FF" : "#061536",
+          borderColor: isDarkMode
+            ? "rgba(255, 255, 255, 0.3)"
+            : "rgba(0, 0, 0, 0.3)",
+          textTransform: "none",
+          borderRadius: 2,
+          px: 3,
+          "&:hover": {
+            borderColor: "#2196f3",
+            color: "#2196f3",
+            backgroundColor: "transparent"
+          }
+        }}
+      >
+        Create Wallet
+      </Button>
 
-          {/* Create Wallet Button */}
-          <Button
-            variant="outlined"
-            sx={{
-              display: { xs: 'none', sm: 'block' },
-              color: isDarkMode ? '#EFF8FF' : '#061536',
-              borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
-              textTransform: 'none',
-              borderRadius: 2,
-              px: 3,
-              '&:hover': {
-                borderColor: '#2196f3',
-                color: '#2196f3',
-                backgroundColor: 'transparent',
-              },
-            }}
-          >
-            Create Wallet
-          </Button>
+      {/* Dropdown Menu */}
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        PaperProps={{
+          sx: { width: 390, borderRadius: 2 }
+        }}
+      >
+        {/* first */}
+        <MenuItem onClick={handleClose} component={Link} to="/title1">
+          <Box
+            component="img"
+            src="assets/images/Header/hello.svg"
+            alt="Ethereum"
+            sx={{ width: 50, height: 50, mr: 1 }}
+          />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Swap Token</Typography>
+            <Typography
+              sx={{
+                color: "text.primary",
+                fontSize: "14px",
+                padding: "5px"
+              }}
+            >
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+
+        {/* second */}
+        <MenuItem onClick={handleClose} component={Link} to="/title2">
+          <Box
+            component="img"
+            src="assets/images/Header/gas.svg"
+            alt="Ethereum"
+            sx={{ width: 50, height: 50, mr: 1 }}
+          />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Gasless Swaps</Typography>
+            <Typography
+              sx={{
+                color: "text.primary",
+                fontSize: "14px",
+                padding: "5px"
+              }}
+            >
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+
+        {/* third */}
+        <MenuItem onClick={handleClose} component={Link} to="/title3">
+          <Box
+            component="img"
+            src="assets/images/Header/liquidity.svg"
+            alt="Ethereum"
+            sx={{ width: 50, height: 50, mr: 1 }}
+          />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Liquidity Source</Typography>
+            <Typography
+              sx={{
+                color: "text.primary",
+                fontSize: "14px",
+                padding: "5px"
+              }}
+            >
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+
+        {/* fourth */}
+        <MenuItem onClick={handleClose} component={Link} to="/title4">
+          <Box
+            component="img"
+            src="assets/images/Header/limit.svg"
+            alt="Ethereum"
+            sx={{ width: 50, height: 50, mr: 1 }}
+          />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Limit Orders</Typography>
+            <Typography
+              sx={{
+                color: "text.primary",
+                fontSize: "14px",
+                padding: "5px"
+              }}
+            >
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+
+        {/* fifth */}
+        <MenuItem onClick={handleClose} component={Link} to="/title5">
+          <Box
+            component="img"
+            src="assets/images/Header/cross.svg"
+            alt="Ethereum"
+            sx={{ width: 50, height: 50, mr: 1 }}
+          />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Cross Chains</Typography>
+            <Typography
+              sx={{
+                color: "text.primary",
+                fontSize: "14px",
+                padding: "5px"
+              }}
+            >
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+      </Menu>
+         
 
           {/* Connect to Wallet Button */}
           <Button
@@ -172,58 +298,8 @@ function Header({ toggleTheme, isDarkMode }) {
             Connect to Wallet
             </Button>
             
-          <FormControl>
-       
-             <InputLabel id="demo"></InputLabel>
-             <Select
-                     labelId="demo"
-                     id=""
-                     label=""
-                     onChange={handleChange}
-                    
-                    
-              >
-                {/* first */}
-             <Link to={'/title1'} style={{ textDecoration: 'none'}}> <MenuItem value={10}><Box component="img"
-        src="assets/images/Header/hello.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Swap Token<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> 
-        </Link>  
-        {/* second */}
-             <Link to={'/title2'} style={{ textDecoration: 'none' }}> <MenuItem value={20}><Box component="img"
-        src="assets/images/Header/gas.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Gasless Swaps<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-
-             {/* third */}
-             <Link to={'/title3'} style={{ textDecoration: 'none' }}><MenuItem value={30}><Box component="img"
-        src="assets/images/Header/liquidity.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Liquidity Source<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-             
-             {/* fourth */}
-             <Link to={'/title4'} style={{ textDecoration: 'none' }}>  <MenuItem value={30}><Box component="img"
-        src="assets/images/Header/limit.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Limit Orders<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-             
-             {/* fifth */}
-             <Link to={'/title5'} style={{ textDecoration: 'none' }}> <MenuItem value={30}><Box component="img"
-        src="assets/images/Header/cross.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Cross Chains<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-        </Select>
-          </FormControl>
+        
+          
         
         </Box>
       </Toolbar>

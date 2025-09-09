@@ -15,6 +15,7 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 
+
 export default function CrossChainSection(isDarkMode) {
   return (
     <Box
@@ -35,14 +36,14 @@ export default function CrossChainSection(isDarkMode) {
           sx={{
             alignItems: "center",
             textAlign: "center",
-            gap: "22px",
             mt: { xs: "60px", sm: "100px", md: "143px" },
             position: "relative",
-            zIndex: 10,
-            minHeight: "58vh",
+            zIndex:2,
+            minHeight: "30vh",
             backgroundImage:'url("assets/images/CrossChain/y.png")',
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
+            py:8,
           }}
         >
           <Typography

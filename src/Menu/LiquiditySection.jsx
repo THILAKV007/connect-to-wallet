@@ -11,7 +11,6 @@ import {
   TextField,
   Avatar,
   Stack,
-  Pagination,
   InputAdornment,
   Button,
   Divider,
@@ -97,19 +96,20 @@ function LiquiditySection() {
     <>
       {' '}
       {/* first section */}
-      <Box sx={{}}>
+      <Box sx={{ 
+        backgroundImage: `url("assets/images/swapToken/gradient.png")`,}}>
         <Box
           sx={{
             textAlign: 'center',
-            minHeight: '80vh',
-            backgroundImage: `url("assets/images/LiquiditySection/Vector 111.png")`,
+            minHeight: '70vh',
+            backgroundImage: `url("assets/images/LiquiditySection/wavey.png")`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain',
             backgroundPosition: 'center',
-            py: 20,
+            py:18,
           }}
         >
-          <Typography variant='h4'>Go gasless with Unidex..</Typography>
+          <Typography variant='h4' sx={{color:"#0c9fe3",}}>Go gasless with Unidex..</Typography>
           <Typography variant='h2' sx={{ fontWeight: 'bold', my: 3 }}>
             Liquidity sources
           </Typography>
@@ -252,10 +252,7 @@ function LiquiditySection() {
             </Table>
           </TableContainer>
 
-          {/* Pagination */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-            <Pagination count={5} shape='rounded' />
-          </Box>
+         
         </Box>
       </Box>
       <Divider />
