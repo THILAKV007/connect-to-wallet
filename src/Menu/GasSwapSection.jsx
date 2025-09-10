@@ -760,7 +760,6 @@ swaps and approvals so you can focus on trading.
           and approvals so you can focus on trading.
         </Typography>
       </Box>
-    
     </Box>
     
     

@@ -39,11 +39,10 @@ export default function CrossChainSection(isDarkMode) {
             mt: { xs: "60px", sm: "100px", md: "143px" },
             position: "relative",
             zIndex:2,
-            minHeight: "30vh",
+            minHeight: "50vh",
             backgroundImage:'url("assets/images/CrossChain/y.png")',
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            py:8,
           }}
         >
           <Typography
@@ -242,16 +241,12 @@ keep pace with fast-movingmarkets.
         alt=""
         sx={{
           position: "absolute",
-          bottom:-195,
+          bottom:-185,
           right: 0,
-          width:150,
-          height:150,
+          width:120,
+          height:120,
         }}
-      />
-      
-      
-      
-      </Box>
+      /></Box>
     
     
     </Box>

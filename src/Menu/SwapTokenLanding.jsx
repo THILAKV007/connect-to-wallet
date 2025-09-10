@@ -19,9 +19,9 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 
 
 export default function SwapTokenLanding(isDarkMode) {
-   const isTablet = useMediaQuery("(max-width:992px)");
+  const isTablet = useMediaQuery("(max-width:992px)");
   const isMobile = useMediaQuery("(max-width:768px)");
-   const features = [
+  const features = [
     {
       icon: "assets/images/swapToken/tick.svg",
       text: (
@@ -78,7 +78,7 @@ export default function SwapTokenLanding(isDarkMode) {
      
       {/* Hero Section */}
       <Box sx={{
-        py:4,
+        py:2,
         fontFamily: "'Manrope', sans-serif",
         color: "text.primary",
         backgroundImage: `url("assets/images/swapToken/gradient.png")`,

@@ -1,174 +1,171 @@
 import React from 'react'
 import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-  Avatar,
-  Stack,
-  InputAdornment,
-  Button,
-  Divider,
-  Container,
+  Box, Typography, Table, TableBody, TableCell, TableContainer,
+  TableHead, TableRow, TextField, Avatar, Stack, InputAdornment,
+  Button, Divider, Container, useMediaQuery
 } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import { useTheme } from '@mui/material/styles'
 
 function LiquiditySection() {
-  const rows = [
-    {
-      source: 'oX RFQ',
-      icon: 'assets/images/LiquiditySection/danger.svg',
-      total: '$ 2.8B',
-      volume: '$108.5 M',
-      networks: [
-        'assets/images/LiquiditySection/a.svg',
-        'assets/images/LiquiditySection/b.svg',
-        'assets/images/LiquiditySection/c.svg',
-        'assets/images/LiquiditySection/d.svg',
-      ],
-    },
-    {
-      source: 'Across',
-      icon: 'assets/images/LiquiditySection/across.svg',
-      total: '$ 1.2B',
-      volume: '$207.5 k',
-      networks: [
-        'assets/images/LiquiditySection/a.svg',
-        'assets/images/LiquiditySection/b.svg',
-        'assets/images/LiquiditySection/c.svg',
-      ],
-    },
-    {
-      source: 'oX RFQ',
-      icon: 'assets/images/LiquiditySection/danger.svg',
-      total: '$ 2.8B',
-      volume: '$108.5 M',
-      networks: [
-        'assets/images/LiquiditySection/a.svg',
-        'assets/images/LiquiditySection/b.svg',
-        'assets/images/LiquiditySection/c.svg',
-        'assets/images/LiquiditySection/d.svg',
-      ],
-    },
-    {
-      source: 'Across',
-      icon: 'assets/images/LiquiditySection/across.svg',
-      total: '$ 1.2B',
-      volume: '$207.5 k',
-      networks: [
-        'assets/images/LiquiditySection/a.svg',
-        'assets/images/LiquiditySection/b.svg',
-        'assets/images/LiquiditySection/c.svg',
-      ],
-    },
-    {
-      source: 'oX RFQ',
-      icon: 'assets/images/LiquiditySection/danger.svg',
-      total: '$ 2.8B',
-      volume: '$108.5 M',
-      networks: [
-        'assets/images/LiquiditySection/a.svg',
-        'assets/images/LiquiditySection/b.svg',
-        'assets/images/LiquiditySection/c.svg',
-        'assets/images/LiquiditySection/d.svg',
-      ],
-    },
-    {
-      source: 'Across',
-      icon: 'assets/images/LiquiditySection/across.svg',
-      total: '$ 1.2B',
-      volume: '$207.5 k',
-      networks: [
-        'assets/images/LiquiditySection/a.svg',
-        'assets/images/LiquiditySection/b.svg',
-        'assets/images/LiquiditySection/c.svg',
-      ],
-    },
-  ]
+  const theme = useTheme()
+  // Match screens xs (phones), sm (large phones, small tablets), md and above (large tablets, desktops)
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
+  const rows = [
+    {
+      source: 'oX RFQ',
+      icon: 'assets/images/LiquiditySection/danger.svg',
+      total: '$ 2.8B',
+      volume: '$108.5 M',
+      networks: [
+        'assets/images/LiquiditySection/a.svg',
+        'assets/images/LiquiditySection/b.svg',
+        'assets/images/LiquiditySection/c.svg',
+        'assets/images/LiquiditySection/d.svg',
+      ],
+    },
+    {
+      source: 'Across',
+      icon: 'assets/images/LiquiditySection/across.svg',
+      total: '$ 1.2B',
+      volume: '$207.5 k',
+      networks: [
+        'assets/images/LiquiditySection/a.svg',
+        'assets/images/LiquiditySection/b.svg',
+        'assets/images/LiquiditySection/c.svg',
+      ],
+    },
+    {
+      source: 'oX RFQ',
+      icon: 'assets/images/LiquiditySection/danger.svg',
+      total: '$ 2.8B',
+      volume: '$108.5 M',
+      networks: [
+        'assets/images/LiquiditySection/a.svg',
+        'assets/images/LiquiditySection/b.svg',
+        'assets/images/LiquiditySection/c.svg',
+        'assets/images/LiquiditySection/d.svg',
+      ],
+    },
+    {
+      source: 'Across',
+      icon: 'assets/images/LiquiditySection/across.svg',
+      total: '$ 1.2B',
+      volume: '$207.5 k',
+      networks: [
+        'assets/images/LiquiditySection/a.svg',
+        'assets/images/LiquiditySection/b.svg',
+        'assets/images/LiquiditySection/c.svg',
+      ],
+    },
+    {
+      source: 'oX RFQ',
+      icon: 'assets/images/LiquiditySection/danger.svg',
+      total: '$ 2.8B',
+      volume: '$108.5 M',
+      networks: [
+        'assets/images/LiquiditySection/a.svg',
+        'assets/images/LiquiditySection/b.svg',
+        'assets/images/LiquiditySection/c.svg',
+        'assets/images/LiquiditySection/d.svg',
+      ],
+    },
+    {
+      source: 'Across',
+      icon: 'assets/images/LiquiditySection/across.svg',
+      total: '$ 1.2B',
+      volume: '$207.5 k',
+      networks: [
+        'assets/images/LiquiditySection/a.svg',
+        'assets/images/LiquiditySection/b.svg',
+        'assets/images/LiquiditySection/c.svg',
+      ],
+    },
+  ]
   return (
     <>
-      {' '}
-      {/* first section */}
-      <Box sx={{ 
-        backgroundImage: `url("assets/images/swapToken/gradient.png")`,}}>
+      {/* Hero Section */}
+      <Box
+        sx={{
+          backgroundImage: { xs: 'none', md: 'url("assets/images/swapToken/gradient.png")' },
+          px: { xs: 1, md: 6 },
+          py: { xs: 6, md: 2},
+          minHeight: { xs: '40vh', md: '70vh' }
+        }}
+      >
         <Box
           sx={{
             textAlign: 'center',
-            minHeight: '70vh',
-            backgroundImage: `url("assets/images/LiquiditySection/wavey.png")`,
+            backgroundImage: { xs: 'none', md: 'url("assets/images/LiquiditySection/wavey.png")' },
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'contain',
             backgroundPosition: 'center',
-            py:18,
+            py: { xs: 6, md: 18 }
           }}
         >
-          <Typography variant='h4' sx={{color:"#0c9fe3",}}>Go gasless with Unidex..</Typography>
-          <Typography variant='h2' sx={{ fontWeight: 'bold', my: 3 }}>
+          <Typography variant={isMobile ? 'h6' : 'h4'} sx={{ color: "#0c9fe3" }}>
+            Go gasless with Unidex..
+          </Typography>
+          <Typography variant={isMobile ? 'h5' : 'h2'} sx={{ fontWeight: 'bold', my: 3 }}>
             Liquidity sources
           </Typography>
-          <Typography variant='body1'>
-            Deep liquidity for the best prices on 9+ million tokens across 14
-            chains. Tap into 130+
-            <br /> liquidity sources aggregated by Matcha!
+          <Typography variant='body2' sx={{ fontSize: { xs: '0.95rem', sm: '1rem', md: '1.15rem' } }}>
+            Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+<br />
+            liquidity sources aggregated by Matcha!
           </Typography>
-          <Button variant='contained' color='primary'>
+          <Button variant='contained' color='primary' sx={{ mt: 2, fontSize: { xs: '0.8rem', sm: '1rem' }, px: { xs: 2, sm: 4 } }}>
             Start Trading
           </Button>
         </Box>
       </Box>
       <Divider />
-      {/* second section */}
+
+      {/* Integrated Liquidity Table Section */}
       <Box
         id='liquidity-sources'
         sx={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'flex-start',
-          p: { xs: 2, md: 5 },
-          minHeight: '100vh',
+          minHeight: { xs: '50vh', md: '100vh' },
+          px: { xs: 0, md: 5 },
         }}
       >
         <Box
           sx={{
             width: '100%',
-            maxWidth: 1240,
+            maxWidth: { xs: 375, sm: 600, md: 1240 },
             borderRadius: 4,
             border: '1px solid #6d6d6d',
-            p: { xs: 2, md: 4 },
+            p: { xs: 1, md: 4 },
           }}
         >
-          {/* Header */}
+
+          {/* Table Header and Filters */}
           <Box
             sx={{
               display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
               justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
+              alignItems: { xs: 'flex-start', sm: 'center' },
               gap: 2,
               mb: 3,
             }}
           >
-            <Typography variant='h6' fontWeight={600}>
+            <Typography variant={isMobile ? 'body1' : 'h6'} fontWeight={600}>
               Integrated liquidity sources
             </Typography>
-
-            {/* Filters */}
-            <Stack direction='row' spacing={1} flexWrap='wrap'>
-              {/* Search Input */}
+            <Stack direction={isMobile ? 'column' : 'row'} spacing={1} flexWrap='wrap'>
               <TextField
                 placeholder='Search by liquidity source'
                 size='small'
                 sx={{
-                  width: 278,
+                  width: isMobile ? 180 : 278,
                   bgcolor: 'rgba(88, 88, 242, 0.05)',
                   borderRadius: 2,
+                  mb: isMobile ? 1 : 0,
                 }}
                 InputProps={{
                   startAdornment: (
@@ -178,8 +175,6 @@ function LiquiditySection() {
                   ),
                 }}
               />
-
-              {/* Filter Buttons */}
               <Button
                 variant='outlined'
                 endIcon={<ArrowDropDownIcon />}
@@ -188,11 +183,11 @@ function LiquiditySection() {
                   color: 'text.primary',
                   textTransform: 'none',
                   borderRadius: 2,
+                  fontSize: { xs: '0.8rem', sm: '1rem' }
                 }}
               >
                 Network
               </Button>
-
               <Button
                 variant='contained'
                 endIcon={<ArrowDropDownIcon />}
@@ -201,6 +196,7 @@ function LiquiditySection() {
                   color: 'text.primary',
                   textTransform: 'none',
                   borderRadius: 1,
+                  fontSize: { xs: '0.8rem', sm: '1rem' }
                 }}
               >
                 All time
@@ -208,82 +204,93 @@ function LiquiditySection() {
             </Stack>
           </Box>
 
-          {/* Table */}
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Source</TableCell>
-                  <TableCell>Total Volume (USD)</TableCell>
-                  <TableCell>30D Volume (USD)</TableCell>
-                  <TableCell>Networks available</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row, i) => (
-                  <TableRow key={i}>
-                    <TableCell>
-                      <Stack direction='row' alignItems='center' spacing={1.5}>
-                        <Avatar
-                          src={row.icon}
-                          alt={row.source}
-                          sx={{ width: 24, height: 24 }}
-                        />
-                        <Typography>{row.source}</Typography>
-                      </Stack>
-                    </TableCell>
-                    <TableCell>{row.total}</TableCell>
-                    <TableCell>{row.volume}</TableCell>
-                    <TableCell>
-                      <Stack direction='row' spacing={-1}>
-                        {row.networks.map((net, j) => (
-                          <Avatar
-                            key={j}
-                            src={net}
-                            alt='network'
-                            sx={{ width: 24, height: 24 }}
-                          />
-                        ))}
-                      </Stack>
-                    </TableCell>
+          {/* Responsive Table/Card */}
+          {!isMobile ? (
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Source</TableCell>
+                    <TableCell>Total Volume (USD)</TableCell>
+                    <TableCell>30D Volume (USD)</TableCell>
+                    <TableCell>Networks available</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-         
+                </TableHead>
+                <TableBody>
+                  {rows.map((row, i) => (
+                    <TableRow key={i}>
+                      <TableCell>
+                        <Stack direction='row' spacing={1.5} alignItems='center'>
+                          <Avatar src={row.icon} alt={row.source} sx={{ width: 24, height: 24 }} />
+                          <Typography>{row.source}</Typography>
+                        </Stack>
+                      </TableCell>
+                      <TableCell>{row.total}</TableCell>
+                      <TableCell>{row.volume}</TableCell>
+                      <TableCell>
+                        <Stack direction='row' spacing={-1}>
+                          {row.networks.map((net, j) => (
+                            <Avatar key={j} src={net} alt='network' sx={{ width: 24, height: 24 }} />
+                          ))}
+                        </Stack>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ) : (
+            <Box>
+              {rows.map((row, i) => (
+                <Box key={i} sx={{ border: '1px solid #eee', borderRadius: 2, mb: 2, p: 2, bgcolor: '#f8fafb' }}>
+                  <Stack direction='row' spacing={1.5} alignItems='center'>
+                    <Avatar src={row.icon} alt={row.source} sx={{ width: 24, height: 24 }} />
+                    <Typography fontWeight={600}>{row.source}</Typography>
+                  </Stack>
+                  <Divider sx={{ my: 1 }} />
+                  <Typography variant='body2'><strong>Total Volume:</strong> {row.total}</Typography>
+                  <Typography variant='body2'><strong>30D Volume:</strong> {row.volume}</Typography>
+                  <Typography variant='body2'><strong>Networks:</strong></Typography>
+                  <Stack direction='row' spacing={-1}>
+                    {row.networks.map((net, j) => (
+                      <Avatar key={j} src={net} alt='network' sx={{ width: 24, height: 24 }} />
+                    ))}
+                  </Stack>
+                </Box>
+              ))}
+            </Box>
+          )}
         </Box>
       </Box>
       <Divider />
+
+      {/* Deep Liquidity Section */}
       <Box
         sx={{
           position: 'relative',
-          minHeight: '100vh',
+          minHeight: { xs: '60vh', md: '100vh' },
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundImage: "url('assets/images/LiquiditySection/back.png')", // <-- place your bg image inside public/assets/images
+          backgroundImage: { xs: 'none', md: "url('assets/images/LiquiditySection/back.png')" },
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           textAlign: 'center',
+          px: { xs: 2, md: 0 }
         }}
       >
         <Container maxWidth='md'>
-          {/* Headline */}
           <Typography
-            variant='h3'
+            variant={isMobile ? 'h5' : 'h3'}
             component='h1'
             gutterBottom
             sx={{ fontWeight: 'bold' }}
           >
-            Deep liquidity. <br /> AMM and RFQ combined.
+            Deep liquidity.<br />AMM and RFQ combined.
           </Typography>
-
-          {/* Subheadline */}
-          <Typography variant='h6' sx={{ opacity: 0.85 }}>
-            Matcha combines 130+ liquidity sources, on-chain and off-chain.
+          <Typography variant={isMobile ? 'body2' : 'h6'} sx={{ opacity: 0.85 }}>
+            Unidex combines 130+ liquidity sources, on-chain and off-chain.
           </Typography>
         </Container>
       </Box>
