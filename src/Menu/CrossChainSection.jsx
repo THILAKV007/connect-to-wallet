@@ -36,7 +36,7 @@ export default function CrossChainSection(isDarkMode) {
           sx={{
             alignItems: "center",
             textAlign: "center",
-            mt: { xs: "60px", sm: "100px", md: "143px" },
+           
             position: "relative",
             zIndex:2,
             minHeight: "50vh",
@@ -261,7 +261,6 @@ keep pace with fast-movingmarkets.
         backgroundSize: "cover",
         display: "flex",
         alignItems: "center",
-        py: 8,
         textAlign:"center",
       }}
     >
@@ -385,13 +384,11 @@ left="20px" />
        <Divider/>
        {/* four section */}
         <Box  sx={{
-        minHeight: "100vh", // light blue
         backgroundImage: "url('assets/images/CrossChain/center wave.png')", // place wave background here
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
         alignItems: "center",
-        py: 8,
         textAlign:"center",
       }}>
       {/* Section Title */}

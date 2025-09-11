@@ -132,8 +132,7 @@ const TrendingPairsText = styled(FeatureText)({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          minHeight: { md: "500px" },
-          overflow: "hidden",
+          minHeight:"85vh",
         }}
       >
         {/* Single Background Decoration */}
