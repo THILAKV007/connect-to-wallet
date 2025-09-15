@@ -872,107 +872,157 @@ return (
         </Stack>
 
        {/* Right Side Swap Widget */}
-        <Box sx={{ width:501,
-          height:513,
-          top:126,
-          left:815,
-          borderRadius:8,
-
-        }}>
-        <Box sx={{ flex: 1, maxWidth: 501}}>
-             
-
-            {/* Token Swap Visual */}
-            <Box sx={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4, flexDirection: { xs: "column", sm: "row" }}}>
+          <Box
+            sx={{
+              width: 501,
+              height: 513,
+              top: 126,
+              left: 815,
+              borderRadius: 8,
+              maxWidth: "100%",
+            }}
+          >
+            <Box sx={{ flex: 1, maxWidth: 501, mx: "auto" }}>
               
-              {/* Token Box 1 */}
+
+              {/* Token Swap Visual */}
               <Box
                 sx={{
-                  backgroundColor: "#fff",
-                  borderRadius: 2,
-                  width: 210,
-                  height: 163,
+                  position: "relative",
                   display: "flex",
-                  flexDirection: "column",
+                  justifyContent: "space-between",
                   alignItems: "center",
-                  pt: 3,
-                  zIndex: 2,
+                  mb: 4,
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: { xs: 2, sm: 0 }, // Added gap for small screens
                 }}
               >
-                <Box sx={{ width: 62, height: 62, position: "relative", mb: 2 }}>
+                {/* Token Box 1 */}
+                <Box
+                  sx={{
+                    backgroundColor: "#fff",
+                    borderRadius: 2,
+                    width: { xs: "100%", sm: 210 },
+                    height: 163,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    pt: 3,
+                    zIndex: 2,
+                  }}
+                >
+                  <Box sx={{ width: 62, height: 62, position: "relative", mb: 2 }}>
+                    <Box
+                      component="img"
+                      src="assets/images/swapToken/dollar.png"
+                      alt="USDC token"
+                      sx={{ width: 62, height: 62, position: "center" }}
+                    />
+                  </Box>
+                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>
+                    253.63 USDC
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontWeight: 500,
+                      fontSize: 10,
+                      color: "rgba(0,0,0,0.43)",
+                    }}
+                  >
+                    $253.44
+                  </Typography>
+                </Box>
+
+                {/* Swap Icon */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 3,
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: 110,
+                      height: 110,
+                      borderRadius: "50%",
+                      backgroundColor: "white",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                  </Box>
+                </Box>
+
+                {/* Token Box 2 */}
+                <Box
+                  sx={{
+                    backgroundColor: "#fff",
+                    borderRadius: 2,
+                    width: { xs: "100%", sm: 210 },
+                    height: 163,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    pt: 3,
+                    zIndex: 2,
+                  }}
+                >
                   <Box
                     component="img"
-                    src="assets/images/swapToken/dollar.png"
-                    alt="USDC token"
-                    sx={{ width: 62, height: 62,position:"center" }}
+                    src="assets/images/swapToken/eth.png"
+                    alt="ETH token"
+                    sx={{ width: 62, height: 62, position: "center" }}
                   />
+                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>
+                    0.06 ETH
+                  </Typography>
+                  <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>
+                    $253.44
+                  </Typography>
                 </Box>
-                <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>253.63 USDC</Typography>
-                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "#b3b3b3" }}>
-                  $253.44
-                </Typography>
               </Box>
 
-             
-
-              {/* Token Box 2 */}
-              <Box
-                sx={{
-                  backgroundColor: "#fff",
-                  borderRadius: 2,
-                  width: 210,
-                  height: 163,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  pt: 3,
-                  zIndex: 2,
-                }}
-              >
-                <Box
-                  component="img"
-                  src="assets/images/swapToken/eth.png"
-                  alt="ETH token"
-                  sx={{ width: 62, height: 62,position:"center",mb:2 }}
-                />
-                <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
-                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#b3b3b3" }}>$253.44</Typography>
-                {/* Connecting Circle */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  width:120,
-                  height:130,
-                  backgroundColor: "white",
-                  borderRadius: "90%",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 1,
-                  display: { xs: "none", sm: "block" },
-                }}
-              />
+              {/* Swap Details */}
+              <Box sx={{ display: "flex", flexDirection: "column", }}>
+                {[
+                  { label: "Liquidity Providers", value: "OxRFQ" },
+                  { label: "Rate", value: "1 ETH = 1562.76 USDC($1562.77)" },
+                  { label: "Ethereum Fees", value: "$ 23" },
+                ].map((row, i) => (
+                  <Box
+                    key={i}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      flexDirection: { xs: "column", sm: "row" },
+                      gap: { xs: 0.5, sm: 0 },
+                    }}
+                  >
+                    <Typography
+                      sx={{ fontWeight: 700, fontSize: 14, color: "text.primary" }}
+                    >
+                      {row.label}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontWeight: 700,
+                        fontSize: 14,
+                        color: "text.primary",
+                        textAlign: { xs: "left", sm: "right" },
+                      }}
+                    >
+                      {row.value}
+                    </Typography>
+                  </Box>
+                ))}
               </Box>
-              
             </Box>
-
-            {/* Swap Details */}
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-              {[
-                { label: "Liquidity Providers", value: "OxRFQ" },
-                { label: "Rate", value: "1 ETH = 1562.76 USDC($1562.77)" },
-                { label: "Ethereum Fees", value: "$ 23" },
-              ].map((row, i) => (
-                <Box key={i} sx={{ display: "flex", justifyContent: "space-between", flexDirection: { xs: "column", sm: "row" }, gap: { xs: 0.5, sm: 0 } }}>
-                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "text.primary" }}>{row.label}</Typography>
-                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "text.primary", textAlign: { xs: "left", sm: "right" } }}>{row.value}</Typography>
-                </Box>
-              ))}
-            </Box>
-      
-        </Box>
-        
-        </Box>
+          </Box>
        
         </Container>
         
