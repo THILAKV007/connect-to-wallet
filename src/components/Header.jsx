@@ -105,12 +105,12 @@ function Header({ toggleTheme, isDarkMode }) {
             {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
           
-          {/* Create Wallet Button */}
+          {/* Create Wallet Button (Desktop only) */}
           <Button
             variant="outlined"
             onClick={handleClick}
             sx={{
-              display: { xs: "none", sm: "block" },
+              display: { xs: "none", sm: "flex" }, // Use "flex" to align with parent Box
               color: isDarkMode ? "#EFF8FF" : "#061536",
               borderColor: isDarkMode
                 ? "rgba(255, 255, 255, 0.3)"
@@ -128,10 +128,11 @@ function Header({ toggleTheme, isDarkMode }) {
             Create Wallet
           </Button>
 
-          {/* Connect to Wallet Button */}
+          {/* Connect to Wallet Button (Desktop only) */}
           <Button
             variant="contained"
             sx={{
+              display: { xs: "none", sm: "block" }, // Hide on small screens to place in drawer
               backgroundColor: '#2196f3',
               color: '#ffffff',
               textTransform: 'none',
@@ -222,6 +223,7 @@ function Header({ toggleTheme, isDarkMode }) {
           onKeyDown={toggleDrawer(false)}
           sx={{ mt: 2 }}
         >
+          {/* Main Nav Links */}
           {navLinks.map((link) => (
             <MenuItem key={link.name} component={Link} to={link.to} sx={{
               color: isDarkMode ? '#EFF8FF' : '#061536',
@@ -230,6 +232,47 @@ function Header({ toggleTheme, isDarkMode }) {
               {link.name}
             </MenuItem>
           ))}
+          {/* Mobile-specific buttons */}
+          <Box sx={{ 
+            display: { xs: 'flex', sm: 'none' }, // Show on mobile only
+            flexDirection: 'column', 
+            gap: 2, 
+            p: 2 
+          }}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#2196f3',
+                color: '#ffffff',
+                textTransform: 'none',
+                borderRadius: 2,
+                px: 3,
+                '&:hover': {
+                  backgroundColor: '#1976d2',
+                },
+              }}
+            >
+              Connect to Wallet
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={handleClick}
+              sx={{
+                color: isDarkMode ? "#EFF8FF" : "#061536",
+                borderColor: isDarkMode ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)",
+                textTransform: "none",
+                borderRadius: 2,
+                px: 3,
+                "&:hover": {
+                  borderColor: "#2196f3",
+                  color: "#2196f3",
+                  backgroundColor: "transparent",
+                },
+              }}
+            >
+              Create Wallet
+            </Button>
+          </Box>
         </Box>
       </Drawer>
     </AppBar>
