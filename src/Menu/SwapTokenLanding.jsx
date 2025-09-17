@@ -13,12 +13,11 @@ import {
   Container,
   Paper,
 } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
 import BoltIcon from "@mui/icons-material/Bolt";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import { useTheme } from "@mui/material/styles";
-import CheckIcon from '@mui/icons-material/Check'; // For the checkmark icon
 
 
 
@@ -73,13 +72,97 @@ export default function SwapTokenLanding(isDarkMode) {
     },
   ];
   const checklistItems = [
-    "Scans multiple sources to find the best possible trade rates",
-    "Smart routing ensures maximum value across liquidity pools",
-    "Protects against front-running and sandwich attacks",
-    "Alerts you to slippage and potential price impact before you trade",
-    "Optimized for smarter trading with safety and transparency in every swap",
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Scans multiple</span>sources to find the best possible trade rates
+        </>
+      ),
+    },
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Smart routing</span>ensures maximum value across liquidity pools
+          bots
+        </>
+      ),
+    },
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Protects against front-running</span>and sandwich attacks
+          Unidex Auto
+        </>
+      ),
+    },
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Alerts you to slippage</span> and
+          potential price impact before you trade
+        </>
+      ),
+    },
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Optimized for smarter </span>
+          trading with safety,transparency in every swap
+        </>
+      ),
+    },
   ];
-
+  const swap = [
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Unidex Source the market for the best prices</span>
+        </>
+      ),
+    },
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>No public mempool - </span>no MEV
+          bots
+        </>
+      ),
+    },
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Enhanced protection with Unidex Auto</span>
+          
+        </>
+      ),
+    },
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Alerts you to slippage</span> and
+          potential price impact before you trade
+        </>
+      ),
+    },
+    {
+      icon: "assets/images/swapToken/tick.svg",
+      text: (
+        <>
+          <span style={{ color: "#0ea5e9" }}>Optimized for smarter </span>
+          trading with safety,transparency in every swap
+        </>
+      ),
+    },
+  ];
   return (
     <Box
       sx={{
@@ -108,7 +191,7 @@ export default function SwapTokenLanding(isDarkMode) {
           overflow: "hidden",
           padding: { xs: "20px", md: "0" },
           boxSizing: "border-box",
-         
+          backgroundImage:'url("assets/images/swapToken/gradient.png")',
         }}
       >
         {/* Background Decoration */}
@@ -192,7 +275,7 @@ export default function SwapTokenLanding(isDarkMode) {
               fontSize: "16px",
               lineHeight: "24px",
               background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-              color: "text.primary",
+              color: "white",
               textTransform: "none",
               padding: "12px 24px",
               marginTop: { xs: "16px", md: "0" },
@@ -242,32 +325,37 @@ export default function SwapTokenLanding(isDarkMode) {
           Get unbeatable trade prices on Unidex.
         </Typography>
 
-        <List disablePadding sx={{ width: '100%', maxWidth: { md: '500px' } }}>
-          {checklistItems.map((item, index) => (
-            <ListItem
-              key={index}
-              disableGutters
-              sx={{
-                paddingY: { xs: "8px", md: "12px" },
-              }}
-            >
-              <ListItemIcon sx={{ minWidth: "32px" }}>
-                <CheckIcon sx={{ color: "#2de071", fontSize: { xs: "18px", md: "24px" } }} />
-              </ListItemIcon>
-              <ListItemText
-                primary={item}
-                primaryTypographyProps={{
-                  sx: {
-                    fontSize: { xs: "14px", md: "16px" },
-                    lineHeight: { xs: 1.5, md: 1.7 },
-                    color: "text.primary",
-                    fontWeight: 500,
-                  }
-                }}
-              />
-            </ListItem>
-          ))}
-        </List>
+         <List sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {checklistItems.map((item, idx) => (
+                <ListItem
+                  key={idx}
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: 2,
+                    p: 0,
+                  }}
+                >
+                  <ListItemIcon sx={{ minWidth: "unset" }}>
+                    <Box
+                      component="img"
+                      src={item.icon}
+                      alt="Checkmark icon"
+                      sx={{ width: 24, height: 24, mt: "2px" }}
+                    />
+                  </ListItemIcon>
+                  <ListItemText
+                    primaryTypographyProps={{
+                      fontSize: 14,
+                      fontWeight: 700,
+                      lineHeight: "24px",
+                      color: "text.primary",
+                    }}
+                    primary={item.text}
+                  />
+                </ListItem>
+              ))}
+            </List>
       </Box>
 
       {/* Right Section: Swap Card */}
@@ -601,177 +689,37 @@ export default function SwapTokenLanding(isDarkMode) {
         >
           Smart Routing
         </Typography>
-        <List>
-          <ListItem
-            sx={{
-              flexDirection: { xs: "column", md: "row" },
-              p: 0,
-              mb: { xs: 2, md: 1 },
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: "unset", mr: { xs: 0, md: 2 } }}>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "#1976d2",
-                      fontWeight: 700,
+        <List sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {swap.map((item, idx) => (
+                <ListItem
+                  key={idx}
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: 2,
+                    p: 0,
+                  }}
+                >
+                  <ListItemIcon sx={{ minWidth: "unset" }}>
+                    <Box
+                      component="img"
+                      src={item.icon}
+                      alt="Checkmark icon"
+                      sx={{ width: 24, height: 24, mt: "2px" }}
+                    />
+                  </ListItemIcon>
+                  <ListItemText
+                    primaryTypographyProps={{
                       fontSize: 14,
-                    }}
-                  >
-                    Unidex Source the market for the best prices
-                  </Box>
-                </Typography>
-              }
-              sx={{ textAlign: { xs: "center", md: "left" } }}
-            />
-          </ListItem>
-          <ListItem
-            sx={{
-              flexDirection: { xs: "column", md: "row" },
-              p: 0,
-              mb: { xs: 2, md: 1 },
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: "unset", mr: { xs: 0, md: 2 } }}>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "#1976d2",
                       fontWeight: 700,
-                      fontSize: 14,
-                    }}
-                  >
-                    No public mempool{" "}
-                  </Box>
-                  <Box
-                    component="span"
-                    sx={{
+                      lineHeight: "24px",
                       color: "text.primary",
-                      fontWeight: 700,
-                      fontSize: 14,
                     }}
-                  >
-                    - no MEV bots
-                  </Box>
-                </Typography>
-              }
-              sx={{ textAlign: { xs: "center", md: "left" } }}
-            />
-          </ListItem>
-          <ListItem
-            sx={{
-              flexDirection: { xs: "column", md: "row" },
-              p: 0,
-              mb: { xs: 2, md: 1 },
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: "unset", mr: { xs: 0, md: 2 } }}>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "#1976d2",
-                      fontWeight: 700,
-                      fontSize: 14,
-                    }}
-                  >
-                    Enhanced protection with Matcha Auto
-                  </Box>
-                </Typography>
-              }
-              sx={{ textAlign: { xs: "center", md: "left" } }}
-            />
-          </ListItem>
-          <ListItem
-            sx={{
-              flexDirection: { xs: "column", md: "row" },
-              p: 0,
-              mb: { xs: 2, md: 1 },
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: "unset", mr: { xs: 0, md: 2 } }}>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "#1976d2",
-                      fontWeight: 700,
-                      fontSize: 14,
-                    }}
-                  >
-                    Alerts you to slippage{" "}
-                  </Box>
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "text.primary",
-                      fontWeight: 700,
-                      fontSize: 14,
-                    }}
-                  >
-                    and potential price impact before you trade
-                  </Box>
-                </Typography>
-              }
-              sx={{ textAlign: { xs: "center", md: "left" } }}
-            />
-          </ListItem>
-          <ListItem
-            sx={{
-              flexDirection: { xs: "column", md: "row" },
-              p: 0,
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: "unset", mr: { xs: 0, md: 2 } }}>
-              <CheckCircleIcon sx={{ color: "green" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography>
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "#1976d2",
-                      fontWeight: 700,
-                      fontSize: 14,
-                    }}
-                  >
-                    Optimized for smarter{" "}
-                  </Box>
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "text.primary",
-                      fontWeight: 700,
-                      fontSize: 14,
-                    }}
-                  >
-                    trading with safety and transparency in every swap
-                  </Box>
-                </Typography>
-              }
-              sx={{ textAlign: { xs: "center", md: "left" } }}
-            />
-          </ListItem>
-        </List>
+                    primary={item.text}
+                  />
+                </ListItem>
+              ))}
+            </List>
       </Box>
     </Box>
        

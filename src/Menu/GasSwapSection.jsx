@@ -16,51 +16,54 @@ import {
   ToggleButtonGroup,
   CardContent,
   Stack,
+  useMediaQuery,
+  useTheme,
+  
   
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { styled } from '@mui/material/styles';
+// import { styled } from '@mui/material/styles';
 
-const SubTitle = styled(Typography)(({ theme }) => ({
-  fontFamily: 'Manrope',
-  fontWeight: 400,
-  fontSize: '16px',
-  lineHeight: '54.64px',
-  color: '#B3B3B3',
-  textAlign: 'center',
-  marginBottom: theme.spacing(2),
-}));
+// const SubTitle = styled(Typography)(({ theme }) => ({
+//   fontFamily: 'Manrope',
+//   fontWeight: 400,
+//   fontSize: '16px',
+//   lineHeight: '54.64px',
+//   color: '#B3B3B3',
+//   textAlign: 'center',
+//   marginBottom: theme.spacing(2),
+// }));
 
-const StyledContainer = styled(Container)(({ theme }) => ({
-  minHeight: '90vh',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  paddingTop: theme.spacing(8),
-  paddingBottom: theme.spacing(8),
-  position: 'relative',
-}));
+// const StyledContainer = styled(Container)(({ theme }) => ({
+//   minHeight: '90vh',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   alignItems: 'center',
+//   paddingTop: theme.spacing(8),
+//   paddingBottom: theme.spacing(8),
+//   position: 'relative',
+// }));
 
-const MainTitle = styled(Typography)(({ theme }) => ({
-  fontFamily: 'Manrope',
-  fontWeight: 700,
-  fontSize: '40px',
-  lineHeight: '54.64px',
-  color: 'text.primary',
-  textAlign: 'center',
-  marginBottom: theme.spacing(4),
-}));
+// const MainTitle = styled(Typography)(({ theme }) => ({
+//   fontFamily: 'Manrope',
+//   fontWeight: 700,
+//   fontSize: '40px',
+//   lineHeight: '54.64px',
+//   color: 'text.primary',
+//   textAlign: 'center',
+//   marginBottom: theme.spacing(4),
+// }));
 
-const ChainListContainer = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  zIndex: 1,
-  width: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  marginTop: theme.spacing(4),
-}));
+// const ChainListContainer = styled(Box)(({ theme }) => ({
+//   position: 'relative',
+//   zIndex: 1,
+//   width: '100%',
+//   display: 'flex',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+//   marginTop: theme.spacing(4),
+// }));
 
 // Placeholder for SVG imports
 // import { ReactComponent as ShieldIcon } from 'assets/images/GaslessSwap/mevx.svg';
@@ -94,7 +97,18 @@ export default function GasSwapSection() {
   const handleToggle = (_event, newValue) => {
     if (newValue !== null) setToggle(newValue);
   };
- 
+
+   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+   const textStyle = {
+    position: 'absolute',
+    m: 0,
+    color: '#000000',
+    fontWeight: 700,
+    textAlign: 'center',
+    zIndex: 2,
+    fontSize: isMobile ? 'clamp(14px, 3vw, 23px)' : '23px',
+  };
   return (
     <Box sx={{
         textAlign: "center",
@@ -121,6 +135,7 @@ export default function GasSwapSection() {
                overflow: "hidden",
                padding: { xs: "20px", md: "0" },
                boxSizing: "border-box",
+                backgroundImage:'url("assets/images/swapToken/gradient.png")',
               
              }}
            >
@@ -204,7 +219,7 @@ export default function GasSwapSection() {
                    fontSize: "16px",
                    lineHeight: "24px",
                    background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-                   color: "text.primary",
+                   color: "white",
                    textTransform: "none",
                    padding: "12px 24px",
                    marginTop: { xs: "16px", md: "0" },
@@ -214,12 +229,12 @@ export default function GasSwapSection() {
                </Button>
              </Box>
            </Box>
-         </Box>
+      </Box>
 
       <Divider />
       {/* Instant gas-free swaps */}
       <Container sx={{ py: 8 }}>
-  <Grid
+      <Grid
     container
     spacing={12}
     direction={{ xs: 'column', md: 'row' }}
@@ -470,7 +485,7 @@ export default function GasSwapSection() {
       </List>
     </Grid>
   </Grid>
-</Container>
+      </Container>
       <Divider />
       {/* core function */}
        
@@ -677,86 +692,97 @@ export default function GasSwapSection() {
     
       <Divider />
       {/* fourth section */}
-   <StyledContainer maxWidth={false} disableGutters>
-  <Box sx={{ position: 'relative', width: '100%', maxWidth: '1440px', textAlign: 'center' }}>
-    <MainTitle>
-      Available Supporting Chains
-    </MainTitle>
-    <SubTitle>
-      Swap crypto without native tokens. Unidex handles the gas for <br />
-      swaps and approvals so you can focus on trading.
-    </SubTitle>
-    <ChainListContainer sx={{ margin: '0 auto', p: { xs: 2, md: 0 } }}>
-      {/* This image is used for the desktop layout. */}
-      <Box
-        component="img"
-        src="assets/images/GaslessSwap/Group 48095754.png"
-        alt="Chain List"
-        sx={{
-          width: { xs: '100%', md: '900px' },
-          height: { xs: 'auto', md: '400px' },
-          objectFit: 'contain',
-          bottom: "25px",
-          // Hide this on mobile
-          display: { xs: 'none', md: 'block' },
-        }}
-      />
+       <Box
+      sx={{
+        
+        textAlign: "center",
+        py: { xs: 4, md: 8 },
+      }}
+    >
+      <Container maxWidth="md">
+        {/* Title */}
+        <Typography
+          variant={isMobile ? "h5" : "h3"}
+          fontWeight={600}
+          mb={2}
+        >
+          Available Supporting Chains
+        </Typography>
 
-      {/* This image is used for the mobile layout based on the provided design. */}
+        {/* Subtitle */}
+        <Typography
+          variant="subtitle1"
+          maxWidth={500}
+          mx="auto"
+          mb={6}
+          color="text.secondary"
+        >
+          Swap crypto without native tokens. Matcha handles the gas for swaps
+          and approvals so you can focus on trading.
+        </Typography>
+
+
+
+        {/* Bottom Texts */}
+       <Box
+      sx={{
+      
+        position: 'relative',
+        overflow: 'hidden',
+        width: '100%',
+        aspectRatio: '1440 / 595', // Use aspectRatio for a responsive container
+        minHeight: '400px', // Optional: Set a minimum height
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      {/* Abstract background ellipse - Use a Box with a background image */}
       <Box
         component="img"
-        src="assets/images/GaslessSwap/Group 48095754.png"
-        alt="Mobile Chain List"
+        src="assets/images/GaslessSwap/Group 48095753.png"
+        alt="Abstract background ellipse"
         sx={{
-          width: { xs: '100%', sm: 'auto' },
+          position: 'absolute',
+          left: '25%',
+          top: '60.34%',
+          width: '100%',
           height: 'auto',
-          // Show this only on mobile
-          display: { xs: 'block', md: 'none' },
+          
+          zIndex: 1,
+          // You may need to adjust the positioning based on the SVG's intrinsic size
+          transform: 'translate(-50%, -50%)', // Center the element relative to its top-left corner
         }}
       />
-    </ChainListContainer>
 
-    {/* Text for High Volume (Desktop & Mobile) */}
-    <Typography
-      sx={{
-        position: 'absolute',
-        zIndex: 2,
-        fontWeight: 700,
-        fontSize: { xs: '1rem', md: '23px' },
-        lineHeight: '31.42px',
-        color: 'text.primary',
-        textAlign: 'center',
-        // Reposition for responsiveness
-        top: { xs: '20%', md: '220px' },
-        right: { xs: '50%', md: '164px' },
-        transform: { xs: 'translateX(50%)', md: 'none' },
-        width: { xs: 'auto', md: '201px' }
-      }}
-    >
-      With High volume
-    </Typography>
+      {/* "With High volume" text */}
+      <Typography
+        variant="h6"
+        sx={{
+          ...textStyle,
+          top: { xs: '35%', sm: '40.34%' }, // Adjust for mobile
+          left: { xs: '68%', sm: '74.72%' }, // Adjust for mobile
+          width: { xs: '28%', sm: '13.96%' }, // Adjust for mobile
+        }}
+      >
+        With High volume
+      </Typography>
 
-    {/* Text for Trending Pairs (Desktop & Mobile) */}
-    <Typography
-      sx={{
-        position: 'absolute',
-        zIndex: 2,
-        fontWeight: 700,
-        fontSize: { xs: '1rem', md: '23px' },
-        lineHeight: '31.42px',
-        color: 'text.primary',
-        textAlign: 'center',
-        // Reposition for responsiveness
-        bottom: { xs: '20%', md: '30px' },
-        left: { xs: '50%', md: '100px' },
-        transform: { xs: 'translateX(-50%)', md: 'none' },
-        width: { xs: 'auto', md: '201px' }
-      }}
-    >
-      With most <br /> trending Pairs
-    </Typography>
-  </Box>
-</StyledContainer>
+      {/* "With most trending Pairs" text */}
+      <Typography
+        variant="h6"
+        sx={{
+          ...textStyle,
+          top: { xs: '70%', sm: '79.66%' }, // Adjust for mobile
+          left: { xs: '5%', sm: '9.31%' }, // Adjust for mobile
+          width: { xs: '28%', sm: '13.96%' }, // Adjust for mobile
+        }}
+      >
+        With most trending Pairs
+      </Typography>
+    </Box>
+      </Container>
+    </Box>
       <Divider />
       {/* fifth section */}
       <Box sx={{
