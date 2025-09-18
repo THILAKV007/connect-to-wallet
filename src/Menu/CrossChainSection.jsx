@@ -26,99 +26,119 @@ export default function CrossChainSection(isDarkMode) {
       }}
     >
       {/* first section */}
-     <Box sx={{
-        fontFamily: "'Manrope', sans-serif",
-        color: "text.primary",
-        backgroundImage: `url("assets/images/swapToken/gradient.png")`,
-      }}>
-        <Box
-          id="hero"
-          sx={{
-            position: "relative",
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            minHeight: { md: "510px" },
-            overflow: "hidden",
-          }}
-        >
-          {/* Single Background Decoration */}
-          <Box
-            component="img"
-            src="assets/images/CrossChain/cross.png"
-            alt="hero background decor"
-            sx={{
-              position: "absolute",
-              height:"70%",
-              width:"50%",
-            }}
-          />
+     <Box
+  sx={{
+    fontFamily: "'Manrope', sans-serif",
+    color: "text.primary",
+  }}
+>
+  <Box
+    id="hero"
+    sx={{
+      position: "relative",
+      textAlign: "center",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: { xs: "100vh", md: "515px" },
+      overflow: "hidden",
+      padding: { xs: "20px", md: "0" },
+      boxSizing: "border-box",
+      // Use conditional background image for all screens
+      backgroundImage: {
+        xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
+        md: 'url("assets/images/swapToken/gradient.png")',
+      },
+      // Set background position to center for all screens
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+    }}
+  >
+    {/* Background Decoration */}
+    <Box
+      component="img"
+      src="assets/images/CrossChain/cross.png"
+      alt="hero background decor"
+      sx={{
+        position: "absolute",
+        left: "50%",
+        transform: { xs: "translate(-50%, -50%)", md: "translateX(-50%)" },
+        width: "650px",
+        height: "60vh",
+        opacity: 1,
+        zIndex: 0,
+      }}
+    />
 
-          {/* Content */}
-          <Box
-            sx={{
-              position: "relative",
-              zIndex: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "18px",
-              maxWidth: "582px",
-              width: "100%",
-            }}
-          >
-            <Typography
-              sx={{
-                color: "#0c9fe3",
-                fontWeight: 700,
-                fontSize: { xs: "20px", md: "24px" },
-                lineHeight: "32.78px",
-              }}
-            >
-               where opportunity awaits
-            </Typography>
+    {/* Content */}
+    <Box
+      sx={{
+        position: "relative",
+        zIndex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: { xs: "12px", md: "22px" },
+        maxWidth: "582px",
+        width: "100%",
+      }}
+    >
+      <Typography
+        sx={{
+          color: "#0c9fe3",
+          fontWeight: 700,
+          fontSize: { xs: "16px", md: "24px" },
+          lineHeight: "32.78px",
+        }}
+      >
+        where opportunity awaits
+      </Typography>
 
-            <Typography
-              sx={{
-                color: "text.primary",
-                fontWeight: 700,
-                fontSize: { xs: "48px", md: "62px" },
-                lineHeight: 1.1,
-              }}
-            >
-              Cross chain swaps
-            </Typography>
+      <Typography
+        sx={{
+          color: "text.primary",
+          fontWeight: 700,
+          fontSize: { xs: "36px", md: "62px" },
+          lineHeight: { xs: 1.2, md: 1.1 },
+        }}
+      >
+        Cross chain swaps
+      </Typography>
 
-            <Typography
-              sx={{
-                color: "text.primary",
-                fontWeight: 700,
-                fontSize: { xs: "13px", md: "14px" },
-                lineHeight: "24px",
-              }}
-            >
-             Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+<br/> liquidity sources aggregated by Unidex!
-            </Typography>
+      <Typography
+        sx={{
+          color: "text.primary",
+          fontWeight: 700,
+          fontSize: { xs: "12px", md: "14px" },
+          lineHeight: "24px",
+          textAlign: "center",
+          paddingX: { xs: "20px", md: "0" },
+        }}
+      >
+        Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ <br/> liquidity sources aggregated by Unidex!
+      </Typography>
 
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: "8px",
-                fontFamily: "Inter, sans-serif",
-                fontWeight: 700,
-                fontSize: "16px",
-                lineHeight: "24px",
-                background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-                color: "white",
-                textTransform: "none",
-              }}
-            >
-              Start Trading
-            </Button>
-          </Box>
-        </Box>
+      <Button
+        variant="contained"
+        sx={{
+          borderRadius: "8px",
+          fontFamily: "Inter, sans-serif",
+          fontWeight: 700,
+          fontSize: "16px",
+          lineHeight: "24px",
+          background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
+          color: "white",
+          textTransform: "none",
+          padding: "12px 24px",
+          marginTop: { xs: "16px", md: "40" },
+        }}
+      >
+        Start Trading
+      </Button>
+    </Box>
+  </Box>
       </Box>
 
       <Divider />
@@ -397,6 +417,7 @@ export default function CrossChainSection(isDarkMode) {
                               opacity: "1",
                               top: "36px",
                               left: "20px",
+                              color: "#b3b3b3",
                             }}
                           />
                         </ListItem>
@@ -412,6 +433,7 @@ export default function CrossChainSection(isDarkMode) {
                               opacity: "1",
                               top: "36px",
                               left: "20px",
+                              color: "#b3b3b3",
                             }}
                           />
                         </ListItem>
@@ -431,7 +453,9 @@ export default function CrossChainSection(isDarkMode) {
                           <ListItemIcon>
                             <CloseIcon sx={{ color: "#b3b3b3" }} />
                           </ListItemIcon>
-                          <ListItemText primary="Fragmented liquidity" />
+                          <ListItemText 
+                          primary="Fragmented liquidity" 
+                          sx={{color:"#b3b3b3"}} />
                         </ListItem>
                         <ListItem>
                           <ListItemIcon>
@@ -445,6 +469,7 @@ export default function CrossChainSection(isDarkMode) {
                               opacity: "1",
                               top: "36px",
                               left: "20px",
+                              color: "#b3b3b3",
                             }}
                           />
                         </ListItem>
@@ -460,6 +485,7 @@ export default function CrossChainSection(isDarkMode) {
                               opacity: "1",
                               top: "36px",
                               left: "20px",
+                              color: "#b3b3b3",
                             }}
                           />
                         </ListItem>

@@ -16,9 +16,7 @@ import {
   ToggleButtonGroup,
   CardContent,
   Stack,
-  useMediaQuery,
-  useTheme,
-  
+ 
   
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -98,17 +96,8 @@ export default function GasSwapSection() {
     if (newValue !== null) setToggle(newValue);
   };
 
-   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-   const textStyle = {
-    position: 'absolute',
-    m: 0,
-    color: '#000000',
-    fontWeight: 700,
-    textAlign: 'center',
-    zIndex: 2,
-    fontSize: isMobile ? 'clamp(14px, 3vw, 23px)' : '23px',
-  };
+  
+   
   return (
     <Box sx={{
         textAlign: "center",
@@ -116,120 +105,121 @@ export default function GasSwapSection() {
         flexDirection: "column",
       }}>
       {/* Hero Section */}
-      <Box
-           sx={{
-             fontFamily: "'Manrope', sans-serif",
-             color: "text.primary",
-           }}
-         >
-           <Box
-             id="hero"
-             sx={{
-               position: "relative",
-               textAlign: "center",
-               display: "flex",
-               flexDirection: "column",
-               alignItems: "center",
-               justifyContent: "center",
-               minHeight: { xs: "90vh", md: "515px" },
-               overflow: "hidden",
-               padding: { xs: "20px", md: "0" },
-               boxSizing: "border-box",
-                backgroundImage:'url("assets/images/swapToken/gradient.png")',
-              
-             }}
-           >
-             {/* Background Decoration */}
-             <Box
-               component="img"
-               src="assets/images/GaslessSwap/03.png"
-               alt="hero background decor"
-               sx={{
-                 position: "absolute",
-                 // For mobile (xs and sm), center the image vertically.
-                 // For md and up, use the original top: 35px.
-                 top: { xs: "50%", sm: "50%", md: "35px" }, 
-                 // Always center horizontally for all screen sizes.
-                 left: "50%",
-                 // Adjust transform to center both horizontally and vertically for mobile (xs, sm),
-                 // and only horizontally for larger screens (md).
-                 transform: { xs: "translate(-50%, -50%)", md: "translateX(-50%)" },
-                 // Keep the width adjustments to ensure it fits well
-                 width: { xs: "120%", sm: "100%", md: "901px" }, 
-                 height: "auto",
-                 opacity: 1,
-                 zIndex: 0,
-               }}
-             />
-     
-             {/* Content */}
-             <Box
-               sx={{
-                 position: "relative",
-                 zIndex: 1,
-                 display: "flex",
-                 flexDirection: "column",
-                 alignItems: "center",
-                 gap: { xs: "12px", md: "22px" },
-                 maxWidth: "582px",
-                 width: "100%",
-               }}
-             >
-               <Typography
-                 sx={{
-                   color: "#0c9fe3",
-                   fontWeight: 700,
-                   fontSize: { xs: "16px", md: "24px" },
-                   lineHeight: "32.78px",
-                 }}
-               > Go gasless with Unidex..
-               </Typography>
-     
-               <Typography
-                 sx={{
-                   color: "text.primary",
-                   fontWeight: 700,
-                   fontSize: { xs: "36px", md: "62px" },
-                   lineHeight: { xs: 1.2, md: 1.1 },
-                 }}
-               >
-                 Gasless swaps
-               </Typography>
-     
-               <Typography
-                 sx={{
-                   color: "#A0A0A0",
-                   fontWeight: 700,
-                   fontSize: { xs: "12px", md: "14px" },
-                   lineHeight: "24px",
-                   textAlign: "center",
-                   paddingX: { xs: "20px", md: "0" },
-                 }}
-               >
-                 Swap crypto without native tokens.Unidex handles the gas for <br/>
-                 swaps and approvals so you can focus on trading.
-               </Typography>
-     
-               <Button
-                 variant="contained"
-                 sx={{
-                   borderRadius: "8px",
-                   fontFamily: "Inter, sans-serif",
-                   fontWeight: 700,
-                   fontSize: "16px",
-                   lineHeight: "24px",
-                   background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-                   color: "white",
-                   textTransform: "none",
-                   padding: "12px 24px",
-                   marginTop: { xs: "16px", md: "0" },
-                 }}
-               >
-                 Start Trading
-               </Button>
-             </Box>
-           </Box>
-      </Box>
+     <Box
+  sx={{
+    fontFamily: "'Manrope', sans-serif",
+    color: "text.primary",
+  }}
+>
+  <Box
+    id="hero"
+    sx={{
+      position: "relative",
+      textAlign: "center",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: { xs: "90vh", md: "515px" },
+      overflow: "hidden",
+      padding: { xs: "20px", md: "0" },
+      boxSizing: "border-box",
+      // Responsive background image:
+      // Hides the gradient image on extra-small screens (xs)
+      // and shows it on medium screens (md) and up.
+      backgroundImage: {
+        xs: 'none',
+        md: 'url("assets/images/swapToken/gradient.png")',
+      },
+    }}
+  >
+    {/* Background Decoration */}
+    <Box
+      component="img"
+      src="assets/images/GaslessSwap/03.png"
+      alt="hero background decor"
+      sx={{
+        position: "absolute",
+        top: { xs: "50%", sm: "50%", md: "35px" },
+        left: "50%",
+        transform: { xs: "translate(-50%, -50%)", md: "translateX(-50%)" },
+        width: { xs: "120%", sm: "100%", md: "901px" },
+        height: "auto",
+        opacity: 1,
+        zIndex: 0,
+      }}
+    />
+    
+    {/* Content */}
+    <Box
+      sx={{
+        position: "relative",
+        zIndex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: { xs: "12px", md: "22px" },
+        maxWidth: "582px",
+        width: "100%",
+      }}
+    >
+      <Typography
+        sx={{
+          color: "#0c9fe3",
+          fontWeight: 700,
+          fontSize: { xs: "16px", md: "24px" },
+          lineHeight: "32.78px",
+        }}
+      >
+        Go gasless with Unidex..
+      </Typography>
+      
+      <Typography
+        sx={{
+          color: "text.primary",
+          fontWeight: 700,
+          fontSize: { xs: "36px", md: "62px" },
+          lineHeight: { xs: 1.2, md: 1.1 },
+        }}
+      >
+        Gasless swaps
+      </Typography>
+      
+      <Typography
+        sx={{
+          color: "#A0A0A0",
+          fontWeight: 700,
+          fontSize: { xs: "12px", md: "14px" },
+          lineHeight: "24px",
+          textAlign: "center",
+          paddingX: { xs: "20px", md: "0" },
+        }}
+      >
+        Swap crypto without native tokens.Unidex handles the gas for <br />
+        swaps and approvals so you can focus on trading.
+      </Typography>
+      
+      <Button
+        variant="contained"
+        sx={{
+          borderRadius: "8px",
+          fontFamily: "Inter, sans-serif",
+          fontWeight: 700,
+          fontSize: "16px",
+          lineHeight: "24px",
+          background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
+          color: "white",
+          textTransform: "none",
+          padding: "12px 24px",
+          marginTop: { xs: "16px", md: "0" },
+        }}
+      >
+        Start Trading
+      </Button>
+    </Box>
+  </Box>
+   </Box>
+
 
       <Divider />
       {/* Instant gas-free swaps */}
@@ -693,96 +683,79 @@ export default function GasSwapSection() {
       <Divider />
       {/* fourth section */}
        <Box
+  sx={{
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    alignItems: "center",
+    textAlign: "center",
+    py: 8,
+  }}
+>
+  {/* Section Title */}
+  <Typography variant="h4" fontWeight="bold" gutterBottom>
+    Available Supporting Chains
+  </Typography>
+  <Typography
+    variant="body1"
+    color="#b3b3b3"
+    sx={{ mb: 6, maxWidth: 600, mx: "auto" }}
+  >
+    Swap crypto without native tokens. Unidex handles the gas for swaps and
+    approvals so you can focus on trading.
+  </Typography>
+  <Box
+    sx={{
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      position: 'relative',
+    }}
+  >
+    {/* This Box contains the "With High volume" text */}
+    <Box
       sx={{
-        
-        textAlign: "center",
-        py: { xs: 4, md: 8 },
+        position: 'absolute',
+        top: '30%',
+        right: '15%',
+        display: { xs: 'none', md: 'flex' }, // Hides on mobile
+        flexDirection: 'column',
+        alignItems: 'flex-end',
       }}
     >
-      <Container maxWidth="md">
-        {/* Title */}
-        <Typography
-          variant={isMobile ? "h5" : "h3"}
-          fontWeight={600}
-          mb={2}
-        >
-          Available Supporting Chains
-        </Typography>
-
-        {/* Subtitle */}
-        <Typography
-          variant="subtitle1"
-          maxWidth={500}
-          mx="auto"
-          mb={6}
-          color="text.secondary"
-        >
-          Swap crypto without native tokens. Matcha handles the gas for swaps
-          and approvals so you can focus on trading.
-        </Typography>
-
-
-
-        {/* Bottom Texts */}
-       <Box
-      sx={{
-      
-        position: 'relative',
-        overflow: 'hidden',
-        width: '100%',
-        aspectRatio: '1440 / 595', // Use aspectRatio for a responsive container
-        minHeight: '400px', // Optional: Set a minimum height
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      {/* Abstract background ellipse - Use a Box with a background image */}
-      <Box
-        component="img"
-        src="assets/images/GaslessSwap/Group 48095753.png"
-        alt="Abstract background ellipse"
-        sx={{
-          position: 'absolute',
-          left: '25%',
-          top: '60.34%',
-          width: '100%',
-          height: 'auto',
-          
-          zIndex: 1,
-          // You may need to adjust the positioning based on the SVG's intrinsic size
-          transform: 'translate(-50%, -50%)', // Center the element relative to its top-left corner
-        }}
-      />
-
-      {/* "With High volume" text */}
-      <Typography
-        variant="h6"
-        sx={{
-          ...textStyle,
-          top: { xs: '35%', sm: '40.34%' }, // Adjust for mobile
-          left: { xs: '68%', sm: '74.72%' }, // Adjust for mobile
-          width: { xs: '28%', sm: '13.96%' }, // Adjust for mobile
-        }}
-      >
-        With High volume
+      <Typography variant="h6" sx={{ fontWeight: 'bold', textAlign: "center" }}>
+        With High<br/> volume
       </Typography>
-
-      {/* "With most trending Pairs" text */}
-      <Typography
-        variant="h6"
-        sx={{
-          ...textStyle,
-          top: { xs: '70%', sm: '79.66%' }, // Adjust for mobile
-          left: { xs: '5%', sm: '9.31%' }, // Adjust for mobile
-          width: { xs: '28%', sm: '13.96%' }, // Adjust for mobile
-        }}
-      >
-        With most trending Pairs
-      </Typography>
+      <Divider sx={{ borderStyle: 'dotted', borderColor: '#b5b5b5', width: '200px', mt: 1 }} />
     </Box>
-      </Container>
-    </Box>
+  </Box>
+  <Box
+    component="img"
+    src="assets/images/CrossChain/List.png"
+    alt="list"
+    sx={{
+      width: { xs: "100%", md: "80%" },
+      height: "auto",
+      maxWidth: "100%",
+    }}
+  />
+  {/* This Box contains the "With most trending Pairs" text */}
+  <Box
+    sx={{
+      position: 'absolute',
+      bottom: '-320%',
+      left: '10%',
+      display: { xs: 'none', md: 'block' }, // Hides on mobile
+    }}
+  >
+    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+      With most <br/> trending Pairs
+    </Typography>
+    <Divider sx={{ borderStyle: 'dotted', borderColor: '#b5b5b5', width: '300px', mt: 1 }} />
+  </Box>
+</Box>
       <Divider />
       {/* fifth section */}
       <Box sx={{
