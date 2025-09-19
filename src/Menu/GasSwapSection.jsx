@@ -105,120 +105,121 @@ export default function GasSwapSection() {
         flexDirection: "column",
       }}>
       {/* Hero Section */}
-     <Box
-  sx={{
-    fontFamily: "'Manrope', sans-serif",
-    color: "text.primary",
-  }}
->
-  <Box
-    id="hero"
-    sx={{
-      position: "relative",
-      textAlign: "center",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      minHeight: { xs: "90vh", md: "515px" },
-      overflow: "hidden",
-      padding: { xs: "20px", md: "0" },
-      boxSizing: "border-box",
-      // Responsive background image:
-      // Hides the gradient image on extra-small screens (xs)
-      // and shows it on medium screens (md) and up.
-      backgroundImage: {
-        xs: 'none',
-        md: 'url("assets/images/swapToken/gradient.png")',
-      },
-    }}
-  >
-    {/* Background Decoration */}
-    <Box
-      component="img"
-      src="assets/images/GaslessSwap/03.png"
-      alt="hero background decor"
-      sx={{
-        position: "absolute",
-        top: { xs: "50%", sm: "50%", md: "35px" },
-        left: "50%",
-        transform: { xs: "translate(-50%, -50%)", md: "translateX(-50%)" },
-        width: { xs: "120%", sm: "100%", md: "901px" },
-        height: "auto",
-        opacity: 1,
-        zIndex: 0,
-      }}
-    />
-    
-    {/* Content */}
-    <Box
-      sx={{
-        position: "relative",
-        zIndex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: { xs: "12px", md: "22px" },
-        maxWidth: "582px",
-        width: "100%",
-      }}
-    >
-      <Typography
-        sx={{
-          color: "#0c9fe3",
-          fontWeight: 700,
-          fontSize: { xs: "16px", md: "24px" },
-          lineHeight: "32.78px",
-        }}
-      >
-        Go gasless with Unidex..
-      </Typography>
-      
-      <Typography
-        sx={{
-          color: "text.primary",
-          fontWeight: 700,
-          fontSize: { xs: "36px", md: "62px" },
-          lineHeight: { xs: 1.2, md: 1.1 },
-        }}
-      >
-        Gasless swaps
-      </Typography>
-      
-      <Typography
-        sx={{
-          color: "#A0A0A0",
-          fontWeight: 700,
-          fontSize: { xs: "12px", md: "14px" },
-          lineHeight: "24px",
-          textAlign: "center",
-          paddingX: { xs: "20px", md: "0" },
-        }}
-      >
-        Swap crypto without native tokens.Unidex handles the gas for <br />
-        swaps and approvals so you can focus on trading.
-      </Typography>
-      
-      <Button
-        variant="contained"
-        sx={{
-          borderRadius: "8px",
-          fontFamily: "Inter, sans-serif",
-          fontWeight: 700,
-          fontSize: "16px",
-          lineHeight: "24px",
-          background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-          color: "white",
-          textTransform: "none",
-          padding: "12px 24px",
-          marginTop: { xs: "16px", md: "0" },
-        }}
-      >
-        Start Trading
-      </Button>
-    </Box>
-  </Box>
-   </Box>
+      <Box
+       sx={{
+         fontFamily: "'Manrope', sans-serif",
+         color: "text.primary",
+       }}
+     >
+       <Box
+         id="hero"
+         sx={{
+           position: "relative",
+           textAlign: "center",
+           display: "flex",
+           flexDirection: "column",
+           alignItems: "center",
+           justifyContent: "center",
+           minHeight: { xs: "100vh", md: "515px" },
+           overflow: "hidden",
+           padding: { xs: "20px", md: "0" },
+           boxSizing: "border-box",
+           // Use conditional background image for all screens
+           backgroundImage: {
+             xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
+             md: 'url("assets/images/swapToken/gradient.png")',
+           },
+           // Set background position to center for all screens
+           backgroundPosition: "center",
+           backgroundRepeat: "no-repeat",
+           backgroundSize: "cover",
+         }}
+       >
+         {/* Background Decoration */}
+         <Box
+           component="img"
+           src="assets/images/GaslessSwap/03.png"
+           alt="hero background decor"
+           sx={{
+             position: "absolute",
+             left: "50%",
+             transform: { xs: "translate(-50%, -50%)", md: "translateX(-50%)" },
+             width: "650px",
+             height: "60vh",
+             opacity: 1,
+             zIndex: 0,
+           }}
+         />
+     
+         {/* Content */}
+         <Box
+           sx={{
+             position: "relative",
+             zIndex: 1,
+             display: "flex",
+             flexDirection: "column",
+             alignItems: "center",
+             gap: { xs: "12px", md: "22px" },
+             maxWidth: "582px",
+             width: "100%",
+           }}
+         >
+           <Typography
+             sx={{
+               color: "#0c9fe3",
+               fontWeight: 700,
+               fontSize: { xs: "16px", md: "24px" },
+               lineHeight: "32.78px",
+             }}
+           >
+              Go gasless with Unidex..
+           </Typography>
+     
+           <Typography
+             sx={{
+               color: "text.primary",
+               fontWeight: 700,
+               fontSize: { xs: "36px", md: "62px" },
+               lineHeight: { xs: 1.2, md: 1.1 },
+             }}
+           >
+            Gasless swaps
+           </Typography>
+     
+           <Typography
+             sx={{
+               color: "text.primary",
+               fontWeight: 700,
+               fontSize: { xs: "12px", md: "14px" },
+               lineHeight: "24px",
+               textAlign: "center",
+               paddingX: { xs: "20px", md: "0" },
+             }}
+           >
+            Swap crypto without native tokens. Matcha handles the gas for <br/>swaps and approvals so you can focus on trading.
+
+           </Typography>
+     
+           <Button
+             variant="contained"
+             sx={{
+               borderRadius: "8px",
+               fontFamily: "Inter, sans-serif",
+               fontWeight: 700,
+               fontSize: "16px",
+               lineHeight: "24px",
+               background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
+               color: "white",
+               textTransform: "none",
+               padding: "12px 24px",
+               marginTop: { xs: "16px", md: "40" },
+             }}
+           >
+             Start Trading
+           </Button>
+         </Box>
+       </Box>
+           </Box>
 
 
       <Divider />

@@ -12,14 +12,15 @@ import {
   useMediaQuery,
   Container,
   Paper,
-  IconButton,
+  
 } from "@mui/material";
+import { styled } from '@mui/system';
 
 import BoltIcon from "@mui/icons-material/Bolt";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import { useTheme } from "@mui/material/styles";
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz'; // Keeping horizontal for the initial image
+
 
 export default function SwapTokenLanding(isDarkMode) {
   const theme = useTheme();
@@ -163,6 +164,64 @@ export default function SwapTokenLanding(isDarkMode) {
       ),
     },
   ];
+  const CurrencyCard = styled(Paper)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: theme.spacing(3),
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: 'none',
+  border: `1px solid ${theme.palette.divider}`,
+  flexGrow: 1,
+  margin: theme.spacing(1),
+  minWidth: 150, // Ensures cards don't shrink too much
+  [theme.breakpoints.down('sm')]: {
+    margin: theme.spacing(0.5),
+    padding: theme.spacing(2),
+  },
+}));
+
+// Placeholder for the custom icons
+// You would replace these with actual SVG or image components
+const UsdcIconPlaceholder = () => (
+  <Box
+    sx={{
+      width: 48,
+      height: 48,
+      borderRadius: '50%',
+      backgroundColor: '#0070DE', // Example color
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'white',
+      fontSize: 24,
+      fontWeight: 'bold',
+      mb: 1,
+    }}
+  >
+    $
+  </Box>
+);
+
+const EthIconPlaceholder = () => (
+  <Box
+    sx={{
+      width: 48,
+      height: 48,
+      borderRadius: '50%',
+      backgroundColor: '#627EEA', // Example color
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'white',
+      fontSize: 24,
+      fontWeight: 'bold',
+      mb: 1,
+    }}
+  >
+    Ξ
+  </Box>
+);
   return (
     <Box
       sx={{
@@ -191,13 +250,15 @@ export default function SwapTokenLanding(isDarkMode) {
       overflow: "hidden",
       padding: { xs: "20px", md: "0" },
       boxSizing: "border-box",
-      // Responsive background image:
-      // Hides the gradient image on extra-small screens (xs)
-      // and shows it on medium screens (md) and up.
+      // Use conditional background image for all screens
       backgroundImage: {
-        xs: 'none',
+        xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
         md: 'url("assets/images/swapToken/gradient.png")',
       },
+      // Set background position to center for all screens
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
     }}
   >
     {/* Background Decoration */}
@@ -207,11 +268,10 @@ export default function SwapTokenLanding(isDarkMode) {
       alt="hero background decor"
       sx={{
         position: "absolute",
-        top: { xs: "50%", sm: "50%", md: "35px" },
         left: "50%",
         transform: { xs: "translate(-50%, -50%)", md: "translateX(-50%)" },
-        width: { xs: "120%", sm: "100%", md: "901px" },
-        height: "auto",
+        width: "650px",
+        height: "60vh",
         opacity: 1,
         zIndex: 0,
       }}
@@ -249,7 +309,7 @@ export default function SwapTokenLanding(isDarkMode) {
           lineHeight: { xs: 1.2, md: 1.1 },
         }}
       >
-        Swap Tokens
+       
       </Typography>
 
       <Typography
@@ -262,8 +322,7 @@ export default function SwapTokenLanding(isDarkMode) {
           paddingX: { xs: "20px", md: "0" },
         }}
       >
-        Zero fee trades on 9+ million tokens across 14 chains. Get the best
-        prices by tapping <br/> into 130+ liquidity sources
+        Zero fee trades on 9+ million tokens across 14 chains. Get the best prices by tapping <br/> into 130+ liquidity sources.
       </Typography>
 
       <Button
@@ -278,14 +337,14 @@ export default function SwapTokenLanding(isDarkMode) {
           color: "white",
           textTransform: "none",
           padding: "12px 24px",
-          marginTop: { xs: "16px", md: "0" },
+          marginTop: { xs: "16px", md: "40" },
         }}
       >
         Start Trading
       </Button>
-        </Box>
-       </Box>
-        </Box>
+    </Box>
+  </Box>
+      </Box>
       <Divider />
 
       {/* new trade section */}
@@ -359,169 +418,133 @@ export default function SwapTokenLanding(isDarkMode) {
       </Box>
 
       {/* Right Section: Swap Card */}
-       <Paper
-      elevation={0}
+       <Box
       sx={{
-        backgroundColor: '#f1f6ff',
-        borderRadius: "20px",
-        padding: { xs: "25px", md: "40px" },
-        width: { xs: "100%", sm: "400px", md: "460px" },
-        boxSizing: "border-box",
-        flexShrink: 0,
-        maxWidth: "100%",
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        padding: 3,
+        maxWidth: 500,
+        margin: 'auto',
+        fontFamily: 'Inter, sans-serif',
+        color: '#333',
+        borderRadius: 2,
+        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.05)',
       }}
     >
-      <Typography
-        variant="body2"
-        sx={{
-          color: "#0a88c7",
-          textAlign: "center",
-          marginBottom: "30px",
-          fontSize: { xs: "13px", md: "14px" },
-          fontWeight: 500,
-        }}
-      >
-        Quote Expire in 20s
+      <Typography variant="body2" sx={{ color: '#0070DE', mb: 4, fontWeight: 'bold' }}>
+        Quote Expired in 20s
       </Typography>
 
-      {/* Token Swap Inputs - Responsive Layout */}
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          mb: 4,
-          // This is the key for mobile responsiveness:
-          flexDirection: { xs: "column", sm: "row" },
-          gap: { xs: 2, sm: 0 },
-          position: "relative",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           width: '100%',
+          mb: 4,
+          flexWrap: 'wrap', // Allows cards to wrap on smaller screens
         }}
       >
-        {/* Token Box 1 (USDC) */}
-        <Box
+        <CurrencyCard
           sx={{
-            backgroundColor: "#fff",
-            borderRadius: "15px",
-            width: { xs: "100%", sm: "140px" },
-            height: "110px", // Reduced height
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: 'center',
-            pt: 1,
-            zIndex: 2,
-            boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+            backgroundColor: 'white',
+            border: '1px solid #e0e0e0',
           }}
         >
-          <Box sx={{ width: 40, height: 40, position: "relative", mb: 0.5 }}>
-            <Box
-              component="img"
-              src="assets/images/swapToken/dollar.png"
-              alt="USDC token"
-              sx={{ width: 40, height: 40, position: "center" }}
-            />
-          </Box>
-          <Typography sx={{ fontWeight: 700, fontSize: 12, color: "#000" }}>
+          {/* Replace with your actual USDC icon component */}
+          <UsdcIconPlaceholder />
+          <Typography variant="h6" sx={{ fontWeight: 'bold', mt: 1 }}>
             253.63 USDC
           </Typography>
-          <Typography
-            sx={{
-              fontWeight: 500,
-              fontSize: 9,
-              color: "rgba(0,0,0,0.43)",
-            }}
-          >
-            $253.44
+          <Typography variant="body2" sx={{ color: '#666', mt: 0.5 }}>
+            $ 253.44
           </Typography>
-        </Box>
+        </CurrencyCard>
 
-        {/* Swap Icon - Responsive Position */}
-        <IconButton
-          aria-label="swap tokens"
-          sx={{
-            width: { xs: 100, sm: 100 },
-            height: { xs: 100, sm: 100 },
-            borderRadius: "60%",
-            background: 'linear-gradient(180deg, #a8d5ff 0%, #ffffff 100%)',
-            border: '2px solid #a8d5ff',
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 3,
-            // Position is absolute on mobile, relative on desktop
-            position: { xs: "absolute", sm: "relative" },
-            top: { xs: "50%", sm: "auto" },
-            left: { xs: "50%", sm: "auto" },
-            transform: { xs: "translate(-50%, -50%)", sm: "none" },
-            boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
-          }}
-        >
-          <SwapHorizIcon sx={{ width: 50, height: 50, color: '#0A88C7' }} />
-        </IconButton>
-
-        {/* Token Box 2 (ETH) */}
+        {/* This is the separator circle, can be styled as needed */}
         <Box
           sx={{
-            backgroundColor: "#fff",
-            borderRadius: "15px",
-            width: { xs: "100%", sm: "140px" },
-            height: "110px", // Reduced height
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            width: 30,
+            height: 30,
+            borderRadius: '50%',
+            border: '2px solid #e0e0e0',
+            display: 'flex',
+            alignItems: 'center',
             justifyContent: 'center',
-            pt: 1,
-            zIndex: 2,
-            boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
+            mx: 2,
+            backgroundColor: 'transparent',
+            position: 'relative', // For positioning the circle in the middle
+            top: 0,
+            [theme.breakpoints.down('sm')]: {
+                mx: 1,
+                my: 2, // Add vertical margin for wrap layout
+            },
           }}
         >
-          <Box
-            component="img"
-            src="assets/images/swapToken/eth.png"
-            alt="ETH token"
-            sx={{ width: 40, height: 40, position: "center", mb: 0.5 }}
-          />
-          <Typography sx={{ fontWeight: 700, fontSize: 12, color: "#000" }}>
+          {/* You can add an arrow icon here if desired */}
+        </Box>
+
+        <CurrencyCard
+          sx={{
+            backgroundColor: 'white',
+            border: '1px solid #e0e0e0',
+          }}
+        >
+          {/* Replace with your actual ETH icon component */}
+          <EthIconPlaceholder />
+          <Typography variant="h6" sx={{ fontWeight: 'bold', mt: 1 }}>
             0.06 ETH
           </Typography>
-          <Typography sx={{ fontWeight: 500, fontSize: 9, color: "rgba(0,0,0,0.43)" }}>
-            $253.44
+          <Typography variant="body2" sx={{ color: '#666', mt: 0.5 }}>
+            $ 253.44
           </Typography>
-        </Box>
+        </CurrencyCard>
       </Box>
 
-      {/* Details Section */}
-      <Box sx={{ marginTop: "20px", width: '100%' }}>
-        <Box sx={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-          <Typography variant="body2" sx={{ color: "#6d788e", fontSize: { xs: "13px", md: "14px" } }}>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+          mt: 2,
+          padding: 2,
+          
+          borderRadius: 2,
+          boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.03)',
+        }}
+      >
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography variant="body1" sx={{ color: '#666' }}>
             Liquidity Providers
           </Typography>
-          <Typography variant="body2" sx={{ color: "#6d788e", fontWeight: 600, fontSize: { xs: "13px", md: "14px" } }}>
-            0XRFQ
+          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+            0xRFQ
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-          <Typography variant="body2" sx={{ color: "#6d788e", fontSize: { xs: "13px", md: "14px" } }}>
+
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography variant="body1" sx={{ color: '#666' }}>
             Rate
           </Typography>
-          <Typography variant="body2" sx={{ color: "#6d788e", fontWeight: 600, fontSize: { xs: "13px", md: "14px" } }}>
-            1 ETH = 1562.76 USDC ($1562.77)
+          <Typography variant="body1" sx={{ fontWeight: 'bold', textAlign: 'right' }}>
+            1 ETH = 1562.76 USDC($1562.77)
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-          <Typography variant="body2" sx={{ color: "#6d788e", fontSize: { xs: "13px", md: "14px" } }}>
+
+       
+
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography variant="body1" sx={{ color: '#666' }}>
             Ethereum Fees
           </Typography>
-          <Typography variant="body2" sx={{ color: "#6d788e", fontWeight: 600, fontSize: { xs: "13px", md: "14px" } }}>
-            $23
+          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+            $ 23
           </Typography>
         </Box>
       </Box>
-    </Paper>
+    </Box>
     </Box>
 
       <Divider />
@@ -731,16 +754,44 @@ export default function SwapTokenLanding(isDarkMode) {
       <Divider />
       {/* last section */}
       <Box
-        sx={{ backgroundImage: `url("assets/images/swapToken/gradient.png")` }}
-      >
-        <Box
-          sx={{
-            backgroundImage: `url("assets/images/swapToken/string.png")`,
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "cover",
-            py: 12,
-          }}
-        >
+    id="hero"
+    sx={{
+      position: "relative",
+      textAlign: "center",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: { xs: "100vh", md: "515px" },
+      overflow: "hidden",
+      padding: { xs: "20px", md: "0" },
+      boxSizing: "border-box",
+      // Use conditional background image for all screens
+      backgroundImage: {
+        xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
+        md: 'url("assets/images/swapToken/gradient.png")',
+      },
+      // Set background position to center for all screens
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+    }}
+  >
+    {/* Background Decoration */}
+    <Box
+      component="img"
+      src="assets/images/swapToken/string.png"
+      alt="hero background decor"
+      sx={{
+        position: "absolute",
+        left: "50%",
+        transform: { xs: "translate(-50%, -50%)", md: "translateX(-50%)" },
+        width: "9%",
+        height: "60vh",
+        opacity: 1,
+        zIndex: 0,
+      }}
+    />
           {/* Title Section */}
           <Typography
             variant="h5"
@@ -900,7 +951,7 @@ export default function SwapTokenLanding(isDarkMode) {
             </Grid>
           </Grid>
         </Box>
-      </Box>
+      
       <Divider />
     </Box>
   );
