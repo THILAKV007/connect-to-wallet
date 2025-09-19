@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Button ,Grid, Card,
-    Divider,
+  Divider,
   TextField,
   InputAdornment,
   Tabs,
@@ -58,102 +58,121 @@ const orders = [
 return (
     <Box>
     {/* first section */}
-      <Box sx={{
-            py:1,
-            fontFamily: "'Manrope', sans-serif",
-            color: "text.primary",
-            backgroundImage: `url("assets/images/swapToken/gradient.png")`,
-          }}>
-          <Box
-            id="hero"
-            sx={{
-              position: "relative",
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: { md: "410px" },
-              overflow: "hidden",
-            }}
-          >
-            {/* Single Background Decoration */}
-            <Box
-              component="img"
-              src="assets/images/LimitorderSection/littlewaves.png"
-              alt="hero"
-              sx={{
-                position: "absolute",
-                top: { xs: "50px", md: "35px" },
-                width: { xs: "100%", md: "901px" },
-              }}
-            />
-    
-            {/* Content */}
-            <Box
-              sx={{
-                position: "relative",
-                zIndex: 1,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "22px",
-                maxWidth: "582px",
-                width: "100%",
-              }}
-            >
-              <Typography
-                sx={{
-                  color: "#0c9fe3",
-                  fontWeight: 700,
-                  fontSize: { xs: "20px", md: "24px" },
-                  lineHeight: "32.78px",
-                }}
-              >
-                Master volatile markets
-              </Typography>
-    
-              <Typography
-                sx={{
-                  color: "text.primary",
-                  fontWeight: 700,
-                  fontSize: { xs: "48px", md: "62px" },
-                  lineHeight: 1.1,
-                }}
-              >
-                Limit Orders
-              </Typography>
-    
-              <Typography
-                sx={{
-                  color: "text.primary",
-                  fontWeight: 700,
-                  fontSize: { xs: "13px", md: "14px" },
-                  lineHeight: "24px",
-                }}
-              >
-                Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+ <br/> liquidity sources aggregated by Unidex!
-              </Typography>
-    
-              <Button
-                variant="contained"
-                sx={{
-                  borderRadius: "8px",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: 700,
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
-                  color: "white",
-                  textTransform: "none",
-                 
-                }}
-              >
-                Start Trading
-              </Button>
-            </Box>
-          </Box>
-          </Box>
+         <Box
+               sx={{
+                 fontFamily: "'Manrope', sans-serif",
+                 color: "text.primary",
+               }}
+             >
+               <Box
+                 id="hero"
+                 sx={{
+                   position: "relative",
+                   textAlign: "center",
+                   display: "flex",
+                   flexDirection: "column",
+                   alignItems: "center",
+                   justifyContent: "center",
+                   minHeight: { xs: "100vh", md: "515px" },
+                   overflow: "hidden",
+                   padding: { xs: "20px", md: "0" },
+                   boxSizing: "border-box",
+                   // Use conditional background image for all screens
+                   backgroundImage: {
+                     xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
+                     md: 'url("assets/images/swapToken/gradient.png")',
+                   },
+                   // Set background position to center for all screens
+                   backgroundPosition: "center",
+                   backgroundRepeat: "no-repeat",
+                   backgroundSize: "cover",
+                 }}
+               >
+                 {/* Background Decoration */}
+                 <Box
+                   component="img"
+                   src="assets/images/LimitorderSection/limitback.png"
+                   alt="hero background decor"
+                   sx={{
+                     position: "absolute",
+                     left: "50%",
+                     transform: { xs: "translate(-50%, -50%)", md: "translateX(-50%)" },
+                     width: "650px",
+                     height: "60vh",
+                     opacity: 1,
+                     zIndex: 0,
+                   }}
+                 />
+             
+                 {/* Content */}
+                 <Box
+                   sx={{
+                     position: "relative",
+                     zIndex: 1,
+                     display: "flex",
+                     flexDirection: "column",
+                     alignItems: "center",
+                     gap: { xs: "12px", md: "22px" },
+                     maxWidth: "582px",
+                     width: "100%",
+                   }}
+                 >
+                   <Typography
+                     sx={{
+                       color: "#0c9fe3",
+                       fontWeight: 700,
+                       fontSize: { xs: "16px", md: "24px" },
+                       lineHeight: "32.78px",
+                     }}
+                   >
+                    Master volatile markets
+                   </Typography>
+             
+                   <Typography
+                     sx={{
+                       color: "text.primary",
+                       fontWeight: 700,
+                       fontSize: { xs: "36px", md: "62px" },
+                       lineHeight: { xs: 1.2, md: 1.1 },
+                     }}
+                   >
+                   Limit sources
+                   </Typography>
+             
+                   <Typography
+                     sx={{
+                       color: "text.primary",
+                       fontWeight: 700,
+                       fontSize: { xs: "12px", md: "14px" },
+                       lineHeight: "24px",
+                       textAlign: "center",
+                       paddingX: { xs: "20px", md: "0" },
+                     }}
+                   >
+                   Deep liquidity for the best prices on 9+ million tokens across 14 chains. Tap into 130+<br/> liquidity sources aggregated by Matcha!
+        
+                   </Typography>
+             
+                   <Button
+                     variant="contained"
+                     sx={{
+                       borderRadius: "8px",
+                       fontFamily: "Inter, sans-serif",
+                       fontWeight: 700,
+                       fontSize: "16px",
+                       lineHeight: "24px",
+                       background: "linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)",
+                       color: "white",
+                       textTransform: "none",
+                       padding: "12px 24px",
+                       marginTop: { xs: "16px", md: "40" },
+                     }}
+                   >
+                     Start Trading
+                   </Button>
+                 </Box>
+               </Box>
+                   </Box>
     <Divider/>
     {/* second section */}
     <Box
@@ -318,9 +337,10 @@ return (
           right: 0,
           width:250,
           height:250,
-          
-          opacity: isMobile ? 0.5 : 1,
-          transform: isMobile ? "scale(0.8) translate(10%,10%)" : "none",
+           '@media (max-width: 600px)': {
+          backgroundImage: 'none',
+          },
+         
           zIndex: 0,
         }}
       />
@@ -334,18 +354,7 @@ return (
         py: { xs: 6, md: 10 },
       }}
     >
-      <Box
-        component="img"
-         src="assets/images/LimitorderSection/spiral.png"
-        alt=""
-        sx={{
-          position: "absolute",
-          bottom:-1000,
-          right: 0,
-          width:200,
-          height:200,
-        }}
-      />
+      
       <Box maxWidth="1200px" mx="auto" px={2}>
         {/* Title */}
         <Typography
@@ -872,107 +881,157 @@ return (
         </Stack>
 
        {/* Right Side Swap Widget */}
-        <Box sx={{ width:501,
-          height:513,
-          top:126,
-          left:815,
-          borderRadius:8,
-
-        }}>
-        <Box sx={{ flex: 1, maxWidth: 501}}>
-             
-
-            {/* Token Swap Visual */}
-            <Box sx={{ position: "relative", display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4, flexDirection: { xs: "column", sm: "row" }}}>
+          <Box
+            sx={{
+              width: 501,
+              height: 513,
+              top: 126,
+              left: 815,
+              borderRadius: 8,
+              maxWidth: "100%",
+            }}
+          >
+            <Box sx={{ flex: 1, maxWidth: 501, mx: "auto" }}>
               
-              {/* Token Box 1 */}
+
+              {/* Token Swap Visual */}
               <Box
                 sx={{
-                  backgroundColor: "#fff",
-                  borderRadius: 2,
-                  width: 210,
-                  height: 163,
+                  position: "relative",
                   display: "flex",
-                  flexDirection: "column",
+                  justifyContent: "space-between",
                   alignItems: "center",
-                  pt: 3,
-                  zIndex: 2,
+                  mb: 4,
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: { xs: 2, sm: 0 }, // Added gap for small screens
                 }}
               >
-                <Box sx={{ width: 62, height: 62, position: "relative", mb: 2 }}>
+                {/* Token Box 1 */}
+                <Box
+                  sx={{
+                    backgroundColor: "#fff",
+                    borderRadius: 2,
+                    width: { xs: "100%", sm: 210 },
+                    height: 163,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    pt: 3,
+                    zIndex: 2,
+                  }}
+                >
+                  <Box sx={{ width: 62, height: 62, position: "relative", mb: 2 }}>
+                    <Box
+                      component="img"
+                      src="assets/images/swapToken/dollar.png"
+                      alt="USDC token"
+                      sx={{ width: 62, height: 62, position: "center" }}
+                    />
+                  </Box>
+                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>
+                    253.63 USDC
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontWeight: 500,
+                      fontSize: 10,
+                      color: "rgba(0,0,0,0.43)",
+                    }}
+                  >
+                    $253.44
+                  </Typography>
+                </Box>
+
+                {/* Swap Icon */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 3,
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: 110,
+                      height: 110,
+                      borderRadius: "50%",
+                      backgroundColor: "white",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+                    }}
+                  >
+                  </Box>
+                </Box>
+
+                {/* Token Box 2 */}
+                <Box
+                  sx={{
+                    backgroundColor: "#fff",
+                    borderRadius: 2,
+                    width: { xs: "100%", sm: 210 },
+                    height: 163,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    pt: 3,
+                    zIndex: 2,
+                  }}
+                >
                   <Box
                     component="img"
-                    src="assets/images/swapToken/dollar.png"
-                    alt="USDC token"
-                    sx={{ width: 62, height: 62,position:"center" }}
+                    src="assets/images/swapToken/eth.png"
+                    alt="ETH token"
+                    sx={{ width: 62, height: 62, position: "center" }}
                   />
+                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>
+                    0.06 ETH
+                  </Typography>
+                  <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#000" }}>
+                    $253.44
+                  </Typography>
                 </Box>
-                <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>253.63 USDC</Typography>
-                <Typography sx={{ fontWeight: 500, fontSize: 10, color: "#b3b3b3" }}>
-                  $253.44
-                </Typography>
               </Box>
 
-             
-
-              {/* Token Box 2 */}
-              <Box
-                sx={{
-                  backgroundColor: "#fff",
-                  borderRadius: 2,
-                  width: 210,
-                  height: 163,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  pt: 3,
-                  zIndex: 2,
-                }}
-              >
-                <Box
-                  component="img"
-                  src="assets/images/swapToken/eth.png"
-                  alt="ETH token"
-                  sx={{ width: 62, height: 62,position:"center",mb:2 }}
-                />
-                <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#000" }}>0.06 ETH</Typography>
-                <Typography sx={{ fontWeight: 700, fontSize: 10, color: "#b3b3b3" }}>$253.44</Typography>
-                {/* Connecting Circle */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  width:120,
-                  height:130,
-                  backgroundColor: "white",
-                  borderRadius: "90%",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 1,
-                  display: { xs: "none", sm: "block" },
-                }}
-              />
+              {/* Swap Details */}
+              <Box sx={{ display: "flex", flexDirection: "column", }}>
+                {[
+                  { label: "Liquidity Providers", value: "OxRFQ" },
+                  { label: "Rate", value: "1 ETH = 1562.76 USDC($1562.77)" },
+                  { label: "Ethereum Fees", value: "$ 23" },
+                ].map((row, i) => (
+                  <Box
+                    key={i}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      flexDirection: { xs: "column", sm: "row" },
+                      gap: { xs: 0.5, sm: 0 },
+                    }}
+                  >
+                    <Typography
+                      sx={{ fontWeight: 700, fontSize: 14, color: "text.primary" }}
+                    >
+                      {row.label}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontWeight: 700,
+                        fontSize: 14,
+                        color: "text.primary",
+                        textAlign: { xs: "left", sm: "right" },
+                      }}
+                    >
+                      {row.value}
+                    </Typography>
+                  </Box>
+                ))}
               </Box>
-              
             </Box>
-
-            {/* Swap Details */}
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-              {[
-                { label: "Liquidity Providers", value: "OxRFQ" },
-                { label: "Rate", value: "1 ETH = 1562.76 USDC($1562.77)" },
-                { label: "Ethereum Fees", value: "$ 23" },
-              ].map((row, i) => (
-                <Box key={i} sx={{ display: "flex", justifyContent: "space-between", flexDirection: { xs: "column", sm: "row" }, gap: { xs: 0.5, sm: 0 } }}>
-                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "text.primary" }}>{row.label}</Typography>
-                  <Typography sx={{ fontWeight: 700, fontSize: 14, color: "text.primary", textAlign: { xs: "left", sm: "right" } }}>{row.value}</Typography>
-                </Box>
-              ))}
-            </Box>
-      
-        </Box>
-        
-        </Box>
+          </Box>
        
         </Container>
         

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -6,27 +6,38 @@ import {
   Button,
   Box,
   IconButton,
-  FormControl,
-  Select,
-  InputLabel,
+  Menu,
   MenuItem,
-  
+  Drawer,
 } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { useState } from "react";
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from "react-router-dom";
 
 
-
-
 function Header({ toggleTheme, isDarkMode }) {
-      
-      const [setAge] = useState('');
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const open = Boolean(anchorEl);
 
-      const handleChange = (event) => {
-        setAge(event.target.value);
-      };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const toggleDrawer = (open) => () => {
+    setDrawerOpen(open);
+  };
+
+  const navLinks = [
+    { name: "Features", to: "/title6" },
+    { name: "Company", to: "/title7" },
+    { name: "Blog", to: "/title8" },
+    { name: "Trade History", to: "/title9" },
+  ];
 
   return (
     <AppBar
@@ -52,113 +63,76 @@ function Header({ toggleTheme, isDarkMode }) {
           UNIDEX
         </Typography>
 
-        {/* Navigation Items */}
+        {/* Navigation Items (Desktop) */}
         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
-          <Button
-            sx={{
-              color: isDarkMode ? '#EFF8FF' : '#061536',
-              textTransform: 'none',
-              fontSize: '1rem',
-              fontWeight: 500,
-              '&:hover': {
-                backgroundColor: 'transparent',
-                color: 'text.primary',
-              },
-            }}
-          >
-            <Link to={'/title6'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary",'&:hover': {
-                borderColor: '#0000',
-                color: '#2196f3',
-                backgroundColor: 'transparent',
-              },}}>Features</Typography></Link>
-          </Button>
-          <Button
-            sx={{
-              color: isDarkMode ? '#EFF8FF' : '#061536',
-              textTransform: 'none',
-              fontSize: '1rem',
-              fontWeight: 500,
-              '&:hover': {
-                backgroundColor: 'transparent',
-               color: 'text.primary',
-              },
-            }}
-          >
-           <Link to={'/title7'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary",'&:hover': {
-                borderColor: '#0000',
-                color: '#2196f3',
-                backgroundColor: 'transparent',
-              },}}>Company</Typography></Link> 
-          </Button>
-          <Button
-            sx={{
-              color: isDarkMode ? '#EFF8FF' : '#061536',
-              textTransform: 'none',
-              fontSize: '1rem',
-              fontWeight: 500,
-              '&:hover': {
-                backgroundColor: 'transparent',
-                color: 'text.primary',
-              },
-            }}
-          >
-             <Link to={'/title8'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary",'&:hover': {
-                borderColor: '#0000',
-                color: '#2196f3',
-                backgroundColor: 'transparent',
-              },}}>Blog</Typography></Link>
-          </Button>
-          <Button
-            sx={{
-              
-              textTransform: 'none',
-              fontSize: '1rem',
-              fontWeight: 500,
-              '&:hover': {
-                backgroundColor: 'transparent',
-                color: 'text.primary',
-              },
-            }}
-          >
-             <Link to={'/title9'} style={{ textDecoration: 'none'}}><Typography sx={{color:"text.primary",'&:hover': {
-                borderColor: '#0000',
-                color: '#2196f3',
-                backgroundColor: 'transparent',
-              },}}>Trade History</Typography></Link>
-          </Button>
+          {navLinks.map((link) => (
+            <Button
+              key={link.name}
+              sx={{
+                color: isDarkMode ? '#EFF8FF' : '#061536',
+                textTransform: 'none',
+                fontSize: '1rem',
+                fontWeight: 500,
+                '&:hover': {
+                  backgroundColor: 'transparent',
+                  color: '#2196f3',
+                },
+              }}
+            >
+              <Link to={link.to} style={{ textDecoration: 'none' }}>
+                <Typography sx={{ color: "text.primary", '&:hover': { color: '#2196f3' } }}>
+                  {link.name}
+                </Typography>
+              </Link>
+            </Button>
+          ))}
         </Box>
 
         {/* Right Side Buttons */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          {/* Mobile Menu Button */}
+          <IconButton
+            sx={{ display: { xs: 'block', md: 'none' } }}
+            onClick={toggleDrawer(true)}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon sx={{ color: isDarkMode ? '#EFF8FF' : '#061536' }} />
+          </IconButton>
+          
           {/* Theme Toggle */}
           <IconButton onClick={toggleTheme} sx={{ color: isDarkMode ? '#EFF8FF' : '#061536' }}>
             {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
-
-          {/* Create Wallet Button */}
+          
+          {/* Create Wallet Button (Desktop only) */}
           <Button
             variant="outlined"
+            onClick={handleClick}
             sx={{
-              display: { xs: 'none', sm: 'block' },
-              color: isDarkMode ? '#EFF8FF' : '#061536',
-              borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
-              textTransform: 'none',
+              display: { xs: "none", sm: "flex" }, // Use "flex" to align with parent Box
+              color: isDarkMode ? "#EFF8FF" : "#061536",
+              borderColor: isDarkMode
+                ? "rgba(255, 255, 255, 0.3)"
+                : "rgba(0, 0, 0, 0.3)",
+              textTransform: "none",
               borderRadius: 2,
               px: 3,
-              '&:hover': {
-                borderColor: '#2196f3',
-                color: '#2196f3',
-                backgroundColor: 'transparent',
+              "&:hover": {
+                borderColor: "#2196f3",
+                color: "#2196f3",
+                backgroundColor: "transparent",
               },
             }}
           >
             Create Wallet
           </Button>
 
-          {/* Connect to Wallet Button */}
+          {/* Connect to Wallet Button (Desktop only) */}
           <Button
             variant="contained"
             sx={{
+              display: { xs: "none", sm: "block" }, // Hide on small screens to place in drawer
               backgroundColor: '#2196f3',
               color: '#ffffff',
               textTransform: 'none',
@@ -170,63 +144,137 @@ function Header({ toggleTheme, isDarkMode }) {
             }}
           >
             Connect to Wallet
-            </Button>
-            
-          <FormControl>
-       
-             <InputLabel id="demo"></InputLabel>
-             <Select
-                     labelId="demo"
-                     id=""
-                     label=""
-                     onChange={handleChange}
-                    
-                    
-              >
-                {/* first */}
-             <Link to={'/title1'} style={{ textDecoration: 'none'}}> <MenuItem value={10}><Box component="img"
-        src="assets/images/Header/hello.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Swap Token<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> 
-        </Link>  
-        {/* second */}
-             <Link to={'/title2'} style={{ textDecoration: 'none' }}> <MenuItem value={20}><Box component="img"
-        src="assets/images/Header/gas.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Gasless Swaps<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-
-             {/* third */}
-             <Link to={'/title3'} style={{ textDecoration: 'none' }}><MenuItem value={30}><Box component="img"
-        src="assets/images/Header/liquidity.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Liquidity Source<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-             
-             {/* fourth */}
-             <Link to={'/title4'} style={{ textDecoration: 'none' }}>  <MenuItem value={30}><Box component="img"
-        src="assets/images/Header/limit.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Limit Orders<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-             
-             {/* fifth */}
-             <Link to={'/title5'} style={{ textDecoration: 'none' }}> <MenuItem value={30}><Box component="img"
-        src="assets/images/Header/cross.svg"
-        alt="Ethereum" sx={{ width: 50, height:50,Top:58, left:58 }}/><Box component="span" sx={{ color: "text.primary"}}>Cross Chains<Typography sx={{color:"text.primary",fontSize:"14px",padding:"5px",}}>
-                  Connect a wallet to your Unidex account
-                </Typography>
-                </Box></MenuItem> </Link>
-        </Select>
-          </FormControl>
-        
+          </Button>
         </Box>
       </Toolbar>
+
+      {/* Dropdown Menu for "Create Wallet" */}
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        PaperProps={{
+          sx: { width: 390, borderRadius: 2 }
+        }}
+      >
+        {/* All your MenuItem components here */}
+        <MenuItem onClick={handleClose} component={Link} to="/title1">
+          <Box component="img" src="assets/images/Header/hello.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Swap Token</Typography>
+            <Typography sx={{ color: "text.primary", fontSize: "14px", padding: "5px" }}>
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to="/title2">
+          <Box component="img" src="assets/images/Header/gas.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Gasless Swaps</Typography>
+            <Typography sx={{ color: "text.primary", fontSize: "14px", padding: "5px" }}>
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to="/title3">
+          <Box component="img" src="assets/images/Header/liquidity.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Liquidity Source</Typography>
+            <Typography sx={{ color: "text.primary", fontSize: "14px", padding: "5px" }}>
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to="/title4">
+          <Box component="img" src="assets/images/Header/limit.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Limit Orders</Typography>
+            <Typography sx={{ color: "text.primary", fontSize: "14px", padding: "5px" }}>
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to="/title5">
+          <Box component="img" src="assets/images/Header/cross.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
+          <Box>
+            <Typography sx={{ color: "text.primary" }}>Cross Chains</Typography>
+            <Typography sx={{ color: "text.primary", fontSize: "14px", padding: "5px" }}>
+              Connect a wallet to your Unidex account
+            </Typography>
+          </Box>
+        </MenuItem>
+      </Menu>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={toggleDrawer(false)}
+        sx={{
+          '& .MuiDrawer-paper': { 
+            width: 250, 
+            backgroundColor: isDarkMode ? '#121A2D' : '#F0F9FF',
+          },
+        }}
+      >
+        <Box
+          role="presentation"
+          onClick={toggleDrawer(false)}
+          onKeyDown={toggleDrawer(false)}
+          sx={{ mt: 2 }}
+        >
+          {/* Main Nav Links */}
+          {navLinks.map((link) => (
+            <MenuItem key={link.name} component={Link} to={link.to} sx={{
+              color: isDarkMode ? '#EFF8FF' : '#061536',
+              fontWeight: 500,
+            }}>
+              {link.name}
+            </MenuItem>
+          ))}
+          {/* Mobile-specific buttons */}
+          <Box sx={{ 
+            display: { xs: 'flex', sm: 'none' }, // Show on mobile only
+            flexDirection: 'column', 
+            gap: 2, 
+            p: 2 
+          }}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#2196f3',
+                color: '#ffffff',
+                textTransform: 'none',
+                borderRadius: 2,
+                px: 3,
+                '&:hover': {
+                  backgroundColor: '#1976d2',
+                },
+              }}
+            >
+              Connect to Wallet
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={handleClick}
+              sx={{
+                color: isDarkMode ? "#EFF8FF" : "#061536",
+                borderColor: isDarkMode ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)",
+                textTransform: "none",
+                borderRadius: 2,
+                px: 3,
+                "&:hover": {
+                  borderColor: "#2196f3",
+                  color: "#2196f3",
+                  backgroundColor: "transparent",
+                },
+              }}
+            >
+              Create Wallet
+            </Button>
+          </Box>
+        </Box>
+      </Drawer>
     </AppBar>
   );
 };

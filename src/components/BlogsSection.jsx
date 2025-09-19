@@ -265,4 +265,4 @@ const BlogsSection = ({ isDarkMode }) => {
   )
 }
 
-export default BlogsSection
+export default BlogsSection;
