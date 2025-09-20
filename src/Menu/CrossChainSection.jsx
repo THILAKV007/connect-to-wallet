@@ -509,6 +509,7 @@ export default function CrossChainSection(isDarkMode) {
           alignItems: "center",
           textAlign: "center",
           py: 8,
+          minheight:"100vh",
         }}
       >
         {/* Section Title */}
@@ -530,7 +531,6 @@ export default function CrossChainSection(isDarkMode) {
           sx={{
             width: { xs: "100%", md: "80%" },
             height: "auto",
-            maxWidth: "100%",
           }}
         />
       </Box>

@@ -503,14 +503,13 @@ export default function GasSwapSection() {
             Swap crypto without native tokens. Unidex handles the gas for <br /> swaps and approvals so you can focus on trading.
           </Typography>
 
-           <Grid container spacing={{ xs: 3, md: 4 }} justifyContent="center">
+            <Grid container spacing={{ xs: 3, md: 4 }} justifyContent="center">
       {/* MEV protection Card */}
       <Grid item xs={12} sm={6} md={4}>
         <Card
           sx={{
             p: 3,
             borderRadius: 3,
-            Width:'50%',
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -545,7 +544,7 @@ export default function GasSwapSection() {
               variant="body1"
               color="#b5b5b5"
             >
-              Say goodbye to sandwich attacks and <br/>frontrunning. Protect from MEV without <br/> a second thought.
+              Say goodbye to sandwich attacks and <br /> frontrunning. Protect from MEV without <br /> a second thought.
               <Button
                 href="#"
                 sx={{
@@ -571,8 +570,6 @@ export default function GasSwapSection() {
           sx={{
             p: 3,
             borderRadius: 3,
-           
-           
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -610,7 +607,7 @@ export default function GasSwapSection() {
               variant="body1"
               color="#b5b5b5"
             >
-              Save on slippage and cut<br/> down opportunity cost.
+              Save on slippage and cut<br /> down opportunity cost.
             </Typography>
           </CardContent>
         </Card>
@@ -622,8 +619,6 @@ export default function GasSwapSection() {
           sx={{
             p: 3,
             borderRadius: 3,
-           
-           
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -652,13 +647,13 @@ export default function GasSwapSection() {
               }}
             />
             <Typography variant="h5" sx={{ fontWeight: 700, mb: 1, lineHeight: 1.2 }}>
-              MEV protection
+              Fast and <br/> secure trades
             </Typography>
             <Typography
               variant="body1"
               color="#b5b5b5"
             >
-              Say goodbye to sandwich attacks and <br/>frontrunning. Protect from MEV without<br/> a second thought.
+              Get fast, secure trades through our <br /> advanced smart router.
               <Button
                 href="#"
                 sx={{
@@ -759,221 +754,201 @@ export default function GasSwapSection() {
 </Box>
       <Divider />
       {/* fifth section */}
-      <Box sx={{
-        backgroundImage: `url("assets/images/GaslessSwap/ddd.png")`,
+      <Box
+      sx={{
+        backgroundImage: `url("path/to/your/ddd.png")`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "bottom",
         py: 8,
         minHeight: "100vh",
-      }}>
-        {/* Content */}
-        <Box
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Container
+        maxWidth="sm"
+        sx={{
+          px: { xs: 2, md: 0 }, // Add horizontal padding on extra-small screens
+          py: { xs: 2, md: 0 },
+        }}
+      >
+        <Card
           sx={{
-            position: "relative",
-            zIndex: 1,
+            bgcolor: "#048acd",
+            border: "1px solid #e7e9eb",
+            borderRadius: 3,
+            boxShadow:
+              "0px 1.7px 10.3px rgba(0,0,0,0.03), 0px 17.2px 60.1px rgba(0,0,0,0.06), 0px 1.7px 3.4px rgba(0,0,0,0.02)",
+            width: "100%",
+            p: { xs: 3, md: 5 },
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          {/* Feature Card */}
-          <Card
+          <Typography
+            variant="h6"
             sx={{
-              bgcolor: "#048acd",
-              border: "1px solid #e7e9eb",
-              borderRadius: 3,
-              boxShadow:
-                "0px 1.7px 10.3px rgba(0,0,0,0.03), 0px 17.2px 60.1px rgba(0,0,0,0.06), 0px 1.7px 3.4px rgba(0,0,0,0.02)",
+              color: "white", // Changed from text.primary for better visibility on blue background
+              fontWeight: 500,
+              textAlign: "center",
+              mb: 2,
+            }}
+          >
+            Unidex Auto
+          </Typography>
+
+          <ToggleButtonGroup
+            value={toggle}
+            exclusive
+            onChange={handleToggle}
+            sx={{
+              bgcolor: "rgba(255, 255, 255, 0.2)",
+              p: "4px",
+              mb: 3,
+              borderRadius: "24px",
+              "& .MuiToggleButton-root": {
+                textTransform: "none",
+                fontWeight: 500,
+                fontSize: 14,
+                px: 2,
+                color: "black",
+                borderRadius: "20px",
+                border: "none",
+              },
+              "& .Mui-selected": {
+                bgcolor: "white",
+                color: "#048acd !important",
+                boxShadow: "0px 2px 3px rgba(0,0,0,0.06)",
+                "&:hover": {
+                  bgcolor: "white",
+                },
+              },
+            }}
+          >
+            <ToggleButton value="on">On</ToggleButton>
+            <ToggleButton value="off">Off</ToggleButton>
+          </ToggleButtonGroup>
+
+          <List
+            disablePadding
+            sx={{
               width: "100%",
-              maxWidth: 478,
-              p: { xs: 3, md: 5 },
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                color: "text.primary",
-                fontWeight: 500,
-                textAlign: "center",
-                mb: 2,
-              }}
-            >
-              Unidex Auto
-            </Typography>
-
-            {/* Toggle */}
-            <ToggleButtonGroup
-              value={toggle}
-              exclusive
-              onChange={handleToggle}
-              sx={{
-                bgcolor: "#f1f1f4",
-                p: "4px",
-                mb: 3,
-              }}
-            >
-              <ToggleButton
-                value="on"
-                sx={{
-                  varaiant: "contained",
-                  textTransform: "none",
-                  fontWeight: 500,
-                  fontSize: 14,
-                  px: 2,
-                  color: "#0000",
-                  borderRadius: 24,
-                  "&.Mui-selected": {
-                    bgcolor: "#fff",
-                    boxShadow:
-                      "0px 2px 3px rgba(0,0,0,0.06), 0px 0px 0px 1px rgba(0,0,0,0.06)",
-                  },
-                }}
-              >
-                on
-              </ToggleButton>
-              <ToggleButton
-                value="off"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: 500,
-                  fontSize: 14,
-                  px: 2,
-                  color: "#0000",
-                  borderRadius: 24,
-                  "&.Mui-selected": {
-                    bgcolor: "#fff",
-                    boxShadow:
-                      "0px 2px 3px rgba(0,0,0,0.06), 0px 0px 0px 1px rgba(0,0,0,0.06)",
-                  },
-                }}
-              >
-                Off
-              </ToggleButton>
-            </ToggleButtonGroup>
-
-            {/* Feature List */}
-            <List
-              disablePadding
-              sx={{
-                width: "100%",
-                color: "#fff",
-                fontSize: 14,
-                fontWeight: 500,
-              }}
-            >
-              <ListItem
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center"
-                }}
-              >
-                <ListItemIcon>
-                  <Box
-                    component="img"
-                    src="assets/images/GaslessSwap/green tick.png"
-                    alt=""
-                    sx={{ width: 16, height: 16 }}
-                  />
-                </ListItemIcon>
-                <Typography sx={{ flexGrow: 1, textAlign: "center" }}>
-                  No gas needed
-                </Typography>
-              </ListItem>
-
-              <ListItem
-                sx={{
-                  borderTop: "1px solid #f1f2f4",
-                  py: 1.5,
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <ListItemIcon>
-                  <Box
-                    component="img"
-                    src="assets/images/GaslessSwap/green tick.png"
-                    alt=""
-                    sx={{ width: 16, height: 16 }}
-                  />
-                </ListItemIcon>
-                <Typography sx={{ flexGrow: 1, textAlign: "center" }}>
-                  130+ liquidity sources
-                </Typography>
-              </ListItem>
-
-              <ListItem
-                sx={{
-                  borderTop: "1px solid #f1f2f4",
-                  py: 1.5,
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <ListItemIcon>
-                  <Box
-                    component="img"
-                    src="assets/images/GaslessSwap/green tick.png"
-                    alt=""
-                    sx={{ width: 16, height: 16 }}
-                  />
-                </ListItemIcon>
-                <Typography sx={{ flexGrow: 1, textAlign: "center" }}>
-                  Smart Routing - Auto
-                </Typography>
-              </ListItem>
-            </List>
-
-            <Typography
-              sx={{
-                borderTop: "1px solid #f1f2f4",
-                py: 1.5,
-                color: "#fff",
-                fontSize: 14,
-                fontWeight: 500,
-                textAlign: "center",
-                width: "100%"
-              }}
-            >
-              0.05% - 0.25% fee on certain pairs
-            </Typography>
-          </Card>
-
-          {/* Section Title */}
-          <Typography
-            variant="h3"
-            sx={{
-              color: "text.primary",
-              fontWeight: 700,
-              textAlign: "center",
-              fontSize: 24,
-              fontFamily: "Manrope, sans-serif",
-              mt: 4,
-            }}
-          >
-            Available Supporting Chains
-          </Typography>
-          <Typography
-            sx={{
-              color: "text.primary",
-              fontWeight: 400,
+              color: "white",
               fontSize: 14,
-              lineHeight: "24px",
-              textAlign: "center",
-              maxWidth: 582,
-              mt: 2,
-              fontFamily: "Manrope, sans-serif",
+              fontWeight: 500,
             }}
           >
-            Swap crypto without native token. Unidex handles the gas for <br /> swaps
-            and approvals so you can focus on trading.
+            <ListItem
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <ListItemIcon sx={{ minWidth: "auto", mr: 1 }}>
+                <Box
+                  component="img"
+                  src="assets/images/GaslessSwap/green tick.png"
+                  alt=""
+                  sx={{ width: 16, height: 16 }}
+                />
+              </ListItemIcon>
+              <Typography sx={{ flexGrow: 1, textAlign: "center", color: "white" }}>
+                No gas needed
+              </Typography>
+            </ListItem>
+
+            <ListItem
+              sx={{
+                borderTop: "1px solid rgba(255,255,255,0.2)",
+                py: 1.5,
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <ListItemIcon sx={{ minWidth: "auto", mr: 1 }}>
+                <Box
+                  component="img"
+                  src="assets/images/GaslessSwap/green tick.png"
+                  alt=""
+                  sx={{ width: 16, height: 16 }}
+                />
+              </ListItemIcon>
+              <Typography sx={{ flexGrow: 1, textAlign: "center", color: "white" }}>
+                130+ liquidity sources
+              </Typography>
+            </ListItem>
+
+            <ListItem
+              sx={{
+                borderTop: "1px solid rgba(255,255,255,0.2)",
+                py: 1.5,
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <ListItemIcon sx={{ minWidth: "auto", mr: 1 }}>
+                <Box
+                  component="img"
+                  src="assets/images/GaslessSwap/green tick.png"
+                  alt=""
+                  sx={{ width: 16, height: 16 }}
+                />
+              </ListItemIcon>
+              <Typography sx={{ flexGrow: 1, textAlign: "center", color: "white" }}>
+                Smart Routing - Auto
+              </Typography>
+            </ListItem>
+          </List>
+
+          <Typography
+            sx={{
+              borderTop: "1px solid rgba(255,255,255,0.2)",
+              pt: 2,
+              color: "white",
+              fontSize: 14,
+              fontWeight: 500,
+              textAlign: "center",
+              width: "100%",
+            }}
+          >
+            0.05% - 0.25% fee on certain pairs
           </Typography>
-        </Box>
-      </Box>
+        </Card>
+      </Container>
+      
+      <Typography
+        variant="h5"
+        sx={{
+          color: "text.primary",
+          fontWeight: 700,
+          textAlign: "center",
+          fontSize: { xs: 20, md: 24 },
+          mt: 4,
+          px: { xs: 2, md: 0 },
+        }}
+      >
+        Available Supporting Chains
+      </Typography>
+      <Typography
+        sx={{
+          color: "text.primary",
+          fontWeight: 400,
+          fontSize: { xs: 12, md: 14 },
+          lineHeight: "24px",
+          textAlign: "center",
+          maxWidth: 582,
+          mt: 2,
+          px: { xs: 2, md: 0 },
+        }}
+      >
+        Swap crypto without native token. Unidex handles the gas for <br /> swaps
+        and approvals so you can focus on trading.
+      </Typography>
+    </Box>
     </Box>
   );
 }

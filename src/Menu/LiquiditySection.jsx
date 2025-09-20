@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Box, Typography, Table, TableBody, TableCell, TableContainer,
   TableHead, TableRow, TextField, Avatar, Stack, InputAdornment,
-  Button, Divider, Container, useMediaQuery
+  Button, Divider,useMediaQuery
 } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
@@ -213,6 +213,7 @@ function LiquiditySection() {
           alignItems: 'flex-start',
           minHeight: { xs: '50vh', md: '100vh' },
           px: { xs: 0, md: 5 },
+          py:8,
         }}
       >
         <Box
@@ -304,7 +305,7 @@ function LiquiditySection() {
                       <TableCell>
                         <Stack direction='row' spacing={1.5} alignItems='center'>
                           <Avatar src={row.icon} alt={row.source} sx={{ width: 24, height: 24 }} />
-                          <Typography>{row.source}</Typography>
+                          <Typography sx={{color:"text.primary"}}>{row.source}</Typography>
                         </Stack>
                       </TableCell>
                       <TableCell>{row.total}</TableCell>
@@ -324,7 +325,7 @@ function LiquiditySection() {
           ) : (
             <Box>
               {rows.map((row, i) => (
-                <Box key={i} sx={{ border: '1px solid #eee', borderRadius: 2, mb: 2, p: 2, bgcolor: '#f8fafb' }}>
+                <Box key={i} sx={{ border: '1px solid #eee', borderRadius: 2, mb: 2, p: 2, }}>
                   <Stack direction='row' spacing={1.5} alignItems='center'>
                     <Avatar src={row.icon} alt={row.source} sx={{ width: 24, height: 24 }} />
                     <Typography fontWeight={600}>{row.source}</Typography>
@@ -340,42 +341,101 @@ function LiquiditySection() {
                   </Stack>
                 </Box>
               ))}
+              
             </Box>
-          )}
-        </Box>
+          )} {/* Select Tokens */}
+        <Box display="flex" justifyContent="center" alignItems="center">
+      <Typography variant="body1" sx={{ mt: 6, mb: 2}}>
+        Select your Buy and Sell tokens
+      </Typography>
+       </Box>
+      {/* Pagination (for gasless token 14.png) */}
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Button variant="body2" sx={{ color: "text.primary" }}>
+          1
+        </Button>
+        <Button variant="body2" sx={{ color: "text.primary" }}>
+          2
+        </Button>
+       <Button variant="body2" sx={{ color: "text.primary" }}>
+          3
+        </Button>
+       <Button variant="body2" sx={{ color: "text.primary" }}>
+          4
+        </Button>
+        <Button variant="body2" sx={{ color: "text.primary" }}>
+          5
+        </Button>
+        <Avatar sx={{ bgcolor: "transparent", width: 24, height: 24 }}>
+          {/* Add a right arrow icon here */}
+        </Avatar>
       </Box>
+    </Box>
+     </Box>     
+      
       <Divider />
 
       {/* Deep Liquidity Section */}
       <Box
+      sx={{
+        py: { xs: 8, md: 12 },
+        textAlign: 'center',
+        
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Background Images - Placeholder for the blurred logos */}
+      <Box
         sx={{
-          position: 'relative',
-          minHeight: { xs: '60vh', md: '100vh' },
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundImage: { xs: 'none', md: "url('assets/images/LiquiditySection/back.png')" },
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          
+          pointerEvents: 'none',
+          backgroundImage: 'url("assets/images/LiquiditySection/back.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          textAlign: 'center',
-          px: { xs: 2, md: 0 }
+          zIndex: 0,
         }}
-      >
-        <Container maxWidth='md'>
-          <Typography
-            variant={isMobile ? 'h5' : 'h3'}
-            component='h1'
-            gutterBottom
-            sx={{ fontWeight: 'bold' }}
-          >
-            Deep liquidity.<br />AMM and RFQ combined.
-          </Typography>
-          <Typography variant={isMobile ? 'body2' : 'h6'} sx={{ opacity: 0.85 }}>
-            Unidex combines 130+ liquidity sources, on-chain and off-chain.
-          </Typography>
-        </Container>
+      />
+
+      {/* Content */}
+      <Box sx={{ position: 'relative', zIndex: 1, px: 2 }}>
+        <Typography
+          variant="h3"
+          component="h1"
+          fontWeight="bold"
+          sx={{
+            mb: 1,
+            fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3rem' },
+          }}
+        >
+          Deep liquidity.
+        </Typography>
+        <Typography
+          variant="h3"
+          component="h1"
+          fontWeight="bold"
+          sx={{
+            mb: 4,
+            fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3rem' },
+          }}
+        >
+          AMM and RFQ combined.
+        </Typography>
+        <Typography variant="body1" sx={{ color: '#5C6B7C', maxWidth: '400px', mx: 'auto' }}>
+          Unidex combines 130+ liquidity sources, on-chain and off-chain.
+        </Typography>
       </Box>
+
+      {/* Placeholder for the arrows/dots below */}
+      <Box sx={{ position: 'absolute', bottom: 32, left: 0, right: 0, textAlign: 'center' }}>
+        {/* You can add your actual arrow/dot components here */}
+      </Box>
+    </Box>
       <Divider />
     </>
   )

@@ -12,8 +12,8 @@ import { Box, Typography, Button ,Grid, Card,
   Tab,
   MenuItem,
   Select,
-  ToggleButton,
-  ToggleButtonGroup,
+  
+  ButtonGroup
 
 } from '@mui/material';
 
@@ -46,15 +46,7 @@ const orders = [
   const isMobile = useMediaQuery("(max-width:768px)");
 
 
-   const [selected, setSelected] = React.useState("market");
-  const [expiry, setExpiry] = React.useState("1h");
-
-  const handleChange = (event, newValue) => {
-    if (newValue !== null) {
-      setSelected(newValue);
-    }
-  };
-
+   
 return (
     <Box>
     {/* first section */}
@@ -91,13 +83,13 @@ return (
                  {/* Background Decoration */}
                  <Box
                    component="img"
-                   src="assets/images/LimitorderSection/limitback.png"
+                   src="assets/images/LimitorderSection/littlewaves.png"
                    alt="hero background decor"
                    sx={{
                      position: "absolute",
                      left: "50%",
                      transform: { xs: "translate(-50%, -50%)", md: "translateX(-50%)" },
-                     width: "650px",
+                     width: "990px",
                      height: "60vh",
                      opacity: 1,
                      zIndex: 0,
@@ -510,7 +502,126 @@ return (
      
     <Divider/>
     {/* foursection */}
-     <Box sx={{py: 8, textAlign: "center" }}>
+     <Box sx={{ py: 8, textAlign: "center" }}>
+  {/* Title */}
+  <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
+    How to setup limit orders
+  </Typography>
+  <Typography variant="body1" sx={{ mb: 4, color: "#B3B3B3" }}>
+    Available on 3 chains:
+  </Typography>
+
+  {/* Chain Logos */}
+  <Box display="flex" justifyContent="center" gap={3} mb={6}>
+    <Box display="flex" alignItems="center" gap={1}>
+      <Avatar src="assets/images/LimitorderSection/eth.png" sx={{ width: 28, height: 28 }} />
+      <Typography sx={{ color: "#B3B3B3" }}>Ethereum</Typography>
+    </Box>
+    <Box display="flex" alignItems="center" gap={1}>
+      <Avatar src="assets/images/LimitorderSection/danger.png" sx={{ width: 28, height: 28 }} />
+      <Typography sx={{ color: "#B3B3B3" }}>Polygon</Typography>
+    </Box>
+    <Box display="flex" alignItems="center" gap={1}>
+      <Avatar src="assets/images/LimitorderSection/bsc.png" sx={{ width: 28, height: 28 }} />
+      <Typography sx={{ color: "#B3B3B3" }}>BSC</Typography>
+    </Box>
+  </Box>
+
+  {/* Card with Tabs */}
+  <Grid container justifyContent="center" sx={{ px: { xs: 2, sm: 0 } }}>
+    <Grid item xs={12} sm={8} md={4}>
+      <Card sx={{ borderRadius: 3 }}>
+        <Tabs
+          value={tab}
+          onChange={(e, newValue) => setTab(newValue)}
+          textColor="inherit"
+          indicatorColor="secondary"
+          variant="fullWidth"
+          sx={{
+            "& .MuiTab-root": {},
+            "& .Mui-selected": {},
+          }}
+        >
+          <Tab label="Market" />
+          <Tab label="Limit" />
+          <Tab label="Crosschain" />
+        </Tabs>
+
+        <CardContent>
+          {/* Sell Box */}
+          <Box
+            sx={{
+              bgcolor: "white",
+              borderRadius: 2,
+              p: 2,
+              mb: 2,
+              textAlign: "left",
+              color: "black",
+            }}
+          >
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              Sell
+            </Typography>
+            <TextField
+              fullWidth
+              variant="standard"
+              placeholder="0"
+              InputProps={{
+                disableUnderline: true,
+                startAdornment: (
+                  <InputAdornment position="end">
+                   <Typography color="black">Balance: 0.00</Typography>
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Button size="small">ETH ▼</Button>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+
+          {/* Buy Box */}
+          <Box
+            sx={{
+              bgcolor: "white",
+              borderRadius: 2,
+              p: 2,
+              textAlign: "left",
+              color: "black",
+            }}
+          >
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              Buy
+            </Typography>
+            <TextField
+              fullWidth
+              variant="standard"
+              placeholder="0"
+              InputProps={{
+                disableUnderline: true,
+                startAdornment: (
+                  <InputAdornment position="end">
+                    <Typography color="black">Balance: 0.00</Typography>
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Button size="small">ETH ▼</Button>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        </CardContent>
+      </Card>
+    </Grid>
+  </Grid>
+</Box>
+    <Divider/>
+    {/* Fifth section */}
+       <Box sx={{ py: 8, textAlign: "center", minHeight: "100vh" }}>
       {/* Title */}
       <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
         How to setup limit orders
@@ -522,285 +633,127 @@ return (
       {/* Chain Logos */}
       <Box display="flex" justifyContent="center" gap={3} mb={6}>
         <Box display="flex" alignItems="center" gap={1}>
-          <Avatar src="assets/images/LimitorderSection/eth.png" sx={{ width: 28, height: 28 }} />
-          <Typography sx={{color:"#B3B3B3"}}>Ethereum</Typography>
+          <Avatar src="path/to/ethereum_logo.png" sx={{ width: 28, height: 28 }} />
+          <Typography sx={{ color: "#B3B3B3" }}>Ethereum</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap={1}>
-          <Avatar src="assets/images/LimitorderSection/danger.png" sx={{ width: 28, height: 28 }} />
-          <Typography sx={{color:"#B3B3B3"}}>Polygon</Typography>
+          <Avatar src="path/to/polygon_logo.png" sx={{ width: 28, height: 28 }} />
+          <Typography sx={{ color: "#B3B3B3" }}>Polygon</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap={1}>
-          <Avatar src="assets/images/LimitorderSection/bsc.png" sx={{ width: 28, height: 28 }} />
-          <Typography sx={{color:"#B3B3B3"}}>BSC</Typography>
+          <Avatar src="path/to/bsc_logo.png" sx={{ width: 28, height: 28 }} />
+          <Typography sx={{ color: "#B3B3B3" }}>BSC</Typography>
         </Box>
       </Box>
 
-      {/* Card with Tabs */}
-      <Grid container justifyContent="center">
-        <Grid item xs={12} md={4}>
-          <Card sx={{ borderRadius: 3}}>
-            <Tabs
-              value={tab}
-              onChange={(e, newValue) => setTab(newValue)}
-              textColor="inherit"
-              indicatorColor="secondary"
-              variant="fullWidth"
-              sx={{
-                "& .MuiTab-root": {},
-                "& .Mui-selected": {},
-              }}
-            >
-              <Tab label="Market" />
-              <Tab label="Limit" />
-              <Tab label="Crosschain" />
-            </Tabs>
-
+      {/* Card */}
+      <Grid container justifyContent="center" sx={{ px: { xs: 2, md: 0 } }}>
+        <Grid item xs={12} sm={8} md={4}>
+          <Card sx={{ borderRadius: 3, p: 2,}}>
             <CardContent>
-              {/* Sell Box */}
-              <Box
-                sx={{
-                  bgcolor: "white",
-                  borderRadius: 2,
-                  p: 2,
-                  mb: 2,
-                  textAlign: "left",
-                  color: "black",
-                }}
-              >
-                <Typography variant="body2" sx={{ mb: 1 }}>
-                  Sell
+              {/* Slippage Tolerance & Limit Price */}
+              <Box sx={{ textAlign: "left" }}>
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                  Slippage Tolerance
                 </Typography>
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  placeholder="0"
-                  InputProps={{
-                    disableUnderline: true,
-                    startAdornment: (
-                      <InputAdornment position="end">
-                        <Typography >Balance: 0.00</Typography>
-                      </InputAdornment>
-                    ),
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Button size="small">ETH ▼</Button>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                <Typography variant="h6" fontWeight="bold" sx={{ mb: 0.5 }}>
+                  Limit Price
+                </Typography>
+                <Typography variant="h5" sx={{ mb: 2 }}>
+                  0.00
+                </Typography>
               </Box>
 
-              {/* Buy Box */}
-              <Box
+              {/* Market Buttons */}
+              <ButtonGroup
+                variant="outlined"
+                fullWidth
                 sx={{
-                  bgcolor: "white",
-                  borderRadius: 2,
-                  p: 2,
-                  textAlign: "left",
-                  color: "black",
+                  mb: 2,
+                  "& .MuiButton-root": {
+                    borderColor: "#C0C8D0",
+                    color: "text.primary",
+                    textTransform: "none",
+                  },
+                  "& .MuiButton-outlined:hover": {
+                    bgcolor: "#D1D9E0",
+                  },
                 }}
               >
-                <Typography variant="body2" sx={{ mb: 1 }}>
-                  Buy
-                </Typography>
-                <TextField
-                  fullWidth
-                  variant="standard"
-                  placeholder="0"
-                  InputProps={{
-                    disableUnderline: true,
-                    startAdornment: (
-                      <InputAdornment position="end">
-                        <Typography color="text.secondary">Balance: 0.00</Typography>
-                      </InputAdornment>
-                    ),
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        
-                        <Button size="small">ETH ▼</Button>
-                      </InputAdornment>
-                    ),
+                <Button sx={{ bgcolor: "#D1D9E0",color:"text.primary", }}>Market</Button>
+                <Button>1% ↑</Button>
+                <Button>2% ↑</Button>
+                <Button>5% ↑</Button>
+                <Button>10% ↑</Button>
+              </ButtonGroup>
+
+              {/* Expiry */}
+              <Box display="flex" alignItems="center" justifyContent="space-between" sx={{ mb: 3 }}>
+                <Typography>Expiry</Typography>
+                <Select
+                  value="1 Hour"
+                  displayEmpty
+                  size="small"
+                  sx={{
+                    "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+                    "& .MuiSelect-select": { p: 1, pr: 0 },
                   }}
-                />
+                >
+                  <MenuItem value="1 Hour">1 Hour</MenuItem>
+                  <MenuItem value="1 Day">1 Day</MenuItem>
+                </Select>
               </Box>
+
+              {/* Connect Wallet Button */}
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                  bgcolor: "#007BFF",
+                  borderRadius: 2,
+                  py: 1.5,
+                  textTransform: "none",
+                  fontWeight: "bold",
+                  "&:hover": { bgcolor: "#0069D9" },
+                }}
+              >
+                Connect Ethereum Wallet
+              </Button>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
-
-    </Box>
-    <Divider/>
-    {/* Fifth section */}
-  <Box
-      component="section"
-      id="limit-orders"
-      sx={{
-       
-        py: { xs: 5, md: 8 },
-        px: { xs: 2, md: 4 },
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Box
-        className="container"
-        sx={{
-          maxWidth: "1440px",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
-        {/* Title */}
-         <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
-        How to setup limit orders
-      </Typography>
-
-        {/* Subtitle */}
-        <Typography
-          sx={{
-            fontFamily: "Manrope, sans-serif",
-            fontWeight: 400,
-            fontSize: { xs: "16px", md: "17px" },
-            lineHeight: "25px",
-            color: "#B3B3B3",
-            mb: 4,
-          }}
-        >
-          Available on 3 chains:
-        </Typography>
-
-        {/* Chain list */}
-        <Stack
-          direction="row"
-          spacing={isMobile ? 2.5 : 3.5}
-          flexWrap="wrap"
-          justifyContent="center"
-          alignItems="center"
-          sx={{ mb: 5 }}
-        >
-          {[
-            {
-              src: "assets/images/LimitorderSection/eth.png",
-              alt: "Ethereum icon",
-              name: "Ethereum",
-            },
-            {
-              src: "assets/images/LimitorderSection/ploygon.png",
-              alt: "Polygon icon",
-              name: "Polygon",
-            },
-            {
-              src: "assets/images/LimitorderSection/bsc.png",
-              alt: "BSC icon",
-              name: "BSC",
-            },
-          ].map((chain) => (
-            <Stack key={chain.name} direction="row" alignItems="center" spacing={1}>
-              <Box
-                component="img"
-                src={chain.src}
-                alt={chain.alt}
-                sx={{ width: 20, height: 20 }}
-              />
-              <Typography
-                sx={{
-                  fontFamily: "Manrope, sans-serif",
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "25px",
-                  color: "#B3B3B3",
-                }}
-              >
-                {chain.name}
-              </Typography>
-            </Stack>
-          ))}
-        </Stack>
-             <Box
-      sx={{
-        border:2,
-        p: 3,
-        borderRadius: 2,
-        maxWidth: 320,
-      }}
-    >
-      {/* Title */}
-      <Typography
-        variant="body2"
-        color="text.secondary"
-        gutterBottom
-        sx={{ fontWeight: 500 }}
-      >
-        Slippage Tolerance
-      </Typography>
-
-      {/* Limit Price */}
-      <Typography variant="body2" sx={{ fontWeight: 600 }}>
-        Limit Price
-      </Typography>
-      <Typography variant="body2"  gutterBottom>
-        0.00
-      </Typography>
-
-      {/* Toggle Buttons */}
-      <ToggleButtonGroup
-        value={selected}
-        exclusive
-        onChange={handleChange}
-        sx={{ mb: 2 }}
-      >
-        <ToggleButton value="market">Market</ToggleButton>
-        <ToggleButton value="1">1 % ↑</ToggleButton>
-        <ToggleButton value="2">2 % ↑</ToggleButton>
-        <ToggleButton value="5">5 % ↑</ToggleButton>
-        <ToggleButton value="10">10 % ↑</ToggleButton>
-      </ToggleButtonGroup>
-
-      {/* Expiry */}
-      <Typography variant="body2" sx={{ fontWeight: 600 }}>
-        Expiry
-      </Typography>
-      <Select
-        value={expiry}
-        onChange={(e) => setExpiry(e.target.value)}
-        size="small"
-        sx={{
-          
-          mt: 1,
-          mb: 2,
-          borderRadius: 1,
-          minWidth: 120,
-        }}
-      >
-        <MenuItem value="1h">1 Hour</MenuItem>
-        <MenuItem value="6h">6 Hours</MenuItem>
-        <MenuItem value="12h">12 Hours</MenuItem>
-        <MenuItem value="24h">24 Hours</MenuItem>
-      </Select>
-
-      {/* Wallet Button */}
-      <Button
-        variant="contained"
-        fullWidth
-        sx={{
-          mt: 2,
-          bgcolor: "linear-gradient(to right, #00aaff, #0072ff)",
-          textTransform: "none",
-          fontWeight: 600,
-          borderRadius: 1.5,
-          py: 1.2,
-        }}
-      >
-        Connect Ethereum Wallet
-      </Button>
-    </Box>
-        
       
-       
+      {/* Select Tokens */}
+      <Typography variant="body1" sx={{ mt: 6, mb: 2 }}>
+        Select your Buy and Sell tokens
+      </Typography>
+
+      {/* Pagination (for gasless token 14.png) */}
+      <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
+        <Typography variant="body2" sx={{ color: "#B3B3B3" }}>
+          1
+        </Typography>
+        <Typography variant="body2" sx={{ color: "#B3B3B3" }}>
+          2
+        </Typography>
+        <Typography variant="body2" sx={{ color: "#B3B3B3" }}>
+          3
+        </Typography>
+        <Typography variant="body2" sx={{ color: "#B3B3B3" }}>
+          4
+        </Typography>
+        <Typography variant="body2" sx={{ color: "#B3B3B3" }}>
+          5
+        </Typography>
+        <Avatar sx={{ bgcolor: "transparent", width: 24, height: 24 }}>
+          {/* Add a right arrow icon here */}
+        </Avatar>
       </Box>
+    
+    
+    
+    
     </Box>
 
     <Divider/>

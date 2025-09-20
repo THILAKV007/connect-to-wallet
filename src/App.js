@@ -46,15 +46,15 @@ function AppContent({ isDarkMode, toggleTheme }) {
         <Route path='/limit-orders' element={<LimitOrderSection isDarkMode={isDarkMode} />} />
         <Route path='/cross-chains' element={<CrossChainSection isDarkMode={isDarkMode} />} />
         <Route path='/articles' element={<Articles />} />
-        <Route path='/title1' element={<SwapTokenLanding isDarkMode={isDarkMode} />} />
-        <Route path='/title2' element={<GasSwapSection isDarkMode={isDarkMode} />} />
-        <Route path='/title3' element={<LiquiditySection isDarkMode={isDarkMode} />} />
-        <Route path='/title4' element={<LimitOrderSection isDarkMode={isDarkMode} />} />
-        <Route path='/title5' element={<CrossChainSection isDarkMode={isDarkMode} />} />
-        <Route path='/title6' element={<Features />} />
-        <Route path='/title7' element={<Company />} />
-        <Route path='/title8' element={<BlogDetails />} />
-        <Route path='/title9' element={<TradeHistory />} />
+        <Route path='/SwapToken' element={<SwapTokenLanding isDarkMode={isDarkMode} />} />
+        <Route path='/GaslessSwap' element={<GasSwapSection isDarkMode={isDarkMode} />} />
+        <Route path='/Liquidity' element={<LiquiditySection isDarkMode={isDarkMode} />} />
+        <Route path='/LimitOrder' element={<LimitOrderSection isDarkMode={isDarkMode} />} />
+        <Route path='/CrossChain' element={<CrossChainSection isDarkMode={isDarkMode} />} />
+        <Route path='/Features' element={<Features />} />
+        <Route path='/Company' element={<Company />} />
+        <Route path='/Blog' element={<BlogDetails />} />
+        <Route path='/TradeHistory' element={<TradeHistory />} />
       </Routes>
       {!shouldHideFooter && <Footer isDarkMode={isDarkMode} />}
     </>

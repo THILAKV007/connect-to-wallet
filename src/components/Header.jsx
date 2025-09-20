@@ -33,10 +33,10 @@ function Header({ toggleTheme, isDarkMode }) {
   };
 
   const navLinks = [
-    { name: "Features", to: "/title6" },
-    { name: "Company", to: "/title7" },
-    { name: "Blog", to: "/title8" },
-    { name: "Trade History", to: "/title9" },
+    { name: "Features", to: "/Features" },
+    { name: "Company", to: "/Company" },
+    { name: "Blog", to: "/Blog" },
+    { name: "Trade History", to: "/TradeHistory" },
   ];
 
   return (
@@ -111,7 +111,7 @@ function Header({ toggleTheme, isDarkMode }) {
             onClick={handleClick}
             sx={{
               display: { xs: "none", sm: "flex" }, // Use "flex" to align with parent Box
-              color: isDarkMode ? "#EFF8FF" : "#061536",
+              color: isDarkMode ? "#FFFFFF" : "#10254A",
               borderColor: isDarkMode
                 ? "rgba(255, 255, 255, 0.3)"
                 : "rgba(0, 0, 0, 0.3)",
@@ -154,11 +154,11 @@ function Header({ toggleTheme, isDarkMode }) {
         open={open}
         onClose={handleClose}
         PaperProps={{
-          sx: { width: 390, borderRadius: 2 }
+          sx: { width: 390, borderRadius: 2,}
         }}
       >
         {/* All your MenuItem components here */}
-        <MenuItem onClick={handleClose} component={Link} to="/title1">
+        <MenuItem onClick={handleClose} component={Link} to="/SwapToken">
           <Box component="img" src="assets/images/Header/hello.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
           <Box>
             <Typography sx={{ color: "text.primary" }}>Swap Token</Typography>
@@ -167,7 +167,7 @@ function Header({ toggleTheme, isDarkMode }) {
             </Typography>
           </Box>
         </MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to="/title2">
+        <MenuItem onClick={handleClose} component={Link} to="/GaslessSwap">
           <Box component="img" src="assets/images/Header/gas.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
           <Box>
             <Typography sx={{ color: "text.primary" }}>Gasless Swaps</Typography>
@@ -176,7 +176,7 @@ function Header({ toggleTheme, isDarkMode }) {
             </Typography>
           </Box>
         </MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to="/title3">
+        <MenuItem onClick={handleClose} component={Link} to="/Liquidity">
           <Box component="img" src="assets/images/Header/liquidity.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
           <Box>
             <Typography sx={{ color: "text.primary" }}>Liquidity Source</Typography>
@@ -185,7 +185,7 @@ function Header({ toggleTheme, isDarkMode }) {
             </Typography>
           </Box>
         </MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to="/title4">
+        <MenuItem onClick={handleClose} component={Link} to="/LimitOrder">
           <Box component="img" src="assets/images/Header/limit.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
           <Box>
             <Typography sx={{ color: "text.primary" }}>Limit Orders</Typography>
@@ -194,7 +194,7 @@ function Header({ toggleTheme, isDarkMode }) {
             </Typography>
           </Box>
         </MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to="/title5">
+        <MenuItem onClick={handleClose} component={Link} to="/CrossChain">
           <Box component="img" src="assets/images/Header/cross.svg" alt="Ethereum" sx={{ width: 50, height: 50, mr: 1 }} />
           <Box>
             <Typography sx={{ color: "text.primary" }}>Cross Chains</Typography>
