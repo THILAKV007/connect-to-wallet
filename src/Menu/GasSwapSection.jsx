@@ -281,16 +281,23 @@ export default function GasSwapSection() {
                 sx={{
                   width: { xs: 35, sm: 45, md: 50 },
                   height: { xs: 35, sm: 45, md: 50 },
-                  borderRadius: '50%',
+<<<<<<< HEAD
+                  borderRadius: '20%',
                   backgroundColor: 'white',
                   boxShadow: 3,
                   flexShrink: 0,
                   mx: { xs: 0.5, sm: 1 },
                 }}
               >
-                <ArrowForwardIosIcon
-                  sx={{ fontSize: { xs: 14, sm: 18, md: 20 } }}
-                />
+                <Typography
+                  sx={{
+                    fontSize: { xs: 14, sm: 18, md: 20 },
+                    fontWeight: 'bold',
+                    color: '#666',
+                  }}
+                >
+                  >
+                </Typography>
               </IconButton>
 
               {/* Right 3 tokens - High to Low Opacity */}
