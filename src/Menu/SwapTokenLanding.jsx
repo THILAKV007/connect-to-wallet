@@ -172,31 +172,39 @@ export default function SwapTokenLanding(isDarkMode) {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     borderRadius: theme.shape.borderRadius,
-    boxShadow: 'none',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
     border: `1px solid ${theme.palette.divider}`,
     flexGrow: 1,
     margin: theme.spacing(1),
-    minWidth: 150, // Ensures cards don't shrink too much
-    [theme.breakpoints.down('sm')]: {
+    minWidth: 120,
+    maxWidth: 200,
+    [theme.breakpoints.down('md')]: {
       margin: theme.spacing(0.5),
-      padding: theme.spacing(2),
+      padding: theme.spacing(1.5),
+      minWidth: 100,
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(0.25),
+      padding: theme.spacing(1),
+      minWidth: 80,
+      maxWidth: 150,
     },
   }))
 
   const UsdcIconPlaceholder = () => (
     <Box
       sx={{
-        width: 48,
-        height: 48,
+        width: { xs: 32, sm: 40, md: 48 },
+        height: { xs: 32, sm: 40, md: 48 },
         borderRadius: '50%',
-        backgroundColor: '#0070DE', // Example color
+        backgroundColor: '#0070DE',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         color: 'white',
-        fontSize: 24,
+        fontSize: { xs: 16, sm: 20, md: 24 },
         fontWeight: 'bold',
         mb: 1,
       }}
@@ -208,15 +216,15 @@ export default function SwapTokenLanding(isDarkMode) {
   const EthIconPlaceholder = () => (
     <Box
       sx={{
-        width: 48,
-        height: 48,
+        width: { xs: 32, sm: 40, md: 48 },
+        height: { xs: 32, sm: 40, md: 48 },
         borderRadius: '50%',
-        backgroundColor: '#627EEA', // Example color
+        backgroundColor: '#627EEA',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         color: 'white',
-        fontSize: 24,
+        fontSize: { xs: 16, sm: 20, md: 24 },
         fontWeight: 'bold',
         mb: 1,
       }}
@@ -271,12 +279,14 @@ export default function SwapTokenLanding(isDarkMode) {
             sx={{
               position: 'absolute',
               left: '50%',
+              top: { xs: '50%', md: '20%' },
               transform: {
                 xs: 'translate(-50%, -50%)',
                 md: 'translateX(-50%)',
               },
-              width: '950px',
-              height: '60vh',
+              width: { xs: '100%', sm: '800px', md: '950px' },
+              maxWidth: '950px',
+              height: { xs: '50vh', md: '60vh' },
               opacity: 1,
               zIndex: 0,
             }}
@@ -310,23 +320,26 @@ export default function SwapTokenLanding(isDarkMode) {
               sx={{
                 color: 'text.primary',
                 fontWeight: 700,
-                fontSize: { xs: '36px', md: '62px' },
+                fontSize: { xs: '32px', sm: '48px', md: '62px' },
                 lineHeight: { xs: 1.2, md: 1.1 },
+                textAlign: 'center',
               }}
-            ></Typography>
+            >
+              Trade Smarter with Unidex
+            </Typography>
 
             <Typography
               sx={{
                 color: 'text.primary',
                 fontWeight: 700,
-                fontSize: { xs: '12px', md: '14px' },
-                lineHeight: '24px',
+                fontSize: { xs: '14px', sm: '16px', md: '18px' },
+                lineHeight: { xs: '20px', md: '24px' },
                 textAlign: 'center',
                 paddingX: { xs: '20px', md: '0' },
               }}
             >
-              Zero fee trades on 9+ million tokens across 14 chains. Get the
-              best prices by tapping <br /> into 130+ liquidity sources.
+              Zero fee trades on 9+ million tokens across 14 chains. Get the
+              best prices by tapping into 130+ liquidity sources.
             </Typography>
 
             <Button
@@ -356,12 +369,12 @@ export default function SwapTokenLanding(isDarkMode) {
         sx={{
           fontFamily: "'Manrope', sans-serif",
           color: 'text.primary',
-          paddingX: { xs: '20px', md: '120px' },
+          paddingX: { xs: '20px', md: '40px', lg: '120px' },
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           alignItems: { xs: 'flex-start', md: 'center' },
           justifyContent: 'center',
-          gap: { xs: '40px', md: '80px' },
+          gap: { xs: '40px', lg: '80px' },
           paddingTop: '100px',
         }}
       >
@@ -370,19 +383,19 @@ export default function SwapTokenLanding(isDarkMode) {
           sx={{
             flex: { md: 1 },
             maxWidth: { md: '50%' },
-            textAlign: { xs: 'left', md: 'left' },
+            textAlign: { xs: 'center', md: 'center' },
             marginBottom: { xs: '20px', md: '80px' },
           }}
         >
           <Typography
-            variant='h3'
+            variant={isMobile ? 'h4' : 'h3'}
             sx={{
-              fontWeight: 500,
-              fontSize: { xs: '20px', sm: '40px', md: '56px' },
-              lineHeight: { xs: 1.2, md: 1.1 },
+              fontWeight: 700,
+              mb: { xs: 3, sm: 4, md: 6, lg: 9 },
+              lineHeight: { xs: 1.3, md: '55px' },
               color: 'text.primary',
-              marginBottom: { xs: '20px', md: '30px' },
-              maxWidth: { xs: '100%', md: '500px' },
+              fontSize: { xs: '28px', sm: '36px', md: '48px', lg: '56px' },
+              textAlign: 'center',
             }}
           >
             Get unbeatable trade prices on Unidex.
@@ -426,11 +439,12 @@ export default function SwapTokenLanding(isDarkMode) {
           sx={{
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'center',
             alignItems: 'center',
-            padding: { xs: 2, md: 3 },
-            maxWidth: { xs: '100%', md: 500 },
-            width: { xs: '100%', md: 'auto' },
-            margin: { xs: '0', md: 'auto' },
+            padding: { xs: '16px', sm: '20px', md: '24px' },
+            maxWidth: { xs: '100%', sm: '500px' },
+            width: { xs: '100%', sm: 'auto', md: 'auto', lg: 'auto' },
+            margin: { xs: 'auto', md: 'auto' },
             fontFamily: 'Inter, sans-serif',
             color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : '#333'),
             borderRadius: 2,
@@ -453,27 +467,28 @@ export default function SwapTokenLanding(isDarkMode) {
           <Box
             sx={{
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
+              flexDirection: { xs: 'column', sm: 'row', md: 'row' },
               justifyContent: 'center',
               alignItems: 'center',
               width: '100%',
-              mb: 4,
-              gap: { xs: 2, md: 3 },
+              mb: { xs: 3, md: 4 },
+              gap: { xs: '16px', sm: '20px', md: '24px' },
               position: 'relative',
             }}
           >
             <Box
               sx={{
                 bgcolor: '#fff',
-                height: { xs: '120px', md: '150px' },
-                width: { xs: '100%', sm: '180px', md: '200px' },
-                maxWidth: '200px',
+                height: { xs: '210px', md: '150px' },
+                width: { xs: '100%', sm: '200px' },
+                maxWidth: { xs: 'none', sm: '200px' },
                 borderRadius: 3,
-                p: 2,
+                p: { xs: '12px', md: '16px' },
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
               }}
             >
               <img
@@ -501,33 +516,38 @@ export default function SwapTokenLanding(isDarkMode) {
             <Box
               sx={{
                 bgcolor: '#fff',
-                height: { xs: '80px', md: '100px' },
-                width: { xs: '80px', md: '100px' },
+                height: { xs: '90px', md: '100px' },
+                width: { xs: '90px', md: '100px' },
                 borderRadius: '100%',
-                position: { xs: 'static', md: 'absolute' },
+                position: 'absolute',
                 top: { md: '50%' },
                 left: { md: '50%' },
                 transform: { md: 'translate(-50%, -50%)' },
                 border: (theme) =>
-                  `10px solid ${
+                  `${theme.breakpoints.down('md') ? '10px' : '10px'} solid ${
                     theme.palette.mode === 'dark' ? '#10254A' : '#F0F8FF'
                   }`,
                 alignSelf: { xs: 'center' },
-                my: { xs: 1, md: 0 },
+                my: { xs: 0, md: 0 },
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: { xs: '20px', md: '24px' },
               }}
             />
             <Box
               sx={{
                 bgcolor: '#fff',
-                height: { xs: '120px', md: '150px' },
-                width: { xs: '100%', sm: '180px', md: '200px' },
-                maxWidth: '200px',
+                height: { xs: '210px', md: '150px' },
+                width: { xs: '100%', sm: '200px' },
+                maxWidth: { xs: 'none', sm: '200px' },
                 borderRadius: 3,
-                p: 2,
+                p: { xs: '12px', md: '16px' },
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
               }}
             >
               <img
@@ -676,6 +696,7 @@ export default function SwapTokenLanding(isDarkMode) {
             height: '100%',
             zIndex: 1,
             pointerEvents: 'none',
+            display: { xs: 'none', lg: 'block' },
           }}
         >
           {['46', '48', '12', '13'].map((id, idx) => (
@@ -700,15 +721,14 @@ export default function SwapTokenLanding(isDarkMode) {
         <Box
           sx={{
             display: 'flex',
-            alignItems: 'center',
+            alignItems: { xs: 'center', md: 'flex-start' },
             justifyContent: 'space-between',
-            // gap: { xs: 6, md: 8 },
             flexDirection: { xs: 'column', md: 'row' },
             textAlign: { xs: 'center', md: 'left' },
             position: 'relative',
             zIndex: 2,
-            paddingX: { xs: '20px', md: '120px' },
-            gap: { xs: '40px', md: '80px' },
+            paddingX: { xs: '20px', sm: '40px', md: '80px', lg: '120px' },
+            gap: { xs: '40px', sm: '50px', md: '60px', lg: '80px' },
           }}
         >
           {/* Text Content */}
@@ -716,15 +736,18 @@ export default function SwapTokenLanding(isDarkMode) {
             sx={{
               flex: { md: '0 0 530px' },
               order: { xs: 2, md: 1 },
+              width: { xs: '100%', md: 'auto' },
+              maxWidth: { xs: '100%', md: '530px' },
             }}
           >
             <Typography
               variant={isMobile ? 'h4' : 'h3'}
               sx={{
                 fontWeight: 700,
-                mb: { xs: 4, md: 9 },
+                mb: { xs: 3, sm: 4, md: 6, lg: 9 },
                 lineHeight: { xs: 1.3, md: '55px' },
                 color: 'text.primary',
+                fontSize: { xs: '28px', sm: '36px', md: '48px', lg: '56px' },
               }}
             >
               MEV Protection
@@ -894,11 +917,11 @@ export default function SwapTokenLanding(isDarkMode) {
           sx={{
             position: 'absolute',
             left: '50%',
-            // bottom: 0,
+            top: { sm: '65%', md: '-15%', lg: '-30%', xl: '-35%' },
             transform: { xs: 'translate(-50%, -50%)', md: 'translateX(-50%)' },
             width: '100%',
             zIndex: 0,
-            // height: '70vh',
+            display: { xs: 'none', sm: 'block' },
           }}
         />
         {/* Title Section */}
@@ -939,21 +962,25 @@ export default function SwapTokenLanding(isDarkMode) {
         </Typography>
 
         {/* Feature Section */}
-        <Grid
-          container
-          spacing={{ xs: 2, md: 22 }}
-          justifyContent='center'
-          alignItems='flex-start'
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+            gap: { xs: 2, sm: 10, md: 22 },
+            mt: 16,
+          }}
         >
           {/* 1. Faster Trade Confirmation */}
-          <Grid
-            item
-            xs={12}
-            md={4}
-            display='flex'
-            flexDirection='column'
-            alignItems='center'
-            sx={{ zIndex: 1 }}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              zIndex: 1,
+              flex: { md: 1 },
+            }}
           >
             <Box
               sx={{
@@ -976,23 +1003,23 @@ export default function SwapTokenLanding(isDarkMode) {
               sx={{
                 textAlign: 'center',
                 fontWeight: 500,
-                fontSize: 20,
+                fontSize: { xs: 16, md: 20 },
                 color: 'text.primary',
               }}
             >
               Faster trade Confirmation
             </Typography>
-          </Grid>
+          </Box>
 
           {/* 2. Reduce Failed Rate */}
-          <Grid
-            item
-            xs={12}
-            md={4}
-            display='flex'
-            flexDirection='column'
-            alignItems='center'
-            sx={{ zIndex: 1 }}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              zIndex: 1,
+              flex: { md: 1 },
+            }}
           >
             <Box
               sx={{
@@ -1016,23 +1043,23 @@ export default function SwapTokenLanding(isDarkMode) {
               sx={{
                 textAlign: 'center',
                 fontWeight: 500,
-                fontSize: 20,
+                fontSize: { xs: 16, md: 20 },
                 color: 'text.primary',
               }}
             >
               Reduce failed rate by 75 %
             </Typography>
-          </Grid>
+          </Box>
 
           {/* 3. Matches Handles Gases */}
-          <Grid
-            item
-            xs={12}
-            md={4}
-            display='flex'
-            flexDirection='column'
-            alignItems='center'
-            sx={{ zIndex: 1 }}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              zIndex: 1,
+              flex: { md: 1 },
+            }}
           >
             <Box
               sx={{
@@ -1055,14 +1082,14 @@ export default function SwapTokenLanding(isDarkMode) {
               sx={{
                 textAlign: 'center',
                 fontWeight: 500,
-                fontSize: 20,
+                fontSize: { xs: 16, md: 20 },
                 color: 'text.primary',
               }}
             >
               Matches handles Gases
             </Typography>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
 
       <Divider />
