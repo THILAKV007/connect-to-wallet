@@ -281,7 +281,7 @@ export default function GasSwapSection() {
                 sx={{
                   width: { xs: 35, sm: 45, md: 50 },
                   height: { xs: 35, sm: 45, md: 50 },
-<<<<<<< HEAD
+
                   borderRadius: '20%',
                   backgroundColor: 'white',
                   boxShadow: 3,
@@ -296,7 +296,7 @@ export default function GasSwapSection() {
                     color: '#666',
                   }}
                 >
-                  >
+                  &gt;
                 </Typography>
               </IconButton>
 
