@@ -441,64 +441,108 @@ return (
               </Stack>
 
               {/* Table */}
-              <Stack spacing={2}>
-                {/* Header */}
-                <Box
-                  sx={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1.5fr 1.5fr",
-                    gap: { xs: 1, md: 2 },
-                    px: 1,
-                  }}
-                >
-                  <Typography variant="caption" fontWeight={700}>
-                    Sell
-                  </Typography>
-                  <Typography variant="caption" fontWeight={700} sx={{ pl: 1 }}>
-                    Buy
-                  </Typography>
-                  <Typography variant="caption" fontWeight={700}>
-                    Expiration Date
-                  </Typography>
-                </Box>
-
-                {/* Rows */}
-                {orders.map((o, i) => (
+              <Box sx={{ overflowX: "auto", width: "100%" }}>
+                <Stack spacing={2} sx={{ minWidth: { xs: "300px", md: "auto" } }}>
+                  {/* Header */}
                   <Box
-                    key={i}
                     sx={{
                       display: "grid",
-                      gridTemplateColumns: "1fr 1.5fr 1.5fr",
-                      gap: { xs: 1, md: 2 },
-                      alignItems: "center",
+                      gridTemplateColumns: { 
+                        xs: "80px 1fr 100px", 
+                        sm: "100px 1fr 120px", 
+                        md: "1fr 1.5fr 1.5fr" 
+                      },
+                      gap: { xs: 0.5, sm: 1, md: 2 },
                       px: 1,
                     }}
                   >
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <Avatar
-                        src={o.sellIcon}
-                        sx={{ width: 24, height: 24 }}
-                      />
-                      <Typography variant="caption" color="#B3B3B3">
-                        {o.sell}
-                      </Typography>
-                    </Stack>
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <Avatar
-                        src={o.buyIcon}
-                        sx={{ width: 24, height: 24 }}
-              
-                      />
-                      <Typography variant="caption" color="#B3B3B3">
-                        {o.buy}
-                      </Typography>
-                    </Stack>
-                    <Typography variant="caption" color="#B3B3B3">
-                      {o.expiry}
+                    <Typography 
+                      variant="caption" 
+                      fontWeight={700}
+                      sx={{ fontSize: { xs: "10px", sm: "12px" } }}
+                    >
+                      Sell
+                    </Typography>
+                    <Typography 
+                      variant="caption" 
+                      fontWeight={700} 
+                      sx={{ pl: { xs: 0, md: 1 }, fontSize: { xs: "10px", sm: "12px" } }}
+                    >
+                      Buy
+                    </Typography>
+                    <Typography 
+                      variant="caption" 
+                      fontWeight={700}
+                      sx={{ fontSize: { xs: "10px", sm: "12px" } }}
+                    >
+                      {isMobile ? "Expiry" : "Expiration Date"}
                     </Typography>
                   </Box>
-                ))}
-              </Stack>
+
+                  {/* Rows */}
+                  {orders.map((o, i) => (
+                    <Box
+                      key={i}
+                      sx={{
+                        display: "grid",
+                        gridTemplateColumns: { 
+                          xs: "80px 1fr 100px", 
+                          sm: "100px 1fr 120px", 
+                          md: "1fr 1.5fr 1.5fr" 
+                        },
+                        gap: { xs: 0.5, sm: 1, md: 2 },
+                        alignItems: "center",
+                        px: 1,
+                      }}
+                    >
+                      <Stack 
+                        direction={isMobile ? "column" : "row"} 
+                        spacing={isMobile ? 0.5 : 1} 
+                        alignItems={isMobile ? "flex-start" : "center"}
+                      >
+                        <Avatar
+                          src={o.sellIcon}
+                          sx={{ width: { xs: 16, md: 24 }, height: { xs: 16, md: 24 } }}
+                        />
+                        <Typography 
+                          variant="caption" 
+                          color="#B3B3B3"
+                          sx={{ fontSize: { xs: "10px", sm: "12px" } }}
+                        >
+                          {isMobile ? o.sell.split(" ")[0] : o.sell}
+                        </Typography>
+                      </Stack>
+                      <Stack 
+                        direction={isMobile ? "column" : "row"} 
+                        spacing={isMobile ? 0.5 : 1} 
+                        alignItems={isMobile ? "flex-start" : "center"}
+                      >
+                        <Avatar
+                          src={o.buyIcon}
+                          sx={{ width: { xs: 16, md: 24 }, height: { xs: 16, md: 24 } }}
+                        />
+                        <Typography 
+                          variant="caption" 
+                          color="#B3B3B3"
+                          sx={{ fontSize: { xs: "10px", sm: "12px" } }}
+                        >
+                          {isMobile ? o.buy.split(" ")[0] : o.buy}
+                        </Typography>
+                      </Stack>
+                      <Typography 
+                        variant="caption" 
+                        color="#B3B3B3"
+                        sx={{ 
+                          fontSize: { xs: "9px", sm: "11px", md: "12px" },
+                          lineHeight: 1.2
+                        }}
+                      >
+                        {isMobile ? o.expiry.replace(" ", "\n") : o.expiry}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Stack>
+              </Box>
             </Card>
           </Grid>
          
@@ -520,20 +564,57 @@ return (
       </Typography>
 
       {/* Chain Logos */}
-      <Box display="flex" justifyContent="center" gap={3} mb={6}>
-        <Box display="flex" alignItems="center" gap={1}>
-          <Avatar src="assets/images/LimitorderSection/eth.png" sx={{ width: 28, height: 28 }} />
-          <Typography sx={{color:"#B3B3B3"}}>Ethereum</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" gap={1}>
-          <Avatar src="assets/images/LimitorderSection/danger.png" sx={{ width: 28, height: 28 }} />
-          <Typography sx={{color:"#B3B3B3"}}>Polygon</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" gap={1}>
-          <Avatar src="assets/images/LimitorderSection/bsc.png" sx={{ width: 28, height: 28 }} />
-          <Typography sx={{color:"#B3B3B3"}}>BSC</Typography>
-        </Box>
-      </Box>
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        spacing={{ xs: 2, sm: 3 }}
+        justifyContent="center"
+        alignItems="center"
+        flexWrap="wrap"
+        sx={{ mb: 6 }}
+      >
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Avatar 
+            src="assets/images/LimitorderSection/eth.png" 
+            sx={{ width: { xs: 24, md: 28 }, height: { xs: 24, md: 28 } }} 
+          />
+          <Typography 
+            sx={{ 
+              color: "#B3B3B3", 
+              fontSize: { xs: "14px", md: "16px" } 
+            }}
+          >
+            Ethereum
+          </Typography>
+        </Stack>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Avatar 
+            src="assets/images/LimitorderSection/danger.png" 
+            sx={{ width: { xs: 24, md: 28 }, height: { xs: 24, md: 28 } }} 
+          />
+          <Typography 
+            sx={{ 
+              color: "#B3B3B3", 
+              fontSize: { xs: "14px", md: "16px" } 
+            }}
+          >
+            Polygon
+          </Typography>
+        </Stack>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Avatar 
+            src="assets/images/LimitorderSection/bsc.png" 
+            sx={{ width: { xs: 24, md: 28 }, height: { xs: 24, md: 28 } }} 
+          />
+          <Typography 
+            sx={{ 
+              color: "#B3B3B3", 
+              fontSize: { xs: "14px", md: "16px" } 
+            }}
+          >
+            BSC
+          </Typography>
+        </Stack>
+      </Stack>
 
       {/* Card with Tabs */}
       <Grid container justifyContent="center">
