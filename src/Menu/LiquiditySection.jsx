@@ -15,17 +15,11 @@ import {
   Button,
   Divider,
   Container,
-  useMediaQuery,
 } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import { useTheme } from '@mui/material/styles'
 
 function LiquiditySection() {
-  const theme = useTheme()
-  // Match screens xs (phones), sm (large phones, small tablets), md and above (large tablets, desktops)
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-
   const rows = [
     {
       source: 'oX RFQ',
@@ -121,7 +115,7 @@ function LiquiditySection() {
             boxSizing: 'border-box',
             // Use conditional background image for all screens
             backgroundImage: {
-              xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
+              xs: 'url("assets/images/swapToken/gradient.png")',
               md: 'url("assets/images/swapToken/gradient.png")',
             },
             // Set background position to center for all screens
@@ -137,13 +131,13 @@ function LiquiditySection() {
             alt='hero background decor'
             sx={{
               position: 'absolute',
-              left: '50%',
+              left: '45%',
               transform: {
-                xs: 'translate(-50%, -50%)',
+                xs: 'translate(-50%)',
                 md: 'translateX(-50%)',
               },
-              width: '650px',
-              height: '60vh',
+              width: { xs: '300px', sm: '450px', md: '650px' },
+              height: { xs: '30vh', md: '60vh' },
               opacity: 1,
               zIndex: 0,
             }}
@@ -231,15 +225,16 @@ function LiquiditySection() {
           // minHeight: { xs: '50vh', md: '100vh' },
           px: { xs: 0, md: 5 },
           my: 8,
+          mx: 3,
         }}
       >
         <Box
           sx={{
             width: '100%',
-            maxWidth: { xs: 375, sm: 600, md: 1240 },
+            maxWidth: { xs: '100%', sm: 600, md: 1240 },
             borderRadius: 4,
             border: '1px solid #6d6d6d',
-            p: { xs: 1, md: 4 },
+            p: { xs: 2, sm: 3, md: 4 },
           }}
         >
           {/* Table Header and Filters */}
@@ -253,22 +248,25 @@ function LiquiditySection() {
               mb: 3,
             }}
           >
-            <Typography variant={isMobile ? 'body1' : 'h6'} fontWeight={600}>
+            <Typography variant={{ xs: 'body1', sm: 'h6' }} fontWeight={600}>
               Integrated liquidity sources
             </Typography>
-            <Stack
-              direction={isMobile ? 'column' : 'row'}
-              spacing={1}
-              flexWrap='wrap'
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                gap: 1,
+                alignItems: { xs: 'stretch', md: 'center' },
+              }}
             >
               <TextField
                 placeholder='Search by liquidity source'
                 size='small'
                 sx={{
-                  width: isMobile ? 180 : 278,
+                  width: { xs: '100%', md: 278 },
                   bgcolor: 'rgba(88, 88, 242, 0.05)',
                   borderRadius: 2,
-                  mb: isMobile ? 1 : 0,
+                  mb: { xs: 1, md: 0 },
                 }}
                 InputProps={{
                   startAdornment: (
@@ -278,46 +276,82 @@ function LiquiditySection() {
                   ),
                 }}
               />
-              <Button
-                variant='outlined'
-                endIcon={<ArrowDropDownIcon />}
+              <Box
                 sx={{
-                  bgcolor: 'rgba(55, 55, 80, 0.04)',
-                  color: 'text.primary',
-                  textTransform: 'none',
-                  borderRadius: 2,
-                  fontSize: { xs: '0.8rem', sm: '1rem' },
-                  border: 'none',
+                  display: 'flex',
+                  gap: 1,
+                  width: { xs: '100%', md: 'auto' },
                 }}
               >
-                Network
-              </Button>
-              <Button
-                variant='contained'
-                endIcon={<ArrowDropDownIcon />}
-                sx={{
-                  bgcolor: '#058ccf',
-                  color: 'text.primary',
-                  textTransform: 'none',
-                  borderRadius: 1,
-                  fontSize: { xs: '0.8rem', sm: '1rem' },
-                }}
-              >
-                All time
-              </Button>
-            </Stack>
+                <Button
+                  variant='outlined'
+                  endIcon={<ArrowDropDownIcon />}
+                  sx={{
+                    bgcolor: 'rgba(55, 55, 80, 0.04)',
+                    color: 'text.primary',
+                    textTransform: 'none',
+                    borderRadius: 2,
+                    fontSize: { xs: '0.875rem', sm: '1rem' },
+                    minHeight: { xs: 44, sm: 40 },
+                    px: { xs: 2, sm: 1.5 },
+                    border: 'none',
+                    width: { xs: '50%', md: 'auto' },
+                    flex: { xs: 1, md: 'none' },
+                  }}
+                >
+                  Network
+                </Button>
+                <Button
+                  variant='contained'
+                  endIcon={<ArrowDropDownIcon />}
+                  sx={{
+                    bgcolor: '#058ccf',
+                    color: 'text.primary',
+                    textTransform: 'none',
+                    borderRadius: 1,
+                    fontSize: { xs: '0.875rem', sm: '1rem' },
+                    minHeight: { xs: 44, sm: 40 },
+                    px: { xs: 2, sm: 1.5 },
+                    width: { xs: '50%', md: 'auto' },
+                    flex: { xs: 1, md: 'none' },
+                  }}
+                >
+                  All time
+                </Button>
+              </Box>
+            </Box>
           </Box>
 
           {/* Responsive Table/Card */}
-          {!isMobile ? (
-            <TableContainer>
-              <Table>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <TableContainer sx={{ overflowX: 'auto' }}>
+              <Table sx={{ minWidth: 650 }}>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Source</TableCell>
-                    <TableCell>Total Volume (USD)</TableCell>
-                    <TableCell>30D Volume (USD)</TableCell>
-                    <TableCell>Networks available</TableCell>
+                    <TableCell sx={{ fontWeight: 600, minWidth: 150 }}>
+                      Source
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: 600,
+                        minWidth: 180,
+                        textAlign: 'right',
+                      }}
+                    >
+                      Total Volume (USD)
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: 600,
+                        minWidth: 180,
+                        textAlign: 'right',
+                      }}
+                    >
+                      30D Volume (USD)
+                    </TableCell>
+                    <TableCell sx={{ fontWeight: 600, minWidth: 140 }}>
+                      Networks available
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -332,21 +366,25 @@ function LiquiditySection() {
                           <Avatar
                             src={row.icon}
                             alt={row.source}
-                            sx={{ width: 24, height: 24 }}
+                            sx={{ width: 28, height: 28 }}
                           />
-                          <Typography>{row.source}</Typography>
+                          <Typography fontWeight={500}>{row.source}</Typography>
                         </Stack>
                       </TableCell>
-                      <TableCell>{row.total}</TableCell>
-                      <TableCell>{row.volume}</TableCell>
+                      <TableCell sx={{ textAlign: 'right' }}>
+                        <Typography fontWeight={500}>{row.total}</Typography>
+                      </TableCell>
+                      <TableCell sx={{ textAlign: 'right' }}>
+                        <Typography fontWeight={500}>{row.volume}</Typography>
+                      </TableCell>
                       <TableCell>
-                        <Stack direction='row' spacing={-1}>
+                        <Stack direction='row' spacing={0.5}>
                           {row.networks.map((net, j) => (
                             <Avatar
                               key={j}
                               src={net}
                               alt='network'
-                              sx={{ width: 24, height: 24 }}
+                              sx={{ width: 28, height: 28 }}
                             />
                           ))}
                         </Stack>
@@ -356,51 +394,77 @@ function LiquiditySection() {
                 </TableBody>
               </Table>
             </TableContainer>
-          ) : (
-            <Box>
-              {rows.map((row, i) => (
-                <Box
-                  key={i}
-                  sx={{
-                    border: '1px solid #eee',
-                    borderRadius: 2,
-                    mb: 2,
-                    p: 2,
-                    bgcolor: '#f8fafb',
-                  }}
-                >
-                  <Stack direction='row' spacing={1.5} alignItems='center'>
-                    <Avatar
-                      src={row.icon}
-                      alt={row.source}
-                      sx={{ width: 24, height: 24 }}
-                    />
-                    <Typography fontWeight={600}>{row.source}</Typography>
-                  </Stack>
-                  <Divider sx={{ my: 1 }} />
-                  <Typography variant='body2'>
-                    <strong>Total Volume:</strong> {row.total}
+          </Box>
+          <Box sx={{ display: { xs: 'block', sm: 'none' }, px: 1 }}>
+            {rows.map((row, i) => (
+              <Box
+                key={i}
+                sx={{
+                  border: '1px solid #e0e0e0',
+                  borderRadius: 3,
+                  mb: 3,
+                  p: 3,
+                  bgcolor: 'transparent',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                }}
+              >
+                <Stack direction='row' spacing={2} alignItems='center' mb={2}>
+                  <Avatar
+                    src={row.icon}
+                    alt={row.source}
+                    sx={{ width: 32, height: 32 }}
+                  />
+                  <Typography variant='h6' fontWeight={600}>
+                    {row.source}
                   </Typography>
-                  <Typography variant='body2'>
-                    <strong>30D Volume:</strong> {row.volume}
+                </Stack>
+                <Divider sx={{ my: 2 }} />
+                <Box sx={{ mb: 1.5 }}>
+                  <Typography
+                    variant='body2'
+                    color='text.secondary'
+                    sx={{ mb: 0.5 }}
+                  >
+                    Total Volume
                   </Typography>
-                  <Typography variant='body2'>
-                    <strong>Networks:</strong>
+                  <Typography variant='body1' fontWeight={500}>
+                    {row.total}
                   </Typography>
-                  <Stack direction='row' spacing={-1}>
+                </Box>
+                <Box sx={{ mb: 1.5 }}>
+                  <Typography
+                    variant='body2'
+                    color='text.secondary'
+                    sx={{ mb: 0.5 }}
+                  >
+                    30D Volume
+                  </Typography>
+                  <Typography variant='body1' fontWeight={500}>
+                    {row.volume}
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    variant='body2'
+                    color='text.secondary'
+                    sx={{ mb: 1 }}
+                  >
+                    Networks Available
+                  </Typography>
+                  <Stack direction='row' spacing={0.5} flexWrap='wrap'>
                     {row.networks.map((net, j) => (
                       <Avatar
                         key={j}
                         src={net}
                         alt='network'
-                        sx={{ width: 24, height: 24 }}
+                        sx={{ width: 28, height: 28 }}
                       />
                     ))}
                   </Stack>
                 </Box>
-              ))}
-            </Box>
-          )}
+              </Box>
+            ))}
+          </Box>
 
           {/* Pagination */}
           <Box
@@ -409,19 +473,20 @@ function LiquiditySection() {
               justifyContent: 'center',
               alignItems: 'center',
               mt: 3,
-              gap: 1,
+              gap: { xs: 0.5, sm: 1 },
             }}
           >
             {/* Previous Button */}
             <Button
               variant='outlined'
               sx={{
-                minWidth: '40px',
-                width: '40px',
-                height: '40px',
+                minWidth: { xs: '36px', sm: '40px' },
+                width: { xs: '36px', sm: '40px' },
+                height: { xs: '36px', sm: '40px' },
                 borderRadius: '50%',
                 border: '1px solid #e0e0e0',
                 color: '#666',
+                fontSize: { xs: '1rem', sm: '1rem' },
                 '&:hover': {
                   bgcolor: '#f5f5f5',
                 },
@@ -436,13 +501,14 @@ function LiquiditySection() {
                 key={page}
                 variant='text'
                 sx={{
-                  minWidth: '40px',
-                  width: '40px',
-                  height: '40px',
+                  minWidth: { xs: '36px', sm: '40px' },
+                  width: { xs: '36px', sm: '40px' },
+                  height: { xs: '36px', sm: '40px' },
                   borderRadius: '50%',
                   border: 'none',
                   bgcolor: 'transparent',
-                  color: page === 3 ? 'white' : '#666',
+                  color: '#666',
+                  fontSize: { xs: '0.875rem', sm: '0.875rem' },
                   '&:hover': {
                     bgcolor: '#f5f5f5',
                   },
@@ -456,12 +522,13 @@ function LiquiditySection() {
             <Button
               variant='outlined'
               sx={{
-                minWidth: '40px',
-                width: '40px',
-                height: '40px',
+                minWidth: { xs: '36px', sm: '40px' },
+                width: { xs: '36px', sm: '40px' },
+                height: { xs: '36px', sm: '40px' },
                 borderRadius: '50%',
                 border: '1px solid #e0e0e0',
                 color: '#666',
+                fontSize: { xs: '1rem', sm: '1rem' },
                 '&:hover': {
                   bgcolor: '#f5f5f5',
                 },
@@ -478,7 +545,7 @@ function LiquiditySection() {
       <Box
         sx={{
           position: 'relative',
-          minHeight: { xs: '60vh', md: '90vh' },
+          minHeight: { xs: '100%', md: '90vh' },
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -486,16 +553,17 @@ function LiquiditySection() {
             xs: 'url("assets/images/LiquiditySection/back.png")',
             md: "url('assets/images/LiquiditySection/back.png')",
           },
-          // backgroundSize: 'cover',
+          backgroundSize: { xs: '70vh', md: '150vh' },
           backgroundPosition: 'bottom',
           backgroundRepeat: 'no-repeat',
           textAlign: 'center',
           px: { xs: 2, md: 0 },
+          py: 5,
         }}
       >
         <Container maxWidth='md'>
           <Typography
-            variant={isMobile ? 'h5' : 'h3'}
+            variant={{ xs: 'h5', sm: 'h3' }}
             component='h1'
             gutterBottom
             sx={{ fontWeight: 'bold' }}
@@ -505,7 +573,7 @@ function LiquiditySection() {
             AMM and RFQ combined.
           </Typography>
           <Typography
-            variant={isMobile ? 'body2' : 'h6'}
+            variant={{ xs: 'body2', sm: 'h6' }}
             sx={{ opacity: 0.85 }}
           >
             Unidex combines 130+ liquidity <br /> sources, on-chain and
