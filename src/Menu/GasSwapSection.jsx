@@ -605,7 +605,7 @@ export default function GasSwapSection() {
             sx={{
               position: 'absolute',
               top: '45px',
-              right: '18%',
+              right: { md: '5%', lg: '18%' },
               display: { xs: 'none', md: 'flex' },
               alignItems: 'flex-end',
             }}
@@ -628,8 +628,8 @@ export default function GasSwapSection() {
           <Box
             sx={{
               position: 'absolute',
-              top: '360px',
-              left: '16.5%',
+              top: { md: '300px', lg: '360px' },
+              left: { md: '4%', lg: '16.5%' },
               display: { xs: 'none', md: 'flex' },
               alignItems: 'flex-end',
             }}
@@ -703,6 +703,7 @@ export default function GasSwapSection() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            mx: 3,
           }}
         >
           {/* Feature Card */}
