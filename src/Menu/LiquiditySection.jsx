@@ -115,7 +115,7 @@ function LiquiditySection() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            minHeight: { xs: '100vh', md: '515px' },
+            minHeight: { xs: '95vh' },
             overflow: 'hidden',
             padding: { xs: '20px', md: '0' },
             boxSizing: 'border-box',
@@ -125,7 +125,7 @@ function LiquiditySection() {
               md: 'url("assets/images/swapToken/gradient.png")',
             },
             // Set background position to center for all screens
-            backgroundPosition: 'center',
+            backgroundPosition: 'bottom',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
           }}
@@ -228,8 +228,9 @@ function LiquiditySection() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'flex-start',
-          minHeight: { xs: '50vh', md: '100vh' },
+          // minHeight: { xs: '50vh', md: '100vh' },
           px: { xs: 0, md: 5 },
+          my: 8,
         }}
       >
         <Box
@@ -286,6 +287,7 @@ function LiquiditySection() {
                   textTransform: 'none',
                   borderRadius: 2,
                   fontSize: { xs: '0.8rem', sm: '1rem' },
+                  border: 'none',
                 }}
               >
                 Network
@@ -399,6 +401,75 @@ function LiquiditySection() {
               ))}
             </Box>
           )}
+
+          {/* Pagination */}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              mt: 3,
+              gap: 1,
+            }}
+          >
+            {/* Previous Button */}
+            <Button
+              variant='outlined'
+              sx={{
+                minWidth: '40px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                border: '1px solid #e0e0e0',
+                color: '#666',
+                '&:hover': {
+                  bgcolor: '#f5f5f5',
+                },
+              }}
+            >
+              ‹
+            </Button>
+
+            {/* Page Numbers */}
+            {[1, 2, 3, 4, 5].map((page) => (
+              <Button
+                key={page}
+                variant='text'
+                sx={{
+                  minWidth: '40px',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  border: 'none',
+                  bgcolor: 'transparent',
+                  color: page === 3 ? 'white' : '#666',
+                  '&:hover': {
+                    bgcolor: '#f5f5f5',
+                  },
+                }}
+              >
+                {page}
+              </Button>
+            ))}
+
+            {/* Next Button */}
+            <Button
+              variant='outlined'
+              sx={{
+                minWidth: '40px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                border: '1px solid #e0e0e0',
+                color: '#666',
+                '&:hover': {
+                  bgcolor: '#f5f5f5',
+                },
+              }}
+            >
+              ›
+            </Button>
+          </Box>
         </Box>
       </Box>
       <Divider />
@@ -407,16 +478,16 @@ function LiquiditySection() {
       <Box
         sx={{
           position: 'relative',
-          minHeight: { xs: '60vh', md: '100vh' },
+          minHeight: { xs: '60vh', md: '90vh' },
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           backgroundImage: {
-            xs: 'none',
+            xs: 'url("assets/images/LiquiditySection/back.png")',
             md: "url('assets/images/LiquiditySection/back.png')",
           },
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          // backgroundSize: 'cover',
+          backgroundPosition: 'bottom',
           backgroundRepeat: 'no-repeat',
           textAlign: 'center',
           px: { xs: 2, md: 0 },
@@ -437,7 +508,8 @@ function LiquiditySection() {
             variant={isMobile ? 'body2' : 'h6'}
             sx={{ opacity: 0.85 }}
           >
-            Unidex combines 130+ liquidity sources, on-chain and off-chain.
+            Unidex combines 130+ liquidity <br /> sources, on-chain and
+            off-chain.
           </Typography>
         </Container>
       </Box>
