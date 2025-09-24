@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SettingsIcon from '@mui/icons-material/Settings'
+import SwapVertIcon from '@mui/icons-material/SwapVert'
+
 import {
   Box,
   Typography,
@@ -19,9 +22,23 @@ import {
   Select,
   ToggleButton,
   ToggleButtonGroup,
+  FormControl,
+  IconButton,
 } from '@mui/material'
 
 function LimitOrderSection({ isDarkMode }) {
+  const [fromAmount, setFromAmount] = useState('0')
+  const [toAmount, setToAmount] = useState('0')
+  const [fromToken, setFromToken] = useState('ETH')
+  const [toToken, setToToken] = useState('BNB')
+  const [slippage, setSlippage] = useState('1%')
+  const handleSwapTokens = () => {
+    setFromToken(toToken)
+    setToToken(fromToken)
+    setFromAmount(toAmount)
+    setToAmount(fromAmount)
+  }
+
   const features = [
     {
       text: 'Master volatility and get the price you want',
@@ -105,7 +122,7 @@ function LimitOrderSection({ isDarkMode }) {
   }
 
   return (
-    <Box>
+    <Box sx={{ overflowX: 'hidden' }}>
       {/* first section */}
       <Box
         sx={{
@@ -150,7 +167,7 @@ function LimitOrderSection({ isDarkMode }) {
                 xs: 'rotate(0deg)',
                 md: 'rotate(0deg)',
               },
-              width: '115%',
+              width: { xs: '100%', md: '115%' },
               height: '100%',
               opacity: 1,
               zIndex: 0,
@@ -215,13 +232,14 @@ function LimitOrderSection({ isDarkMode }) {
                 borderRadius: '8px',
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 700,
-                fontSize: '16px',
-                lineHeight: '24px',
+                fontSize: { xs: '14px', sm: '16px' },
+                lineHeight: { xs: '20px', sm: '24px' },
                 background: 'linear-gradient(90deg, #0da2e5 0%, #0488cb 100%)',
                 color: 'white',
                 textTransform: 'none',
-                padding: '12px 24px',
-                marginTop: { xs: '16px', md: '40' },
+                padding: { xs: '10px 20px', sm: '12px 24px' },
+                marginTop: { xs: '16px', md: '40px' },
+                minHeight: { xs: '44px', sm: '48px' },
               }}
             >
               Start Trading
@@ -475,7 +493,7 @@ function LimitOrderSection({ isDarkMode }) {
           {/* Content */}
           <Grid
             container
-            spacing={{ xs: 6, md: 40 }}
+            spacing={{ xs: 4, sm: 6, md: 8 }}
             justifyContent='center'
             alignItems='flex-start'
           >
@@ -736,94 +754,238 @@ function LimitOrderSection({ isDarkMode }) {
         {/* Card with Tabs */}
         <Grid container justifyContent='center'>
           <Grid item xs={12} md={4}>
-            <Card sx={{ borderRadius: 3 }}>
-              <Tabs
-                value={tab}
-                onChange={(e, newValue) => setTab(newValue)}
-                textColor='inherit'
-                indicatorColor='secondary'
-                variant='fullWidth'
+            <Box
+              sx={{
+                flex: '0 0 auto',
+                width: { xs: '100%', sm: '90%', md: '450px' },
+                maxWidth: { xs: '90%', sm: '400px', md: '450px' },
+                mx: { xs: 'auto' },
+              }}
+            >
+              <Card
                 sx={{
-                  '& .MuiTab-root': {},
-                  '& .Mui-selected': {},
+                  background: isDarkMode ? '#1D283B' : '#F0F8FF',
+                  borderRadius: '5px',
+                  border: isDarkMode
+                    ? '1px solid rgba(51, 65, 85, 0.3)'
+                    : '15px solid #fff',
+                  boxShadow: '0 8px 24px rgba(33, 150, 243, 0.3)',
+                  '&:hover': {
+                    boxShadow: '0 12px 32px rgba(33, 150, 243, 0.4)',
+                  },
+
+                  backdropFilter: 'blur(20px)',
                 }}
               >
-                <Tab label='Market' />
-                <Tab label='Limit' />
-                <Tab label='Crosschain' />
-              </Tabs>
-
-              <CardContent>
-                {/* Sell Box */}
+                {/* Tabs Section */}
                 <Box
                   sx={{
-                    bgcolor: 'background.paper',
-                    borderRadius: 2,
-                    p: 2,
-                    mb: 2,
-                    textAlign: 'left',
-                    color: 'text.primary',
+                    display: 'flex',
                   }}
                 >
-                  <Typography variant='body2' sx={{ mb: 1 }}>
-                    Sell
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    variant='standard'
-                    placeholder='0'
-                    InputProps={{
-                      disableUnderline: true,
-                      startAdornment: (
-                        <InputAdornment position='end'>
-                          <Typography>Balance: 0.00</Typography>
-                        </InputAdornment>
-                      ),
-                      endAdornment: (
-                        <InputAdornment position='end'>
-                          <Button size='small'>ETH ▼</Button>
-                        </InputAdornment>
-                      ),
+                  <Tabs
+                    value={0}
+                    sx={{
+                      '& .MuiTabs-indicator': {
+                        display: 'none',
+                      },
+                      '& .MuiTab-root': {
+                        color: '#B3B3B3',
+                        textTransform: 'none',
+                        fontSize: { xs: '14px', sm: '16px' },
+                        fontWeight: 400,
+                        minWidth: 'auto',
+                        px: { xs: 2, sm: 3 },
+                        '&.Mui-selected': {
+                          color: 'white',
+                          fontWeight: 600,
+                        },
+                      },
                     }}
-                  />
+                  >
+                    <Tab label='Market' />
+                    <Tab label='Limit' />
+                    <Tab label='Crosschain' />
+                  </Tabs>
                 </Box>
+                <CardContent sx={{ p: 3 }}>
+                  {/* From Section */}
+                  <Box sx={{ position: 'relative' }}>
+                    <Box sx={{ mb: 1, p: 2, bgcolor: '#fff', borderRadius: 2 }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          mb: 1,
+                        }}
+                      >
+                        <Typography
+                          variant='body2'
+                          sx={{ color: isDarkMode ? '#94a3b8' : '#64748b' }}
+                        >
+                          Sell
+                        </Typography>
+                        <Typography
+                          variant='body2'
+                          sx={{
+                            color: isDarkMode ? '#000' : '#ffffff',
+                            cursor: 'pointer',
+                            fontWeight: 600,
+                          }}
+                        >
+                          Use Max
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          background: isDarkMode
+                            ? '#fff'
+                            : 'rgba(248, 250, 252, 0.8)',
+                          borderRadius: '16px',
+                          p: 0,
+                        }}
+                      >
+                        <TextField
+                          value={fromAmount}
+                          onChange={(e) => setFromAmount(e.target.value)}
+                          placeholder='0'
+                          variant='standard'
+                          InputProps={{
+                            disableUnderline: true,
+                            sx: {
+                              fontSize: {
+                                xs: '1.5rem',
+                                sm: '2rem',
+                                md: '3rem',
+                              },
+                              color: isDarkMode ? '#000' : '#1a1a1a',
+                              '& input': {
+                                padding: 0,
+                              },
+                            },
+                          }}
+                          sx={{ flex: 1 }}
+                        />
+                        <FormControl sx={{ minWidth: 80 }}>
+                          <Select
+                            value={fromToken}
+                            onChange={(e) => setFromToken(e.target.value)}
+                            variant='standard'
+                            disableUnderline
+                            sx={{
+                              color: isDarkMode ? '#94a3b8' : '#1a1a1a',
+                              fontWeight: 600,
+                              '& .MuiSelect-icon': {
+                                color: isDarkMode ? '#94a3b8' : '#64748b',
+                              },
+                            }}
+                          >
+                            <MenuItem value='ETH'>🔸 ETH</MenuItem>
+                            <MenuItem value='BTC'>₿ BTC</MenuItem>
+                            <MenuItem value='USDT'>💰 USDT</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                      <Typography
+                        variant='caption'
+                        sx={{
+                          color: isDarkMode ? '#94a3b8' : '#ffffff',
+                          display: 'block',
+                          fontSize: '1.2rem',
+                          textAlign: 'left',
+                        }}
+                      >
+                        Balance: 0.00
+                      </Typography>
+                    </Box>
 
-                {/* Buy Box */}
-                <Box
-                  sx={{
-                    bgcolor: 'background.paper',
-                    borderRadius: 2,
-                    p: 2,
-                    textAlign: 'left',
-                    color: 'text.primary',
-                  }}
-                >
-                  <Typography variant='body2' sx={{ mb: 1 }}>
-                    Buy
-                  </Typography>
-                  <TextField
-                    fullWidth
-                    variant='standard'
-                    placeholder='0'
-                    InputProps={{
-                      disableUnderline: true,
-                      startAdornment: (
-                        <InputAdornment position='end'>
-                          <Typography color='text.secondary'>
-                            Balance: 0.00
-                          </Typography>
-                        </InputAdornment>
-                      ),
-                      endAdornment: (
-                        <InputAdornment position='end'>
-                          <Button size='small'>ETH ▼</Button>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Box>
-              </CardContent>
-            </Card>
+                    {/* To Section */}
+                    <Box sx={{ mt: 1, p: 2, bgcolor: '#fff', borderRadius: 2 }}>
+                      <Typography
+                        variant='body2'
+                        sx={{
+                          color: isDarkMode ? '#94a3b8' : '#64748b',
+                          mb: 1,
+                          textAlign: 'left',
+                        }}
+                      >
+                        Buy
+                      </Typography>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          background: isDarkMode
+                            ? '#fff'
+                            : 'rgba(248, 250, 252, 0.8)',
+                          borderRadius: '16px',
+
+                          // border: isDarkMode
+                          //   ? '1px solid rgba(71, 85, 105, 0.3)'
+                          //   : '1px solid rgba(226, 232, 240, 0.5)',
+                        }}
+                      >
+                        <TextField
+                          value={toAmount}
+                          onChange={(e) => setToAmount(e.target.value)}
+                          placeholder='0'
+                          variant='standard'
+                          InputProps={{
+                            disableUnderline: true,
+                            sx: {
+                              fontSize: {
+                                xs: '1.5rem',
+                                sm: '2rem',
+                                md: '3rem',
+                              },
+                              color: isDarkMode ? '#000' : '#1a1a1a',
+                              '& input': {
+                                padding: 0,
+                              },
+                            },
+                          }}
+                          sx={{ flex: 1 }}
+                        />
+                        <FormControl sx={{ minWidth: 80 }}>
+                          <Select
+                            value={toToken}
+                            onChange={(e) => setToToken(e.target.value)}
+                            variant='standard'
+                            disableUnderline
+                            sx={{
+                              color: isDarkMode ? '#94a3b8' : '#1a1a1a',
+                              fontWeight: 600,
+                              '& .MuiSelect-icon': {
+                                color: isDarkMode ? '#94a3b8' : '#64748b',
+                              },
+                            }}
+                          >
+                            <MenuItem value='BNB'>🟡 BNB</MenuItem>
+                            <MenuItem value='ETH'>🔸 ETH</MenuItem>
+                            <MenuItem value='USDT'>💰 USDT</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                      <Typography
+                        variant='caption'
+                        sx={{
+                          color: isDarkMode ? '#94a3b8' : '#ffffff',
+                          // mt: 0.5,
+                          display: 'block',
+                          textAlign: 'left',
+                          fontSize: '1.2rem',
+                        }}
+                      >
+                        Balance: 0.00
+                      </Typography>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
           </Grid>
         </Grid>
       </Box>
@@ -923,81 +1085,194 @@ function LimitOrderSection({ isDarkMode }) {
           </Stack>
           <Box
             sx={{
-              border: 2,
-              p: 3,
-              borderRadius: 2,
-              maxWidth: 320,
+              maxWidth: 500,
+              width: '100%',
+              mx: 'auto',
+              mt: { xs: 4, md: 6 },
+              p: { xs: 2, sm: 3 },
+              bgcolor: '#10254A',
+              borderRadius: 3,
+              border: '1px solid rgba(59, 130, 246, 0.3)',
             }}
           >
-            {/* Title */}
+            {/* Slippage Tolerance */}
             <Typography
-              variant='body2'
-              color='text.secondary'
-              gutterBottom
-              sx={{ fontWeight: 500 }}
+              variant='h6'
+              sx={{
+                color: '#B3B3B3',
+                fontWeight: 400,
+                fontSize: '16px',
+                mb: 3,
+                textAlign: 'left',
+              }}
             >
               Slippage Tolerance
             </Typography>
 
             {/* Limit Price */}
-            <Typography variant='body2' sx={{ fontWeight: 600 }}>
+            <Typography
+              variant='h5'
+              sx={{
+                color: 'white',
+                fontWeight: 600,
+                fontSize: '24px',
+                mb: 1,
+                textAlign: 'left',
+              }}
+            >
               Limit Price
             </Typography>
-            <Typography variant='body2' gutterBottom>
+
+            <Typography
+              variant='h4'
+              sx={{
+                color: 'white',
+                fontWeight: 400,
+                fontSize: '32px',
+                mb: 3,
+                textAlign: 'left',
+              }}
+            >
               0.00
             </Typography>
 
-            {/* Toggle Buttons */}
-            <ToggleButtonGroup
-              value={selected}
-              exclusive
-              onChange={handleChange}
-              sx={{ mb: 2 }}
-            >
-              <ToggleButton value='market'>Market</ToggleButton>
-              <ToggleButton value='1'>1 % ↑</ToggleButton>
-              <ToggleButton value='2'>2 % ↑</ToggleButton>
-              <ToggleButton value='5'>5 % ↑</ToggleButton>
-              <ToggleButton value='10'>10 % ↑</ToggleButton>
-            </ToggleButtonGroup>
-
-            {/* Expiry */}
-            <Typography variant='body2' sx={{ fontWeight: 600 }}>
-              Expiry
-            </Typography>
-            <Select
-              value={expiry}
-              onChange={(e) => setExpiry(e.target.value)}
-              size='small'
+            {/* Market Buttons */}
+            <Box
               sx={{
-                mt: 1,
-                mb: 2,
-                borderRadius: 1,
-                minWidth: 120,
+                display: 'flex',
+                flexDirection: { xs: 'row', sm: 'row' },
+                // flexWrap: 'wrap',
+                alignItems: 'center',
+                justifyContent: { xs: 'start', sm: 'flex-start' },
+                gap: { xs: 1, sm: 2 },
+                mb: 4,
               }}
             >
-              <MenuItem value='1h'>1 Hour</MenuItem>
-              <MenuItem value='6h'>6 Hours</MenuItem>
-              <MenuItem value='12h'>12 Hours</MenuItem>
-              <MenuItem value='24h'>24 Hours</MenuItem>
-            </Select>
+              <Button
+                variant='outlined'
+                sx={{
+                  color: '#fff',
+                  borderColor: '#1C3259 ',
+                  textTransform: 'none',
+                  minWidth: { xs: '80px', sm: 'auto' },
+                  px: { xs: 0, sm: 2 },
+                  py: 1,
+                  fontSize: { xs: '14px', sm: '16px' },
+                  boxShadow:
+                    '0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(255, 255, 255, 0.1)',
+                  '&:hover': {
+                    boxShadow:
+                      '0 6px 16px rgba(59, 130, 246, 0.2), 0 4px 8px rgba(255, 255, 255, 0.15)',
+                    border: 'none',
+                  },
+                }}
+              >
+                Market
+              </Button>
+              {['1 %', '2 %', '5 %', '10 %'].map((percentage) => (
+                <Button
+                  key={percentage}
+                  variant='outlined'
+                  sx={{
+                    color: '#fff',
+                    borderColor: '#1C3259 ',
+                    textTransform: 'none',
+                    minWidth: { xs: '50px', sm: 'auto' },
+                    px: { xs: 0, sm: 2 },
+                    py: 1,
+                    fontSize: { xs: '12px', sm: '14px' },
+                    boxShadow:
+                      '0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(255, 255, 255, 0.1)',
+                    '&:hover': {
+                      boxShadow:
+                        '0 6px 16px rgba(59, 130, 246, 0.2), 0 4px 8px rgba(255, 255, 255, 0.15)',
+                      border: 'none',
+                    },
+                  }}
+                >
+                  {percentage} ↑
+                </Button>
+              ))}
+            </Box>
 
-            {/* Wallet Button */}
+            {/* Expiry */}
+            <Stack
+              direction='row'
+              justifyContent='space-between'
+              alignItems='center'
+              sx={{ mb: 4 }}
+            >
+              <Typography
+                variant='h6'
+                sx={{
+                  color: 'white',
+                  fontWeight: 400,
+                  fontSize: '18px',
+                }}
+              >
+                Expiry
+              </Typography>
+              <Button
+                variant='outlined'
+                sx={{
+                  color: '#fff',
+                  borderColor: '#1C3259 ',
+                  textTransform: 'none',
+                  minWidth: 'auto',
+                  px: 2,
+                  py: 1,
+                  boxShadow:
+                    '0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(255, 255, 255, 0.1)',
+                  '&:hover': {
+                    boxShadow:
+                      '0 6px 16px rgba(59, 130, 246, 0.2), 0 4px 8px rgba(255, 255, 255, 0.15)',
+                    border: 'none',
+                  },
+                }}
+              >
+                1 Hour ▼
+              </Button>
+            </Stack>
+
+            {/* Connect Wallet Button */}
             <Button
               variant='contained'
               fullWidth
               sx={{
-                mt: 2,
-                bgcolor: 'linear-gradient(to right, #00aaff, #0072ff)',
+                background: 'linear-gradient(90deg, #3B82F6 0%, #1D4ED8 100%)',
+                color: 'white',
                 textTransform: 'none',
+                py: { xs: 1.5, sm: 2 },
+                fontSize: { xs: '16px', sm: '18px' },
                 fontWeight: 600,
-                borderRadius: 1.5,
-                py: 1.2,
+                borderRadius: 2,
+                minHeight: { xs: '48px', sm: '56px' },
+                '&:hover': {
+                  background:
+                    'linear-gradient(90deg, #2563EB 0%, #1E40AF 100%)',
+                },
               }}
             >
               Connect Ethereum Wallet
             </Button>
           </Box>
+
+          {/* Bottom Text - Outside the box */}
+          <Typography
+            variant='h5'
+            sx={{
+              color: 'white',
+              fontWeight: 400,
+              fontSize: '24px',
+              textAlign: 'center',
+              mt: 4,
+              maxWidth: 600,
+              width: '100%',
+              mx: 'auto',
+            }}
+          >
+            Select your Buy and Sell tokens
+          </Typography>
         </Box>
       </Box>
 
