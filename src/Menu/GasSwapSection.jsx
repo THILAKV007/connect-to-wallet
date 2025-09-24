@@ -661,27 +661,6 @@ export default function GasSwapSection() {
             objectFit: 'contain',
           }}
         />
-        {/* This Box contains the "With most trending Pairs" text */}
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: '-320%',
-            left: '10%',
-            display: { xs: 'none', md: 'block' },
-          }}
-        >
-          <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
-            With most <br /> trending Pairs
-          </Typography>
-          <Divider
-            sx={{
-              borderStyle: 'dotted',
-              borderColor: '#b5b5b5',
-              width: '300px',
-              mt: 1,
-            }}
-          />
-        </Box>
       </Box>
       <Divider />
       {/* fifth section */}
