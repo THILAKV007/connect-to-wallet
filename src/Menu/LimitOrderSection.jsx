@@ -790,14 +790,14 @@ function LimitOrderSection({ isDarkMode }) {
                         display: 'none',
                       },
                       '& .MuiTab-root': {
-                        color: '#B3B3B3',
+                        color: isDarkMode ? '#B3B3B3' : '#64748b',
                         textTransform: 'none',
                         fontSize: { xs: '14px', sm: '16px' },
                         fontWeight: 400,
                         minWidth: 'auto',
                         px: { xs: 2, sm: 3 },
                         '&.Mui-selected': {
-                          color: 'white',
+                          color: isDarkMode ? 'white' : '#1a1a1a',
                           fontWeight: 600,
                         },
                       },
@@ -829,7 +829,7 @@ function LimitOrderSection({ isDarkMode }) {
                         <Typography
                           variant='body2'
                           sx={{
-                            color: isDarkMode ? '#000' : '#ffffff',
+                            color: isDarkMode ? '#000' : '#1a1a1a',
                             cursor: 'pointer',
                             fontWeight: 600,
                           }}
@@ -892,7 +892,7 @@ function LimitOrderSection({ isDarkMode }) {
                       <Typography
                         variant='caption'
                         sx={{
-                          color: isDarkMode ? '#94a3b8' : '#ffffff',
+                          color: isDarkMode ? '#94a3b8' : '#64748b',
                           display: 'block',
                           fontSize: '1.2rem',
                           textAlign: 'left',
@@ -904,16 +904,31 @@ function LimitOrderSection({ isDarkMode }) {
 
                     {/* To Section */}
                     <Box sx={{ mt: 1, p: 2, bgcolor: '#fff', borderRadius: 2 }}>
-                      <Typography
-                        variant='body2'
+                      <Box
                         sx={{
-                          color: isDarkMode ? '#94a3b8' : '#64748b',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
                           mb: 1,
-                          textAlign: 'left',
                         }}
                       >
-                        Buy
-                      </Typography>
+                        <Typography
+                          variant='body2'
+                          sx={{ color: isDarkMode ? '#94a3b8' : '#64748b' }}
+                        >
+                          Buy
+                        </Typography>
+                        <Typography
+                          variant='body2'
+                          sx={{
+                            color: isDarkMode ? '#000' : '#1a1a1a',
+                            cursor: 'pointer',
+                            fontWeight: 600,
+                          }}
+                        >
+                          Use Max
+                        </Typography>
+                      </Box>
                       <Box
                         sx={{
                           display: 'flex',
@@ -972,7 +987,7 @@ function LimitOrderSection({ isDarkMode }) {
                       <Typography
                         variant='caption'
                         sx={{
-                          color: isDarkMode ? '#94a3b8' : '#ffffff',
+                          color: isDarkMode ? '#94a3b8' : '#64748b',
                           // mt: 0.5,
                           display: 'block',
                           textAlign: 'left',
@@ -1090,16 +1105,18 @@ function LimitOrderSection({ isDarkMode }) {
               mx: 'auto',
               mt: { xs: 4, md: 6 },
               p: { xs: 2, sm: 3 },
-              bgcolor: '#10254A',
+              bgcolor: isDarkMode ? '#10254A' : '#E6F3FE',
               borderRadius: 3,
-              border: '1px solid rgba(59, 130, 246, 0.3)',
+              border: isDarkMode 
+                ? '1px solid rgba(59, 130, 246, 0.3)' 
+                : '1px solid rgba(59, 130, 246, 0.2)',
             }}
           >
             {/* Slippage Tolerance */}
             <Typography
               variant='h6'
               sx={{
-                color: '#B3B3B3',
+                color: isDarkMode ? '#B3B3B3' : '#64748b',
                 fontWeight: 400,
                 fontSize: '16px',
                 mb: 3,
@@ -1113,7 +1130,7 @@ function LimitOrderSection({ isDarkMode }) {
             <Typography
               variant='h5'
               sx={{
-                color: 'white',
+                color: isDarkMode ? 'white' : '#1a1a1a',
                 fontWeight: 600,
                 fontSize: '24px',
                 mb: 1,
@@ -1126,7 +1143,7 @@ function LimitOrderSection({ isDarkMode }) {
             <Typography
               variant='h4'
               sx={{
-                color: 'white',
+                color: isDarkMode ? 'white' : '#1a1a1a',
                 fontWeight: 400,
                 fontSize: '32px',
                 mb: 3,
@@ -1151,18 +1168,22 @@ function LimitOrderSection({ isDarkMode }) {
               <Button
                 variant='outlined'
                 sx={{
-                  color: '#fff',
-                  borderColor: '#1C3259 ',
+                  color: isDarkMode ? '#fff' : '#1a1a1a',
+                  bgcolor: isDarkMode ? 'transparent' : '#BFE5FB',
+                  borderColor: isDarkMode ? '#1C3259' : '#BFE5FB',
                   textTransform: 'none',
                   minWidth: { xs: '80px', sm: 'auto' },
                   px: { xs: 0, sm: 2 },
                   py: 1,
                   fontSize: { xs: '14px', sm: '16px' },
-                  boxShadow:
-                    '0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(255, 255, 255, 0.1)',
+                  boxShadow: isDarkMode
+                    ? '0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(255, 255, 255, 0.1)'
+                    : '0 2px 8px rgba(59, 130, 246, 0.1)',
                   '&:hover': {
-                    boxShadow:
-                      '0 6px 16px rgba(59, 130, 246, 0.2), 0 4px 8px rgba(255, 255, 255, 0.15)',
+                    bgcolor: isDarkMode ? 'rgba(28, 50, 89, 0.3)' : '#A3D9F7',
+                    boxShadow: isDarkMode
+                      ? '0 6px 16px rgba(59, 130, 246, 0.2), 0 4px 8px rgba(255, 255, 255, 0.15)'
+                      : '0 4px 12px rgba(59, 130, 246, 0.15)',
                     border: 'none',
                   },
                 }}
@@ -1174,18 +1195,22 @@ function LimitOrderSection({ isDarkMode }) {
                   key={percentage}
                   variant='outlined'
                   sx={{
-                    color: '#fff',
-                    borderColor: '#1C3259 ',
+                    color: isDarkMode ? '#fff' : '#1a1a1a',
+                    bgcolor: isDarkMode ? 'transparent' : '#BFE5FB',
+                    borderColor: isDarkMode ? '#1C3259' : '#BFE5FB',
                     textTransform: 'none',
                     minWidth: { xs: '50px', sm: 'auto' },
                     px: { xs: 0, sm: 2 },
                     py: 1,
                     fontSize: { xs: '12px', sm: '14px' },
-                    boxShadow:
-                      '0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(255, 255, 255, 0.1)',
+                    boxShadow: isDarkMode
+                      ? '0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(255, 255, 255, 0.1)'
+                      : '0 2px 8px rgba(59, 130, 246, 0.1)',
                     '&:hover': {
-                      boxShadow:
-                        '0 6px 16px rgba(59, 130, 246, 0.2), 0 4px 8px rgba(255, 255, 255, 0.15)',
+                      bgcolor: isDarkMode ? 'rgba(28, 50, 89, 0.3)' : '#A3D9F7',
+                      boxShadow: isDarkMode
+                        ? '0 6px 16px rgba(59, 130, 246, 0.2), 0 4px 8px rgba(255, 255, 255, 0.15)'
+                        : '0 4px 12px rgba(59, 130, 246, 0.15)',
                       border: 'none',
                     },
                   }}
@@ -1205,7 +1230,7 @@ function LimitOrderSection({ isDarkMode }) {
               <Typography
                 variant='h6'
                 sx={{
-                  color: 'white',
+                  color: isDarkMode ? 'white' : '#1a1a1a',
                   fontWeight: 400,
                   fontSize: '18px',
                 }}
@@ -1215,17 +1240,21 @@ function LimitOrderSection({ isDarkMode }) {
               <Button
                 variant='outlined'
                 sx={{
-                  color: '#fff',
-                  borderColor: '#1C3259 ',
+                  color: isDarkMode ? '#fff' : '#1a1a1a',
+                  bgcolor: isDarkMode ? 'transparent' : '#BFE5FB',
+                  borderColor: isDarkMode ? '#1C3259' : '#BFE5FB',
                   textTransform: 'none',
                   minWidth: 'auto',
                   px: 2,
                   py: 1,
-                  boxShadow:
-                    '0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(255, 255, 255, 0.1)',
+                  boxShadow: isDarkMode
+                    ? '0 4px 12px rgba(59, 130, 246, 0.15), 0 2px 6px rgba(255, 255, 255, 0.1)'
+                    : '0 2px 8px rgba(59, 130, 246, 0.1)',
                   '&:hover': {
-                    boxShadow:
-                      '0 6px 16px rgba(59, 130, 246, 0.2), 0 4px 8px rgba(255, 255, 255, 0.15)',
+                    bgcolor: isDarkMode ? 'rgba(28, 50, 89, 0.3)' : '#A3D9F7',
+                    boxShadow: isDarkMode
+                      ? '0 6px 16px rgba(59, 130, 246, 0.2), 0 4px 8px rgba(255, 255, 255, 0.15)'
+                      : '0 4px 12px rgba(59, 130, 246, 0.15)',
                     border: 'none',
                   },
                 }}
@@ -1261,7 +1290,7 @@ function LimitOrderSection({ isDarkMode }) {
           <Typography
             variant='h5'
             sx={{
-              color: 'white',
+              color: isDarkMode ? 'white' : '#1a1a1a',
               fontWeight: 400,
               fontSize: '24px',
               textAlign: 'center',
