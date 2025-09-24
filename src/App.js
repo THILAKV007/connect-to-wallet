@@ -35,22 +35,36 @@ function AppContent({ isDarkMode, toggleTheme }) {
       <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <Routes>
         <Route path='/' element={<HomePage isDarkMode={isDarkMode} />} />
-        <Route path='/trading' element={<TradingPage isDarkMode={isDarkMode} />} />
+        <Route
+          path='/trading'
+          element={<TradingPage isDarkMode={isDarkMode} />}
+        />
         <Route path='/swap1' element={<Swap1 isDarkMode={isDarkMode} />} />
         <Route path='/swap2' element={<Swap2 isDarkMode={isDarkMode} />} />
         <Route path='/swap3' element={<Swap3 isDarkMode={isDarkMode} />} />
         <Route path='/src/Menu/Menu.jsx' element={<MenuDot />} />
-        <Route path='/swap-token' element={<SwapTokenLanding isDarkMode={isDarkMode} />} />
-        <Route path='/gasless-swaps' element={<GasSwapSection isDarkMode={isDarkMode} />} />
-        <Route path='/liquidity-source' element={<LiquiditySection isDarkMode={isDarkMode} />} />
-        <Route path='/limit-orders' element={<LimitOrderSection isDarkMode={isDarkMode} />} />
-        <Route path='/cross-chains' element={<CrossChainSection isDarkMode={isDarkMode} />} />
+        <Route
+          path='/swap-token'
+          element={<SwapTokenLanding isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path='/gasless-swaps'
+          element={<GasSwapSection isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path='/liquidity-sources'
+          element={<LiquiditySection isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path='/limit-orders'
+          element={<LimitOrderSection isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path='/cross-chain-swaps'
+          element={<CrossChainSection isDarkMode={isDarkMode} />}
+        />
         <Route path='/articles' element={<Articles />} />
-        <Route path='/title1' element={<SwapTokenLanding isDarkMode={isDarkMode} />} />
-        <Route path='/title2' element={<GasSwapSection isDarkMode={isDarkMode} />} />
-        <Route path='/title3' element={<LiquiditySection isDarkMode={isDarkMode} />} />
-        <Route path='/title4' element={<LimitOrderSection isDarkMode={isDarkMode} />} />
-        <Route path='/title5' element={<CrossChainSection isDarkMode={isDarkMode} />} />
+
         <Route path='/title6' element={<Features />} />
         <Route path='/title7' element={<Company />} />
         <Route path='/title8' element={<BlogDetails />} />
