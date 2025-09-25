@@ -1053,7 +1053,6 @@ function LimitOrderSection({ isDarkMode }) {
             flexWrap='wrap'
             justifyContent='center'
             alignItems='center'
-            sx={{ mb: 5 }}
           >
             {[
               {
@@ -1107,8 +1106,8 @@ function LimitOrderSection({ isDarkMode }) {
               p: { xs: 2, sm: 3 },
               bgcolor: isDarkMode ? '#10254A' : '#E6F3FE',
               borderRadius: 3,
-              border: isDarkMode 
-                ? '1px solid rgba(59, 130, 246, 0.3)' 
+              border: isDarkMode
+                ? '1px solid rgba(59, 130, 246, 0.3)'
                 : '1px solid rgba(59, 130, 246, 0.2)',
             }}
           >
@@ -1316,7 +1315,7 @@ function LimitOrderSection({ isDarkMode }) {
         }}
       >
         {/* Title */}
-        <Typography variant='h4' fontWeight='bold' sx={{ mb: 1 }}>
+        <Typography variant='h4' fontWeight='bold' sx={{ mb: 1, mt: 4 }}>
           How to setup limit orders
         </Typography>
 
@@ -1328,6 +1327,7 @@ function LimitOrderSection({ isDarkMode }) {
             fontSize: { xs: '16px', md: '17px' },
             lineHeight: '25px',
             color: '#B3B3B3',
+            mb: 2,
           }}
         >
           Available on 3 chains:
@@ -1336,6 +1336,7 @@ function LimitOrderSection({ isDarkMode }) {
         {/* Chain list */}
         <Stack
           direction='row'
+          spacing={isMobile ? 2.5 : 3.5}
           flexWrap='wrap'
           justifyContent='center'
           alignItems='center'

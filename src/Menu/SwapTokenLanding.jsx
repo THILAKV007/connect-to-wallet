@@ -325,7 +325,7 @@ export default function SwapTokenLanding(isDarkMode) {
                 textAlign: 'center',
               }}
             >
-              Trade Smarter with Unidex
+              Swap Tokens{' '}
             </Typography>
 
             <Typography
@@ -338,8 +338,8 @@ export default function SwapTokenLanding(isDarkMode) {
                 paddingX: { xs: '20px', md: '0' },
               }}
             >
-              Zero fee trades on 9+ million tokens across 14 chains. Get the
-              best prices by tapping into 130+ liquidity sources.
+              Zero fee trades on 9+ million tokens across 14 chains. Get the
+              best prices by tapping into 130+ liquidity sources
             </Typography>
 
             <Button
@@ -395,7 +395,7 @@ export default function SwapTokenLanding(isDarkMode) {
               lineHeight: { xs: 1.3, md: '55px' },
               color: 'text.primary',
               fontSize: { xs: '28px', sm: '36px', md: '48px', lg: '56px' },
-              textAlign: 'center',
+              textAlign: 'left',
             }}
           >
             Get unbeatable trade prices on Unidex.
@@ -968,7 +968,7 @@ export default function SwapTokenLanding(isDarkMode) {
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: 'center',
             alignItems: 'flex-start',
-            gap: { xs: 2, sm: 10, md: 22 },
+            gap: { xs: 2, sm: 10, md: 25 },
             mt: 16,
           }}
         >
@@ -1003,8 +1003,9 @@ export default function SwapTokenLanding(isDarkMode) {
               sx={{
                 textAlign: 'center',
                 fontWeight: 500,
-                fontSize: { xs: 16, md: 20 },
+                fontSize: { xs: 16, lg: 20 },
                 color: 'text.primary',
+                width: { md: '200px', lg: '280px' },
               }}
             >
               Faster trade Confirmation
@@ -1043,11 +1044,12 @@ export default function SwapTokenLanding(isDarkMode) {
               sx={{
                 textAlign: 'center',
                 fontWeight: 500,
-                fontSize: { xs: 16, md: 20 },
+                fontSize: { xs: 16, lg: 20 },
                 color: 'text.primary',
+                width: { md: '200px', lg: '280px' },
               }}
             >
-              Reduce failed rate by 75 %
+              Reduce failed rate by 75%
             </Typography>
           </Box>
 
@@ -1076,14 +1078,15 @@ export default function SwapTokenLanding(isDarkMode) {
                 mb: 2,
               }}
             >
-              <img src='assets/images/swapToken/Fire Minimalistic.png' alt='' />{' '}
+              <img src='assets/images/swapToken/Fire Minimalistic.png' alt='' />
             </Box>
             <Typography
               sx={{
                 textAlign: 'center',
                 fontWeight: 500,
-                fontSize: { xs: 16, md: 20 },
+                fontSize: { xs: 16, lg: 20 },
                 color: 'text.primary',
+                width: { md: '200px', lg: '280px' },
               }}
             >
               Matches handles Gases
