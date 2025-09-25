@@ -17,6 +17,7 @@ import {
   CardContent,
   Stack,
   Link,
+  Paper,
 } from '@mui/material'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
@@ -95,6 +96,30 @@ export default function GasSwapSection() {
     if (newValue !== null) setToggle(newValue)
   }
 
+  const swap = [
+    {
+      title: 'MEV protection',
+      description:
+        'Say goodbye to sandwich attacks and frontrunning.Protect from MEV without a second thought.',
+      img: 'assets/images/GaslessSwap/core-1.svg', // replace with your actual image path
+      link: 'Learn more.',
+    },
+    {
+      title: 'Get more than you pay for',
+      description:
+        'Save on slippage and cut down opportunity cost.                ',
+      img: 'assets/images/GaslessSwap/core-2.svg', // replace with your actual image path
+      link: null,
+    },
+    {
+      title: 'MEV protection',
+      description:
+        'Say goodbye to sandwich attacks and frontrunning. Protect from MEV without a second thought.',
+      img: 'assets/images/GaslessSwap/core-3.svg', // replace with your actual image path
+      link: 'Learn more.',
+    },
+  ]
+
   return (
     <Box
       sx={{
@@ -123,18 +148,34 @@ export default function GasSwapSection() {
             overflow: 'hidden',
             padding: { xs: '20px', md: '0' },
             boxSizing: 'border-box',
-            // Use conditional background image for all screens
-            backgroundImage: {
-              xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
-              md: 'url("assets/images/swapToken/gradient.png")',
-            },
-            // Set background position to center for all screens
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
           }}
         >
           {/* Background Decoration */}
+
+          <Box
+            component='img'
+            src='assets/images/Common/bg-blue-top.svg'
+            alt='hero background decor'
+            sx={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              zIndex: 0,
+              width: { xs: '60%', sm: '40%' },
+            }}
+          />
+          <Box
+            component='img'
+            src='assets/images/Common/bg-blue-bottom.svg'
+            alt='hero background decor'
+            sx={{
+              position: 'absolute',
+              left: 0,
+              bottom: 0,
+              zIndex: 0,
+              width: { xs: '60%', sm: '40%' },
+            }}
+          />
           <Box
             component='img'
             src='assets/images/GaslessSwap/03.png'
@@ -565,6 +606,122 @@ export default function GasSwapSection() {
       </Container>
       <Divider />
 
+      {/* Core Swap Functions */}
+      <Box sx={{ py: { xs: 4, md: 6 } }}>
+        <Container sx={{ maxWidth: { xs: '100%', sm: '600px', md: '1200px' } }}>
+          <Typography
+            variant='h4'
+            align='center'
+            sx={{
+              mb: 2,
+              fontWeight: '700',
+              fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2rem' },
+              px: { xs: 2, sm: 0 },
+            }}
+          >
+            Our Core Swap Functions
+          </Typography>
+          <Typography
+            variant='body1'
+            align='center'
+            sx={{
+              maxWidth: '600px',
+              mx: 'auto',
+              mb: { xs: 4, md: 6 },
+              color: 'text.secondary',
+              fontWeight: '700',
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+              px: { xs: 2, sm: 0 },
+            }}
+          >
+            Swap crypto without native tokens. Matcha handles the gas for swaps
+            and approvals so you can focus on trading.
+          </Typography>
+
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: { xs: 2, sm: 3, md: 4 },
+            }}
+          >
+            {swap.map((swap, index) => (
+              <Box
+                key={index}
+                sx={{
+                  flex: {
+                    xs: '1 1 100%',
+                    sm: '1 1 calc(50% - 12px)',
+                    md: '1 1 calc(33.333% - 16px)',
+                  },
+                  maxWidth: { xs: '100%', sm: '320px', md: '320px' },
+                  // bgcolor: getBgColor(),
+                }}
+              >
+                <Paper
+                  elevation={0}
+                  sx={{
+                    maxWidth: { xs: '100%', sm: '320px' },
+                    height: { xs: 'auto', md: '310px' },
+                    p: { xs: 2, sm: 3 },
+                    textAlign: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Box
+                    component='img'
+                    src={swap.img}
+                    sx={{
+                      width: { xs: 80, sm: 90, md: 100 },
+                      height: { xs: 80, sm: 90, md: 100 },
+                      mb: { xs: 2, md: 3 },
+                    }}
+                  />
+                  <Typography
+                    variant='h6'
+                    sx={{
+                      fontWeight: '700',
+                      mb: { xs: 1.5, md: 2 },
+                      fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.25rem' },
+                    }}
+                  >
+                    {swap.title}
+                  </Typography>
+                  <Typography
+                    variant='body2'
+                    sx={{
+                      color: '#555555',
+                      fontWeight: '400',
+                      fontSize: { xs: 13, sm: 14 },
+                      lineHeight: 1.5,
+                      textAlign: 'center',
+                    }}
+                  >
+                    {swap.description}{' '}
+                    {swap.link && (
+                      <Link
+                        href='#'
+                        underline='always'
+                        color='text.primary'
+                        sx={{
+                          fontWeight: 700,
+                          fontSize: { xs: 13, sm: 14 },
+                        }}
+                      >
+                        {swap.link}
+                      </Link>
+                    )}
+                  </Typography>
+                </Paper>
+              </Box>
+            ))}
+          </Box>
+        </Container>
+      </Box>
+
       <Divider />
       {/* fourth section */}
       <Box
@@ -590,7 +747,7 @@ export default function GasSwapSection() {
           Swap crypto without native tokens. Unidex handles the gas for swaps
           and approvals so you can focus on trading.
         </Typography>
-        <Box
+        {/* <Box
           sx={{
             width: '100%',
             display: 'flex',
@@ -600,67 +757,81 @@ export default function GasSwapSection() {
             position: 'relative',
           }}
         >
-          {/* This Box contains the "With High volume" text */}
+
+         
+        </Box> */}
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            mx: 'auto',
+          }}
+        >
           <Box
             sx={{
-              position: 'absolute',
-              top: '45px',
-              right: { md: '5%', lg: '18%' },
-              display: { xs: 'none', md: 'flex' },
-              alignItems: 'flex-end',
+              position: 'relative',
             }}
           >
-            <Divider
-              sx={{
-                borderStyle: 'dotted',
-                borderColor: '#b5b5b5',
-                width: '200px',
-                mt: 1,
-              }}
+            <img
+              style={{ width: '100%', height: '100%' }}
+              src='assets/images/CrossChain/List.png'
+              alt='list'
             />
-            <Typography
-              variant='h6'
-              sx={{ fontWeight: 'bold', textAlign: 'center' }}
-            >
-              With High volume
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: { md: '300px', lg: '360px' },
-              left: { md: '4%', lg: '16.5%' },
-              display: { xs: 'none', md: 'flex' },
-              alignItems: 'flex-end',
-            }}
-          >
-            <Typography
-              variant='h6'
-              sx={{ fontWeight: 'bold', textAlign: 'center' }}
-            >
-              With most <br /> trending Pairs
-            </Typography>
-            <Divider
+            <Box
               sx={{
-                borderStyle: 'dotted',
-                borderColor: '#b5b5b5',
-                width: '200px',
-                mt: 1,
+                position: 'absolute',
+                top: '45px',
+                right: { md: '-340px', lg: '-360px' },
+                display: { xs: 'none', md: 'flex' },
+                alignItems: 'flex-end',
               }}
-            />
+            >
+              <Divider
+                sx={{
+                  borderStyle: 'dotted',
+                  borderColor: '#b5b5b5',
+                  width: '200px',
+                  mt: 1,
+                }}
+              />
+              <Typography
+                variant='h6'
+                sx={{ fontWeight: 'bold', textAlign: 'center', width: '200px' }}
+              >
+                With High volume
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                position: 'absolute',
+                bottom: 70,
+                left: { md: '-350px', lg: '-370px' },
+                display: { xs: 'none', md: 'flex' },
+                alignItems: 'flex-end',
+              }}
+            >
+              <Typography
+                variant='h6'
+                sx={{
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  width: '170px',
+                }}
+              >
+                With most <br /> trending Pairs
+              </Typography>
+              <Divider
+                sx={{
+                  borderStyle: 'dotted',
+                  borderColor: '#b5b5b5',
+                  width: '200px',
+                  mt: 1,
+                }}
+              />
+            </Box>
           </Box>
         </Box>
-        <Box
-          component='img'
-          src='assets/images/CrossChain/List.png'
-          alt='list'
-          sx={{
-            width: { xs: '100%', sm: '90%', md: '80%', lg: '70%' },
-            height: { xs: '40vh', sm: '50vh', md: '60vh', lg: '65vh' },
-            maxWidth: '100%',
-            objectFit: 'contain',
-          }}
-        />
       </Box>
       <Divider />
       {/* fifth section */}

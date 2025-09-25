@@ -119,6 +119,7 @@ export default function SwapTokenLanding(isDarkMode) {
       ),
     },
   ]
+
   const swap = [
     {
       icon: 'assets/images/swapToken/tick.svg',
@@ -260,18 +261,41 @@ export default function SwapTokenLanding(isDarkMode) {
             overflow: 'hidden',
             padding: { xs: '20px', md: '0' },
             boxSizing: 'border-box',
-            // Use conditional background image for all screens
-            backgroundImage: {
-              xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
-              md: 'url("assets/images/swapToken/gradient.png")',
-            },
-            // Set background position to center for all screens
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
+            // backgroundImage: {
+            //   xs: 'url("assets/images/swapToken/gradient.png")',
+            //   md: 'url("assets/images/swapToken/gradient.png")',
+            // },
+            // backgroundPosition: 'center',
+            // backgroundRepeat: 'no-repeat',
+            // backgroundSize: 'cover',
           }}
         >
           {/* Background Decoration */}
+          <Box
+            component='img'
+            src='assets/images/Common/bg-blue-top.svg'
+            alt='hero background decor'
+            sx={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              zIndex: 0,
+              width: { xs: '60%', sm: '40%' },
+            }}
+          />
+          <Box
+            component='img'
+            src='assets/images/Common/bg-blue-bottom.svg'
+            alt='hero background decor'
+            sx={{
+              position: 'absolute',
+              left: 0,
+              bottom: 0,
+              zIndex: 0,
+              width: { xs: '60%', sm: '40%' },
+            }}
+          />
+
           <Box
             component='img'
             src='assets/images/swapToken/swapback.svg'
@@ -893,23 +917,47 @@ export default function SwapTokenLanding(isDarkMode) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          // minHeight: { xs: '100vh', md: '515px' },
           overflow: 'hidden',
           padding: { xs: '20px', md: '0' },
           boxSizing: 'border-box',
-          // Use conditional background image for all screens
-          backgroundImage: {
-            xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
-            md: 'url("assets/images/swapToken/gradient.png")',
-          },
-          // Set background position to center for all screens
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
+          // backgroundImage: {
+          //   xs: 'url("assets/images/swapToken/gradient.png")',
+          //   md: 'url("assets/images/swapToken/gradient.png")',
+          // },
+          // backgroundPosition: 'center',
+          // backgroundRepeat: 'no-repeat',
+          // backgroundSize: 'cover',
+          // backgroundWidth: '100%',
+
           minHeight: { xs: '90vh' },
         }}
       >
         {/* Background Decoration */}
+        <Box
+          component='img'
+          src='assets/images/Common/bg-blue-top.svg'
+          alt='hero background decor'
+          sx={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            zIndex: 0,
+            width: { xs: '60%', sm: '40%' },
+          }}
+        />
+        <Box
+          component='img'
+          src='assets/images/Common/bg-blue-bottom.svg'
+          alt='hero background decor'
+          sx={{
+            position: 'absolute',
+            left: 0,
+            bottom: 0,
+            zIndex: 0,
+            width: { xs: '60%', sm: '40%' },
+          }}
+        />
+
         <Box
           component='img'
           src='assets/images/swapToken/string.svg'

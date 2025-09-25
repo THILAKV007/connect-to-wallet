@@ -143,18 +143,33 @@ function LimitOrderSection({ isDarkMode }) {
             overflow: 'hidden',
             padding: { xs: '20px', md: '0' },
             boxSizing: 'border-box',
-            // Use conditional background image for all screens
-            backgroundImage: {
-              xs: 'url("assets/images/swapToken/gradient.png")', // Shows the image on mobile
-              md: 'url("assets/images/swapToken/gradient.png")',
-            },
-            // Set background position to center for all screens
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
           }}
         >
           {/* Background Decoration */}
+          <Box
+            component='img'
+            src='assets/images/Common/bg-blue-top.svg'
+            alt='hero background decor'
+            sx={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              zIndex: 0,
+              width: { xs: '60%', sm: '40%' },
+            }}
+          />
+          <Box
+            component='img'
+            src='assets/images/Common/bg-blue-bottom.svg'
+            alt='hero background decor'
+            sx={{
+              position: 'absolute',
+              left: 0,
+              bottom: 0,
+              zIndex: 0,
+              width: { xs: '60%', sm: '40%' },
+            }}
+          />
           <Box
             component='img'
             src='assets/images/LimitorderSection/limitback.png'
