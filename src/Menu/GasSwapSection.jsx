@@ -375,12 +375,9 @@ export default function GasSwapSection() {
               <Typography
                 variant='h2'
                 sx={{
-                  fontSize: {
-                    xs: '1.8rem',
-                    sm: '2.2rem',
-                    md: '2.5rem',
-                    lg: '3rem',
-                  },
+                  fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+                  fontWeight: 700,
+                  lineHeight: { xs: 1.3, md: '45px' },
                   textAlign: { xs: 'center', md: 'left' },
                   mb: { xs: 2, md: 3 },
                 }}
@@ -614,8 +611,9 @@ export default function GasSwapSection() {
             align='center'
             sx={{
               mb: 2,
-              fontWeight: '700',
-              fontSize: { xs: '1.5rem', sm: '1.8rem', md: '2rem' },
+              fontWeight: 700,
+              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+              lineHeight: { xs: 1.3, md: '45px' },
               px: { xs: 2, sm: 0 },
             }}
           >
@@ -736,13 +734,23 @@ export default function GasSwapSection() {
         }}
       >
         {/* Section Title */}
-        <Typography variant='h4' fontWeight='bold' gutterBottom>
+        <Typography
+          sx={{ 
+            mx: { xs: 2, md: 'auto' },
+            fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+            fontWeight: 700,
+            lineHeight: { xs: 1.3, md: '45px' },
+            textAlign: 'center',
+          }}
+          variant='h4'
+          gutterBottom
+        >
           Available Supporting Chains
         </Typography>
         <Typography
           variant='body1'
           color='#b3b3b3'
-          sx={{ mb: 6, maxWidth: 600, mx: 'auto' }}
+          sx={{ mb: 6, maxWidth: 600, mx: { xs: 2, md: 'auto' } }}
         >
           Swap crypto without native tokens. Unidex handles the gas for swaps
           and approvals so you can focus on trading.
@@ -1032,7 +1040,8 @@ export default function GasSwapSection() {
               color: 'text.primary',
               fontWeight: 700,
               textAlign: 'center',
-              fontSize: 24,
+              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+              lineHeight: { xs: 1.3, md: '45px' },
               fontFamily: 'Manrope, sans-serif',
               mt: 4,
             }}

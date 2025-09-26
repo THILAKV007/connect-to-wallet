@@ -419,8 +419,12 @@ function LimitOrderSection({ isDarkMode }) {
             }}
           >
             <Typography
-              variant={isMobile ? 'h4' : 'h3'}
-              sx={{ fontFamily: 'Manrope', fontWeight: 700, fontSize: '50px' }}
+              sx={{
+                // fontFamily: 'Manrope',
+                fontWeight: 700,
+                fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+                lineHeight: { xs: 1.3, md: '45px' },
+              }}
             >
               Set price, time,
               <br /> and sit tight
@@ -493,13 +497,12 @@ function LimitOrderSection({ isDarkMode }) {
         <Box maxWidth='1200px' mx='auto' px={2}>
           {/* Title */}
           <Typography
-            variant='h4'
             align='center'
-            fontWeight={700}
             sx={{
               mb: { xs: 6, md: 10 },
-              fontSize: { xs: '28px', md: '33.33px' },
-              lineHeight: '38px',
+              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+              lineHeight: { xs: 1.3, md: '45px' },
+              fontWeight: 700,
             }}
           >
             Why place Limit Orders?
@@ -706,7 +709,14 @@ function LimitOrderSection({ isDarkMode }) {
       {/* foursection */}
       <Box sx={{ py: 8, textAlign: 'center' }}>
         {/* Title */}
-        <Typography variant='h4' fontWeight='bold' sx={{ mb: 1 }}>
+        <Typography
+          sx={{
+            mb: 1,
+            fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+            lineHeight: { xs: 1.3, md: '45px' },
+            fontWeight: 700,
+          }}
+        >
           How to setup limit orders
         </Typography>
         <Typography variant='body1' sx={{ mb: 4, color: '#B3B3B3' }}>
@@ -1043,7 +1053,14 @@ function LimitOrderSection({ isDarkMode }) {
           }}
         >
           {/* Title */}
-          <Typography variant='h4' fontWeight='bold' sx={{ mb: 1 }}>
+          <Typography
+            sx={{
+              mb: 1,
+              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+              lineHeight: { xs: 1.3, md: '45px' },
+              fontWeight: 700,
+            }}
+          >
             How to setup limit orders
           </Typography>
 
@@ -1330,7 +1347,15 @@ function LimitOrderSection({ isDarkMode }) {
         }}
       >
         {/* Title */}
-        <Typography variant='h4' fontWeight='bold' sx={{ mb: 1, mt: 4 }}>
+        <Typography
+          sx={{
+            mb: 1,
+            mt: 4,
+            fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+            lineHeight: { xs: 1.3, md: '45px' },
+            fontWeight: 700,
+          }}
+        >
           How to setup limit orders
         </Typography>
 

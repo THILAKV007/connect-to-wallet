@@ -210,9 +210,10 @@ export default function CrossChainSection(isDarkMode) {
           <Box sx={{ flex: 1, maxWidth: { xs: '100%', md: 600 }, pt: 2 }}>
             <Box sx={{ maxWidth: { xs: '100%', md: 700 } }}>
               <Typography
-                variant='h4'
                 sx={{
-                  fontWeight: '700',
+                  fontWeight: 700,
+                  fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+                  lineHeight: { xs: 1.3, md: '45px' },
                   mb: 4,
                   textAlign: { xs: 'center', md: 'initial' },
                 }}
@@ -496,9 +497,10 @@ export default function CrossChainSection(isDarkMode) {
               }}
             >
               <Typography
-                variant='h4'
                 sx={{
-                  fontWeight: 'bold',
+                  fontWeight: 700,
+                  fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '43px' },
+                  lineHeight: { xs: 1.3, md: '45px' },
                   mb: 2,
                   width: { xs: '100%', md: 378 },
                   height: 'auto',
@@ -682,11 +684,11 @@ export default function CrossChainSection(isDarkMode) {
       >
         {/* Section Title */}
         <Typography
-          variant='h4'
-          fontWeight='bold'
           gutterBottom
           sx={{
-            fontSize: { xs: '1.75rem', sm: '2rem', md: '2.125rem' },
+            fontWeight: 700,
+            fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+            lineHeight: { xs: 1.3, md: '45px' },
             mb: { xs: 2, md: 3 },
           }}
         >

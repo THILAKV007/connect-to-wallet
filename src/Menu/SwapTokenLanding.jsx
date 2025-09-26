@@ -415,10 +415,10 @@ export default function SwapTokenLanding(isDarkMode) {
             variant={isMobile ? 'h4' : 'h3'}
             sx={{
               fontWeight: 700,
-              mb: { xs: 3, sm: 4, md: 6, lg: 9 },
-              lineHeight: { xs: 1.3, md: '55px' },
+              mb: { xs: 2, md: 3 },
+              lineHeight: { xs: 1.3, md: '45px' },
               color: 'text.primary',
-              fontSize: { xs: '28px', sm: '36px', md: '48px', lg: '56px' },
+              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
               textAlign: 'left',
             }}
           >
@@ -769,9 +769,9 @@ export default function SwapTokenLanding(isDarkMode) {
               sx={{
                 fontWeight: 700,
                 mb: { xs: 3, sm: 4, md: 6, lg: 9 },
-                lineHeight: { xs: 1.3, md: '55px' },
+                lineHeight: { xs: 1.3, md: '45px' },
                 color: 'text.primary',
-                fontSize: { xs: '28px', sm: '36px', md: '48px', lg: '56px' },
+                fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
               }}
             >
               MEV Protection
@@ -864,9 +864,10 @@ export default function SwapTokenLanding(isDarkMode) {
             variant='h3'
             sx={{
               fontWeight: 700,
-              mb: 4,
+              mb: { xs: 3, sm: 4, md: 6, lg: 9 },
               textAlign: { xs: 'center', md: 'initial' },
-              fontSize: { xs: '2rem', md: '3rem' },
+              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+              lineHeight: { xs: 1.3, md: '45px' },
               color: 'text.primary',
             }}
           >
@@ -987,11 +988,12 @@ export default function SwapTokenLanding(isDarkMode) {
         <Typography
           variant='h2'
           sx={{
-            fontWeight: 800,
-            mb: 2,
+            fontWeight: 700,
+            mb: { xs: 3, sm: 4, md: 6, lg: 9 },
             color: 'text.primary',
             textAlign: 'center',
-            fontSize: { xs: '2rem', md: '3rem' },
+            fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+            lineHeight: { xs: 1.3, md: '45px' },
           }}
         >
           Swap Tokens
@@ -1001,7 +1003,7 @@ export default function SwapTokenLanding(isDarkMode) {
           sx={{
             color: 'text.primary',
             fontWeight: 500,
-            mb: 6,
+            mb: { xs: 0, md: 6 },
             textAlign: 'center',
             opacity: 0.75,
           }}
@@ -1017,7 +1019,7 @@ export default function SwapTokenLanding(isDarkMode) {
             justifyContent: 'center',
             alignItems: 'flex-start',
             gap: { xs: 2, sm: 10, md: 25 },
-            mt: 16,
+            mt: { xs: 8, md: 16 },
           }}
         >
           {/* 1. Faster Trade Confirmation */}

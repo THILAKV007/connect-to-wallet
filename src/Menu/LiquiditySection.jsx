@@ -579,10 +579,13 @@ function LiquiditySection() {
       >
         <Container maxWidth='md'>
           <Typography
-            variant={{ xs: 'h5', sm: 'h3' }}
             component='h1'
             gutterBottom
-            sx={{ fontWeight: 'bold' }}
+            sx={{ 
+              fontWeight: 700,
+              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+              lineHeight: { xs: 1.3, md: '45px' },
+            }}
           >
             Deep liquidity.
             <br />
