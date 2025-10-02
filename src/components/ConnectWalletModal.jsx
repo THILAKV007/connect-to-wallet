@@ -1,49 +1,43 @@
 import React from 'react'
 import { Modal, Box, Typography, Button, IconButton } from '@mui/material'
-import { Link } from 'react-router-dom'
 import CloseIcon from '@mui/icons-material/Close'
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
-import LocalGasStationIcon from '@mui/icons-material/LocalGasStation'
-import OpacityIcon from '@mui/icons-material/Opacity'
-import TrendingUpIcon from '@mui/icons-material/TrendingUp'
-import LinkIcon from '@mui/icons-material/Link'
 
 const ConnectWalletModal = ({ open, onClose, isDarkMode }) => {
-  const features = [
+  const wallets = [
     {
-      icon: <SwapHorizIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
-      title: 'Swap Token',
-      description: 'Connect a wallet to your Unidex account',
-      bgColor: '#4FC3F7',
-      path: '/swap-token',
+      iconSrc: 'assets/images/common/crypto-com-onchain.png',
+      title: 'Crypto.com onchain',
     },
     {
-      icon: <LocalGasStationIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
-      title: 'Gasless Swaps',
-      description: 'Connect a wallet to your Unidex account',
-      bgColor: '#29B6F6',
-      path: '/gasless-swaps',
+      iconSrc: 'assets/images/common/crypto-com-onchain.png',
+      title: 'Crypto.com onchain',
+      tag: 'Solana',
     },
     {
-      icon: <OpacityIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
-      title: 'Liquidity Source',
-      description: 'Connect a wallet to your Unidex account',
-      bgColor: '#42A5F5',
-      path: '/liquidity-source',
+      iconSrc: 'assets/images/common/crypto-com-2.png',
+
+      title: 'Crypto.com onchain',
+      tag: 'Solana',
     },
     {
-      icon: <TrendingUpIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
-      title: 'Limit Orders',
-      description: 'Connect a wallet to your Unidex account',
-      bgColor: '#1E88E5',
-      path: '/limit-orders',
+      iconSrc: 'assets/images/common/crypto-com-2.png',
+
+      title: 'Crypto.com onchain',
     },
     {
-      icon: <LinkIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
-      title: 'Cross Chains',
-      description: 'Connect a wallet to your Unidex account',
-      bgColor: '#1976D2',
-      path: '/cross-chains',
+      iconSrc: 'assets/images/common/Coinbase.png',
+
+      title: 'Coinbase',
+    },
+    {
+      iconSrc: 'assets/images/common/Coinbase-2.png',
+
+      title: 'Coinbase',
+    },
+    {
+      iconSrc: 'assets/images/common/Wallet-Connect.png',
+
+      title: 'Wallet Connect',
     },
   ]
 
@@ -122,6 +116,17 @@ const ConnectWalletModal = ({ open, onClose, isDarkMode }) => {
             </IconButton>
           </Box>
 
+          {/* Subtitle */}
+          <Typography
+            sx={{
+              color: isDarkMode ? '#B0BEC5' : 'rgba(0, 0, 0, 0.7)',
+              fontSize: { xs: '14px', sm: '16px' },
+              mb: { xs: 2, sm: 3 },
+            }}
+          >
+            Connect a wallet to your Unidex account
+          </Typography>
+
           {/* Features List */}
           <Box
             sx={{
@@ -148,12 +153,11 @@ const ConnectWalletModal = ({ open, onClose, isDarkMode }) => {
               },
             }}
           >
-            {features.map((feature, index) => (
+            {wallets.map((w, index) => (
               <Button
                 key={index}
-                component={Link}
-                to={feature.path}
                 fullWidth
+                onClick={onClose}
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
@@ -187,16 +191,22 @@ const ConnectWalletModal = ({ open, onClose, isDarkMode }) => {
                   sx={{
                     width: 48,
                     height: 48,
-                    borderRadius: '50%',
-                    backgroundColor: feature.bgColor,
+                    borderRadius: '8px',
+                    backgroundColor: isDarkMode ? '#0c356a' : '#e3f2fd',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     mr: 2,
                     flexShrink: 0,
+                    overflow: 'hidden',
                   }}
                 >
-                  {feature.icon}
+                  <Box
+                    component='img'
+                    src={w.iconSrc}
+                    alt='wallet icon'
+                    sx={{ width: '100%', height: '100%' }}
+                  />
                 </Box>
 
                 {/* Content */}
@@ -210,21 +220,35 @@ const ConnectWalletModal = ({ open, onClose, isDarkMode }) => {
                       mb: 0.5,
                     }}
                   >
-                    {feature.title}
+                    {w.title}
                   </Typography>
+                </Box>
+                {w.tag && (
                   <Typography
                     variant='body2'
                     sx={{
                       color: isDarkMode ? '#B0BEC5' : 'rgba(0, 0, 0, 0.7)',
                       fontSize: { xs: '12px', sm: '14px' },
-                      lineHeight: 1.4,
                     }}
                   >
-                    {feature.description}
+                    {w.tag}
                   </Typography>
-                </Box>
+                )}
               </Button>
             ))}
+          </Box>
+
+          {/* Footer Disclaimer */}
+          <Box sx={{ mt: { xs: 2, sm: 3 } }}>
+            <Typography
+              sx={{
+                textAlign: 'center',
+                color: isDarkMode ? '#B0BEC5' : 'rgba(0, 0, 0, 0.6)',
+                fontSize: { xs: '12px', sm: '13px' },
+              }}
+            >
+              By Login in I Agree to the Terms and Privacy Policy
+            </Typography>
           </Box>
         </Box>
       </Box>

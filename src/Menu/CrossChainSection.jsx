@@ -265,103 +265,83 @@ export default function CrossChainSection(isDarkMode) {
                 position: 'relative',
               }}
             >
-              <Box
-                sx={{
-                  bgcolor: '#fff',
-                  height: { xs: '210px', md: '150px' },
-                  width: { xs: '100%', sm: '200px' },
-                  maxWidth: { xs: 'none', sm: '200px' },
-                  borderRadius: 3,
-                  p: { xs: '12px', md: '16px' },
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                }}
-              >
-                <img
-                  src='/assets/images/swapToken/usd.svg'
-                  alt=''
-                  style={{
-                    marginBottom: '8px',
-                    display: 'block',
-                    margin: '0 auto 8px auto',
-                  }}
-                />
-                <Typography sx={{ color: '#000', fontWeight: 'bold' }}>
-                  253.63 USDC
-                </Typography>
-                <Typography
-                  sx={{
-                    color: '#000',
-                    opacity: 0.4,
-                    fontSize: '14px',
-                  }}
-                >
-                  $ 253.44
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  bgcolor: '#fff',
-                  height: { xs: '80px', md: '100px' },
-                  width: { xs: '80px', md: '100px' },
-                  borderRadius: '100%',
-                  position: { xs: 'absolute' },
-                  top: { md: '50%' },
-                  left: { md: '50%' },
-                  transform: { md: 'translate(-50%, -50%)' },
-                  border: (theme) =>
-                    `8px solid ${
-                      theme.palette.mode === 'dark' ? '#10254A' : '#F0F8FF'
-                    }`,
-                  alignSelf: { xs: 'center' },
-                  my: { xs: 1, md: 0 },
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: { xs: '16px', sm: '20px', md: '24px' },
-                  zIndex: 1,
-                }}
-              />
-              <Box
-                sx={{
-                  bgcolor: '#fff',
-                  height: { xs: '210px', md: '150px' },
-                  width: { xs: '100%', sm: '200px' },
-                  maxWidth: { xs: 'none', sm: '200px' },
-                  borderRadius: 3,
-                  p: { xs: '12px', md: '16px' },
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                }}
-              >
-                <img
-                  src='/assets/images/swapToken/eth.svg'
-                  alt=''
-                  style={{
-                    marginBottom: '8px',
-                    display: 'block',
-                    margin: '0 auto 8px auto',
-                  }}
-                />
-                <Typography sx={{ color: '#000', fontWeight: 'bold' }}>
-                  253.63 USDC
-                </Typography>
-                <Typography
-                  sx={{
-                    color: '#000',
-                    opacity: 0.4,
-                    fontSize: '14px',
-                  }}
-                >
-                  $ 253.44
-                </Typography>
-              </Box>
+              {[
+                {
+                  img: '/assets/images/swapToken/usd.svg',
+                  label: '253.63 USDC',
+                  sub: '$ 253.44',
+                },
+                {
+                  img: '/assets/images/swapToken/eth.svg',
+                  label: '253.63 USDC',
+                  sub: '$ 253.44',
+                },
+              ].map((t, i) => (
+                <React.Fragment key={t.img}>
+                  <Box
+                    sx={{
+                      bgcolor: '#fff',
+                      height: { xs: '210px', md: '150px' },
+                      width: { xs: '100%', sm: '200px' },
+                      maxWidth: { xs: 'none', sm: '200px' },
+                      borderRadius: 3,
+                      p: { xs: '12px', md: '16px' },
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                    }}
+                  >
+                    <img
+                      src={t.img}
+                      alt=''
+                      style={{
+                        marginBottom: '8px',
+                        display: 'block',
+                        margin: '0 auto 8px auto',
+                      }}
+                    />
+                    <Typography sx={{ color: '#000', fontWeight: 'bold' }}>
+                      {t.label}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#000',
+                        opacity: 0.4,
+                        fontSize: '14px',
+                      }}
+                    >
+                      {t.sub}
+                    </Typography>
+                  </Box>
+                  {i === 0 && (
+                    <Box
+                      sx={{
+                        bgcolor: '#fff',
+                        height: { xs: '80px', md: '100px' },
+                        width: { xs: '80px', md: '100px' },
+                        borderRadius: '100%',
+                        position: { xs: 'absolute' },
+                        top: { md: '50%' },
+                        left: { md: '50%' },
+                        transform: { md: 'translate(-50%, -50%)' },
+                        border: (theme) =>
+                          `8px solid ${
+                            theme.palette.mode === 'dark' ? '#10254A' : '#F0F8FF'
+                          }`,
+                        alignSelf: { xs: 'center' },
+                        my: { xs: 1, md: 0 },
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: { xs: '16px', sm: '20px', md: '24px' },
+                        zIndex: 1,
+                      }}
+                    />
+                  )}
+                </React.Fragment>
+              ))}
             </Box>
 
             {/* <Box
@@ -565,48 +545,22 @@ export default function CrossChainSection(isDarkMode) {
                       Unidex
                     </Typography>
                     <List dense>
-                      <ListItem>
-                        <ListItemIcon>
-                          <CheckIcon sx={{ color: '#b3b3b3' }} />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary='Aggregated liquidity'
-                          sx={{
-                            color: '#b3b3b3',
-                            '& .MuiListItemText-primary': {
-                              fontSize: { xs: '0.875rem', md: '1rem' },
-                            },
-                          }}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemIcon>
-                          <CheckIcon sx={{ color: '#b3b3b3' }} />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary='Trustless'
-                          sx={{
-                            color: '#b3b3b3',
-                            '& .MuiListItemText-primary': {
-                              fontSize: { xs: '0.875rem', md: '1rem' },
-                            },
-                          }}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemIcon>
-                          <CheckIcon sx={{ color: '#b3b3b3' }} />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary='Non-custodial'
-                          sx={{
-                            color: '#b3b3b3',
-                            '& .MuiListItemText-primary': {
-                              fontSize: { xs: '0.875rem', md: '1rem' },
-                            },
-                          }}
-                        />
-                      </ListItem>
+                      {['Aggregated liquidity', 'Trustless', 'Non-custodial'].map((text) => (
+                        <ListItem key={text}>
+                          <ListItemIcon>
+                            <CheckIcon sx={{ color: '#b3b3b3' }} />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={text}
+                            sx={{
+                              color: '#b3b3b3',
+                              '& .MuiListItemText-primary': {
+                                fontSize: { xs: '0.875rem', md: '1rem' },
+                              },
+                            }}
+                          />
+                        </ListItem>
+                      ))}
                     </List>
                   </Box>
 
@@ -623,43 +577,34 @@ export default function CrossChainSection(isDarkMode) {
                       Other Dex
                     </Typography>
                     <List dense>
-                      <ListItem>
-                        <ListItemIcon>
-                          <CloseIcon sx={{ color: '#b3b3b3' }} />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary='Fragmented liquidity'
-                          sx={{ color: '#b3b3b3' }}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemIcon>
-                          <CloseIcon sx={{ color: '#b3b3b3' }} />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary='Requires deposits'
-                          sx={{
+                      {[
+                        { text: 'Fragmented liquidity', sx: { color: '#b3b3b3' } },
+                        {
+                          text: 'Requires deposits',
+                          sx: {
                             color: '#b3b3b3',
                             '& .MuiListItemText-primary': {
                               fontSize: { xs: '0.875rem', md: '1rem' },
                             },
-                          }}
-                        />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemIcon>
-                          <CloseIcon sx={{ color: '#b3b3b3' }} />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary='Custodial apps'
-                          sx={{
+                          },
+                        },
+                        {
+                          text: 'Custodial apps',
+                          sx: {
                             color: '#b3b3b3',
                             '& .MuiListItemText-primary': {
                               fontSize: { xs: '0.875rem', md: '1rem' },
                             },
-                          }}
-                        />
-                      </ListItem>
+                          },
+                        },
+                      ].map(({ text, sx }) => (
+                        <ListItem key={text}>
+                          <ListItemIcon>
+                            <CloseIcon sx={{ color: '#b3b3b3' }} />
+                          </ListItemIcon>
+                          <ListItemText primary={text} sx={sx} />
+                        </ListItem>
+                      ))}
                     </List>
                   </Box>
                 </Box>

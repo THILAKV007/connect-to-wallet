@@ -14,10 +14,12 @@ import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Link } from 'react-router-dom'
+import ConnectWalletModal from './ConnectWalletModal'
 
 function Header({ toggleTheme, isDarkMode }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [connectModalOpen, setConnectModalOpen] = useState(false)
   const open = Boolean(anchorEl)
 
   const handleClick = (event) => {
@@ -54,11 +56,13 @@ function Header({ toggleTheme, isDarkMode }) {
         {/* Logo */}
         <Typography
           variant='h5'
-          component='div'
+          component={Link}
+          to='/'
           sx={{
             fontWeight: 700,
             color: '#2196f3',
             fontSize: '1.5rem',
+            textDecoration: 'none',
           }}
         >
           UNIDEX
@@ -140,6 +144,7 @@ function Header({ toggleTheme, isDarkMode }) {
           {/* Connect to Wallet Button (Desktop only) */}
           <Button
             variant='contained'
+            onClick={() => setConnectModalOpen(true)}
             sx={{
               display: { xs: 'none', sm: 'block' }, // Hide on small screens to place in drawer
               backgroundColor: '#2196f3',
@@ -304,6 +309,7 @@ function Header({ toggleTheme, isDarkMode }) {
           >
             <Button
               variant='contained'
+              onClick={() => setConnectModalOpen(true)}
               sx={{
                 backgroundColor: '#2196f3',
                 color: '#ffffff',
@@ -340,6 +346,11 @@ function Header({ toggleTheme, isDarkMode }) {
           </Box>
         </Box>
       </Drawer>
+      <ConnectWalletModal
+        open={connectModalOpen}
+        onClose={() => setConnectModalOpen(false)}
+        isDarkMode={isDarkMode}
+      />
     </AppBar>
   )
 }

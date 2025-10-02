@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Box, Typography, Button, IconButton } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import CloseIcon from '@mui/icons-material/Close'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation'
@@ -9,47 +9,41 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import LinkIcon from '@mui/icons-material/Link'
 
 const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
-  const navigate = useNavigate()
-
-  const handleFeatureClick = (url) => {
-    navigate(url)
-    onClose()
-  }
   const features = [
     {
       icon: <SwapHorizIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
       title: 'Swap Token',
       description: 'Connect a wallet to your Unidex account',
       bgColor: '#4FC3F7',
-      url: '/swap-token',
+      path: '/swap-token',
     },
     {
       icon: <LocalGasStationIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
       title: 'Gasless Swaps',
       description: 'Connect a wallet to your Unidex account',
       bgColor: '#29B6F6',
-      url: '/gasless-swaps',
+      path: '/gasless-swaps',
     },
     {
       icon: <OpacityIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
       title: 'Liquidity Source',
       description: 'Connect a wallet to your Unidex account',
       bgColor: '#42A5F5',
-      url: '/liquidity-source',
+      path: '/liquidity-source',
     },
     {
       icon: <TrendingUpIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
       title: 'Limit Orders',
       description: 'Connect a wallet to your Unidex account',
       bgColor: '#1E88E5',
-      url: '/limit-orders',
+      path: '/limit-orders',
     },
     {
       icon: <LinkIcon sx={{ fontSize: 24, color: '#ffffff' }} />,
       title: 'Cross Chains',
       description: 'Connect a wallet to your Unidex account',
       bgColor: '#1976D2',
-      url: '/cross-chains',
+      path: '/cross-chains',
     },
   ]
 
@@ -63,7 +57,7 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
         justifyContent: { xs: 'center', sm: 'flex-end' },
         p: { xs: 2, sm: 2 },
         pt: { xs: 2, sm: 8 },
-        pr: { xs: 2, sm: 30 },
+        pr: { xs: 2, sm: 13 },
         pl: { xs: 2, sm: 0 },
         pb: { xs: 2, sm: 0 },
       }}
@@ -109,7 +103,7 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
                 fontSize: { xs: '18px', sm: '20px' },
               }}
             >
-              Create Wallet
+              Connect Wallet
             </Typography>
             <IconButton
               onClick={onClose}
@@ -157,8 +151,9 @@ const CreateWalletModal = ({ open, onClose, isDarkMode }) => {
             {features.map((feature, index) => (
               <Button
                 key={index}
+                component={Link}
+                to={feature.path}
                 fullWidth
-                onClick={() => handleFeatureClick(feature.url)}
                 sx={{
                   display: 'flex',
                   alignItems: 'center',

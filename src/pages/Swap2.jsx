@@ -612,7 +612,9 @@ const Swap2 = ({ isDarkMode }) => {
                     }}
                   >
                     1 Hour
-                    <span style={{ marginLeft: '8px', fontSize: '0.8rem' }}>▼</span>
+                    <span style={{ marginLeft: '8px', fontSize: '0.8rem' }}>
+                      ▼
+                    </span>
                   </Button>
                 </Box>
 
@@ -845,7 +847,7 @@ const Swap2 = ({ isDarkMode }) => {
                         textTransform: 'none',
                         borderRadius: 0,
                         border: 'none',
-                        backgroundColor: '#1C3259',
+                        // backgroundColor: '#1C3259',
                         minHeight: { xs: '44px', sm: 'auto' },
                         color:
                           activeTab === index
