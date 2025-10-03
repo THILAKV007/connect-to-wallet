@@ -24,10 +24,21 @@ import Features from './Menu/Features'
 import Company from './Menu/Company'
 import BlogDetails from './Menu/BlogDetails'
 import TradeHistory from './Menu/TradeHistory'
+import Home1 from './pages/Home1'
+import Home2 from './pages/Home2'
+import Home3 from './pages/Home3'
 
 function AppContent({ isDarkMode, toggleTheme }) {
   const location = useLocation()
-  const hiddenFooterRoutes = ['/trading', '/swap1', '/swap2', '/swap3']
+  const hiddenFooterRoutes = [
+    '/trading',
+    '/swap1',
+    '/swap2',
+    '/swap3',
+    '/home1',
+    '/home2',
+    '/home3',
+  ]
   const shouldHideFooter = hiddenFooterRoutes.includes(location.pathname)
 
   return (
@@ -42,6 +53,9 @@ function AppContent({ isDarkMode, toggleTheme }) {
         <Route path='/swap1' element={<Swap1 isDarkMode={isDarkMode} />} />
         <Route path='/swap2' element={<Swap2 isDarkMode={isDarkMode} />} />
         <Route path='/swap3' element={<Swap3 isDarkMode={isDarkMode} />} />
+        <Route path='/home1' element={<Home1 isDarkMode={isDarkMode} />} />
+        <Route path='/home2' element={<Home2 isDarkMode={isDarkMode} />} />
+        <Route path='/home3' element={<Home3 isDarkMode={isDarkMode} />} />
         <Route path='/src/Menu/Menu.jsx' element={<MenuDot />} />
         <Route
           path='/swap-token'
