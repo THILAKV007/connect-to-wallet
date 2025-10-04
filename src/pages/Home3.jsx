@@ -180,34 +180,24 @@ const Home3 = ({ isDarkMode }) => {
                     sx={{
                       width: 64,
                       height: 64,
-                      borderRadius: '50%',
+
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      background: isDarkMode
-                        ? 'rgba(255,255,255,0.08)'
-                        : 'rgba(0,0,0,0.06)',
-                      border: isDarkMode
-                        ? '1px solid rgba(255,255,255,0.12)'
-                        : '1px solid rgba(0,0,0,0.12)',
-                      mb: 1.5,
                     }}
                   >
                     {/* Shield + check icon */}
-                    <svg width='28' height='28' viewBox='0 0 24 24' fill='none'>
-                      <path
-                        d='M12 2l7 4v6c0 5-3.8 8.4-7 10-3.2-1.6-7-5-7-10V6l7-4z'
-                        stroke={isDarkMode ? '#9AD1FF' : '#1E3A8A'}
-                        strokeWidth='1.5'
-                      />
-                      <path
-                        d='M9 12l2 2 4-4'
-                        stroke={isDarkMode ? '#9AD1FF' : '#1E3A8A'}
-                        strokeWidth='1.8'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      />
-                    </svg>
+                    <Box
+                      component='img'
+                      src='assets/images/Home/shield-tick.png'
+                      alt='hero background decor'
+                      sx={{
+                        width: '60px',
+                        height: '60px',
+                        opacity: 1,
+                        zIndex: 0,
+                      }}
+                    />
                   </Box>
                   <Typography
                     sx={{
@@ -373,7 +363,25 @@ const Home3 = ({ isDarkMode }) => {
                   minHeight: { xs: 180, md: 200 },
                 }}
               >
-                <Box sx={{ textAlign: 'center' }}>
+                <Box sx={{ textAlign: 'center', position: 'relative' }}>
+                  <Box
+                    component='img'
+                    src='assets/images/Home/extreme_liquidity_bg.svg'
+                    alt='hero background decor'
+                    sx={{
+                      position: 'absolute',
+                      left: '50%',
+                      bottom: -45,
+                      transform: {
+                        xs: 'translate(-50%, 0)',
+                        md: 'translateX(-50%)',
+                      },
+                      width: '250px',
+                      height: '250px',
+                      opacity: 1,
+                      zIndex: 0,
+                    }}
+                  />
                   <svg width='220' height='120' viewBox='0 0 220 120'>
                     <path
                       d='M 30 110 A 80 80 0 0 1 190 110'
@@ -383,26 +391,28 @@ const Home3 = ({ isDarkMode }) => {
                       strokeLinecap='round'
                     />
                   </svg>
-                  <Typography
-                    sx={{
-                      color: isDarkMode ? '#ffffff' : '#061536',
-                      fontWeight: 700,
-                      fontSize: { xs: '20px', md: '22px' },
-                      mt: 1,
-                    }}
-                  >
-                    10/10
-                  </Typography>
-                  <Typography
-                    sx={{
-                      color: '#1EF655',
-                      fontWeight: 600,
-                      fontSize: { xs: '13px', md: '14px' },
-                      mt: 0.5,
-                    }}
-                  >
-                    Extreme Liquidity
-                  </Typography>
+                  <Box sx={{ mt: -6.5 }}>
+                    <Typography
+                      sx={{
+                        color: isDarkMode ? '#ffffff' : '#061536',
+                        fontWeight: 700,
+                        fontSize: { xs: '20px', md: '22px' },
+                        mt: 1,
+                      }}
+                    >
+                      10/10
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#1EF655',
+                        fontWeight: 600,
+                        fontSize: { xs: '13px', md: '14px' },
+                        mt: 2.5,
+                      }}
+                    >
+                      Extreme Liquidity
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
 
