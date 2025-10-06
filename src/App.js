@@ -27,6 +27,7 @@ import TradeHistory from './Menu/TradeHistory'
 import Home1 from './pages/Home1'
 import Home2 from './pages/Home2'
 import Home3 from './pages/Home3'
+import Home4 from './pages/Home4'
 
 function AppContent({ isDarkMode, toggleTheme }) {
   const location = useLocation()
@@ -56,6 +57,7 @@ function AppContent({ isDarkMode, toggleTheme }) {
         <Route path='/home1' element={<Home1 isDarkMode={isDarkMode} />} />
         <Route path='/home2' element={<Home2 isDarkMode={isDarkMode} />} />
         <Route path='/home3' element={<Home3 isDarkMode={isDarkMode} />} />
+        <Route path='/home4' element={<Home4 isDarkMode={isDarkMode} />} />
         <Route path='/src/Menu/Menu.jsx' element={<MenuDot />} />
         <Route
           path='/swap-token'
