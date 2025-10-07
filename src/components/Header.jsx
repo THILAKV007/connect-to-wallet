@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   AppBar,
   Toolbar,
@@ -20,6 +20,7 @@ function Header({ toggleTheme, isDarkMode }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [connectModalOpen, setConnectModalOpen] = useState(false)
+  const [account, setAccount] = useState(null)
   const open = Boolean(anchorEl)
 
   const handleClick = (event) => {
@@ -32,6 +33,41 @@ function Header({ toggleTheme, isDarkMode }) {
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open)
   }
+
+  // Attempt MetaMask connection
+  const connectMetaMask = async () => {
+    try {
+      const { ethereum } = window
+      if (!ethereum) {
+        // Fallback: open existing modal if MetaMask is not available
+        setConnectModalOpen(true)
+        return
+      }
+      const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+      if (accounts && accounts.length > 0) {
+        setAccount(accounts[0])
+      }
+    } catch (err) {
+      console.error('MetaMask connection failed:', err)
+    }
+  }
+
+  useEffect(() => {
+    const { ethereum } = window
+    if (!ethereum) return
+    const handleAccountsChanged = (accounts) => {
+      setAccount(accounts && accounts.length ? accounts[0] : null)
+    }
+    ethereum.on('accountsChanged', handleAccountsChanged)
+    return () => {
+      try {
+        ethereum.removeListener('accountsChanged', handleAccountsChanged)
+      } catch (_) {}
+    }
+  }, [])
+
+  const truncateAddress = (addr) =>
+    addr ? `${addr.substring(0, 6)}...${addr.substring(addr.length - 4)}` : ''
 
   const navLinks = [
     { name: 'Features', to: '/title6' },
@@ -144,7 +180,7 @@ function Header({ toggleTheme, isDarkMode }) {
           {/* Connect to Wallet Button (Desktop only) */}
           <Button
             variant='contained'
-            onClick={() => setConnectModalOpen(true)}
+            onClick={connectMetaMask}
             sx={{
               display: { xs: 'none', sm: 'block' }, // Hide on small screens to place in drawer
               backgroundColor: '#2196f3',
@@ -157,7 +193,7 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-            Connect to Wallet
+            {account ? truncateAddress(account) : 'Connect to Wallet'}
           </Button>
         </Box>
       </Toolbar>
@@ -309,7 +345,7 @@ function Header({ toggleTheme, isDarkMode }) {
           >
             <Button
               variant='contained'
-              onClick={() => setConnectModalOpen(true)}
+              onClick={connectMetaMask}
               sx={{
                 backgroundColor: '#2196f3',
                 color: '#ffffff',
@@ -321,7 +357,7 @@ function Header({ toggleTheme, isDarkMode }) {
                 },
               }}
             >
-              Connect to Wallet
+              {account ? truncateAddress(account) : 'Connect to Wallet'}
             </Button>
             <Button
               variant='outlined'
