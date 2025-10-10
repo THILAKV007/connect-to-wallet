@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Box,
   Typography,
@@ -12,6 +12,7 @@ import {
   Tabs,
   Tab,
   Select,
+  Menu,
   MenuItem,
   FormControl,
   Avatar,
@@ -41,6 +42,19 @@ const Swap1 = ({ isDarkMode }) => {
   const [slippage, setSlippage] = useState('0.5')
   const [limitPrice, setLimitPrice] = useState('')
   const [expiry, setExpiry] = useState('1h')
+
+  // 0x integration state
+  const OX_API_KEY = process.env.REACT_APP_OX_API_KEY
+  const [sellTokenSymbol, setSellTokenSymbol] = useState('ETH')
+  const [buyTokenSymbol, setBuyTokenSymbol] = useState('USDC')
+  const [quote, setQuote] = useState(null)
+  const [isFetchingQuote, setIsFetchingQuote] = useState(false)
+  const [swapError, setSwapError] = useState('')
+  const [account, setAccount] = useState(null)
+  const [tokens, setTokens] = useState([])
+  const [isLoadingTokens, setIsLoadingTokens] = useState(false)
+  const [sellTokenAnchorEl, setSellTokenAnchorEl] = useState(null)
+  const [buyTokenAnchorEl, setBuyTokenAnchorEl] = useState(null)
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue)
@@ -118,6 +132,295 @@ const Swap1 = ({ isDarkMode }) => {
       )
     }
     return null
+  }
+
+  // Helper: truncate address
+  const truncateAddress = (addr) =>
+    addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : ''
+
+  // Connect MetaMask (page-level convenience)
+  const connectMetaMask = async () => {
+    try {
+      const { ethereum } = window
+      if (!ethereum) {
+        setSwapError('MetaMask not detected')
+        return
+      }
+      const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+      if (accounts && accounts.length > 0) {
+        setAccount(accounts[0])
+      }
+    } catch (err) {
+      console.error('MetaMask connection failed:', err)
+      setSwapError('Failed to connect wallet')
+    }
+  }
+
+  // Fetch supported tokens from 0x API (Ethereum mainnet)
+  useEffect(() => {
+    const fetchTokens = async () => {
+      try {
+        setIsLoadingTokens(true)
+        const res = await fetch('https://api.0x.org/swap/v1/tokens', {
+          method: 'GET',
+          headers: {
+            '0x-api-key': OX_API_KEY || '',
+            Accept: 'application/json',
+          },
+          mode: 'cors',
+          cache: 'no-store',
+          referrerPolicy: 'no-referrer',
+        })
+        if (!res.ok) {
+          const txt = await res.text()
+          throw new Error(txt || `0x tokens error: ${res.status}`)
+        }
+        const data = await res.json()
+        // Dedupe by symbol and sort alphabetically
+        const seen = new Set()
+        const list = []
+        ;(data?.records || []).forEach((t) => {
+          const sym = t.symbol?.trim()
+          if (!sym || seen.has(sym)) return
+          seen.add(sym)
+          list.push({
+            symbol: sym,
+            address: t.address,
+            decimals: t.decimals,
+            name: t.name,
+            logoURI: t.logoURI,
+          })
+        })
+        list.sort((a, b) => a.symbol.localeCompare(b.symbol))
+        setTokens(list)
+      } catch (err) {
+        console.error('fetch tokens error:', err)
+
+        setTokens([
+          {
+            symbol: 'ETH',
+            address: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+            decimals: 18,
+          },
+          {
+            symbol: 'USDC',
+            address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+            decimals: 6,
+          },
+          {
+            symbol: 'DAI',
+            address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+            decimals: 18,
+          },
+          {
+            symbol: 'WETH',
+            address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+            decimals: 18,
+          },
+        ])
+      } finally {
+        setIsLoadingTokens(false)
+      }
+    }
+    fetchTokens()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Token dropdown handlers
+  const openSellMenu = (e) => setSellTokenAnchorEl(e.currentTarget)
+  const closeSellMenu = () => setSellTokenAnchorEl(null)
+  const openBuyMenu = (e) => setBuyTokenAnchorEl(e.currentTarget)
+  const closeBuyMenu = () => setBuyTokenAnchorEl(null)
+  const handleSelectSellToken = (sym) => {
+    setSellTokenSymbol(sym)
+    closeSellMenu()
+  }
+  const handleSelectBuyToken = (sym) => {
+    setBuyTokenSymbol(sym)
+    closeBuyMenu()
+  }
+
+  // Render token icon with logo if available, else stylized initial
+  const renderTokenIcon = (symbol) => {
+    const meta = tokens.find((t) => t.symbol === symbol)
+    const logo = meta?.logoURI
+    if (logo) {
+      return (
+        <Avatar
+          src={logo}
+          alt={symbol}
+          sx={{ width: 24, height: 24, borderRadius: '50%' }}
+        />
+      )
+    }
+    return (
+      <Box
+        sx={{
+          width: 24,
+          height: 24,
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#ffffff',
+          fontSize: '0.7rem',
+          fontWeight: 700,
+        }}
+      >
+        {symbol?.slice(0, 1) || '?'}
+      </Box>
+    )
+  }
+
+  useEffect(() => {
+    const { ethereum } = window
+    if (!ethereum) return
+    const handler = (accs) => setAccount(accs && accs.length ? accs[0] : null)
+    ethereum.on('accountsChanged', handler)
+    return () => {
+      try {
+        ethereum.removeListener('accountsChanged', handler)
+      } catch {}
+    }
+  }, [])
+
+  // Convert human amount to base units (simplified)
+  const toBaseUnit = (amount, decimals = 18) => {
+    if (!amount || isNaN(parseFloat(amount))) return '0'
+    const [whole, fraction = ''] = amount.split('.')
+    const fracPadded = (fraction + '0'.repeat(decimals)).slice(0, decimals)
+    const baseStr = `${whole}${fracPadded}`.replace(/^0+/, '')
+    return baseStr.length ? baseStr : '0'
+  }
+
+  // Convert base units to human display (simplified)
+  const fromBaseUnit = (baseStr, decimals = 18) => {
+    if (!baseStr) return '0'
+    const str = baseStr.toString()
+    const pad = decimals - str.length
+    const padded = pad > 0 ? '0'.repeat(pad) + str : str
+    const i = padded.length - decimals
+    const whole = i > 0 ? padded.slice(0, i) : '0'
+    const frac = i > 0 ? padded.slice(i) : padded
+    const trimmedFrac = frac.replace(/0+$/, '')
+    return trimmedFrac ? `${whole}.${trimmedFrac}` : whole
+  }
+
+  // Fetch 0x quote
+  const fetch0xQuote = async () => {
+    try {
+      setSwapError('')
+      setIsFetchingQuote(true)
+      // Guard: ensure API key exists to avoid preflight failures
+      if (!OX_API_KEY) {
+        setIsFetchingQuote(false)
+        setSwapError(
+          'Missing 0x API key. Check .env.local and restart dev server.'
+        )
+        return
+      }
+      const sellAmountWei = toBaseUnit(
+        sellAmount || '0',
+        sellTokenSymbol === 'ETH' ? 18 : 18
+      )
+      const params = new URLSearchParams({
+        sellToken: sellTokenSymbol,
+        buyToken: buyTokenSymbol,
+        sellAmount: sellAmountWei,
+      })
+      // apply slippage if numeric
+      const slippageNum =
+        typeof slippage === 'number' ? slippage : parseFloat(slippage)
+      if (!isNaN(slippageNum)) {
+        params.append('slippagePercentage', (slippageNum / 100).toString())
+      }
+      if (account) params.append('takerAddress', account)
+      // Default to mainnet
+      const res = await fetch(
+        `https://api.0x.org/swap/v1/quote?${params.toString()}`,
+        {
+          method: 'GET',
+          headers: {
+            '0x-api-key': OX_API_KEY,
+            Accept: 'application/json',
+          },
+          mode: 'cors',
+          cache: 'no-store',
+          referrerPolicy: 'no-referrer',
+        }
+      )
+      if (!res.ok) {
+        const txt = await res.text()
+        throw new Error(txt || `0x quote error: ${res.status}`)
+      }
+      const data = await res.json()
+      setQuote(data)
+    } catch (err) {
+      console.error('fetch0xQuote error:', err)
+      setQuote(null)
+      const msg = err?.message || 'Failed to fetch quote'
+      // Clarify common local dev causes
+      setSwapError(
+        msg.includes('Failed to fetch')
+          ? 'Network/CORS error: request blocked. Disable ad-block/VPN or check firewall.'
+          : msg
+      )
+    } finally {
+      setIsFetchingQuote(false)
+    }
+  }
+
+  // Auto-fetch quote on sell amount changes (debounced)
+  useEffect(() => {
+    if (
+      !sellAmount ||
+      isNaN(parseFloat(sellAmount)) ||
+      Number(sellAmount) <= 0
+    ) {
+      setQuote(null)
+      return
+    }
+    const id = setTimeout(() => {
+      fetch0xQuote()
+    }, 500)
+    return () => clearTimeout(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sellAmount, account, sellTokenSymbol, buyTokenSymbol, slippage])
+
+  // Reflect quote into Buy amount display (USDC assumed 6 decimals when selected)
+  useEffect(() => {
+    if (!quote) return
+    const decimals = buyTokenSymbol === 'USDC' ? 6 : 18
+    const estBuy = fromBaseUnit(quote.buyAmount, decimals)
+    setBuyAmount(estBuy)
+  }, [quote, buyTokenSymbol])
+
+  // Execute 0x swap via MetaMask
+  const execute0xSwap = async () => {
+    try {
+      setSwapError('')
+      if (!quote) throw new Error('No quote available')
+      const { ethereum } = window
+      if (!ethereum) throw new Error('MetaMask not detected')
+      const from =
+        account ||
+        (await ethereum.request({ method: 'eth_requestAccounts' }))[0]
+      const txParams = {
+        from,
+        to: quote.to,
+        data: quote.data,
+        value: quote.value || '0x0',
+      }
+      const txHash = await ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [txParams],
+      })
+      console.log('0x swap txHash:', txHash)
+    } catch (err) {
+      console.error('execute0xSwap error:', err)
+      setSwapError(err?.message || 'Swap failed')
+    }
   }
 
   return (
@@ -857,24 +1160,9 @@ const Swap1 = ({ isDarkMode }) => {
                             background: 'rgba(0, 0, 0, 0.05)',
                           },
                         }}
+                        onClick={openSellMenu}
                       >
-                        <Box
-                          sx={{
-                            width: 24,
-                            height: 24,
-                            borderRadius: '50%',
-                            background:
-                              'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#ffffff',
-                            fontSize: '0.7rem',
-                            fontWeight: 700,
-                          }}
-                        >
-                          ♦
-                        </Box>
+                        {renderTokenIcon(sellTokenSymbol)}
                         <Typography
                           sx={{
                             color: '#000000',
@@ -886,7 +1174,7 @@ const Swap1 = ({ isDarkMode }) => {
                             fontWeight: 600,
                           }}
                         >
-                          ETH
+                          {sellTokenSymbol}
                         </Typography>
                         <KeyboardArrowDownIcon
                           sx={{
@@ -895,6 +1183,24 @@ const Swap1 = ({ isDarkMode }) => {
                           }}
                         />
                       </Box>
+                      <Menu
+                        anchorEl={sellTokenAnchorEl}
+                        open={Boolean(sellTokenAnchorEl)}
+                        onClose={closeSellMenu}
+                        PaperProps={{ sx: { maxHeight: 300 } }}
+                      >
+                        {isLoadingTokens && (
+                          <MenuItem disabled>Loading…</MenuItem>
+                        )}
+                        {tokens.map((t) => (
+                          <MenuItem
+                            key={`sell-${t.symbol}`}
+                            onClick={() => handleSelectSellToken(t.symbol)}
+                          >
+                            {t.symbol}
+                          </MenuItem>
+                        ))}
+                      </Menu>
                     </Box>
                     <Typography
                       variant='caption'
@@ -1038,24 +1344,9 @@ const Swap1 = ({ isDarkMode }) => {
                             background: 'rgba(0, 0, 0, 0.05)',
                           },
                         }}
+                        onClick={openBuyMenu}
                       >
-                        <Box
-                          sx={{
-                            width: 24,
-                            height: 24,
-                            borderRadius: '50%',
-                            background:
-                              'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#ffffff',
-                            fontSize: '0.7rem',
-                            fontWeight: 700,
-                          }}
-                        >
-                          ♦
-                        </Box>
+                        {renderTokenIcon(buyTokenSymbol)}
                         <Typography
                           sx={{
                             color: '#000000',
@@ -1063,7 +1354,7 @@ const Swap1 = ({ isDarkMode }) => {
                             fontWeight: 600,
                           }}
                         >
-                          ETH
+                          {buyTokenSymbol}
                         </Typography>
                         <KeyboardArrowDownIcon
                           sx={{
@@ -1072,6 +1363,24 @@ const Swap1 = ({ isDarkMode }) => {
                           }}
                         />
                       </Box>
+                      <Menu
+                        anchorEl={buyTokenAnchorEl}
+                        open={Boolean(buyTokenAnchorEl)}
+                        onClose={closeBuyMenu}
+                        PaperProps={{ sx: { maxHeight: 300 } }}
+                      >
+                        {isLoadingTokens && (
+                          <MenuItem disabled>Loading…</MenuItem>
+                        )}
+                        {tokens.map((t) => (
+                          <MenuItem
+                            key={`buy-${t.symbol}`}
+                            onClick={() => handleSelectBuyToken(t.symbol)}
+                          >
+                            {t.symbol}
+                          </MenuItem>
+                        ))}
+                      </Menu>
                     </Box>
                     <Typography
                       variant='caption'
@@ -1085,6 +1394,14 @@ const Swap1 = ({ isDarkMode }) => {
                     </Typography>
                   </Box>
                 </Box>
+                {/* Background 0x logic wired without changing UI */}
+                {swapError && (
+                  <Typography
+                    sx={{ mt: 1, color: '#ef4444', fontSize: '0.85rem' }}
+                  >
+                    {swapError}
+                  </Typography>
+                )}
 
                 {/* Slippage Tolerance */}
                 <Box sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}>
@@ -1296,6 +1613,9 @@ const Swap1 = ({ isDarkMode }) => {
                   fullWidth
                   variant='contained'
                   size='large'
+                  onClick={() =>
+                    account ? execute0xSwap() : connectMetaMask()
+                  }
                   sx={{
                     mt: { xs: 3, sm: 4 },
                     py: { xs: 2, sm: 2.5 },
@@ -1316,7 +1636,9 @@ const Swap1 = ({ isDarkMode }) => {
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 >
-                  Connect Ethereum Wallet
+                  {account
+                    ? `Connected: ${truncateAddress(account)}`
+                    : 'Connect Ethereum Wallet'}
                 </Button>
               </CardContent>
             </Card>
