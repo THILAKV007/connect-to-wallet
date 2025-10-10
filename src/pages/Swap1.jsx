@@ -60,12 +60,6 @@ const Swap1 = ({ isDarkMode }) => {
     setActiveTab(newValue)
   }
 
-  // Mock data for demonstration
-  const currentPrice = 9209.0
-  const priceChange = 2.45
-  const volume24h = '1.2B'
-  const marketCap = '180.5B'
-
   // Generate realistic trading chart data
   const generateChartData = () => {
     const data = []
@@ -360,6 +354,7 @@ const Swap1 = ({ isDarkMode }) => {
       console.error('fetch0xQuote error:', err)
       setQuote(null)
       const msg = err?.message || 'Failed to fetch quote'
+      console.log('fetch_result: ', msg)
       // Clarify common local dev causes
       setSwapError(
         msg.includes('Failed to fetch')
@@ -416,7 +411,7 @@ const Swap1 = ({ isDarkMode }) => {
         method: 'eth_sendTransaction',
         params: [txParams],
       })
-      console.log('0x swap txHash:', txHash)
+      console.log('0x swap:', txHash)
     } catch (err) {
       console.error('execute0xSwap error:', err)
       setSwapError(err?.message || 'Swap failed')
