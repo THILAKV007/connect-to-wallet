@@ -148,20 +148,16 @@ const Swap1 = ({ isDarkMode }) => {
     }
   }
 
-  // Fetch supported tokens from 0x API (Ethereum mainnet)
+  // Fetch supported tokens via backend proxy (avoids browser CORS)
   useEffect(() => {
     const fetchTokens = async () => {
       try {
         setIsLoadingTokens(true)
-        const res = await fetch('https://api.0x.org/swap/v1/tokens', {
+        const res = await fetch('/api/tokens', {
           method: 'GET',
           headers: {
-            '0x-api-key': OX_API_KEY || '',
             Accept: 'application/json',
           },
-          mode: 'cors',
-          cache: 'no-store',
-          referrerPolicy: 'no-referrer',
         })
         if (!res.ok) {
           const txt = await res.text()
@@ -304,20 +300,77 @@ const Swap1 = ({ isDarkMode }) => {
     try {
       setSwapError('')
       setIsFetchingQuote(true)
-      if (!OX_API_KEY) {
+      // Backend proxy supplies API key; no client-side guard needed
+      const sellTokenMeta = tokens.find((t) => t.symbol === sellTokenSymbol)
+      const buyTokenMeta = tokens.find((t) => t.symbol === buyTokenSymbol)
+      const sellTokenDecimals =
+        sellTokenMeta?.decimals ?? (sellTokenSymbol === 'ETH' ? 18 : 18)
+      const sellAmountWei = toBaseUnit(sellAmount || '0', sellTokenDecimals)
+      // Guard against empty/zero amounts
+      if (!sellAmountWei || String(sellAmountWei) === '0') {
         setIsFetchingQuote(false)
-        setSwapError(
-          'Missing 0x API key. Check .env.local and restart dev server.'
-        )
+        setSwapError('Enter a positive amount in base units')
+        setQuote(null)
         return
       }
-      const sellAmountWei = toBaseUnit(
-        sellAmount || '0',
-        sellTokenSymbol === 'ETH' ? 18 : 18
-      )
+      // Detect chain and prefer native symbol for that chain when selling the native token
+      let chainName = 'ethereum'
+      try {
+        const { ethereum } = window
+        if (ethereum) {
+          const cid = await ethereum.request({ method: 'eth_chainId' })
+          const id = parseInt(cid, 16)
+          chainName =
+            id === 1
+              ? 'ethereum'
+              : id === 137
+              ? 'polygon'
+              : id === 56
+              ? 'bsc'
+              : id === 8453
+              ? 'base'
+              : id === 10
+              ? 'optimism'
+              : id === 42161
+              ? 'arbitrum'
+              : id === 43114
+              ? 'avalanche'
+              : 'ethereum'
+        }
+      } catch {}
+      const nativeSym =
+        chainName === 'polygon'
+          ? 'MATIC'
+          : chainName === 'bsc'
+          ? 'BNB'
+          : chainName === 'avalanche'
+          ? 'AVAX'
+          : 'ETH'
+
+      const wrappedAddressForChain = (name) => {
+        switch (name) {
+          case 'polygon':
+            return '0x0d500B1d8E8e0bD1Dbc0CeaBef6f2F44b7dBfB7e' // WMATIC
+          case 'bsc':
+            return '0xBB4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c' // WBNB
+          case 'avalanche':
+            return '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7' // WAVAX
+          case 'base':
+          case 'optimism':
+          case 'arbitrum':
+          case 'ethereum':
+          default:
+            return '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' // WETH
+        }
+      }
+      const sellTokenParam =
+        sellTokenSymbol === nativeSym
+          ? nativeSym
+          : sellTokenMeta?.address || sellTokenSymbol
+      const buyTokenParam = buyTokenMeta?.address || buyTokenSymbol
       const params = new URLSearchParams({
-        sellToken: sellTokenSymbol,
-        buyToken: buyTokenSymbol,
+        sellToken: sellTokenParam,
+        buyToken: buyTokenParam,
         sellAmount: sellAmountWei,
       })
       // apply slippage if numeric
@@ -327,37 +380,107 @@ const Swap1 = ({ isDarkMode }) => {
         params.append('slippagePercentage', (slippageNum / 100).toString())
       }
       if (account) params.append('takerAddress', account)
-      // Default to mainnet
-      const res = await fetch(
-        `https://api.0x.org/swap/v1/quote?${params.toString()}`,
-        {
-          method: 'GET',
-          headers: {
-            '0x-api-key': OX_API_KEY,
-            Accept: 'application/json',
-          },
-          mode: 'cors',
-          cache: 'no-store',
-          referrerPolicy: 'no-referrer',
+      // Include chain for proxy routing
+      try {
+        const { ethereum } = window
+        if (ethereum) {
+          const cid = await ethereum.request({ method: 'eth_chainId' })
+          const id = parseInt(cid, 16)
+          const name =
+            id === 1
+              ? 'ethereum'
+              : id === 137
+              ? 'polygon'
+              : id === 56
+              ? 'bsc'
+              : id === 8453
+              ? 'base'
+              : id === 10
+              ? 'optimism'
+              : id === 42161
+              ? 'arbitrum'
+              : id === 43114
+              ? 'avalanche'
+              : 'ethereum'
+          params.append('chain', name)
         }
-      )
+      } catch {}
+      // const requestUrl = `/api/quote?${params.toString()}`
+      const requestUrl = `/api/quote?${params.toString()}`
+      console.log('Requesting quote from 0x via proxy:', requestUrl)
+      const res = await fetch(requestUrl, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+        },
+      })
       if (!res.ok) {
         const txt = await res.text()
-        throw new Error(txt || `0x quote error: ${res.status}`)
+        // Attempt a fallback using the wrapped native token ADDRESS if route not found
+        let parsed
+        try {
+          parsed = JSON.parse(txt)
+        } catch {}
+        const message = parsed?.message || txt || ''
+        const noRoute = /no\s*route\s*matched/i.test(message)
+        const isSellingNative = sellTokenSymbol === nativeSym
+        if (noRoute && isSellingNative) {
+          const wrappedSym =
+            chainName === 'polygon'
+              ? 'WMATIC'
+              : chainName === 'bsc'
+              ? 'WBNB'
+              : chainName === 'avalanche'
+              ? 'WAVAX'
+              : 'WETH'
+
+          // Prefer address from our token list for the wrapped token
+          const wrappedMeta = tokens.find((t) => t.symbol === wrappedSym)
+          const wrappedParam = wrappedMeta?.address || wrappedAddressForChain(chainName)
+
+          const retryParams = new URLSearchParams(params)
+          retryParams.set('sellToken', wrappedParam)
+          const retryUrl = `/api/quote?${retryParams.toString()}`
+          console.log('No route for native token; retrying with wrapped:', retryUrl)
+          const retryRes = await fetch(retryUrl, {
+            method: 'GET',
+            headers: { Accept: 'application/json' },
+          })
+          if (retryRes.ok) {
+            const retryData = await retryRes.json()
+            setQuote(retryData)
+            return
+          }
+          const retryTxt = await retryRes.text()
+          throw new Error(retryTxt || `0x quote error: ${retryRes.status}`)
+        }
+        throw new Error(message || `0x quote error: ${res.status}`)
       }
       const data = await res.json()
       setQuote(data)
     } catch (err) {
       console.error('fetch0xQuote error:', err)
       setQuote(null)
-      const msg = err?.message || 'Failed to fetch quote'
+      let msg = err?.message || 'Failed to fetch quote'
+
       console.log('fetch_result: ', msg)
-      // Clarify common local dev causes
-      setSwapError(
-        msg.includes('Failed to fetch')
-          ? 'Network/CORS error: request blocked. Disable ad-block/VPN or check firewall.'
-          : msg
-      )
+      // Try to extract JSON error message from 0x
+      try {
+        const parsed = JSON.parse(msg)
+        if (parsed && parsed.message) msg = parsed.message
+      } catch {}
+      // Clarify common causes
+      if (msg.includes('Failed to fetch')) {
+        setSwapError(
+          'Network/CORS error: request blocked. Disable ad-block/VPN or check firewall.'
+        )
+      } else if (msg.toLowerCase().includes('no route matched')) {
+        setSwapError(
+          'No route found for these values. Check token pair, chain, and amount (try larger or smaller).'
+        )
+      } else {
+        setSwapError(msg)
+      }
     } finally {
       setIsFetchingQuote(false)
     }
@@ -383,10 +506,12 @@ const Swap1 = ({ isDarkMode }) => {
   // Reflect quote into Buy amount display (USDC assumed 6 decimals when selected)
   useEffect(() => {
     if (!quote) return
-    const decimals = buyTokenSymbol === 'USDC' ? 6 : 18
-    const estBuy = fromBaseUnit(quote.buyAmount, decimals)
+    const buyDecimals =
+      tokens.find((t) => t.symbol === buyTokenSymbol)?.decimals ??
+      (buyTokenSymbol === 'USDC' ? 6 : 18)
+    const estBuy = fromBaseUnit(quote.buyAmount, buyDecimals)
     setBuyAmount(estBuy)
-  }, [quote, buyTokenSymbol])
+  }, [quote, buyTokenSymbol, tokens])
 
   // Execute 0x swap via MetaMask
   const execute0xSwap = async () => {

@@ -9,6 +9,7 @@ import {
   Menu,
   MenuItem,
   Drawer,
+  CircularProgress,
 } from '@mui/material'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
@@ -21,6 +22,8 @@ function Header({ toggleTheme, isDarkMode }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [connectModalOpen, setConnectModalOpen] = useState(false)
   const [account, setAccount] = useState(null)
+  const [isConnecting, setIsConnecting] = useState(false)
+  const [connectError, setConnectError] = useState('')
   const open = Boolean(anchorEl)
 
   const handleClick = (event) => {
@@ -37,18 +40,25 @@ function Header({ toggleTheme, isDarkMode }) {
   // Attempt MetaMask connection
   const connectMetaMask = async () => {
     try {
+      setConnectError('')
+      setIsConnecting(true)
       const { ethereum } = window
       if (!ethereum) {
         // Fallback: open existing modal if MetaMask is not available
         setConnectModalOpen(true)
+        setIsConnecting(false)
         return
       }
       const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
       if (accounts && accounts.length > 0) {
         setAccount(accounts[0])
       }
+      setIsConnecting(false)
     } catch (err) {
       console.error('MetaMask connection failed:', err)
+      const msg = err?.message || 'Failed to connect wallet'
+      setConnectError(msg)
+      setIsConnecting(false)
     }
   }
 
@@ -181,6 +191,7 @@ function Header({ toggleTheme, isDarkMode }) {
           <Button
             variant='contained'
             onClick={connectMetaMask}
+            disabled={isConnecting}
             sx={{
               display: { xs: 'none', sm: 'block' }, // Hide on small screens to place in drawer
               backgroundColor: '#2196f3',
@@ -193,7 +204,16 @@ function Header({ toggleTheme, isDarkMode }) {
               },
             }}
           >
-            {account ? truncateAddress(account) : 'Connect to Wallet'}
+            {account
+              ? truncateAddress(account)
+              : isConnecting
+              ? (
+                  <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 1 }}>
+                    <CircularProgress size={18} sx={{ color: '#fff' }} />
+                    <span>Connecting...</span>
+                  </Box>
+                )
+              : 'Connect to Wallet'}
           </Button>
         </Box>
       </Toolbar>
@@ -346,6 +366,7 @@ function Header({ toggleTheme, isDarkMode }) {
             <Button
               variant='contained'
               onClick={connectMetaMask}
+              disabled={isConnecting}
               sx={{
                 backgroundColor: '#2196f3',
                 color: '#ffffff',
@@ -357,7 +378,16 @@ function Header({ toggleTheme, isDarkMode }) {
                 },
               }}
             >
-              {account ? truncateAddress(account) : 'Connect to Wallet'}
+              {account
+                ? truncateAddress(account)
+                : isConnecting
+                ? (
+                    <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 1 }}>
+                      <CircularProgress size={18} sx={{ color: '#fff' }} />
+                      <span>Connecting...</span>
+                    </Box>
+                  )
+                : 'Connect to Wallet'}
             </Button>
             <Button
               variant='outlined'
