@@ -27,9 +27,7 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from 'recharts'
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import ShowChartIcon from '@mui/icons-material/ShowChart'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import TimelineIcon from '@mui/icons-material/Timeline'
@@ -306,7 +304,6 @@ const Swap1 = ({ isDarkMode }) => {
     try {
       setSwapError('')
       setIsFetchingQuote(true)
-      // Guard: ensure API key exists to avoid preflight failures
       if (!OX_API_KEY) {
         setIsFetchingQuote(false)
         setSwapError(
