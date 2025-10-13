@@ -13,6 +13,21 @@ if (fs.existsSync(envLocalPath)) {
   dotenv.config()
 }
 
+// Ensure outbound calls to 0x bypass any system HTTP proxy that may hijack DNS
+// This helps avoid corporate/VPN proxies rewriting api.0x.org to reserved IPs
+process.env.NO_PROXY =
+  process.env.NO_PROXY ||
+  [
+    'api.0x.org',
+    '.0x.org',
+    'polygon.api.0x.org',
+    'bsc.api.0x.org',
+    'base.api.0x.org',
+    'optimism.api.0x.org',
+    'arbitrum.api.0x.org',
+    'avalanche.api.0x.org',
+  ].join(',')
+
 const API_KEY = process.env.OX_API_KEY || process.env.REACT_APP_OX_API_KEY
 if (!API_KEY) {
   console.warn('Warning: OX_API_KEY or REACT_APP_OX_API_KEY not set.')
@@ -20,6 +35,21 @@ if (!API_KEY) {
 
 const app = express()
 app.use(cors())
+
+// Helper: map common network errors to actionable hints
+function hintForError(err) {
+  const code = String(err?.code || err?.type || '').toUpperCase()
+  if (code.includes('ECONNREFUSED')) {
+    return 'Backend or upstream refused connection. Verify server is running and firewall allows localhost.'
+  }
+  if (code.includes('ETIMEDOUT') || code.includes('REQUEST-TIMEOUT')) {
+    return 'Timeout to 0x API. Check DNS resolution for api.0x.org, disable VPN/proxy/ad-blockers, or set NO_PROXY.'
+  }
+  if (code.includes('ENOTFOUND')) {
+    return 'DNS resolution failed. Change DNS to 1.1.1.1/8.8.8.8 and flush DNS cache.'
+  }
+  return 'Unexpected network error. See server logs for details.'
+}
 
 // Map chain name/id to correct 0x API base URL
 function get0xBaseUrl(chain) {
@@ -70,6 +100,8 @@ app.get('/api/tokens', async (req, res) => {
         '0x-api-key': API_KEY || '',
         Accept: 'application/json',
       },
+      // Guard against hanging connections
+      timeout: 10000,
     })
     const contentType = response.headers.get('content-type') || ''
     const body = contentType.includes('application/json')
@@ -78,7 +110,15 @@ app.get('/api/tokens', async (req, res) => {
     res.status(response.status).send(body)
   } catch (err) {
     console.error('Proxy /api/tokens error:', err)
-    res.status(500).json({ error: 'Failed to fetch 0x tokens' })
+    const code = String(err?.code || err?.type || '').toUpperCase()
+    const status = code.includes('ECONNREFUSED')
+      ? 502
+      : code.includes('ETIMEDOUT') || code.includes('REQUEST-TIMEOUT')
+      ? 504
+      : code.includes('ENOTFOUND')
+      ? 502
+      : 500
+    res.status(status).json({ error: 'Failed to fetch 0x tokens', code, hint: hintForError(err) })
   }
 })
 
@@ -98,6 +138,7 @@ app.get('/api/quote', async (req, res) => {
         '0x-api-key': API_KEY || '',
         Accept: 'application/json',
       },
+      timeout: 10000,
     })
     const contentType = response.headers.get('content-type') || ''
     const body = contentType.includes('application/json')
@@ -111,7 +152,15 @@ app.get('/api/quote', async (req, res) => {
     res.status(response.status).send(body)
   } catch (err) {
     console.error('Proxy /api/quote error:', err)
-    res.status(500).json({ error: 'Failed to fetch 0x quote' })
+    const code = String(err?.code || err?.type || '').toUpperCase()
+    const status = code.includes('ECONNREFUSED')
+      ? 502
+      : code.includes('ETIMEDOUT') || code.includes('REQUEST-TIMEOUT')
+      ? 504
+      : code.includes('ENOTFOUND')
+      ? 502
+      : 500
+    res.status(status).json({ error: 'Failed to fetch 0x quote', code, hint: hintForError(err) })
   }
 })
 
