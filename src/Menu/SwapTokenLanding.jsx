@@ -3,21 +3,19 @@ import {
   Typography,
   Button,
   Box,
-  Grid,
+  
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Divider,
   useMediaQuery,
-  Container,
-  Paper,
+ 
 } from '@mui/material'
-import { styled } from '@mui/system'
 
-import BoltIcon from '@mui/icons-material/Bolt'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment'
+
+
+
 import { useTheme } from '@mui/material/styles'
 
 export default function SwapTokenLanding(isDarkMode) {
@@ -169,70 +167,7 @@ export default function SwapTokenLanding(isDarkMode) {
       ),
     },
   ]
-  const CurrencyCard = styled(Paper)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: theme.spacing(2),
-    borderRadius: theme.shape.borderRadius,
-    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-    border: `1px solid ${theme.palette.divider}`,
-    flexGrow: 1,
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 200,
-    [theme.breakpoints.down('md')]: {
-      margin: theme.spacing(0.5),
-      padding: theme.spacing(1.5),
-      minWidth: 100,
-    },
-    [theme.breakpoints.down('sm')]: {
-      margin: theme.spacing(0.25),
-      padding: theme.spacing(1),
-      minWidth: 80,
-      maxWidth: 150,
-    },
-  }))
-
-  const UsdcIconPlaceholder = () => (
-    <Box
-      sx={{
-        width: { xs: 32, sm: 40, md: 48 },
-        height: { xs: 32, sm: 40, md: 48 },
-        borderRadius: '50%',
-        backgroundColor: '#0070DE',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        fontSize: { xs: 16, sm: 20, md: 24 },
-        fontWeight: 'bold',
-        mb: 1,
-      }}
-    >
-      $
-    </Box>
-  )
-
-  const EthIconPlaceholder = () => (
-    <Box
-      sx={{
-        width: { xs: 32, sm: 40, md: 48 },
-        height: { xs: 32, sm: 40, md: 48 },
-        borderRadius: '50%',
-        backgroundColor: '#627EEA',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        fontSize: { xs: 16, sm: 20, md: 24 },
-        fontWeight: 'bold',
-        mb: 1,
-      }}
-    >
-      Ξ
-    </Box>
-  )
+ 
   return (
     <Box
       sx={{
@@ -703,176 +638,135 @@ export default function SwapTokenLanding(isDarkMode) {
 
       {/* MEV Protection */}
       <Box
-        id='mev-protection'
         sx={{
-          position: 'relative',
-          overflow: 'hidden',
-          py: { xs: 6, md: 10 },
+          fontFamily: "'Manrope', sans-serif",
+          color: 'text.primary',
+          paddingX: { xs: '20px', md: '40px', lg: '120px' },
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { xs: 'flex-start', md: 'center' },
+          justifyContent: 'center',
+          gap: { xs: '40px', lg: '80px' },
+          paddingTop: '100px',
         }}
       >
-        {/* Background Shapes (hidden on tablet/mobile) */}
+        {/* Left Section: Heading and Checklist */}
         <Box
           sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 1,
-            pointerEvents: 'none',
-            display: { xs: 'none', lg: 'block' },
+            flex: { md: 1 },
+            maxWidth: { md: '50%' },
+            textAlign: { xs: 'center', md: 'center' },
+            marginBottom: { xs: '20px', md: '80px' },
           }}
         >
-          {['46', '48', '12', '13'].map((id, idx) => (
-            <Box
-              key={idx}
-              component='img'
-              src={`/page/d217867e-d6a5-4b6d-a6f4-5b0d4b6cb0aa/images/137_${id}.svg`}
-              alt='decorative background shape'
-              sx={{
-                position: 'absolute',
-                borderRadius: '50%',
-                border: '1px solid rgba(4, 138, 205, 0.2)',
-                top: '-116px',
-                width: 801,
-                height: 801,
-                left: `${778 + idx * 120}px`,
-              }}
-            />
-          ))}
+          <Typography
+            variant={isMobile ? 'h4' : 'h3'}
+            sx={{
+              fontWeight: 700,
+              mb: { xs: 2, md: 3 },
+              lineHeight: { xs: 1.3, md: '45px' },
+              color: 'text.primary',
+              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+              textAlign: 'left',
+            }}
+          >
+            MEV Protection
+          </Typography>
+
+          <List sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {features.map((item, idx) => (
+              <ListItem
+                key={idx}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: 2,
+                  p: 0,
+                }}
+              >
+                <ListItemIcon sx={{ minWidth: 'unset' }}>
+                  <Box
+                    component='img'
+                    src={item.icon}
+                    alt='Checkmark icon'
+                    sx={{ width: 24, height: 24, mt: '2px' }}
+                  />
+                </ListItemIcon>
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontSize: 14,
+                    fontWeight: 700,
+                    lineHeight: '24px',
+                    color: 'text.primary',
+                  }}
+                  primary={item.text}
+                />
+              </ListItem>
+            ))}
+          </List>
         </Box>
 
+        {/* Right Section: Swap Card */}
         <Box
           sx={{
             display: 'flex',
-            alignItems: { xs: 'center', md: 'flex-start' },
-            justifyContent: 'space-between',
-            flexDirection: { xs: 'column', md: 'row' },
-            textAlign: { xs: 'center', md: 'left' },
-            position: 'relative',
-            zIndex: 2,
-            paddingX: { xs: '20px', sm: '40px', md: '80px', lg: '120px' },
-            gap: { xs: '40px', sm: '50px', md: '60px', lg: '80px' },
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: { xs: '16px', sm: '20px', md: '24px' },
+            maxWidth: { xs: '100%', sm: '500px' },
+            width: { xs: '100%', sm: 'auto', md: 'auto', lg: 'auto' },
+            margin: { xs: 'auto', md: 'auto' },
+            fontFamily: 'Inter, sans-serif',
+            
           }}
         >
-          {/* Text Content */}
-          <Box
-            sx={{
-              flex: { md: '0 0 530px' },
-              order: { xs: 2, md: 1 },
-              width: { xs: '100%', md: 'auto' },
-              maxWidth: { xs: '100%', md: '530px' },
-            }}
-          >
-            <Typography
-              variant={isMobile ? 'h4' : 'h3'}
-              sx={{
-                fontWeight: 700,
-                mb: { xs: 3, sm: 4, md: 6, lg: 9 },
-                lineHeight: { xs: 1.3, md: '45px' },
-                color: 'text.primary',
-                fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
-              }}
-            >
-              MEV Protection
-            </Typography>
-
-            <List sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {features.map((item, idx) => (
-                <ListItem
-                  key={idx}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 2,
-                    p: 0,
-                  }}
-                >
-                  <ListItemIcon sx={{ minWidth: 'unset' }}>
-                    <Box
-                      component='img'
-                      src={item.icon}
-                      alt='Checkmark icon'
-                      sx={{ width: 24, height: 24, mt: '2px' }}
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    primaryTypographyProps={{
-                      fontSize: 14,
-                      fontWeight: 700,
-                      lineHeight: '24px',
-                      color: 'text.primary',
-                    }}
-                    primary={item.text}
-                  />
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-
-          {/* Image Content */}
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: 'flex',
-              justifyContent: { xs: 'center', md: 'flex-end' },
-              order: { xs: 1, md: 2 },
-            }}
-          >
-            <Box
-              component='img'
-              src='assets/images/swapToken/protection.png'
-              alt='MEV Protection Shield'
-              sx={{
-                width: '50%',
-                height: '50%',
-              }}
-            />
-          </Box>
-        </Box>
+          <img
+          src="assets/images/swapToken/protection.png"
+          alt=""
+          
+          />
+      </Box>
       </Box>
       <Divider />
 
       {/* Smart Routing */}
-      <Box
+     <Box
         sx={{
-          minHeight: '70vh',
+          fontFamily: "'Manrope', sans-serif",
+          color: 'text.primary',
+          paddingX: { xs: '20px', md: '40px', lg: '120px' },
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingX: { xs: '20px', md: '120px' },
-          py: 6,
           flexDirection: { xs: 'column', md: 'row' },
-          textAlign: { xs: 'center', md: 'left' },
-          gap: { xs: '40px', md: '80px' },
+          alignItems: { xs: 'flex-start', md: 'center' },
+          justifyContent: 'center',
+          gap: { xs: '40px', lg: '80px' },
+          paddingTop: '100px',
         }}
       >
-        {/* Right Side Image */}
+        {/* Left Section: Heading and Checklist */}
         <Box
-          component='img'
-          src='assets/images/swapToken/Rectangle.svg'
-          alt='mobile'
           sx={{
-            width: { xs: '250px', md: '400px' },
-            height: 'auto',
-            // order: { xs: 1, md: 2 },
+            flex: { md: 1 },
+            maxWidth: { md: '50%' },
+            textAlign: { xs: 'center', md: 'center' },
+            marginBottom: { xs: '20px', md: '80px' },
           }}
-        />
-        {/* Left Side Content */}
-        <Box sx={{ maxWidth: 600, order: { xs: 2, md: 1 } }}>
+        >
           <Typography
-            variant='h3'
+            variant={isMobile ? 'h4' : 'h3'}
             sx={{
               fontWeight: 700,
-              mb: { xs: 3, sm: 4, md: 6, lg: 9 },
-              textAlign: { xs: 'center', md: 'initial' },
-              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+              mb: { xs: 2, md: 3 },
               lineHeight: { xs: 1.3, md: '45px' },
               color: 'text.primary',
+              fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+              textAlign: 'left',
             }}
           >
             Smart Routing
           </Typography>
+
           <List sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {swap.map((item, idx) => (
               <ListItem
@@ -905,6 +799,28 @@ export default function SwapTokenLanding(isDarkMode) {
             ))}
           </List>
         </Box>
+
+        {/* Right Section: Swap Card */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: { xs: '16px', sm: '20px', md: '24px' },
+            maxWidth: { xs: '100%', sm: '500px' },
+            width: { xs: '100%', sm: 'auto', md: 'auto', lg: 'auto' },
+            margin: { xs: 'auto', md: 'auto' },
+            fontFamily: 'Inter, sans-serif',
+            
+          }}
+        >
+          <img
+          src="assets/images/swapToken/Rectangle.svg"
+          alt=""
+          
+          />
+      </Box>
       </Box>
 
       <Divider />
@@ -1032,22 +948,21 @@ export default function SwapTokenLanding(isDarkMode) {
               flex: { md: 1 },
             }}
           >
-            <Box
+            <Box 
+            component="img"
+            src="assets/images/swapToken/inner.png"
+            alt=''
               sx={{
                 width: 140,
                 height: 140,
-                borderRadius: '50%',
-                backgroundImage:
-                  "url('assets/images/swapToken/circle inner.png')",
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+               
+               
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                
                 mb: 2,
               }}
             >
-              <img src='assets/images/swapToken/center fire.png' alt='' />
+             
             </Box>
             <Typography
               sx={{
@@ -1072,23 +987,21 @@ export default function SwapTokenLanding(isDarkMode) {
               flex: { md: 1 },
             }}
           >
-            <Box
+            <Box 
+            component="img"
+            src="assets/images/swapToken/inner.png"
+            alt=''
               sx={{
                 width: 140,
                 height: 140,
-                borderRadius: '50%',
-                backgroundImage:
-                  "url('assets/images/swapToken/circle inner.png')",
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+               
+               
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                
                 mb: 2,
-                zIndex: 1,
               }}
             >
-              <img src='assets/images/swapToken/Traffic Economy.png' alt='' />
+             
             </Box>
             <Typography
               sx={{
@@ -1113,22 +1026,21 @@ export default function SwapTokenLanding(isDarkMode) {
               flex: { md: 1 },
             }}
           >
-            <Box
+            <Box 
+            component="img"
+            src="assets/images/swapToken/inner.png"
+            alt=''
               sx={{
                 width: 140,
                 height: 140,
-                borderRadius: '50%',
-                backgroundImage:
-                  "url('assets/images/swapToken/circle inner.png')",
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+               
+               
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                
                 mb: 2,
               }}
             >
-              <img src='assets/images/swapToken/Fire Minimalistic.png' alt='' />
+             
             </Box>
             <Typography
               sx={{
