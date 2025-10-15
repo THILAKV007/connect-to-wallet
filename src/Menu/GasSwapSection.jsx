@@ -965,7 +965,7 @@ export default function GasSwapSection() {
                 <ListItemIcon>
                   <Box
                     component='img'
-                    src='assets/images/GaslessSwap/green tick.png'
+                    src='assets/images/GaslessSwap/gt.png'
                     alt=''
                     sx={{ width: 16, height: 16 }}
                   />
@@ -986,7 +986,7 @@ export default function GasSwapSection() {
                 <ListItemIcon>
                   <Box
                     component='img'
-                    src='assets/images/GaslessSwap/green tick.png'
+                    src='assets/images/GaslessSwap/gt.png'
                     alt=''
                     sx={{ width: 16, height: 16 }}
                   />
@@ -1007,7 +1007,7 @@ export default function GasSwapSection() {
                 <ListItemIcon>
                   <Box
                     component='img'
-                    src='assets/images/GaslessSwap/green tick.png'
+                    src='assets/images/GaslessSwap/gt.png'
                     alt=''
                     sx={{ width: 16, height: 16 }}
                   />
