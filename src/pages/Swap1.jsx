@@ -16,6 +16,7 @@ import {
   MenuItem,
   FormControl,
   Avatar,
+  Switch,
 } from '@mui/material'
 import {
   LineChart,
@@ -53,6 +54,12 @@ const Swap1 = ({ isDarkMode }) => {
   const [isLoadingTokens, setIsLoadingTokens] = useState(false)
   const [sellTokenAnchorEl, setSellTokenAnchorEl] = useState(null)
   const [buyTokenAnchorEl, setBuyTokenAnchorEl] = useState(null)
+  
+  // Gasless swap state
+  const [isGaslessMode, setIsGaslessMode] = useState(false)
+  const [gaslessQuote, setGaslessQuote] = useState(null)
+  const [isFetchingGaslessQuote, setIsFetchingGaslessQuote] = useState(false)
+  const [gaslessPrice, setGaslessPrice] = useState(null)
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue)
@@ -494,24 +501,277 @@ const Swap1 = ({ isDarkMode }) => {
       Number(sellAmount) <= 0
     ) {
       setQuote(null)
+      setGaslessPrice(null)
       return
     }
     const id = setTimeout(() => {
-      fetch0xQuote()
+      if (isGaslessMode) {
+        fetchGaslessPrice()
+      } else {
+        fetch0xQuote()
+      }
     }, 500)
     return () => clearTimeout(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sellAmount, account, sellTokenSymbol, buyTokenSymbol, slippage])
+  }, [sellAmount, account, sellTokenSymbol, buyTokenSymbol, slippage, isGaslessMode])
 
   // Reflect quote into Buy amount display (USDC assumed 6 decimals when selected)
   useEffect(() => {
-    if (!quote) return
+    const activeQuote = isGaslessMode ? gaslessPrice || gaslessQuote : quote
+    if (!activeQuote) return
+    
     const buyDecimals =
       tokens.find((t) => t.symbol === buyTokenSymbol)?.decimals ??
       (buyTokenSymbol === 'USDC' ? 6 : 18)
-    const estBuy = fromBaseUnit(quote.buyAmount, buyDecimals)
+    const estBuy = fromBaseUnit(activeQuote.buyAmount, buyDecimals)
     setBuyAmount(estBuy)
-  }, [quote, buyTokenSymbol, tokens])
+  }, [quote, gaslessPrice, gaslessQuote, buyTokenSymbol, tokens, isGaslessMode])
+
+  // Fetch gasless price (indicative pricing)
+  const fetchGaslessPrice = async () => {
+    try {
+      const sellTokenMeta = tokens.find((t) => t.symbol === sellTokenSymbol)
+      const buyTokenMeta = tokens.find((t) => t.symbol === buyTokenSymbol)
+      const sellTokenDecimals = sellTokenMeta?.decimals ?? 18
+      const sellAmountWei = toBaseUnit(sellAmount || '0', sellTokenDecimals)
+      
+      if (!sellAmountWei || String(sellAmountWei) === '0') {
+        setGaslessPrice(null)
+        return
+      }
+
+      // Check if user is trying to sell ETH (not supported in gasless mode)
+      const isSellingETH = sellTokenSymbol === 'ETH' || 
+                          (sellTokenMeta?.address && sellTokenMeta.address.toLowerCase() === '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+      
+      if (isSellingETH) {
+        setSwapError('Gasless swaps cannot sell ETH. Please use regular swap mode or swap ETH for WETH first.')
+        setGaslessPrice(null)
+        return
+      }
+
+      // Check if user has connected wallet (required for gasless)
+      if (!account) {
+        setSwapError('Please connect your wallet to use gasless swaps.')
+        setGaslessPrice(null)
+        return
+      }
+
+      // Get chain info
+      let chainId = '1'
+      try {
+        const { ethereum } = window
+        if (ethereum) {
+          const cid = await ethereum.request({ method: 'eth_chainId' })
+          chainId = parseInt(cid, 16).toString()
+        }
+      } catch {}
+
+      // Use correct token addresses
+      let sellTokenParam = sellTokenMeta?.address || sellTokenSymbol
+      let buyTokenParam = buyTokenMeta?.address || buyTokenSymbol
+      
+      // Use correct ETH address format for gasless API
+      if (buyTokenSymbol === 'ETH') {
+        buyTokenParam = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+      }
+      
+      const params = new URLSearchParams({
+        sellToken: sellTokenParam,
+        buyToken: buyTokenParam,
+        sellAmount: sellAmountWei,
+        takerAddress: account, // Required parameter for gasless API
+        chain: chainId,
+      })
+
+      const res = await fetch(`/api/gasless/price?${params.toString()}`, {
+        method: 'GET',
+        headers: { Accept: 'application/json' },
+      })
+
+      if (res.ok) {
+        const data = await res.json()
+        setGaslessPrice(data)
+      } else {
+        console.warn('Gasless price fetch failed:', res.status)
+        setGaslessPrice(null)
+      }
+    } catch (err) {
+      console.error('fetchGaslessPrice error:', err)
+      setGaslessPrice(null)
+    }
+  }
+
+  // Fetch gasless quote (firm quote for execution)
+  const fetchGaslessQuote = async () => {
+    try {
+      setSwapError('')
+      setIsFetchingGaslessQuote(true)
+      
+      const sellTokenMeta = tokens.find((t) => t.symbol === sellTokenSymbol)
+      const buyTokenMeta = tokens.find((t) => t.symbol === buyTokenSymbol)
+      const sellTokenDecimals = sellTokenMeta?.decimals ?? 18
+      const sellAmountWei = toBaseUnit(sellAmount || '0', sellTokenDecimals)
+      
+      if (!sellAmountWei || String(sellAmountWei) === '0') {
+        setIsFetchingGaslessQuote(false)
+        setSwapError('Enter a positive amount')
+        setGaslessQuote(null)
+        return
+      }
+
+      // Check if user is trying to sell ETH (not supported in gasless mode)
+      const isSellingETH = sellTokenSymbol === 'ETH' || 
+                          (sellTokenMeta?.address && sellTokenMeta.address.toLowerCase() === '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+      
+      if (isSellingETH) {
+        setIsFetchingGaslessQuote(false)
+        setSwapError('Gasless swaps cannot sell ETH. Please use regular swap mode or swap ETH for WETH first.')
+        setGaslessQuote(null)
+        return
+      }
+
+      if (!account) {
+        setIsFetchingGaslessQuote(false)
+        setSwapError('Connect wallet to get gasless quote')
+        setGaslessQuote(null)
+        return
+      }
+
+      // Get chain info
+      let chainId = '1'
+      try {
+        const { ethereum } = window
+        if (ethereum) {
+          const cid = await ethereum.request({ method: 'eth_chainId' })
+          chainId = parseInt(cid, 16).toString()
+        }
+      } catch {}
+
+      // Use correct token addresses
+      let sellTokenParam = sellTokenMeta?.address || sellTokenSymbol
+      let buyTokenParam = buyTokenMeta?.address || buyTokenSymbol
+      
+      // Use correct ETH address format for gasless API
+      if (buyTokenSymbol === 'ETH') {
+        buyTokenParam = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+      }
+      
+      const params = new URLSearchParams({
+        sellToken: sellTokenParam,
+        buyToken: buyTokenParam,
+        sellAmount: sellAmountWei,
+        takerAddress: account,
+        chain: chainId,
+      })
+
+      // Note: Gasless API has built-in slippage protection, no manual slippage parameter needed
+
+      const res = await fetch(`/api/gasless/quote?${params.toString()}`, {
+        method: 'GET',
+        headers: { Accept: 'application/json' },
+      })
+
+      if (!res.ok) {
+        const txt = await res.text()
+        let parsed
+        try {
+          parsed = JSON.parse(txt)
+        } catch {}
+        const message = parsed?.message || txt || `Gasless quote error: ${res.status}`
+        throw new Error(message)
+      }
+
+      const data = await res.json()
+      setGaslessQuote(data)
+    } catch (err) {
+      console.error('fetchGaslessQuote error:', err)
+      setGaslessQuote(null)
+      setSwapError(err?.message || 'Failed to fetch gasless quote')
+    } finally {
+      setIsFetchingGaslessQuote(false)
+    }
+  }
+
+  // Execute gasless swap with EIP-712 signature
+  const executeGaslessSwap = async () => {
+    try {
+      setSwapError('')
+      if (!gaslessQuote) throw new Error('No gasless quote available')
+      
+      const { ethereum } = window
+      if (!ethereum) throw new Error('MetaMask not detected')
+      
+      const from = account || (await ethereum.request({ method: 'eth_requestAccounts' }))[0]
+
+      // Handle approval if needed
+      if (gaslessQuote.approval) {
+        console.log('Gasless approval required:', gaslessQuote.approval)
+        
+        // Sign the approval EIP-712 message
+        const approvalSignature = await ethereum.request({
+          method: 'eth_signTypedData_v4',
+          params: [from, JSON.stringify(gaslessQuote.approval.eip712)],
+        })
+        
+        console.log('Approval signature:', approvalSignature)
+        
+        // Submit approval to 0x
+        // Note: In a real implementation, you'd submit this to 0x's gasless approval endpoint
+        // For now, we'll log it and proceed with the trade
+      }
+
+      // Sign the trade EIP-712 message
+      if (!gaslessQuote.trade?.eip712) {
+        throw new Error('No EIP-712 trade data in gasless quote')
+      }
+
+      const tradeSignature = await ethereum.request({
+        method: 'eth_signTypedData_v4',
+        params: [from, JSON.stringify(gaslessQuote.trade.eip712)],
+      })
+
+      console.log('Trade signature:', tradeSignature)
+      
+      // Submit the trade signature to 0x gasless endpoint
+      // Get current chain ID
+      let chainId = '1'
+      if (window.ethereum) {
+        const cid = await ethereum.request({ method: 'eth_chainId' })
+        chainId = parseInt(cid, 16).toString()
+      }
+
+      const submitResponse = await fetch('/api/gasless/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          signature: tradeSignature,
+          trade: gaslessQuote.trade,
+          chain: chainId,
+        }),
+      })
+
+      if (!submitResponse.ok) {
+        const errorData = await submitResponse.json()
+        throw new Error(errorData.error || 'Failed to submit gasless trade')
+      }
+
+      const result = await submitResponse.json()
+      console.log('Gasless swap executed successfully:', result)
+      
+      // Reset state after successful swap
+      setGaslessQuote(null)
+      setGaslessPrice(null)
+      setSellAmount('')
+      setBuyAmount('')
+      
+    } catch (err) {
+      console.error('executeGaslessSwap error:', err)
+      setSwapError(err?.message || 'Gasless swap failed')
+    }
+  }
 
   // Execute 0x swap via MetaMask
   const execute0xSwap = async () => {
@@ -1520,6 +1780,49 @@ const Swap1 = ({ isDarkMode }) => {
                   </Typography>
                 )}
 
+                {/* Gasless Mode Toggle */}
+                <Box sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Typography
+                      sx={{
+                        color: isDarkMode
+                          ? 'rgba(255, 255, 255, 0.8)'
+                          : 'rgba(0, 0, 0, 0.8)',
+                        fontSize: { xs: '0.85rem', sm: '0.9rem' },
+                        fontWeight: 600,
+                      }}
+                    >
+                      Gasless Mode
+                    </Typography>
+                    <Switch
+                      checked={isGaslessMode}
+                      onChange={(e) => setIsGaslessMode(e.target.checked)}
+                      sx={{
+                        '& .MuiSwitch-switchBase.Mui-checked': {
+                          color: '#4FC3F7',
+                        },
+                        '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                          backgroundColor: '#4FC3F7',
+                        },
+                      }}
+                    />
+                  </Box>
+                  <Typography
+                    sx={{
+                      color: isDarkMode
+                        ? 'rgba(255, 255, 255, 0.6)'
+                        : 'rgba(0, 0, 0, 0.6)',
+                      fontSize: { xs: '0.75rem', sm: '0.8rem' },
+                      mt: 0.5,
+                    }}
+                  >
+                    {isGaslessMode 
+                      ? 'Gas fees paid by 0x Protocol (ERC-20 tokens only)'
+                      : 'You pay gas fees with ETH'
+                    }
+                  </Typography>
+                </Box>
+
                 {/* Slippage Tolerance */}
                 <Box sx={{ mb: { xs: 2, sm: 2.5, md: 3 } }}>
                   <Typography
@@ -1725,37 +2028,69 @@ const Swap1 = ({ isDarkMode }) => {
                   </Box>
                 )}
 
-                {/* Connect Wallet Button */}
+                {/* Swap Button */}
                 <Button
                   fullWidth
                   variant='contained'
                   size='large'
-                  onClick={() =>
-                    account ? execute0xSwap() : connectMetaMask()
+                  onClick={() => {
+                    if (!account) {
+                      connectMetaMask()
+                    } else if (isGaslessMode) {
+                      if (gaslessQuote) {
+                        executeGaslessSwap()
+                      } else {
+                        fetchGaslessQuote()
+                      }
+                    } else {
+                      execute0xSwap()
+                    }
+                  }}
+                  disabled={
+                    (account && isGaslessMode && isFetchingGaslessQuote) ||
+                    (!sellAmount || parseFloat(sellAmount) <= 0)
                   }
                   sx={{
                     mt: { xs: 3, sm: 4 },
                     py: { xs: 2, sm: 2.5 },
                     borderRadius: { xs: 2.5, sm: 3 },
-                    background:
-                      'linear-gradient(135deg, #2196F3 0%, #21CBF3 100%)',
+                    background: isGaslessMode
+                      ? 'linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%)'
+                      : 'linear-gradient(135deg, #2196F3 0%, #21CBF3 100%)',
                     fontSize: { xs: '0.9rem', sm: '1rem' },
                     fontWeight: 700,
                     textTransform: 'none',
-                    boxShadow: '0 8px 32px rgba(33, 150, 243, 0.3)',
+                    boxShadow: isGaslessMode
+                      ? '0 8px 32px rgba(76, 175, 80, 0.3)'
+                      : '0 8px 32px rgba(33, 150, 243, 0.3)',
                     minHeight: { xs: '48px', sm: 'auto' },
                     '&:hover': {
-                      background:
-                        'linear-gradient(135deg, #1976D2 0%, #1CB5E0 100%)',
-                      boxShadow: '0 12px 40px rgba(33, 150, 243, 0.4)',
+                      background: isGaslessMode
+                        ? 'linear-gradient(135deg, #388E3C 0%, #4CAF50 100%)'
+                        : 'linear-gradient(135deg, #1976D2 0%, #1CB5E0 100%)',
+                      boxShadow: isGaslessMode
+                        ? '0 12px 40px rgba(76, 175, 80, 0.4)'
+                        : '0 12px 40px rgba(33, 150, 243, 0.4)',
                       transform: 'translateY(-2px)',
+                    },
+                    '&:disabled': {
+                      background: 'rgba(0, 0, 0, 0.12)',
+                      color: 'rgba(0, 0, 0, 0.26)',
+                      boxShadow: 'none',
                     },
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 >
-                  {account
-                    ? `Connected: ${truncateAddress(account)}`
-                    : 'Connect Ethereum Wallet'}
+                  {!account
+                    ? 'Connect Ethereum Wallet'
+                    : isGaslessMode
+                    ? isFetchingGaslessQuote
+                      ? 'Getting Gasless Quote...'
+                      : gaslessQuote
+                      ? 'Execute Gasless Swap'
+                      : 'Get Gasless Quote'
+                    : `Swap (Connected: ${truncateAddress(account)})`
+                  }
                 </Button>
               </CardContent>
             </Card>

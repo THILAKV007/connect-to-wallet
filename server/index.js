@@ -164,6 +164,160 @@ app.get('/api/quote', async (req, res) => {
   }
 })
 
+// Proxy: 0x gasless price (v2 API)
+app.get('/api/gasless/price', async (req, res) => {
+  try {
+    const params = new URLSearchParams(req.query)
+    const chain = params.get('chain') || '1'
+    // Do not forward the helper param "chain" to 0x
+    params.delete('chain')
+    const base = get0xBaseUrl(chain)
+    const url = `${base}/gasless/price?${params.toString()}`
+    console.log('[proxy] /api/gasless/price chain=', chain, '→', url)
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        '0x-api-key': API_KEY || '',
+        '0x-version': 'v2',
+        '0x-chain-id': chain,
+        Accept: 'application/json',
+      },
+      timeout: 10000,
+    })
+    
+    const contentType = response.headers.get('content-type') || ''
+    const body = contentType.includes('application/json')
+      ? await response.json()
+      : await response.text()
+    
+    if (!response.ok) {
+      console.warn('[proxy] /api/gasless/price error', response.status, body)
+    } else {
+      console.log('[proxy] /api/gasless/price ok', response.status)
+    }
+    
+    res.status(response.status).send(body)
+  } catch (err) {
+    console.error('Proxy /api/gasless/price error:', err)
+    const code = String(err?.code || err?.type || '').toUpperCase()
+    const status = code.includes('ECONNREFUSED')
+      ? 502
+      : code.includes('ETIMEDOUT') || code.includes('REQUEST-TIMEOUT')
+      ? 504
+      : code.includes('ENOTFOUND')
+      ? 502
+      : 500
+    res.status(status).json({ error: 'Failed to fetch gasless price', code, hint: hintForError(err) })
+  }
+})
+
+// Proxy: 0x gasless quote (v2 API)
+app.get('/api/gasless/quote', async (req, res) => {
+  try {
+    const params = new URLSearchParams(req.query)
+    const chain = params.get('chain') || '1'
+    // Do not forward the helper param "chain" to 0x
+    params.delete('chain')
+    const base = get0xBaseUrl(chain)
+    const url = `${base}/gasless/quote?${params.toString()}`
+    console.log('[proxy] /api/gasless/quote chain=', chain, '→', url)
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        '0x-api-key': API_KEY || '',
+        '0x-version': 'v2',
+        '0x-chain-id': chain,
+        Accept: 'application/json',
+      },
+      timeout: 10000,
+    })
+    
+    const contentType = response.headers.get('content-type') || ''
+    const body = contentType.includes('application/json')
+      ? await response.json()
+      : await response.text()
+    
+    if (!response.ok) {
+      console.warn('[proxy] /api/gasless/quote error', response.status, body)
+    } else {
+      console.log('[proxy] /api/gasless/quote ok', response.status)
+    }
+    
+    res.status(response.status).send(body)
+  } catch (err) {
+    console.error('Proxy /api/gasless/quote error:', err)
+    const code = String(err?.code || err?.type || '').toUpperCase()
+    const status = code.includes('ECONNREFUSED')
+      ? 502
+      : code.includes('ETIMEDOUT') || code.includes('REQUEST-TIMEOUT')
+      ? 504
+      : code.includes('ENOTFOUND')
+      ? 502
+      : 500
+    res.status(status).json({ error: 'Failed to fetch gasless quote', code, hint: hintForError(err) })
+  }
+})
+
+// Proxy: 0x gasless submit (v2 API)
+app.post('/api/gasless/submit', async (req, res) => {
+  try {
+    const { signature, approval, trade, chain = '1' } = req.body
+    
+    if (!signature) {
+      return res.status(400).json({ error: 'Signature is required' })
+    }
+    
+    const base = get0xBaseUrl(chain)
+    const url = `${base}/gasless/submit`
+    console.log('[proxy] /api/gasless/submit chain=', chain, '→', url)
+    
+    const payload = {
+      signature,
+      ...(approval && { approval }),
+      ...(trade && { trade }),
+    }
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        '0x-api-key': API_KEY || '',
+        '0x-version': 'v2',
+        '0x-chain-id': chain,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+      timeout: 10000,
+    })
+    
+    const contentType = response.headers.get('content-type') || ''
+    const body = contentType.includes('application/json')
+      ? await response.json()
+      : await response.text()
+    
+    if (!response.ok) {
+      console.warn('[proxy] /api/gasless/submit error', response.status, body)
+    } else {
+      console.log('[proxy] /api/gasless/submit ok', response.status)
+    }
+    
+    res.status(response.status).send(body)
+  } catch (err) {
+    console.error('Proxy /api/gasless/submit error:', err)
+    const code = String(err?.code || err?.type || '').toUpperCase()
+    const status = code.includes('ECONNREFUSED')
+      ? 502
+      : code.includes('ETIMEDOUT') || code.includes('REQUEST-TIMEOUT')
+      ? 504
+      : code.includes('ENOTFOUND')
+      ? 502
+      : 500
+    res.status(status).json({ error: 'Failed to submit gasless transaction', code, hint: hintForError(err) })
+  }
+})
+
 const PORT = process.env.PORT || 4000
 app.listen(PORT, () => {
   console.log(`Proxy running on port ${PORT}`)
