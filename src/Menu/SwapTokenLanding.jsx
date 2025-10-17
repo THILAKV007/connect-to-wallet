@@ -61,7 +61,7 @@ export default function SwapTokenLanding(isDarkMode) {
       icon: 'assets/images/swapToken/tick.svg',
       text: (
         <>
-          <span style={{ color: '#0ea5e9' }}>Optimized for smarter </span>
+         <span style={{ color: '#0ea5e9' }}>Optimized for smarter </span>
           trading with safety,transparency in every swap
         </>
       ),
@@ -157,8 +157,9 @@ export default function SwapTokenLanding(isDarkMode) {
     {
       icon: 'assets/images/swapToken/tick.svg',
       text: (
-        <>
-          <span style={{ color: '#0ea5e9' }}>Optimized for smarter</span>trading with safety,transparency in every swap
+         <>
+         <span style={{ color: '#0ea5e9' }}>Optimized for smarter </span>
+          trading with safety,transparency in every swap
         </>
       ),
     },
@@ -401,7 +402,34 @@ export default function SwapTokenLanding(isDarkMode) {
         </Box>
 
         {/* Right Section: Swap Card */}
+       <Box
+      sx={{
+        position: "relative",
+        
        
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        "::before": {
+          content: '""',
+          position: "absolute",
+          top: "-20%",
+          right: "-10%",
+          width: "1400px",
+          height: "1400px",
+          borderRadius: "50%",
+          
+        },
+        "::after": {
+          content: '""',
+          position: "absolute",
+          top: "10%",
+          right: "5%",
+    
+        },
+      }}
+    >
         <Box
           sx={{
             display: 'flex',
@@ -639,6 +667,7 @@ export default function SwapTokenLanding(isDarkMode) {
               
             </Box>
           </Box>
+          </Box>
         </Container>
       </Box>
 
@@ -726,29 +755,43 @@ export default function SwapTokenLanding(isDarkMode) {
         </Box>
 
         {/* ==== RIGHT SECTION ==== */}
+        
         <Box
-          sx={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            maxWidth: { xs: "100%", md: "50%" },
-          }}
-        >
-          <Box
-            component="img"
-            src="assets/images/swapToken/shi.svg"
-            alt="Smart Routing Diagram"
-            sx={{
-              width: { xs: "100%", sm: "80%", md: "100%" },
-              maxWidth: 300,
-              height: "auto",
-              borderRadius: 3,
-             
-            }}
-          />
-        </Box>
+      sx={{
+        position: "relative",
+        
+       
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        "::before": {
+          content: '""',
+          position: "absolute",
+          top: "-20%",
+          right: "-14%",
+          width: "1400px",
+          height: "1400px",
+          borderRadius: "50%",
+          
+        },
+        "::after": {
+          content: '""',
+          position: "absolute",
+          top: "10%",
+          right: "5%",
+    
+        },
+      }}
+    >
+      {/* You can place your content or shield image inside this Box */}
+      <Box
+        component="img"
+        src="assets/images/swapToken/shi.svg" // replace with your image path
+        alt="Shield"
+        sx={{ width: 330, zIndex: 2 }}
+      />
+    </Box>
       </Container>
     </Box>
       <Divider />
@@ -835,29 +878,44 @@ export default function SwapTokenLanding(isDarkMode) {
         </Box>
 
         {/* ==== RIGHT SECTION ==== */}
+        
+        
         <Box
-          sx={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            maxWidth: { xs: "100%", md: "50%" },
-          }}
-        >
-          <Box
-            component="img"
-            src="assets/images/swapToken/Rectangle.svg"
-            alt="Smart Routing Diagram"
-            sx={{
-              width: { xs: "100%", sm: "80%", md: "100%" },
-              maxWidth: 520,
-              height: "auto",
-              borderRadius: 3,
-              
-            }}
-          />
-        </Box>
+      sx={{
+        position: "relative",
+        
+       
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        "::before": {
+          content: '""',
+          position: "absolute",
+          top: "-20%",
+          right: "-10%",
+          width: "1400px",
+          height: "1400px",
+          borderRadius: "50%",
+          
+        },
+        "::after": {
+          content: '""',
+          position: "absolute",
+          top: "10%",
+          right: "5%",
+    
+        },
+      }}
+    >
+      {/* You can place your content or shield image inside this Box */}
+      <Box
+        component="img"
+        src="assets/images/swapToken/Rectangle.svg" // replace with your image path
+        alt="Shield"
+        sx={{ width: 400, zIndex: 2 }}
+      />
+    </Box>
       </Container>
     </Box>
 
