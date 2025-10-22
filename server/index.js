@@ -357,3 +357,24 @@ const PORT = process.env.PORT || 4000
 app.listen(PORT, () => {
   console.log(`Proxy running on port ${PORT}`)
 })
+
+
+app.get('/your-endpoint', (req, res) => {
+  // Block gasless if sellToken is ETH
+  const sellTokenParam = req.query.sellToken;
+  const isETH = sellTokenParam &&
+    (
+      sellTokenParam.toLowerCase() === 'eth' ||
+      sellTokenParam.toLowerCase() === '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
+    );
+
+  if (isETH) {
+    res.status(400).json({
+      error: 'Gasless transactions with ETH are not supported.',
+    });
+    return; // ✅ Now it's inside a function
+  }
+
+  // continue processing
+});
+
