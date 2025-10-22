@@ -92,8 +92,13 @@ app.get('/api/health', (req, res) => {
 app.get('/api/tokens', async (req, res) => {
   try {
     const base = get0xBaseUrl(req.query.chain)
-    const url = `${base}/swap/v1/tokens`
-    console.log('[proxy] /api/tokens chain=', req.query.chain || 'ethereum', '→', url)
+    const url = `${base}/swap/v2/tokens`
+    console.log(
+      '[proxy] /api/tokens chain=',
+      req.query.chain || 'ethereum',
+      '→',
+      url
+    )
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -118,7 +123,13 @@ app.get('/api/tokens', async (req, res) => {
       : code.includes('ENOTFOUND')
       ? 502
       : 500
-    res.status(status).json({ error: 'Failed to fetch 0x tokens', code, hint: hintForError(err) })
+    res
+      .status(status)
+      .json({
+        error: 'Failed to fetch 0x tokens',
+        code,
+        hint: hintForError(err),
+      })
   }
 })
 
@@ -130,7 +141,7 @@ app.get('/api/quote', async (req, res) => {
     // Do not forward the helper param "chain" to 0x
     params.delete('chain')
     const base = get0xBaseUrl(chain)
-    const url = `${base}/swap/v1/quote?${params.toString()}`
+    const url = `${base}/swap/v2/quote?${params.toString()}`
     console.log('[proxy] /api/quote chain=', chain || 'ethereum', '→', url)
     const response = await fetch(url, {
       method: 'GET',
@@ -160,7 +171,13 @@ app.get('/api/quote', async (req, res) => {
       : code.includes('ENOTFOUND')
       ? 502
       : 500
-    res.status(status).json({ error: 'Failed to fetch 0x quote', code, hint: hintForError(err) })
+    res
+      .status(status)
+      .json({
+        error: 'Failed to fetch 0x quote',
+        code,
+        hint: hintForError(err),
+      })
   }
 })
 
@@ -174,7 +191,7 @@ app.get('/api/gasless/price', async (req, res) => {
     const base = get0xBaseUrl(chain)
     const url = `${base}/gasless/price?${params.toString()}`
     console.log('[proxy] /api/gasless/price chain=', chain, '→', url)
-    
+
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -185,18 +202,18 @@ app.get('/api/gasless/price', async (req, res) => {
       },
       timeout: 10000,
     })
-    
+
     const contentType = response.headers.get('content-type') || ''
     const body = contentType.includes('application/json')
       ? await response.json()
       : await response.text()
-    
+
     if (!response.ok) {
       console.warn('[proxy] /api/gasless/price error', response.status, body)
     } else {
       console.log('[proxy] /api/gasless/price ok', response.status)
     }
-    
+
     res.status(response.status).send(body)
   } catch (err) {
     console.error('Proxy /api/gasless/price error:', err)
@@ -208,7 +225,13 @@ app.get('/api/gasless/price', async (req, res) => {
       : code.includes('ENOTFOUND')
       ? 502
       : 500
-    res.status(status).json({ error: 'Failed to fetch gasless price', code, hint: hintForError(err) })
+    res
+      .status(status)
+      .json({
+        error: 'Failed to fetch gasless price',
+        code,
+        hint: hintForError(err),
+      })
   }
 })
 
@@ -222,7 +245,7 @@ app.get('/api/gasless/quote', async (req, res) => {
     const base = get0xBaseUrl(chain)
     const url = `${base}/gasless/quote?${params.toString()}`
     console.log('[proxy] /api/gasless/quote chain=', chain, '→', url)
-    
+
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -233,18 +256,18 @@ app.get('/api/gasless/quote', async (req, res) => {
       },
       timeout: 10000,
     })
-    
+
     const contentType = response.headers.get('content-type') || ''
     const body = contentType.includes('application/json')
       ? await response.json()
       : await response.text()
-    
+
     if (!response.ok) {
       console.warn('[proxy] /api/gasless/quote error', response.status, body)
     } else {
       console.log('[proxy] /api/gasless/quote ok', response.status)
     }
-    
+
     res.status(response.status).send(body)
   } catch (err) {
     console.error('Proxy /api/gasless/quote error:', err)
@@ -256,7 +279,13 @@ app.get('/api/gasless/quote', async (req, res) => {
       : code.includes('ENOTFOUND')
       ? 502
       : 500
-    res.status(status).json({ error: 'Failed to fetch gasless quote', code, hint: hintForError(err) })
+    res
+      .status(status)
+      .json({
+        error: 'Failed to fetch gasless quote',
+        code,
+        hint: hintForError(err),
+      })
   }
 })
 
@@ -264,21 +293,21 @@ app.get('/api/gasless/quote', async (req, res) => {
 app.post('/api/gasless/submit', async (req, res) => {
   try {
     const { signature, approval, trade, chain = '1' } = req.body
-    
+
     if (!signature) {
       return res.status(400).json({ error: 'Signature is required' })
     }
-    
+
     const base = get0xBaseUrl(chain)
     const url = `${base}/gasless/submit`
     console.log('[proxy] /api/gasless/submit chain=', chain, '→', url)
-    
+
     const payload = {
       signature,
       ...(approval && { approval }),
       ...(trade && { trade }),
     }
-    
+
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -291,18 +320,18 @@ app.post('/api/gasless/submit', async (req, res) => {
       body: JSON.stringify(payload),
       timeout: 10000,
     })
-    
+
     const contentType = response.headers.get('content-type') || ''
     const body = contentType.includes('application/json')
       ? await response.json()
       : await response.text()
-    
+
     if (!response.ok) {
       console.warn('[proxy] /api/gasless/submit error', response.status, body)
     } else {
       console.log('[proxy] /api/gasless/submit ok', response.status)
     }
-    
+
     res.status(response.status).send(body)
   } catch (err) {
     console.error('Proxy /api/gasless/submit error:', err)
@@ -314,7 +343,13 @@ app.post('/api/gasless/submit', async (req, res) => {
       : code.includes('ENOTFOUND')
       ? 502
       : 500
-    res.status(status).json({ error: 'Failed to submit gasless transaction', code, hint: hintForError(err) })
+    res
+      .status(status)
+      .json({
+        error: 'Failed to submit gasless transaction',
+        code,
+        hint: hintForError(err),
+      })
   }
 })
 

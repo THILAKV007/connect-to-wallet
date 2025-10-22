@@ -212,6 +212,31 @@ const Swap1 = ({ isDarkMode }) => {
             address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
             decimals: 18,
           },
+          {
+            symbol: 'BNB',
+            address: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
+            decimals: 18,
+          },
+          {
+            symbol: 'WBNB',
+            address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+            decimals: 18,
+          },
+          {
+            symbol: 'BUSD',
+            address: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
+            decimals: 18,
+          },
+          {
+            symbol: 'USDT',
+            address: '0x55d398326f99059fF775485246999027B3197955',
+            decimals: 18,
+          },
+          {
+            symbol: 'CAKE',
+            address: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+            decimals: 18,
+          },
         ])
       } finally {
         setIsLoadingTokens(false)
