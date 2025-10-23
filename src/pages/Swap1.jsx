@@ -8,9 +8,6 @@ import {
   Button,
   TextField,
   Chip,
-  IconButton,
-  Tabs,
-  Tab,
   Select,
   Menu,
   MenuItem,
@@ -43,11 +40,11 @@ const Swap1 = ({ isDarkMode }) => {
   const [expiry, setExpiry] = useState('1h')
 
   // 0x integration state
-  const OX_API_KEY = process.env.REACT_APP_OX_API_KEY
-  const [sellTokenSymbol, setSellTokenSymbol] = useState('ETH')
-  const [buyTokenSymbol, setBuyTokenSymbol] = useState('USDC')
+
+  const [sellTokenSymbol, setSellTokenSymbol] = useState('USDC')
+  const [buyTokenSymbol, setBuyTokenSymbol] = useState('ETH')
   const [quote, setQuote] = useState(null)
-  const [isFetchingQuote, setIsFetchingQuote] = useState(false)
+  const [ FetchingQuote, setIsFetchingQuote] = useState(false)
   const [swapError, setSwapError] = useState('')
   const [account, setAccount] = useState(null)
   const [tokens, setTokens] = useState([])
@@ -61,9 +58,7 @@ const Swap1 = ({ isDarkMode }) => {
   const [isFetchingGaslessQuote, setIsFetchingGaslessQuote] = useState(false)
   const [gaslessPrice, setGaslessPrice] = useState(null)
 
-  const handleTabChange = (event, newValue) => {
-    setActiveTab(newValue)
-  }
+  
 
   // Generate realistic trading chart data
   const generateChartData = () => {
@@ -245,6 +240,36 @@ const Swap1 = ({ isDarkMode }) => {
     fetchTokens()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+   useEffect(() => {
+    const fetchQuote = async () => {
+      try {
+        const response = await fetch(
+          "https://api.0x.org/gasless/quote?chainId=1&sellToken=0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72&buyToken=0xdac17f958d2ee523a2206206994597c13d831ec7&sellAmount=1105553300749629440&taker=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+          {
+            method: "GET",
+            headers: {
+              "0x-api-key": "YOUR_API_KEY_HERE",
+              "0x-version": "v2",
+            },
+          }
+        );
+
+        const data = await response.json();
+        setQuote(data);
+        console.log("Gasless Quote:", data);
+      } catch (error) {
+        console.error("Error fetching quote:", error);
+      }
+    };
+
+    fetchQuote();
+  }, []);
+
+
+
+
+
+
 
   // Token dropdown handlers
   const openSellMenu = (e) => setSellTokenAnchorEl(e.currentTarget)

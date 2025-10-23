@@ -1,3 +1,4 @@
+// index.js (Express.js server for proxying 0x API calls)
 const express = require('express')
 const cors = require('cors')
 const fetch = require('node-fetch')
@@ -353,14 +354,8 @@ app.post('/api/gasless/submit', async (req, res) => {
   }
 })
 
-const PORT = process.env.PORT || 4000
-app.listen(PORT, () => {
-  console.log(`Proxy running on port ${PORT}`)
-})
-
-
+// Block gasless if sellToken is ETH
 app.get('/your-endpoint', (req, res) => {
-  // Block gasless if sellToken is ETH
   const sellTokenParam = req.query.sellToken;
   const isETH = sellTokenParam &&
     (
@@ -372,9 +367,14 @@ app.get('/your-endpoint', (req, res) => {
     res.status(400).json({
       error: 'Gasless transactions with ETH are not supported.',
     });
-    return; // ✅ Now it's inside a function
+    return;
   }
 
-  // continue processing
+  // Continue processing (e.g., fetch quote or other logic)
+  res.json({ message: 'Processing non-ETH token...' });
 });
 
+const PORT = process.env.PORT || 4000
+app.listen(PORT, () => {
+  console.log(`Proxy running on port ${PORT}`)
+})
