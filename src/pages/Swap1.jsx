@@ -31,6 +31,9 @@ import BarChartIcon from '@mui/icons-material/BarChart'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import SwapVertIcon from '@mui/icons-material/SwapVert'
 
+
+
+
 const Swap1 = ({ isDarkMode }) => {
   const [activeTab, setActiveTab] = useState(0)
   const [sellAmount, setSellAmount] = useState('')
@@ -248,7 +251,7 @@ const Swap1 = ({ isDarkMode }) => {
           {
             method: "GET",
             headers: {
-              "0x-api-key": "YOUR_API_KEY_HERE",
+              "0x-api-key": "6e45a83e-8c42-40d5-8312-0ecf079d674a",
               "0x-version": "v2",
             },
           }
